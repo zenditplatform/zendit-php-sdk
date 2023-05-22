@@ -1,0 +1,36 @@
+{
+    "description": "PHP client for Zendit API",
+    "keywords": [
+        "zendit",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://zendit.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zendit",
+            "homepage": "https://zendit.io"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": { "Zendit\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Zendit\\Test\\" : "test/" }
+    }
+}

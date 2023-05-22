@@ -1,0 +1,32 @@
+{
+    "description": "Example of usage PHP client for Zendit API",
+    "keywords": [
+        "zendit",
+        "example",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://zendit.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zendit",
+            "homepage": "https://zendit.io"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/zenditplatform/zendit-php-sdk.git"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "zenditplatform/zendit-php-sdk": "dev-master"
+    }
+}
