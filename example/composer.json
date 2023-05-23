@@ -27,6 +27,7 @@
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "zenditplatform/zendit-php-sdk": "dev-master"
+        "vlucas/phpdotenv": "*",
+        "zenditplatform/zendit-php-sdk": "dev-main"
     }
 }

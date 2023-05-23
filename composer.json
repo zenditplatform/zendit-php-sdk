@@ -1,4 +1,5 @@
 {
+    "name": "zenditplatform/zendit-php-sdk",
     "description": "PHP client for Zendit API",
     "keywords": [
         "zendit",
