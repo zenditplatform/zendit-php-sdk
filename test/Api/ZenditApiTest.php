@@ -1,10 +1,11 @@
 <?php
 namespace Zendit\Test\Api;
 
-use \Zendit\Test\Configuration;
-use \Zendit\Test\ApiException;
-use \Zendit\Test\ObjectSerializer;
 use PHPUnit\Framework\TestCase;
+use Zendit\Model\DtoTopupPurchaseMakeInput;
+use Zendit\Model\DtoVoucherField;
+use Zendit\Model\DtoVoucherPurchaseInput;
+use Zendit\ZenditAPI;
 
 /**
  * ZenditApiTest Class Doc Comment
@@ -16,6 +17,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ZenditApiTest extends TestCase
 {
+    protected ZenditAPI $zenditApi;
 
     /**
      * Setup before running any test cases
@@ -29,6 +31,9 @@ class ZenditApiTest extends TestCase
      */
     public function setUp(): void
     {
+        $apiKey = $_SERVER['ZENDIT_API_KEY'];
+
+        $this->zenditApi = new ZenditAPI($apiKey);
     }
 
     /**
@@ -53,8 +58,10 @@ class ZenditApiTest extends TestCase
      */
     public function testBalanceGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->balanceGet();
+
+        $this->assertIsInt($result->getAvailableBalance());
+        $this->assertNotEmpty($result->getCurrency());
     }
 
     /**
@@ -65,8 +72,27 @@ class ZenditApiTest extends TestCase
      */
     public function testTopupsOffersGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->topupsOffersGet(1, 0);
+
+        foreach ($result->getList() as $value) {
+            $this->assertNotEmpty($value->getOfferId());
+            $this->assertNotEmpty($value->getBrand());
+            $this->assertNotEmpty($value->getCost());
+            $this->assertNotEmpty($value->getCountry());
+            $this->assertNotEmpty($value->getBrand());
+            $this->assertNotEmpty($value->getCost());
+            $this->assertNotEmpty($value->getCountry());
+            $this->assertNotEmpty($value->getCreatedAt());
+            $this->assertNotEmpty($value->getEnabled());
+            $this->assertIsString($value->getNotes());
+            $this->assertNotEmpty($value->getPrice());
+            $this->assertNotEmpty($value->getPriceType());
+            $this->assertNotEmpty($value->getProductType());
+            $this->assertNotEmpty($value->getSend());
+            $this->assertIsString($value->getShortNotes());
+            $this->assertNotEmpty(join(", ", $value->getSubTypes()));
+            $this->assertNotEmpty($value->getUpdatedAt());
+        }
     }
 
     /**
@@ -77,8 +103,22 @@ class ZenditApiTest extends TestCase
      */
     public function testTopupsOffersOfferIdGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->topupsOffersOfferIdGet('CUBACEL_CU_OPEN');
+
+        $this->assertNotEmpty($result->getBrand());
+        $this->assertNotEmpty($result->getCost());
+        $this->assertNotEmpty($result->getCountry());
+        $this->assertNotEmpty($result->getCreatedAt());
+        $this->assertNotEmpty($result->getEnabled());
+        $this->assertIsString($result->getNotes());
+        $this->assertNotEmpty($result->getOfferId());
+        $this->assertNotEmpty($result->getPrice());
+        $this->assertNotEmpty($result->getPriceType());
+        $this->assertNotEmpty($result->getProductType());
+        $this->assertNotEmpty($result->getSend());
+        $this->assertIsString($result->getShortNotes());
+        $this->assertNotEmpty($result->getSubTypes());
+        $this->assertNotEmpty($result->getUpdatedAt());
     }
 
     /**
@@ -89,8 +129,31 @@ class ZenditApiTest extends TestCase
      */
     public function testTopupsPurchasesGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->topupsPurchasesGet(1, 0);
+
+        foreach ($result->getList() as $value) {
+            $this->assertNotEmpty($value->getBrand());
+            $this->assertNotEmpty($value->getCost());
+            $this->assertNotEmpty($value->getCostCurrency());
+            $this->assertNotEmpty($value->getCountry());
+            $this->assertNotEmpty($value->getCreatedAt());
+            $this->assertNotEmpty($value->getLog());
+            $this->assertIsString($value->getNotes());
+            $this->assertNotEmpty($value->getOfferId());
+            $this->assertNotEmpty($value->getPrice());
+            $this->assertNotEmpty($value->getPriceCurrency());
+            $this->assertNotEmpty($value->getPriceType());
+            $this->assertNotEmpty($value->getProductType());
+            $this->assertNotEmpty($value->getRecipientPhoneNumber());
+            $this->assertNotEmpty($value->getSend());
+            $this->assertNotEmpty($value->getSendCurrency());
+            $this->assertNotEmpty($value->getSender());
+            $this->assertIsString($value->getShortNotes());
+            $this->assertNotEmpty($value->getStatus());
+            $this->assertNotEmpty($value->getSubTypes());
+            $this->assertNotEmpty($value->getTransactionId());
+            $this->assertNotEmpty($value->getUpdatedAt());
+        }
     }
 
     /**
@@ -101,8 +164,15 @@ class ZenditApiTest extends TestCase
      */
     public function testTopupsPurchasesPost()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $data = new DtoTopupPurchaseMakeInput();
+        $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
+        $data->setRecipientPhoneNumber("+5355564362");
+        $data->setOfferId("CUBACEL_CU_PAQUETE001");
+
+        $result = $this->zenditApi->topupsPurchasesPost($data);
+
+        $this->assertNotEmpty($result->getStatus());
+        $this->assertNotEmpty($result->getTransactionId());
     }
 
     /**
@@ -113,8 +183,35 @@ class ZenditApiTest extends TestCase
      */
     public function testTopupsPurchasesTransactionIdGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $data = new DtoTopupPurchaseMakeInput();
+        $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
+        $data->setRecipientPhoneNumber("+5355564362");
+        $data->setOfferId("CUBACEL_CU_PAQUETE001");
+        $purchaseData = $this->zenditApi->topupsPurchasesPost($data);
+
+        $result = $this->zenditApi->topupsPurchasesTransactionIdGet($purchaseData->getTransactionId());
+
+        $this->assertNotEmpty($result->getBrand());
+        $this->assertNotEmpty($result->getCost());
+        $this->assertNotEmpty($result->getCostCurrency());
+        $this->assertNotEmpty($result->getCountry());
+        $this->assertNotEmpty($result->getCreatedAt());
+        $this->assertNotEmpty($result->getLog());
+        $this->assertIsString($result->getNotes());
+        $this->assertNotEmpty($result->getOfferId());
+        $this->assertNotEmpty($result->getPrice());
+        $this->assertNotEmpty($result->getPriceCurrency());
+        $this->assertNotEmpty($result->getPriceType());
+        $this->assertNotEmpty($result->getProductType());
+        $this->assertNotEmpty($result->getRecipientPhoneNumber());
+        $this->assertNotEmpty($result->getSend());
+        $this->assertNotEmpty($result->getSendCurrency());
+        $this->assertNotEmpty($result->getSender());
+        $this->assertIsString($result->getShortNotes());
+        $this->assertNotEmpty($result->getStatus());
+        $this->assertNotEmpty($result->getSubTypes());
+        $this->assertNotEmpty($result->getTransactionId());
+        $this->assertNotEmpty($result->getUpdatedAt());
     }
 
     /**
@@ -125,8 +222,19 @@ class ZenditApiTest extends TestCase
      */
     public function testTransactionsGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->transactionsGet(1, 0);
+
+        foreach ($result->getList() as $value) {
+            $this->assertNotEmpty($value->getTransactionId());
+            $this->assertNotEmpty($value->getAmount());
+            $this->assertNotEmpty($value->getLog());
+            $this->assertNotEmpty($value->getCurrency());
+            $this->assertNotEmpty($value->getStatus());
+            $this->assertNotEmpty($value->getProductType());
+            $this->assertNotEmpty($value->getType());
+            $this->assertNotEmpty($value->getCreatedAt());
+            $this->assertNotEmpty($value->getUpdatedAt());
+        }
     }
 
     /**
@@ -137,8 +245,19 @@ class ZenditApiTest extends TestCase
      */
     public function testTransactionsTransactionIdGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $transactionId = $this->zenditApi->transactionsGet(1, 0)->getList()[0]->getTransactionId();
+
+        $result = $this->zenditApi->transactionsTransactionIdGet($transactionId);
+
+        $this->assertNotEmpty($result->getTransactionId());
+        $this->assertNotEmpty($result->getAmount());
+        $this->assertNotEmpty($result->getLog());
+        $this->assertNotEmpty($result->getCurrency());
+        $this->assertNotEmpty($result->getStatus());
+        $this->assertNotEmpty($result->getProductType());
+        $this->assertNotEmpty($result->getType());
+        $this->assertNotEmpty($result->getCreatedAt());
+        $this->assertNotEmpty($result->getUpdatedAt());
     }
 
     /**
@@ -149,8 +268,25 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersOffersGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->vouchersOffersGet(1, 0);
+
+        // Do some work here
+        foreach ($result->getList()as $value) {
+            $this->assertNotEmpty($value->getOfferId());
+            $this->assertNotEmpty($value->getBrand());
+            $this->assertNotEmpty($value->getCost());
+            $this->assertNotEmpty($value->getCountry());
+            $this->assertNotEmpty($value->getCreatedAt());
+            $this->assertNotEmpty($value->getEnabled());
+            $this->assertIsString($value->getNotes());
+            $this->assertNotEmpty($value->getPrice());
+            $this->assertNotEmpty($value->getPriceType());
+            $this->assertNotEmpty($value->getProductType());
+            $this->assertNotEmpty($value->getSend());
+            $this->assertIsString($value->getShortNotes());
+            $this->assertIsString(join(", ", $value->getSubTypes()));
+            $this->assertNotEmpty($value->getUpdatedAt());
+        }
     }
 
     /**
@@ -161,8 +297,22 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersOffersOfferIdGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $offerId = $this->zenditApi->vouchersOffersGet(1, 0)->getList()[0]->getOfferId();
+
+        $result = $this->zenditApi->vouchersOffersOfferIdGet($offerId);
+
+        $this->assertNotEmpty($result->getOfferId());
+        $this->assertNotEmpty($result->getBrand());
+        $this->assertNotEmpty($result->getCost());
+        $this->assertNotEmpty($result->getCountry());
+        $this->assertNotEmpty($result->getCreatedAt());
+        $this->assertNotEmpty($result->getEnabled());
+        $this->assertIsString($result->getNotes());
+        $this->assertNotEmpty($result->getPrice());
+        $this->assertNotEmpty($result->getPriceType());
+        $this->assertNotEmpty($result->getProductType());
+        $this->assertNotEmpty($result->getSend());
+        $this->assertNotEmpty($result->getUpdatedAt());
     }
 
     /**
@@ -173,8 +323,31 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersPurchasesGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $result = $this->zenditApi->vouchersPurchasesGet(1, 0);
+
+        foreach ($result->getList() as $value) {
+            $this->assertNotEmpty($value->getBrand());
+            $this->assertNotEmpty($value->getCost());
+            $this->assertNotEmpty($value->getCostCurrency());
+            $this->assertNotEmpty($value->getCountry());
+            $this->assertNotEmpty($value->getCreatedAt());
+            $this->assertNotEmpty($value->getError());
+            $this->assertNotEmpty($value->getFields());
+            $this->assertNotEmpty($value->getLog());
+            $this->assertIsString($value->getNotes());
+            $this->assertNotEmpty($value->getOfferId());
+            $this->assertNotEmpty($value->getPrice());
+            $this->assertNotEmpty($value->getPriceCurrency());
+            $this->assertNotEmpty($value->getPriceType());
+            $this->assertNotEmpty($value->getProductType());
+            $this->assertNotEmpty($value->getSend());
+            $this->assertNotEmpty($value->getSendCurrency());
+            $this->assertIsString($value->getShortNotes());
+            $this->assertNotEmpty($value->getStatus());
+            $this->assertNotEmpty($value->getSubTypes());
+            $this->assertNotEmpty($value->getTransactionId());
+            $this->assertNotEmpty($value->getUpdatedAt());
+        }
     }
 
     /**
@@ -185,8 +358,42 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersPurchasesPost()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $fields = [
+            new DtoVoucherField([
+                "key" => "recipient.firstName",
+                "value" => "John",
+            ]),
+            new DtoVoucherField([
+                "key" => "recipient.lastName",
+                "value" => "Doe",
+            ]),
+            new DtoVoucherField([
+                "key" => "recipient.msisdn",
+                "value" => "+15515551212",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.firstName",
+                "value" => "Jane",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.lastName",
+                "value" => "Doe",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.msisdn",
+                "value" => "+15515551212",
+            ]),
+        ];
+
+        $data = new DtoVoucherPurchaseInput();
+        $data->setFields($fields);
+        $data->setOfferId("AIRCANADA_CA_001_EGIFT_USD");
+        $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
+
+        $result = $this->zenditApi->vouchersPurchasesPost($data);
+
+        $this->assertNotEmpty($result->getTransactionId());
+        $this->assertNotEmpty($result->getStatus());
     }
 
     /**
@@ -197,7 +404,59 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersPurchasesTransactionIdGet()
     {
-        // TODO: implement
-        $this->markTestIncomplete('Not implemented');
+        $fields = [
+            new DtoVoucherField([
+                "key" => "recipient.firstName",
+                "value" => "John",
+            ]),
+            new DtoVoucherField([
+                "key" => "recipient.lastName",
+                "value" => "Doe",
+            ]),
+            new DtoVoucherField([
+                "key" => "recipient.msisdn",
+                "value" => "+15515551212",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.firstName",
+                "value" => "Jane",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.lastName",
+                "value" => "Doe",
+            ]),
+            new DtoVoucherField([
+                "key" => "sender.msisdn",
+                "value" => "+15515551212",
+            ]),
+        ];
+        $data = new DtoVoucherPurchaseInput();
+        $data->setFields($fields);
+        $data->setOfferId("AIRCANADA_CA_001_EGIFT_USD");
+        $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
+        $purchase = $this->zenditApi->vouchersPurchasesPost($data);
+
+        $result = $this->zenditApi->vouchersPurchasesTransactionIdGet($purchase->getTransactionId());
+
+        $this->assertNotEmpty($result->getBrand());
+        $this->assertNotEmpty($result->getCost());
+        $this->assertNotEmpty($result->getCostCurrency());
+        $this->assertNotEmpty($result->getCountry());
+        $this->assertNotEmpty($result->getCreatedAt());
+        $this->assertNotEmpty($result->getFields());
+        $this->assertNotEmpty($result->getLog());
+        $this->assertIsString($result->getNotes());
+        $this->assertNotEmpty($result->getOfferId());
+        $this->assertNotEmpty($result->getPrice());
+        $this->assertNotEmpty($result->getPriceCurrency());
+        $this->assertNotEmpty($result->getPriceType());
+        $this->assertNotEmpty($result->getProductType());
+        $this->assertNotEmpty($result->getSend());
+        $this->assertNotEmpty($result->getSendCurrency());
+        $this->assertIsString($result->getShortNotes());
+        $this->assertNotEmpty($result->getStatus());
+        $this->assertNotEmpty($result->getSubTypes());
+        $this->assertNotEmpty($result->getTransactionId());
+        $this->assertNotEmpty($result->getUpdatedAt());
     }
 }
