@@ -14,7 +14,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoVoucherReceipt
+class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -90,7 +90,7 @@ class DtoVoucherReceipt
      *
      * @return array
      */
-    protected static function openAPITypes()
+    public static function openAPITypes()
     {
         return self::$openAPITypes;
     }
@@ -100,7 +100,7 @@ class DtoVoucherReceipt
      *
      * @return array
      */
-    protected static function openAPIFormats()
+    public static function openAPIFormats()
     {
         return self::$openAPIFormats;
     }
@@ -141,7 +141,7 @@ class DtoVoucherReceipt
      * @param string $property
      * @return bool
      */
-    protected static function isNullable(string $property): bool
+    public static function isNullable(string $property): bool
     {
         return self::openAPINullables()[$property] ?? false;
     }
@@ -152,7 +152,7 @@ class DtoVoucherReceipt
      * @param string $property
      * @return bool
      */
-    protected function isNullableSetToNull(string $property): bool
+    public function isNullableSetToNull(string $property): bool
     {
         return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
@@ -215,7 +215,7 @@ class DtoVoucherReceipt
      *
      * @return array
      */
-    protected static function attributeMap()
+    public static function attributeMap()
     {
         return self::$attributeMap;
     }
@@ -225,7 +225,7 @@ class DtoVoucherReceipt
      *
      * @return array
      */
-    protected static function setters()
+    public static function setters()
     {
         return self::$setters;
     }
@@ -235,7 +235,7 @@ class DtoVoucherReceipt
      *
      * @return array
      */
-    protected static function getters()
+    public static function getters()
     {
         return self::$getters;
     }
@@ -245,7 +245,7 @@ class DtoVoucherReceipt
      *
      * @return string
      */
-    protected function getModelName()
+    public function getModelName()
     {
         return self::$openAPIModelName;
     }

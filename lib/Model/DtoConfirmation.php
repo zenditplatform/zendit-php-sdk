@@ -6,7 +6,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoPurchaseValue Class Doc Comment
+ * DtoConfirmation Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -14,7 +14,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -23,7 +23,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.PurchaseValue';
+    protected static $openAPIModelName = 'dto.Confirmation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -31,8 +31,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'DtoValueType',
-        'value' => 'int'
+        'confirmation_number' => 'string',
+        'external_reference_id' => 'string',
+        'transaction_time' => 'string'
     ];
 
     /**
@@ -43,8 +44,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'value' => null
+        'confirmation_number' => null,
+        'external_reference_id' => null,
+        'transaction_time' => null
     ];
 
     /**
@@ -53,8 +55,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-		'value' => false
+        'confirmation_number' => false,
+		'external_reference_id' => false,
+		'transaction_time' => false
     ];
 
     /**
@@ -143,8 +146,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'value' => 'value'
+        'confirmation_number' => 'confirmationNumber',
+        'external_reference_id' => 'externalReferenceId',
+        'transaction_time' => 'transactionTime'
     ];
 
     /**
@@ -153,8 +157,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'value' => 'setValue'
+        'confirmation_number' => 'setConfirmationNumber',
+        'external_reference_id' => 'setExternalReferenceId',
+        'transaction_time' => 'setTransactionTime'
     ];
 
     /**
@@ -163,8 +168,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'value' => 'getValue'
+        'confirmation_number' => 'getConfirmationNumber',
+        'external_reference_id' => 'getExternalReferenceId',
+        'transaction_time' => 'getTransactionTime'
     ];
 
     /**
@@ -224,8 +230,9 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('confirmation_number', $data ?? [], null);
+        $this->setIfExists('external_reference_id', $data ?? [], null);
+        $this->setIfExists('transaction_time', $data ?? [], null);
     }
 
     /**
@@ -271,55 +278,82 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets type
+     * Gets confirmation_number
      *
-     * @return DtoValueType|null
+     * @return string|null
      */
-    public function getType()
+    public function getConfirmationNumber()
     {
-        return $this->container['type'];
+        return $this->container['confirmation_number'];
     }
 
     /**
-     * Sets type
+     * Sets confirmation_number
      *
-     * @param DtoValueType|null $type type
+     * @param string|null $confirmation_number confirmation_number
      *
      * @return self
      */
-    public function setType($type)
+    public function setConfirmationNumber($confirmation_number)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($confirmation_number)) {
+            throw new \InvalidArgumentException('non-nullable confirmation_number cannot be null');
         }
-        $this->container['type'] = $type;
+        $this->container['confirmation_number'] = $confirmation_number;
 
         return $this;
     }
 
     /**
-     * Gets value
+     * Gets external_reference_id
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getValue()
+    public function getExternalReferenceId()
     {
-        return $this->container['value'];
+        return $this->container['external_reference_id'];
     }
 
     /**
-     * Sets value
+     * Sets external_reference_id
      *
-     * @param int|null $value value
+     * @param string|null $external_reference_id external_reference_id
      *
      * @return self
      */
-    public function setValue($value)
+    public function setExternalReferenceId($external_reference_id)
     {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
+        if (is_null($external_reference_id)) {
+            throw new \InvalidArgumentException('non-nullable external_reference_id cannot be null');
         }
-        $this->container['value'] = $value;
+        $this->container['external_reference_id'] = $external_reference_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets transaction_time
+     *
+     * @return string|null
+     */
+    public function getTransactionTime()
+    {
+        return $this->container['transaction_time'];
+    }
+
+    /**
+     * Sets transaction_time
+     *
+     * @param string|null $transaction_time transaction_time
+     *
+     * @return self
+     */
+    public function setTransactionTime($transaction_time)
+    {
+        if (is_null($transaction_time)) {
+            throw new \InvalidArgumentException('non-nullable transaction_time cannot be null');
+        }
+        $this->container['transaction_time'] = $transaction_time;
 
         return $this;
     }

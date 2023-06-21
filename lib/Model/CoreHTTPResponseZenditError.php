@@ -33,8 +33,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPITypes = [
         'error_code' => '\Zendit\Model\CoreErrorCode',
         'message' => 'string',
-        'payload' => 'object',
-        'txid' => 'string'
+        'payload' => 'object'
     ];
 
     /**
@@ -47,8 +46,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static $openAPIFormats = [
         'error_code' => null,
         'message' => null,
-        'payload' => null,
-        'txid' => null
+        'payload' => null
     ];
 
     /**
@@ -59,8 +57,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static array $openAPINullables = [
         'error_code' => false,
 		'message' => false,
-		'payload' => false,
-		'txid' => false
+		'payload' => false
     ];
 
     /**
@@ -151,8 +148,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static $attributeMap = [
         'error_code' => 'errorCode',
         'message' => 'message',
-        'payload' => 'payload',
-        'txid' => 'txid'
+        'payload' => 'payload'
     ];
 
     /**
@@ -163,8 +159,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static $setters = [
         'error_code' => 'setErrorCode',
         'message' => 'setMessage',
-        'payload' => 'setPayload',
-        'txid' => 'setTxid'
+        'payload' => 'setPayload'
     ];
 
     /**
@@ -175,8 +170,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     protected static $getters = [
         'error_code' => 'getErrorCode',
         'message' => 'getMessage',
-        'payload' => 'getPayload',
-        'txid' => 'getTxid'
+        'payload' => 'getPayload'
     ];
 
     /**
@@ -239,7 +233,6 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
         $this->setIfExists('error_code', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
         $this->setIfExists('payload', $data ?? [], null);
-        $this->setIfExists('txid', $data ?? [], null);
     }
 
     /**
@@ -361,33 +354,6 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
             throw new \InvalidArgumentException('non-nullable payload cannot be null');
         }
         $this->container['payload'] = $payload;
-
-        return $this;
-    }
-
-    /**
-     * Gets txid
-     *
-     * @return string|null
-     */
-    public function getTxid()
-    {
-        return $this->container['txid'];
-    }
-
-    /**
-     * Sets txid
-     *
-     * @param string|null $txid txid
-     *
-     * @return self
-     */
-    public function setTxid($txid)
-    {
-        if (is_null($txid)) {
-            throw new \InvalidArgumentException('non-nullable txid cannot be null');
-        }
-        $this->container['txid'] = $txid;
 
         return $this;
     }
