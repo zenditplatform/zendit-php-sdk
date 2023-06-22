@@ -23,7 +23,7 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
     }
   ],
   "require": {
-    "zenditplatform/zendit-php-sdk": "*@dev"
+    "zenditplatform/zendit-php-sdk": "dev-main"
   }
 }
 ```
@@ -43,6 +43,8 @@ require_once('/path/to/ZenditAPIClient/vendor/autoload.php');
 
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
+> **Note:** Your API key can be found on the [Zendit Dashboard](https://console.zendit.io/).
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
@@ -60,75 +62,56 @@ try {
 
 ```
 
-## API Endpoints
+## Example Application
 
-All URIs are relative to */v1*
+If you prefer, you can get started with our [example app](https://github.com/zenditplatform/zendit-php-sdk/blob/main/example) as a base.
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*ZenditApi* | [**balanceGet**](docs/Api/ZenditApi.md#balanceget) | **GET** /balance | Get list of transactions
-*ZenditApi* | [**topupsOffersGet**](docs/Api/ZenditApi.md#topupsoffersget) | **GET** /topups/offers | Get list of topup offers
-*ZenditApi* | [**topupsOffersOfferIdGet**](docs/Api/ZenditApi.md#topupsoffersofferidget) | **GET** /topups/offers/{offerId} | Get a topup offer by the offer ID
-*ZenditApi* | [**topupsPurchasesGet**](docs/Api/ZenditApi.md#topupspurchasesget) | **GET** /topups/purchases | Get list of topup transactions
-*ZenditApi* | [**topupsPurchasesPost**](docs/Api/ZenditApi.md#topupspurchasespost) | **POST** /topups/purchases | Create transaction for purchase
-*ZenditApi* | [**topupsPurchasesTransactionIdGet**](docs/Api/ZenditApi.md#topupspurchasestransactionidget) | **GET** /topups/purchases/{transactionId} | Get topup transaction by id
-*ZenditApi* | [**transactionsGet**](docs/Api/ZenditApi.md#transactionsget) | **GET** /transactions | Get list of transactions
-*ZenditApi* | [**transactionsTransactionIdGet**](docs/Api/ZenditApi.md#transactionstransactionidget) | **GET** /transactions/{transactionId} | Get transaction by id
-*ZenditApi* | [**vouchersOffersGet**](docs/Api/ZenditApi.md#vouchersoffersget) | **GET** /vouchers/offers | Get list of voucher offers
-*ZenditApi* | [**vouchersOffersOfferIdGet**](docs/Api/ZenditApi.md#vouchersoffersofferidget) | **GET** /vouchers/offers/{offerId} | Get a voucher offer by the offer ID
-*ZenditApi* | [**vouchersPurchasesGet**](docs/Api/ZenditApi.md#voucherspurchasesget) | **GET** /vouchers/purchases | Get list of transactions
-*ZenditApi* | [**vouchersPurchasesPost**](docs/Api/ZenditApi.md#voucherspurchasespost) | **POST** /vouchers/purchases | Create transaction for purchase
-*ZenditApi* | [**vouchersPurchasesTransactionIdGet**](docs/Api/ZenditApi.md#voucherspurchasestransactionidget) | **GET** /vouchers/purchases/{transactionId} | Get purchase transaction by id
+### Step 1: Setup a New Project
 
-## Models
-
-- [CoreErrorCode](docs/Model/CoreErrorCode.md)
-- [CoreHTTPResponseZenditError](docs/Model/CoreHTTPResponseZenditError.md)
-- [DtoBalanceResponse](docs/Model/DtoBalanceResponse.md)
-- [DtoCost](docs/Model/DtoCost.md)
-- [DtoError](docs/Model/DtoError.md)
-- [DtoPrice](docs/Model/DtoPrice.md)
-- [DtoPriceType](docs/Model/DtoPriceType.md)
-- [DtoProductType](docs/Model/DtoProductType.md)
-- [DtoPurchaseValue](docs/Model/DtoPurchaseValue.md)
-- [DtoTopupOffer](docs/Model/DtoTopupOffer.md)
-- [DtoTopupOffersResponse](docs/Model/DtoTopupOffersResponse.md)
-- [DtoTopupPurchase](docs/Model/DtoTopupPurchase.md)
-- [DtoTopupPurchaseMakeInput](docs/Model/DtoTopupPurchaseMakeInput.md)
-- [DtoTopupPurchaseResponse](docs/Model/DtoTopupPurchaseResponse.md)
-- [DtoTopupPurchasesResponse](docs/Model/DtoTopupPurchasesResponse.md)
-- [DtoTopupSender](docs/Model/DtoTopupSender.md)
-- [DtoTransaction](docs/Model/DtoTransaction.md)
-- [DtoTransactionLogItem](docs/Model/DtoTransactionLogItem.md)
-- [DtoTransactionStatus](docs/Model/DtoTransactionStatus.md)
-- [DtoTransactionType](docs/Model/DtoTransactionType.md)
-- [DtoTransactionsResponse](docs/Model/DtoTransactionsResponse.md)
-- [DtoValueType](docs/Model/DtoValueType.md)
-- [DtoVoucherField](docs/Model/DtoVoucherField.md)
-- [DtoVoucherOffer](docs/Model/DtoVoucherOffer.md)
-- [DtoVoucherOffersResponse](docs/Model/DtoVoucherOffersResponse.md)
-- [DtoVoucherPurchase](docs/Model/DtoVoucherPurchase.md)
-- [DtoVoucherPurchaseInput](docs/Model/DtoVoucherPurchaseInput.md)
-- [DtoVoucherPurchaseResponse](docs/Model/DtoVoucherPurchaseResponse.md)
-- [DtoVoucherPurchasesResponse](docs/Model/DtoVoucherPurchasesResponse.md)
-- [DtoVoucherReceipt](docs/Model/DtoVoucherReceipt.md)
-- [DtoZend](docs/Model/DtoZend.md)
-
-## Authorization
-
-### ApiKey
-
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
-
-
-## Tests
-
-To run the tests, use:
+Begin by copying the [example app](https://github.com/zenditplatform/zendit-php-sdk/blob/main/example) to your own directory. Once done, install the necessary dependencies by running the following command in your terminal:
 
 ```bash
 composer install
-vendor/bin/phpunit
 ```
 
+### Step 2: Configuration
+Next, you'll need to set the ZENDIT_API_KEY environment variable. 
+You can find this key on your [dashboard](https://console.zendit.io/).
+
+Fill in a .env file in the root directory of the example application, and replace YOUR_KEY_HERE with your actual API key:
+```.env
+ZENDIT_API_KEY=YOUR_KEY_HERE
+```
+
+### Step 3: Run the Example
+Now you're all set! To run the example and see the Zendit SDK for PHP in action, execute the following command:
+
+```bash
+php example.php
+```
+
+This will run the example.php script, which demonstrates the basic usage of the Zendit SDK.
+
+## SDK Guide
+
+For additional documentation checkout the [SDK Guide](docs/Api/ZenditApi.md)
+
+## Getting help
+
+If you need assistance with installing or using the library, please refer to the [Developers site][docs-link] first.
+If you cannot find the answer to your question, you can [contact support][support-page].
+
+If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
+
+## Contributing
+
+Bug fixes, docs, and library improvements are always welcome. Please refer to our [Contributing Guide](CONTRIBUTING.md) for detailed information on how you can contribute.
+
+> You are welcome to suggest changes and submit PRs illustrating the changes. You can find more info about this in the [Contributing Guide](CONTRIBUTING.md).
+
+If you're not familiar with the GitHub pull request/contribution process, [this is a nice tutorial](https://gun.io/blog/how-to-github-fork-branch-and-pull-request/).
+
+[docs-link]: https://developers.zendit.io
+[issue-link]: https://github.com/zenditplatform/zendit-php-sdk/issues/new
+[github]: https://github.com/zenditplatform/zendit-php-sdk
+[support-page]: https://developers.zendit.io/contact/
