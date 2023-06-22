@@ -32,6 +32,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'brand' => 'string',
+        'confirmation' => '\Zendit\Model\DtoConfirmation',
         'cost' => 'int',
         'cost_currency' => 'string',
         'country' => 'string',
@@ -65,6 +66,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'brand' => null,
+        'confirmation' => null,
         'cost' => null,
         'cost_currency' => null,
         'country' => null,
@@ -96,6 +98,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
+		'confirmation' => false,
 		'cost' => false,
 		'cost_currency' => false,
 		'country' => false,
@@ -207,6 +210,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'brand' => 'brand',
+        'confirmation' => 'confirmation',
         'cost' => 'cost',
         'cost_currency' => 'costCurrency',
         'country' => 'country',
@@ -238,6 +242,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'brand' => 'setBrand',
+        'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
         'cost_currency' => 'setCostCurrency',
         'country' => 'setCountry',
@@ -269,6 +274,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'brand' => 'getBrand',
+        'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
         'cost_currency' => 'getCostCurrency',
         'country' => 'getCountry',
@@ -351,6 +357,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
@@ -440,6 +447,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
         $this->container['brand'] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets confirmation
+     *
+     * @return \Zendit\Model\DtoConfirmation|null
+     */
+    public function getConfirmation()
+    {
+        return $this->container['confirmation'];
+    }
+
+    /**
+     * Sets confirmation
+     *
+     * @param \Zendit\Model\DtoConfirmation|null $confirmation confirmation
+     *
+     * @return self
+     */
+    public function setConfirmation($confirmation)
+    {
+        if (is_null($confirmation)) {
+            throw new \InvalidArgumentException('non-nullable confirmation cannot be null');
+        }
+        $this->container['confirmation'] = $confirmation;
 
         return $this;
     }
