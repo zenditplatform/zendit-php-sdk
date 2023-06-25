@@ -1,0 +1,22 @@
+name: Publish to Packagist
+on:
+  release:
+    types: [published]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Publish to Packagist
+        run: |
+          curl -XPOST -H 'content-type:application/json' \
+            'https://packagist.org/api/update-package?username=Dzmitry&apiToken=${{ secrets.PACKAGIST_TOKEN }}' \
+            -d '{
+              "repository": {
+                "url": "https://github.com/zenditplatform/zendit-php-sdk"
+              }
+            }'
