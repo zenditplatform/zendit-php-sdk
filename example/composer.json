@@ -16,18 +16,12 @@
             "homepage": "https://zendit.io"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/zenditplatform/zendit-php-sdk.git"
-        }
-    ],
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "vlucas/phpdotenv": "*",
-        "zenditplatform/zendit-php-sdk": "dev-main"
+        "zenditplatform/zendit-php-sdk": "^1.0.0"
     }
 }

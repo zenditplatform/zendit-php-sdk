@@ -1,7 +1,7 @@
 zendit-php changelog
 =====================
 
-[2023-06-30] Version 1.0.0
+[2023-06-28] Version 1.0.0
 --------------------------------
 The first version of the `zendit-php` SDK!
 
