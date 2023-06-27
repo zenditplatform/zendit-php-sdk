@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de8e76207bd03b7f69d52e5c7f34653c",
+    "content-hash": "d4336193b0d0ecbbb7386863aeddb22e",
     "packages": [
         {
             "name": "graham-campbell/result-type",
@@ -1073,16 +1073,16 @@
         },
         {
             "name": "zenditplatform/zendit-php-sdk",
-            "version": "dev-main",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:zenditplatform/zendit-php-sdk.git",
-                "reference": "67e86f5de45ee1e4ad0b541179db267d349f552c"
+                "url": "https://github.com/zenditplatform/zendit-php-sdk.git",
+                "reference": "1d94567ad313eee29e3b0471d04c263cd261ff7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenditplatform/zendit-php-sdk/zipball/67e86f5de45ee1e4ad0b541179db267d349f552c",
-                "reference": "67e86f5de45ee1e4ad0b541179db267d349f552c",
+                "url": "https://api.github.com/repos/zenditplatform/zendit-php-sdk/zipball/1d94567ad313eee29e3b0471d04c263cd261ff7a",
+                "reference": "1d94567ad313eee29e3b0471d04c263cd261ff7a",
                 "shasum": ""
             },
             "require": {
@@ -1097,18 +1097,13 @@
                 "friendsofphp/php-cs-fixer": "^3.5",
                 "phpunit/phpunit": "^8.0 || ^9.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Zendit\\": "lib/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Zendit\\Test\\": "test/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1128,18 +1123,16 @@
                 "zendit"
             ],
             "support": {
-                "source": "https://github.com/zenditplatform/zendit-php-sdk/tree/main",
-                "issues": "https://github.com/zenditplatform/zendit-php-sdk/issues"
+                "issues": "https://github.com/zenditplatform/zendit-php-sdk/issues",
+                "source": "https://github.com/zenditplatform/zendit-php-sdk/tree/1.0.0"
             },
-            "time": "2023-06-22T09:39:22+00:00"
+            "time": "2023-06-27T10:04:24+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zenditplatform/zendit-php-sdk": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -16,14 +16,8 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 
 ```json
 {
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/zenditplatform/zendit-php-sdk.git"
-    }
-  ],
   "require": {
-    "zenditplatform/zendit-php-sdk": "dev-main"
+    "zenditplatform/zendit-php-sdk": "^1.0.0"
   }
 }
 ```

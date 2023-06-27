@@ -31,7 +31,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'DtoValueType',
+        'type' => '\Zendit\Model\DtoValueType',
         'value' => 'int'
     ];
 

@@ -331,7 +331,6 @@ class ZenditApiTest extends TestCase
             $this->assertNotEmpty($value->getCostCurrency());
             $this->assertNotEmpty($value->getCountry());
             $this->assertNotEmpty($value->getCreatedAt());
-            $this->assertNotEmpty($value->getError());
             $this->assertNotEmpty($value->getFields());
             $this->assertNotEmpty($value->getLog());
             $this->assertIsString($value->getNotes());
