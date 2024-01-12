@@ -60,10 +60,10 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
       */
     protected static array $openAPINullables = [
         'offer_id' => false,
-		'recipient_phone_number' => false,
-		'sender' => false,
-		'transaction_id' => false,
-		'value' => false
+        'recipient_phone_number' => false,
+        'sender' => false,
+        'transaction_id' => false,
+        'value' => false
     ];
 
     /**
@@ -276,6 +276,15 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['recipient_phone_number'] === null) {
+            $invalidProperties[] = "'recipient_phone_number' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -294,7 +303,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -304,7 +313,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -321,7 +330,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets recipient_phone_number
      *
-     * @return string|null
+     * @return string
      */
     public function getRecipientPhoneNumber()
     {
@@ -331,7 +340,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets recipient_phone_number
      *
-     * @param string|null $recipient_phone_number recipient_phone_number
+     * @param string $recipient_phone_number recipient_phone_number
      *
      * @return self
      */
@@ -375,7 +384,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -385,7 +394,7 @@ class DtoTopupPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSer
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id transaction_id
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */

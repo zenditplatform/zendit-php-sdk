@@ -58,9 +58,9 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
       */
     protected static array $openAPINullables = [
         'fields' => false,
-		'offer_id' => false,
-		'transaction_id' => false,
-		'value' => false
+        'offer_id' => false,
+        'transaction_id' => false,
+        'value' => false
     ];
 
     /**
@@ -269,6 +269,15 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
+        if ($this->container['fields'] === null) {
+            $invalidProperties[] = "'fields' can't be null";
+        }
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -287,7 +296,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets fields
      *
-     * @return \Zendit\Model\DtoVoucherField[]|null
+     * @return \Zendit\Model\DtoVoucherField[]
      */
     public function getFields()
     {
@@ -297,7 +306,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets fields
      *
-     * @param \Zendit\Model\DtoVoucherField[]|null $fields fields
+     * @param \Zendit\Model\DtoVoucherField[] $fields fields
      *
      * @return self
      */
@@ -314,7 +323,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -324,7 +333,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -341,7 +350,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -351,7 +360,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id transaction_id
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */

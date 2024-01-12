@@ -54,7 +54,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -255,6 +255,12 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -273,7 +279,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return DtoValueType|null
+     * @return \Zendit\Model\DtoValueType
      */
     public function getType()
     {
@@ -283,7 +289,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param DtoValueType|null $type type
+     * @param \Zendit\Model\DtoValueType $type type
      *
      * @return self
      */
@@ -300,7 +306,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return int|null
+     * @return int
      */
     public function getValue()
     {
@@ -310,7 +316,7 @@ class DtoPurchaseValue implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param int|null $value value
+     * @param int $value value
      *
      * @return self
      */

@@ -54,7 +54,7 @@ class DtoTopupSender implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'country' => false,
-		'phone_number' => false
+        'phone_number' => false
     ];
 
     /**

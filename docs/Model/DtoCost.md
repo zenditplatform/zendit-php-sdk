@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**currency** | **string** |  | [optional]
+**currency** | **string** |  |
 **fixed** | **int** |  | [optional]
 **fx** | **float** |  | [optional]
 **max** | **int** |  | [optional]

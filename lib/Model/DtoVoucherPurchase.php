@@ -47,6 +47,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
         'receipt' => '\Zendit\Model\DtoVoucherReceipt',
+        'regions' => 'string[]',
         'send' => 'int',
         'send_currency' => 'string',
         'short_notes' => 'string',
@@ -81,6 +82,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'price_type' => null,
         'product_type' => null,
         'receipt' => null,
+        'regions' => null,
         'send' => null,
         'send_currency' => null,
         'short_notes' => null,
@@ -98,29 +100,30 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'confirmation' => false,
-		'cost' => false,
-		'cost_currency' => false,
-		'country' => false,
-		'created_at' => false,
-		'error' => false,
-		'fields' => false,
-		'log' => false,
-		'notes' => false,
-		'offer_id' => false,
-		'price' => false,
-		'price_currency' => false,
-		'price_type' => false,
-		'product_type' => false,
-		'receipt' => false,
-		'send' => false,
-		'send_currency' => false,
-		'short_notes' => false,
-		'status' => false,
-		'sub_types' => false,
-		'transaction_id' => false,
-		'updated_at' => false,
-		'value' => false
+        'confirmation' => false,
+        'cost' => false,
+        'cost_currency' => false,
+        'country' => false,
+        'created_at' => false,
+        'error' => false,
+        'fields' => false,
+        'log' => false,
+        'notes' => false,
+        'offer_id' => false,
+        'price' => false,
+        'price_currency' => false,
+        'price_type' => false,
+        'product_type' => false,
+        'receipt' => false,
+        'regions' => false,
+        'send' => false,
+        'send_currency' => false,
+        'short_notes' => false,
+        'status' => false,
+        'sub_types' => false,
+        'transaction_id' => false,
+        'updated_at' => false,
+        'value' => false
     ];
 
     /**
@@ -225,6 +228,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'price_type' => 'priceType',
         'product_type' => 'productType',
         'receipt' => 'receipt',
+        'regions' => 'regions',
         'send' => 'send',
         'send_currency' => 'sendCurrency',
         'short_notes' => 'shortNotes',
@@ -257,6 +261,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
         'receipt' => 'setReceipt',
+        'regions' => 'setRegions',
         'send' => 'setSend',
         'send_currency' => 'setSendCurrency',
         'short_notes' => 'setShortNotes',
@@ -289,6 +294,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
         'receipt' => 'getReceipt',
+        'regions' => 'getRegions',
         'send' => 'getSend',
         'send_currency' => 'getSendCurrency',
         'short_notes' => 'getShortNotes',
@@ -372,6 +378,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
         $this->setIfExists('receipt', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('send_currency', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
@@ -409,6 +416,66 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['cost'] === null) {
+            $invalidProperties[] = "'cost' can't be null";
+        }
+        if ($this->container['cost_currency'] === null) {
+            $invalidProperties[] = "'cost_currency' can't be null";
+        }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['fields'] === null) {
+            $invalidProperties[] = "'fields' can't be null";
+        }
+        if ($this->container['log'] === null) {
+            $invalidProperties[] = "'log' can't be null";
+        }
+        if ($this->container['notes'] === null) {
+            $invalidProperties[] = "'notes' can't be null";
+        }
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
+        }
+        if ($this->container['price_currency'] === null) {
+            $invalidProperties[] = "'price_currency' can't be null";
+        }
+        if ($this->container['price_type'] === null) {
+            $invalidProperties[] = "'price_type' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['send_currency'] === null) {
+            $invalidProperties[] = "'send_currency' can't be null";
+        }
+        if ($this->container['short_notes'] === null) {
+            $invalidProperties[] = "'short_notes' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['sub_types'] === null) {
+            $invalidProperties[] = "'sub_types' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -427,7 +494,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets brand
      *
-     * @return string|null
+     * @return string
      */
     public function getBrand()
     {
@@ -437,7 +504,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets brand
      *
-     * @param string|null $brand brand
+     * @param string $brand brand
      *
      * @return self
      */
@@ -481,7 +548,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return int
      */
     public function getCost()
     {
@@ -491,7 +558,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cost
      *
-     * @param int|null $cost cost
+     * @param int $cost cost
      *
      * @return self
      */
@@ -508,7 +575,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets cost_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCostCurrency()
     {
@@ -518,7 +585,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cost_currency
      *
-     * @param string|null $cost_currency cost_currency
+     * @param string $cost_currency cost_currency
      *
      * @return self
      */
@@ -535,7 +602,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets country
      *
-     * @return string|null
+     * @return string
      */
     public function getCountry()
     {
@@ -545,7 +612,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets country
      *
-     * @param string|null $country country
+     * @param string $country country
      *
      * @return self
      */
@@ -562,7 +629,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created_at
      *
-     * @return string|null
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -572,7 +639,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string $created_at created_at
      *
      * @return self
      */
@@ -616,7 +683,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets fields
      *
-     * @return \Zendit\Model\DtoVoucherField[]|null
+     * @return \Zendit\Model\DtoVoucherField[]
      */
     public function getFields()
     {
@@ -626,7 +693,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets fields
      *
-     * @param \Zendit\Model\DtoVoucherField[]|null $fields fields
+     * @param \Zendit\Model\DtoVoucherField[] $fields fields
      *
      * @return self
      */
@@ -643,7 +710,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets log
      *
-     * @return \Zendit\Model\DtoTransactionLogItem[]|null
+     * @return \Zendit\Model\DtoTransactionLogItem[]
      */
     public function getLog()
     {
@@ -653,7 +720,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets log
      *
-     * @param \Zendit\Model\DtoTransactionLogItem[]|null $log log
+     * @param \Zendit\Model\DtoTransactionLogItem[] $log log
      *
      * @return self
      */
@@ -670,7 +737,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets notes
      *
-     * @return string|null
+     * @return string
      */
     public function getNotes()
     {
@@ -680,7 +747,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets notes
      *
-     * @param string|null $notes notes
+     * @param string $notes notes
      *
      * @return self
      */
@@ -697,7 +764,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -707,7 +774,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -724,7 +791,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets price
      *
-     * @return int|null
+     * @return int
      */
     public function getPrice()
     {
@@ -734,7 +801,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets price
      *
-     * @param int|null $price price
+     * @param int $price price
      *
      * @return self
      */
@@ -751,7 +818,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets price_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getPriceCurrency()
     {
@@ -761,7 +828,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets price_currency
      *
-     * @param string|null $price_currency price_currency
+     * @param string $price_currency price_currency
      *
      * @return self
      */
@@ -778,7 +845,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets price_type
      *
-     * @return \Zendit\Model\DtoPriceType|null
+     * @return \Zendit\Model\DtoPriceType
      */
     public function getPriceType()
     {
@@ -788,7 +855,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets price_type
      *
-     * @param \Zendit\Model\DtoPriceType|null $price_type price_type
+     * @param \Zendit\Model\DtoPriceType $price_type price_type
      *
      * @return self
      */
@@ -805,7 +872,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets product_type
      *
-     * @return \Zendit\Model\DtoProductType|null
+     * @return \Zendit\Model\DtoProductType
      */
     public function getProductType()
     {
@@ -815,7 +882,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets product_type
      *
-     * @param \Zendit\Model\DtoProductType|null $product_type product_type
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
@@ -857,9 +924,36 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets regions
+     *
+     * @return string[]|null
+     */
+    public function getRegions()
+    {
+        return $this->container['regions'];
+    }
+
+    /**
+     * Sets regions
+     *
+     * @param string[]|null $regions regions
+     *
+     * @return self
+     */
+    public function setRegions($regions)
+    {
+        if (is_null($regions)) {
+            throw new \InvalidArgumentException('non-nullable regions cannot be null');
+        }
+        $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
      * Gets send
      *
-     * @return int|null
+     * @return int
      */
     public function getSend()
     {
@@ -869,7 +963,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets send
      *
-     * @param int|null $send send
+     * @param int $send send
      *
      * @return self
      */
@@ -886,7 +980,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets send_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getSendCurrency()
     {
@@ -896,7 +990,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets send_currency
      *
-     * @param string|null $send_currency send_currency
+     * @param string $send_currency send_currency
      *
      * @return self
      */
@@ -913,7 +1007,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets short_notes
      *
-     * @return string|null
+     * @return string
      */
     public function getShortNotes()
     {
@@ -923,7 +1017,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets short_notes
      *
-     * @param string|null $short_notes short_notes
+     * @param string $short_notes short_notes
      *
      * @return self
      */
@@ -940,7 +1034,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets status
      *
-     * @return \Zendit\Model\DtoTransactionStatus|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
     public function getStatus()
     {
@@ -950,7 +1044,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param \Zendit\Model\DtoTransactionStatus|null $status status
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
@@ -967,7 +1061,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets sub_types
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getSubTypes()
     {
@@ -977,7 +1071,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets sub_types
      *
-     * @param string[]|null $sub_types sub_types
+     * @param string[] $sub_types sub_types
      *
      * @return self
      */
@@ -994,7 +1088,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -1004,7 +1098,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id transaction_id
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */
@@ -1021,7 +1115,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated_at
      *
-     * @return string|null
+     * @return string
      */
     public function getUpdatedAt()
     {
@@ -1031,7 +1125,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets updated_at
      *
-     * @param string|null $updated_at updated_at
+     * @param string $updated_at updated_at
      *
      * @return self
      */

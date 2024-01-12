@@ -54,7 +54,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'available_balance' => false,
-		'currency' => false
+        'currency' => false
     ];
 
     /**
@@ -255,6 +255,12 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['available_balance'] === null) {
+            $invalidProperties[] = "'available_balance' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -273,7 +279,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets available_balance
      *
-     * @return int|null
+     * @return int
      */
     public function getAvailableBalance()
     {
@@ -283,7 +289,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets available_balance
      *
-     * @param int|null $available_balance available_balance
+     * @param int $available_balance available_balance
      *
      * @return self
      */
@@ -300,7 +306,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCurrency()
     {
@@ -310,7 +316,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets currency
      *
-     * @param string|null $currency currency
+     * @param string $currency currency
      *
      * @return self
      */

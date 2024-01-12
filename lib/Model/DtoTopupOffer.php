@@ -35,16 +35,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => '\Zendit\Model\DtoCost',
         'country' => 'string',
         'created_at' => 'string',
+        'data_gb' => 'float',
+        'data_unlimited' => 'bool',
+        'duration_days' => 'int',
         'enabled' => 'bool',
         'notes' => 'string',
         'offer_id' => 'string',
         'price' => '\Zendit\Model\DtoPrice',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
+        'regions' => 'string[]',
         'send' => '\Zendit\Model\DtoZend',
         'short_notes' => 'string',
+        'sms_number' => 'int',
+        'sms_unlimited' => 'bool',
         'sub_types' => 'string[]',
-        'updated_at' => 'string'
+        'updated_at' => 'string',
+        'voice_minutes' => 'int',
+        'voice_unlimited' => 'bool'
     ];
 
     /**
@@ -59,16 +67,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => null,
         'country' => null,
         'created_at' => null,
+        'data_gb' => null,
+        'data_unlimited' => null,
+        'duration_days' => null,
         'enabled' => null,
         'notes' => null,
         'offer_id' => null,
         'price' => null,
         'price_type' => null,
         'product_type' => null,
+        'regions' => null,
         'send' => null,
         'short_notes' => null,
+        'sms_number' => null,
+        'sms_unlimited' => null,
         'sub_types' => null,
-        'updated_at' => null
+        'updated_at' => null,
+        'voice_minutes' => null,
+        'voice_unlimited' => null
     ];
 
     /**
@@ -78,19 +94,27 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'cost' => false,
-		'country' => false,
-		'created_at' => false,
-		'enabled' => false,
-		'notes' => false,
-		'offer_id' => false,
-		'price' => false,
-		'price_type' => false,
-		'product_type' => false,
-		'send' => false,
-		'short_notes' => false,
-		'sub_types' => false,
-		'updated_at' => false
+        'cost' => false,
+        'country' => false,
+        'created_at' => false,
+        'data_gb' => false,
+        'data_unlimited' => false,
+        'duration_days' => false,
+        'enabled' => false,
+        'notes' => false,
+        'offer_id' => false,
+        'price' => false,
+        'price_type' => false,
+        'product_type' => false,
+        'regions' => false,
+        'send' => false,
+        'short_notes' => false,
+        'sms_number' => false,
+        'sms_unlimited' => false,
+        'sub_types' => false,
+        'updated_at' => false,
+        'voice_minutes' => false,
+        'voice_unlimited' => false
     ];
 
     /**
@@ -183,16 +207,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => 'cost',
         'country' => 'country',
         'created_at' => 'createdAt',
+        'data_gb' => 'dataGB',
+        'data_unlimited' => 'dataUnlimited',
+        'duration_days' => 'durationDays',
         'enabled' => 'enabled',
         'notes' => 'notes',
         'offer_id' => 'offerId',
         'price' => 'price',
         'price_type' => 'priceType',
         'product_type' => 'productType',
+        'regions' => 'regions',
         'send' => 'send',
         'short_notes' => 'shortNotes',
+        'sms_number' => 'smsNumber',
+        'sms_unlimited' => 'smsUnlimited',
         'sub_types' => 'subTypes',
-        'updated_at' => 'updatedAt'
+        'updated_at' => 'updatedAt',
+        'voice_minutes' => 'voiceMinutes',
+        'voice_unlimited' => 'voiceUnlimited'
     ];
 
     /**
@@ -205,16 +237,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => 'setCost',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
+        'data_gb' => 'setDataGb',
+        'data_unlimited' => 'setDataUnlimited',
+        'duration_days' => 'setDurationDays',
         'enabled' => 'setEnabled',
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
         'price' => 'setPrice',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
+        'regions' => 'setRegions',
         'send' => 'setSend',
         'short_notes' => 'setShortNotes',
+        'sms_number' => 'setSmsNumber',
+        'sms_unlimited' => 'setSmsUnlimited',
         'sub_types' => 'setSubTypes',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'voice_minutes' => 'setVoiceMinutes',
+        'voice_unlimited' => 'setVoiceUnlimited'
     ];
 
     /**
@@ -227,16 +267,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost' => 'getCost',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
+        'data_gb' => 'getDataGb',
+        'data_unlimited' => 'getDataUnlimited',
+        'duration_days' => 'getDurationDays',
         'enabled' => 'getEnabled',
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
         'price' => 'getPrice',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
+        'regions' => 'getRegions',
         'send' => 'getSend',
         'short_notes' => 'getShortNotes',
+        'sms_number' => 'getSmsNumber',
+        'sms_unlimited' => 'getSmsUnlimited',
         'sub_types' => 'getSubTypes',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'voice_minutes' => 'getVoiceMinutes',
+        'voice_unlimited' => 'getVoiceUnlimited'
     ];
 
     /**
@@ -300,16 +348,24 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('data_gb', $data ?? [], null);
+        $this->setIfExists('data_unlimited', $data ?? [], null);
+        $this->setIfExists('duration_days', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
+        $this->setIfExists('sms_number', $data ?? [], null);
+        $this->setIfExists('sms_unlimited', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('voice_minutes', $data ?? [], null);
+        $this->setIfExists('voice_unlimited', $data ?? [], null);
     }
 
     /**
@@ -339,6 +395,72 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['cost'] === null) {
+            $invalidProperties[] = "'cost' can't be null";
+        }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['data_gb'] === null) {
+            $invalidProperties[] = "'data_gb' can't be null";
+        }
+        if ($this->container['data_unlimited'] === null) {
+            $invalidProperties[] = "'data_unlimited' can't be null";
+        }
+        if ($this->container['duration_days'] === null) {
+            $invalidProperties[] = "'duration_days' can't be null";
+        }
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
+        }
+        if ($this->container['notes'] === null) {
+            $invalidProperties[] = "'notes' can't be null";
+        }
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
+        }
+        if ($this->container['price_type'] === null) {
+            $invalidProperties[] = "'price_type' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['regions'] === null) {
+            $invalidProperties[] = "'regions' can't be null";
+        }
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['short_notes'] === null) {
+            $invalidProperties[] = "'short_notes' can't be null";
+        }
+        if ($this->container['sms_number'] === null) {
+            $invalidProperties[] = "'sms_number' can't be null";
+        }
+        if ($this->container['sms_unlimited'] === null) {
+            $invalidProperties[] = "'sms_unlimited' can't be null";
+        }
+        if ($this->container['sub_types'] === null) {
+            $invalidProperties[] = "'sub_types' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['voice_minutes'] === null) {
+            $invalidProperties[] = "'voice_minutes' can't be null";
+        }
+        if ($this->container['voice_unlimited'] === null) {
+            $invalidProperties[] = "'voice_unlimited' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -357,7 +479,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets brand
      *
-     * @return string|null
+     * @return string
      */
     public function getBrand()
     {
@@ -367,7 +489,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets brand
      *
-     * @param string|null $brand brand
+     * @param string $brand brand
      *
      * @return self
      */
@@ -384,7 +506,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cost
      *
-     * @return \Zendit\Model\DtoCost|null
+     * @return \Zendit\Model\DtoCost
      */
     public function getCost()
     {
@@ -394,7 +516,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cost
      *
-     * @param \Zendit\Model\DtoCost|null $cost cost
+     * @param \Zendit\Model\DtoCost $cost cost
      *
      * @return self
      */
@@ -411,7 +533,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets country
      *
-     * @return string|null
+     * @return string
      */
     public function getCountry()
     {
@@ -421,7 +543,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string|null $country country
+     * @param string $country country
      *
      * @return self
      */
@@ -438,7 +560,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string|null
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -448,7 +570,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string $created_at created_at
      *
      * @return self
      */
@@ -463,9 +585,90 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets data_gb
+     *
+     * @return float
+     */
+    public function getDataGb()
+    {
+        return $this->container['data_gb'];
+    }
+
+    /**
+     * Sets data_gb
+     *
+     * @param float $data_gb data_gb
+     *
+     * @return self
+     */
+    public function setDataGb($data_gb)
+    {
+        if (is_null($data_gb)) {
+            throw new \InvalidArgumentException('non-nullable data_gb cannot be null');
+        }
+        $this->container['data_gb'] = $data_gb;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_unlimited
+     *
+     * @return bool
+     */
+    public function getDataUnlimited()
+    {
+        return $this->container['data_unlimited'];
+    }
+
+    /**
+     * Sets data_unlimited
+     *
+     * @param bool $data_unlimited data_unlimited
+     *
+     * @return self
+     */
+    public function setDataUnlimited($data_unlimited)
+    {
+        if (is_null($data_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable data_unlimited cannot be null');
+        }
+        $this->container['data_unlimited'] = $data_unlimited;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration_days
+     *
+     * @return int
+     */
+    public function getDurationDays()
+    {
+        return $this->container['duration_days'];
+    }
+
+    /**
+     * Sets duration_days
+     *
+     * @param int $duration_days duration_days
+     *
+     * @return self
+     */
+    public function setDurationDays($duration_days)
+    {
+        if (is_null($duration_days)) {
+            throw new \InvalidArgumentException('non-nullable duration_days cannot be null');
+        }
+        $this->container['duration_days'] = $duration_days;
+
+        return $this;
+    }
+
+    /**
      * Gets enabled
      *
-     * @return bool|null
+     * @return bool
      */
     public function getEnabled()
     {
@@ -475,7 +678,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enabled
      *
-     * @param bool|null $enabled enabled
+     * @param bool $enabled enabled
      *
      * @return self
      */
@@ -492,7 +695,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets notes
      *
-     * @return string|null
+     * @return string
      */
     public function getNotes()
     {
@@ -502,7 +705,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets notes
      *
-     * @param string|null $notes notes
+     * @param string $notes notes
      *
      * @return self
      */
@@ -519,7 +722,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -529,7 +732,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -546,7 +749,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price
      *
-     * @return \Zendit\Model\DtoPrice|null
+     * @return \Zendit\Model\DtoPrice
      */
     public function getPrice()
     {
@@ -556,7 +759,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price
      *
-     * @param \Zendit\Model\DtoPrice|null $price price
+     * @param \Zendit\Model\DtoPrice $price price
      *
      * @return self
      */
@@ -573,7 +776,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price_type
      *
-     * @return \Zendit\Model\DtoPriceType|null
+     * @return \Zendit\Model\DtoPriceType
      */
     public function getPriceType()
     {
@@ -583,7 +786,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price_type
      *
-     * @param \Zendit\Model\DtoPriceType|null $price_type price_type
+     * @param \Zendit\Model\DtoPriceType $price_type price_type
      *
      * @return self
      */
@@ -600,7 +803,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets product_type
      *
-     * @return \Zendit\Model\DtoProductType|null
+     * @return \Zendit\Model\DtoProductType
      */
     public function getProductType()
     {
@@ -610,7 +813,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_type
      *
-     * @param \Zendit\Model\DtoProductType|null $product_type product_type
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
@@ -625,9 +828,36 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets regions
+     *
+     * @return string[]
+     */
+    public function getRegions()
+    {
+        return $this->container['regions'];
+    }
+
+    /**
+     * Sets regions
+     *
+     * @param string[] $regions regions
+     *
+     * @return self
+     */
+    public function setRegions($regions)
+    {
+        if (is_null($regions)) {
+            throw new \InvalidArgumentException('non-nullable regions cannot be null');
+        }
+        $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
      * Gets send
      *
-     * @return \Zendit\Model\DtoZend|null
+     * @return \Zendit\Model\DtoZend
      */
     public function getSend()
     {
@@ -637,7 +867,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets send
      *
-     * @param \Zendit\Model\DtoZend|null $send send
+     * @param \Zendit\Model\DtoZend $send send
      *
      * @return self
      */
@@ -654,7 +884,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets short_notes
      *
-     * @return string|null
+     * @return string
      */
     public function getShortNotes()
     {
@@ -664,7 +894,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets short_notes
      *
-     * @param string|null $short_notes short_notes
+     * @param string $short_notes short_notes
      *
      * @return self
      */
@@ -679,9 +909,63 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sms_number
+     *
+     * @return int
+     */
+    public function getSmsNumber()
+    {
+        return $this->container['sms_number'];
+    }
+
+    /**
+     * Sets sms_number
+     *
+     * @param int $sms_number sms_number
+     *
+     * @return self
+     */
+    public function setSmsNumber($sms_number)
+    {
+        if (is_null($sms_number)) {
+            throw new \InvalidArgumentException('non-nullable sms_number cannot be null');
+        }
+        $this->container['sms_number'] = $sms_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_unlimited
+     *
+     * @return bool
+     */
+    public function getSmsUnlimited()
+    {
+        return $this->container['sms_unlimited'];
+    }
+
+    /**
+     * Sets sms_unlimited
+     *
+     * @param bool $sms_unlimited sms_unlimited
+     *
+     * @return self
+     */
+    public function setSmsUnlimited($sms_unlimited)
+    {
+        if (is_null($sms_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable sms_unlimited cannot be null');
+        }
+        $this->container['sms_unlimited'] = $sms_unlimited;
+
+        return $this;
+    }
+
+    /**
      * Gets sub_types
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getSubTypes()
     {
@@ -691,7 +975,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sub_types
      *
-     * @param string[]|null $sub_types sub_types
+     * @param string[] $sub_types sub_types
      *
      * @return self
      */
@@ -708,7 +992,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string|null
+     * @return string
      */
     public function getUpdatedAt()
     {
@@ -718,7 +1002,7 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      *
-     * @param string|null $updated_at updated_at
+     * @param string $updated_at updated_at
      *
      * @return self
      */
@@ -728,6 +1012,60 @@ class DtoTopupOffer implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_minutes
+     *
+     * @return int
+     */
+    public function getVoiceMinutes()
+    {
+        return $this->container['voice_minutes'];
+    }
+
+    /**
+     * Sets voice_minutes
+     *
+     * @param int $voice_minutes voice_minutes
+     *
+     * @return self
+     */
+    public function setVoiceMinutes($voice_minutes)
+    {
+        if (is_null($voice_minutes)) {
+            throw new \InvalidArgumentException('non-nullable voice_minutes cannot be null');
+        }
+        $this->container['voice_minutes'] = $voice_minutes;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_unlimited
+     *
+     * @return bool
+     */
+    public function getVoiceUnlimited()
+    {
+        return $this->container['voice_unlimited'];
+    }
+
+    /**
+     * Sets voice_unlimited
+     *
+     * @param bool $voice_unlimited voice_unlimited
+     *
+     * @return self
+     */
+    public function setVoiceUnlimited($voice_unlimited)
+    {
+        if (is_null($voice_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable voice_unlimited cannot be null');
+        }
+        $this->container['voice_unlimited'] = $voice_unlimited;
 
         return $this;
     }

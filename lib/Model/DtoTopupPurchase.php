@@ -37,6 +37,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_currency' => 'string',
         'country' => 'string',
         'created_at' => 'string',
+        'data_gb' => 'float',
+        'data_unlimited' => 'bool',
+        'duration_days' => 'int',
         'error' => '\Zendit\Model\DtoError',
         'log' => '\Zendit\Model\DtoTransactionLogItem[]',
         'notes' => 'string',
@@ -46,15 +49,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
         'recipient_phone_number' => 'string',
+        'regions' => 'string[]',
         'send' => 'int',
         'send_currency' => 'string',
         'sender' => '\Zendit\Model\DtoTopupSender',
         'short_notes' => 'string',
+        'sms_number' => 'int',
+        'sms_unlimited' => 'bool',
         'status' => '\Zendit\Model\DtoTransactionStatus',
         'sub_types' => 'string[]',
         'transaction_id' => 'string',
         'updated_at' => 'string',
-        'value' => '\Zendit\Model\DtoPurchaseValue'
+        'value' => '\Zendit\Model\DtoPurchaseValue',
+        'voice_minutes' => 'int',
+        'voice_unlimited' => 'bool'
     ];
 
     /**
@@ -71,6 +79,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_currency' => null,
         'country' => null,
         'created_at' => null,
+        'data_gb' => null,
+        'data_unlimited' => null,
+        'duration_days' => null,
         'error' => null,
         'log' => null,
         'notes' => null,
@@ -80,15 +91,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_type' => null,
         'product_type' => null,
         'recipient_phone_number' => null,
+        'regions' => null,
         'send' => null,
         'send_currency' => null,
         'sender' => null,
         'short_notes' => null,
+        'sms_number' => null,
+        'sms_unlimited' => null,
         'status' => null,
         'sub_types' => null,
         'transaction_id' => null,
         'updated_at' => null,
-        'value' => null
+        'value' => null,
+        'voice_minutes' => null,
+        'voice_unlimited' => null
     ];
 
     /**
@@ -98,29 +114,37 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'confirmation' => false,
-		'cost' => false,
-		'cost_currency' => false,
-		'country' => false,
-		'created_at' => false,
-		'error' => false,
-		'log' => false,
-		'notes' => false,
-		'offer_id' => false,
-		'price' => false,
-		'price_currency' => false,
-		'price_type' => false,
-		'product_type' => false,
-		'recipient_phone_number' => false,
-		'send' => false,
-		'send_currency' => false,
-		'sender' => false,
-		'short_notes' => false,
-		'status' => false,
-		'sub_types' => false,
-		'transaction_id' => false,
-		'updated_at' => false,
-		'value' => false
+        'confirmation' => false,
+        'cost' => false,
+        'cost_currency' => false,
+        'country' => false,
+        'created_at' => false,
+        'data_gb' => false,
+        'data_unlimited' => false,
+        'duration_days' => false,
+        'error' => false,
+        'log' => false,
+        'notes' => false,
+        'offer_id' => false,
+        'price' => false,
+        'price_currency' => false,
+        'price_type' => false,
+        'product_type' => false,
+        'recipient_phone_number' => false,
+        'regions' => false,
+        'send' => false,
+        'send_currency' => false,
+        'sender' => false,
+        'short_notes' => false,
+        'sms_number' => false,
+        'sms_unlimited' => false,
+        'status' => false,
+        'sub_types' => false,
+        'transaction_id' => false,
+        'updated_at' => false,
+        'value' => false,
+        'voice_minutes' => false,
+        'voice_unlimited' => false
     ];
 
     /**
@@ -215,6 +239,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_currency' => 'costCurrency',
         'country' => 'country',
         'created_at' => 'createdAt',
+        'data_gb' => 'dataGB',
+        'data_unlimited' => 'dataUnlimited',
+        'duration_days' => 'durationDays',
         'error' => 'error',
         'log' => 'log',
         'notes' => 'notes',
@@ -224,15 +251,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_type' => 'priceType',
         'product_type' => 'productType',
         'recipient_phone_number' => 'recipientPhoneNumber',
+        'regions' => 'regions',
         'send' => 'send',
         'send_currency' => 'sendCurrency',
         'sender' => 'sender',
         'short_notes' => 'shortNotes',
+        'sms_number' => 'smsNumber',
+        'sms_unlimited' => 'smsUnlimited',
         'status' => 'status',
         'sub_types' => 'subTypes',
         'transaction_id' => 'transactionId',
         'updated_at' => 'updatedAt',
-        'value' => 'value'
+        'value' => 'value',
+        'voice_minutes' => 'voiceMinutes',
+        'voice_unlimited' => 'voiceUnlimited'
     ];
 
     /**
@@ -247,6 +279,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_currency' => 'setCostCurrency',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
+        'data_gb' => 'setDataGb',
+        'data_unlimited' => 'setDataUnlimited',
+        'duration_days' => 'setDurationDays',
         'error' => 'setError',
         'log' => 'setLog',
         'notes' => 'setNotes',
@@ -256,15 +291,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
         'recipient_phone_number' => 'setRecipientPhoneNumber',
+        'regions' => 'setRegions',
         'send' => 'setSend',
         'send_currency' => 'setSendCurrency',
         'sender' => 'setSender',
         'short_notes' => 'setShortNotes',
+        'sms_number' => 'setSmsNumber',
+        'sms_unlimited' => 'setSmsUnlimited',
         'status' => 'setStatus',
         'sub_types' => 'setSubTypes',
         'transaction_id' => 'setTransactionId',
         'updated_at' => 'setUpdatedAt',
-        'value' => 'setValue'
+        'value' => 'setValue',
+        'voice_minutes' => 'setVoiceMinutes',
+        'voice_unlimited' => 'setVoiceUnlimited'
     ];
 
     /**
@@ -279,6 +319,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_currency' => 'getCostCurrency',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
+        'data_gb' => 'getDataGb',
+        'data_unlimited' => 'getDataUnlimited',
+        'duration_days' => 'getDurationDays',
         'error' => 'getError',
         'log' => 'getLog',
         'notes' => 'getNotes',
@@ -288,15 +331,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
         'recipient_phone_number' => 'getRecipientPhoneNumber',
+        'regions' => 'getRegions',
         'send' => 'getSend',
         'send_currency' => 'getSendCurrency',
         'sender' => 'getSender',
         'short_notes' => 'getShortNotes',
+        'sms_number' => 'getSmsNumber',
+        'sms_unlimited' => 'getSmsUnlimited',
         'status' => 'getStatus',
         'sub_types' => 'getSubTypes',
         'transaction_id' => 'getTransactionId',
         'updated_at' => 'getUpdatedAt',
-        'value' => 'getValue'
+        'value' => 'getValue',
+        'voice_minutes' => 'getVoiceMinutes',
+        'voice_unlimited' => 'getVoiceUnlimited'
     ];
 
     /**
@@ -362,6 +410,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cost_currency', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('data_gb', $data ?? [], null);
+        $this->setIfExists('data_unlimited', $data ?? [], null);
+        $this->setIfExists('duration_days', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('log', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
@@ -371,15 +422,20 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
         $this->setIfExists('recipient_phone_number', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('send_currency', $data ?? [], null);
         $this->setIfExists('sender', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
+        $this->setIfExists('sms_number', $data ?? [], null);
+        $this->setIfExists('sms_unlimited', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
         $this->setIfExists('transaction_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
+        $this->setIfExists('voice_minutes', $data ?? [], null);
+        $this->setIfExists('voice_unlimited', $data ?? [], null);
     }
 
     /**
@@ -409,6 +465,90 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['cost'] === null) {
+            $invalidProperties[] = "'cost' can't be null";
+        }
+        if ($this->container['cost_currency'] === null) {
+            $invalidProperties[] = "'cost_currency' can't be null";
+        }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['data_gb'] === null) {
+            $invalidProperties[] = "'data_gb' can't be null";
+        }
+        if ($this->container['data_unlimited'] === null) {
+            $invalidProperties[] = "'data_unlimited' can't be null";
+        }
+        if ($this->container['duration_days'] === null) {
+            $invalidProperties[] = "'duration_days' can't be null";
+        }
+        if ($this->container['log'] === null) {
+            $invalidProperties[] = "'log' can't be null";
+        }
+        if ($this->container['notes'] === null) {
+            $invalidProperties[] = "'notes' can't be null";
+        }
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
+        }
+        if ($this->container['price_currency'] === null) {
+            $invalidProperties[] = "'price_currency' can't be null";
+        }
+        if ($this->container['price_type'] === null) {
+            $invalidProperties[] = "'price_type' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['recipient_phone_number'] === null) {
+            $invalidProperties[] = "'recipient_phone_number' can't be null";
+        }
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['send_currency'] === null) {
+            $invalidProperties[] = "'send_currency' can't be null";
+        }
+        if ($this->container['sender'] === null) {
+            $invalidProperties[] = "'sender' can't be null";
+        }
+        if ($this->container['short_notes'] === null) {
+            $invalidProperties[] = "'short_notes' can't be null";
+        }
+        if ($this->container['sms_number'] === null) {
+            $invalidProperties[] = "'sms_number' can't be null";
+        }
+        if ($this->container['sms_unlimited'] === null) {
+            $invalidProperties[] = "'sms_unlimited' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['sub_types'] === null) {
+            $invalidProperties[] = "'sub_types' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
+        if ($this->container['voice_minutes'] === null) {
+            $invalidProperties[] = "'voice_minutes' can't be null";
+        }
+        if ($this->container['voice_unlimited'] === null) {
+            $invalidProperties[] = "'voice_unlimited' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -427,7 +567,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets brand
      *
-     * @return string|null
+     * @return string
      */
     public function getBrand()
     {
@@ -437,7 +577,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets brand
      *
-     * @param string|null $brand brand
+     * @param string $brand brand
      *
      * @return self
      */
@@ -481,7 +621,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cost
      *
-     * @return int|null
+     * @return int
      */
     public function getCost()
     {
@@ -491,7 +631,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cost
      *
-     * @param int|null $cost cost
+     * @param int $cost cost
      *
      * @return self
      */
@@ -508,7 +648,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cost_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCostCurrency()
     {
@@ -518,7 +658,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cost_currency
      *
-     * @param string|null $cost_currency cost_currency
+     * @param string $cost_currency cost_currency
      *
      * @return self
      */
@@ -535,7 +675,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets country
      *
-     * @return string|null
+     * @return string
      */
     public function getCountry()
     {
@@ -545,7 +685,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string|null $country country
+     * @param string $country country
      *
      * @return self
      */
@@ -562,7 +702,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string|null
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -572,7 +712,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string $created_at created_at
      *
      * @return self
      */
@@ -582,6 +722,87 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_gb
+     *
+     * @return float
+     */
+    public function getDataGb()
+    {
+        return $this->container['data_gb'];
+    }
+
+    /**
+     * Sets data_gb
+     *
+     * @param float $data_gb data_gb
+     *
+     * @return self
+     */
+    public function setDataGb($data_gb)
+    {
+        if (is_null($data_gb)) {
+            throw new \InvalidArgumentException('non-nullable data_gb cannot be null');
+        }
+        $this->container['data_gb'] = $data_gb;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_unlimited
+     *
+     * @return bool
+     */
+    public function getDataUnlimited()
+    {
+        return $this->container['data_unlimited'];
+    }
+
+    /**
+     * Sets data_unlimited
+     *
+     * @param bool $data_unlimited data_unlimited
+     *
+     * @return self
+     */
+    public function setDataUnlimited($data_unlimited)
+    {
+        if (is_null($data_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable data_unlimited cannot be null');
+        }
+        $this->container['data_unlimited'] = $data_unlimited;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration_days
+     *
+     * @return int
+     */
+    public function getDurationDays()
+    {
+        return $this->container['duration_days'];
+    }
+
+    /**
+     * Sets duration_days
+     *
+     * @param int $duration_days duration_days
+     *
+     * @return self
+     */
+    public function setDurationDays($duration_days)
+    {
+        if (is_null($duration_days)) {
+            throw new \InvalidArgumentException('non-nullable duration_days cannot be null');
+        }
+        $this->container['duration_days'] = $duration_days;
 
         return $this;
     }
@@ -616,7 +837,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets log
      *
-     * @return \Zendit\Model\DtoTransactionLogItem[]|null
+     * @return \Zendit\Model\DtoTransactionLogItem[]
      */
     public function getLog()
     {
@@ -626,7 +847,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets log
      *
-     * @param \Zendit\Model\DtoTransactionLogItem[]|null $log log
+     * @param \Zendit\Model\DtoTransactionLogItem[] $log log
      *
      * @return self
      */
@@ -643,7 +864,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets notes
      *
-     * @return string|null
+     * @return string
      */
     public function getNotes()
     {
@@ -653,7 +874,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets notes
      *
-     * @param string|null $notes notes
+     * @param string $notes notes
      *
      * @return self
      */
@@ -670,7 +891,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -680,7 +901,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -697,7 +918,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price
      *
-     * @return int|null
+     * @return int
      */
     public function getPrice()
     {
@@ -707,7 +928,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price
      *
-     * @param int|null $price price
+     * @param int $price price
      *
      * @return self
      */
@@ -724,7 +945,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getPriceCurrency()
     {
@@ -734,7 +955,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price_currency
      *
-     * @param string|null $price_currency price_currency
+     * @param string $price_currency price_currency
      *
      * @return self
      */
@@ -751,7 +972,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price_type
      *
-     * @return \Zendit\Model\DtoPriceType|null
+     * @return \Zendit\Model\DtoPriceType
      */
     public function getPriceType()
     {
@@ -761,7 +982,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price_type
      *
-     * @param \Zendit\Model\DtoPriceType|null $price_type price_type
+     * @param \Zendit\Model\DtoPriceType $price_type price_type
      *
      * @return self
      */
@@ -778,7 +999,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets product_type
      *
-     * @return \Zendit\Model\DtoProductType|null
+     * @return \Zendit\Model\DtoProductType
      */
     public function getProductType()
     {
@@ -788,7 +1009,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_type
      *
-     * @param \Zendit\Model\DtoProductType|null $product_type product_type
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
@@ -805,7 +1026,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets recipient_phone_number
      *
-     * @return string|null
+     * @return string
      */
     public function getRecipientPhoneNumber()
     {
@@ -815,7 +1036,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets recipient_phone_number
      *
-     * @param string|null $recipient_phone_number recipient_phone_number
+     * @param string $recipient_phone_number recipient_phone_number
      *
      * @return self
      */
@@ -830,9 +1051,36 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets regions
+     *
+     * @return string[]|null
+     */
+    public function getRegions()
+    {
+        return $this->container['regions'];
+    }
+
+    /**
+     * Sets regions
+     *
+     * @param string[]|null $regions regions
+     *
+     * @return self
+     */
+    public function setRegions($regions)
+    {
+        if (is_null($regions)) {
+            throw new \InvalidArgumentException('non-nullable regions cannot be null');
+        }
+        $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
      * Gets send
      *
-     * @return int|null
+     * @return int
      */
     public function getSend()
     {
@@ -842,7 +1090,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets send
      *
-     * @param int|null $send send
+     * @param int $send send
      *
      * @return self
      */
@@ -859,7 +1107,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets send_currency
      *
-     * @return string|null
+     * @return string
      */
     public function getSendCurrency()
     {
@@ -869,7 +1117,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets send_currency
      *
-     * @param string|null $send_currency send_currency
+     * @param string $send_currency send_currency
      *
      * @return self
      */
@@ -886,7 +1134,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sender
      *
-     * @return \Zendit\Model\DtoTopupSender|null
+     * @return \Zendit\Model\DtoTopupSender
      */
     public function getSender()
     {
@@ -896,7 +1144,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sender
      *
-     * @param \Zendit\Model\DtoTopupSender|null $sender sender
+     * @param \Zendit\Model\DtoTopupSender $sender sender
      *
      * @return self
      */
@@ -913,7 +1161,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets short_notes
      *
-     * @return string|null
+     * @return string
      */
     public function getShortNotes()
     {
@@ -923,7 +1171,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets short_notes
      *
-     * @param string|null $short_notes short_notes
+     * @param string $short_notes short_notes
      *
      * @return self
      */
@@ -938,9 +1186,63 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets sms_number
+     *
+     * @return int
+     */
+    public function getSmsNumber()
+    {
+        return $this->container['sms_number'];
+    }
+
+    /**
+     * Sets sms_number
+     *
+     * @param int $sms_number sms_number
+     *
+     * @return self
+     */
+    public function setSmsNumber($sms_number)
+    {
+        if (is_null($sms_number)) {
+            throw new \InvalidArgumentException('non-nullable sms_number cannot be null');
+        }
+        $this->container['sms_number'] = $sms_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_unlimited
+     *
+     * @return bool
+     */
+    public function getSmsUnlimited()
+    {
+        return $this->container['sms_unlimited'];
+    }
+
+    /**
+     * Sets sms_unlimited
+     *
+     * @param bool $sms_unlimited sms_unlimited
+     *
+     * @return self
+     */
+    public function setSmsUnlimited($sms_unlimited)
+    {
+        if (is_null($sms_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable sms_unlimited cannot be null');
+        }
+        $this->container['sms_unlimited'] = $sms_unlimited;
+
+        return $this;
+    }
+
+    /**
      * Gets status
      *
-     * @return \Zendit\Model\DtoTransactionStatus|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
     public function getStatus()
     {
@@ -950,7 +1252,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \Zendit\Model\DtoTransactionStatus|null $status status
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
@@ -967,7 +1269,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sub_types
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getSubTypes()
     {
@@ -977,7 +1279,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sub_types
      *
-     * @param string[]|null $sub_types sub_types
+     * @param string[] $sub_types sub_types
      *
      * @return self
      */
@@ -994,7 +1296,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -1004,7 +1306,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id transaction_id
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */
@@ -1021,7 +1323,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string|null
+     * @return string
      */
     public function getUpdatedAt()
     {
@@ -1031,7 +1333,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      *
-     * @param string|null $updated_at updated_at
+     * @param string $updated_at updated_at
      *
      * @return self
      */
@@ -1068,6 +1370,60 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_minutes
+     *
+     * @return int
+     */
+    public function getVoiceMinutes()
+    {
+        return $this->container['voice_minutes'];
+    }
+
+    /**
+     * Sets voice_minutes
+     *
+     * @param int $voice_minutes voice_minutes
+     *
+     * @return self
+     */
+    public function setVoiceMinutes($voice_minutes)
+    {
+        if (is_null($voice_minutes)) {
+            throw new \InvalidArgumentException('non-nullable voice_minutes cannot be null');
+        }
+        $this->container['voice_minutes'] = $voice_minutes;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_unlimited
+     *
+     * @return bool
+     */
+    public function getVoiceUnlimited()
+    {
+        return $this->container['voice_unlimited'];
+    }
+
+    /**
+     * Sets voice_unlimited
+     *
+     * @param bool $voice_unlimited voice_unlimited
+     *
+     * @return self
+     */
+    public function setVoiceUnlimited($voice_unlimited)
+    {
+        if (is_null($voice_unlimited)) {
+            throw new \InvalidArgumentException('non-nullable voice_unlimited cannot be null');
+        }
+        $this->container['voice_unlimited'] = $voice_unlimited;
 
         return $this;
     }

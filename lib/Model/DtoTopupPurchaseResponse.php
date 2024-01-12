@@ -54,7 +54,7 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static array $openAPINullables = [
         'status' => false,
-		'transaction_id' => false
+        'transaction_id' => false
     ];
 
     /**
@@ -255,6 +255,12 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -273,7 +279,7 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets status
      *
-     * @return \Zendit\Model\DtoTransactionStatus|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
     public function getStatus()
     {
@@ -283,7 +289,7 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets status
      *
-     * @param \Zendit\Model\DtoTransactionStatus|null $status status
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
@@ -300,7 +306,7 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -310,7 +316,7 @@ class DtoTopupPurchaseResponse implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id transaction_id
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */
