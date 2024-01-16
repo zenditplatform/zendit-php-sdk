@@ -4,19 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**brand** | **string** |  | [optional]
-**cost** | [**\Zendit\Model\DtoCost**](DtoCost.md) |  | [optional]
-**country** | **string** |  | [optional]
-**created_at** | **string** |  | [optional]
-**enabled** | **bool** |  | [optional]
-**notes** | **string** |  | [optional]
-**offer_id** | **string** |  | [optional]
-**price** | [**\Zendit\Model\DtoPrice**](DtoPrice.md) |  | [optional]
-**price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  | [optional]
-**product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  | [optional]
-**send** | [**\Zendit\Model\DtoZend**](DtoZend.md) |  | [optional]
-**short_notes** | **string** |  | [optional]
-**sub_types** | **string[]** |  | [optional]
-**updated_at** | **string** |  | [optional]
+**brand** | **string** |  |
+**cost** | [**\Zendit\Model\DtoCost**](DtoCost.md) |  |
+**country** | **string** |  |
+**created_at** | **string** |  |
+**data_gb** | **float** |  |
+**data_unlimited** | **bool** |  |
+**duration_days** | **int** |  |
+**enabled** | **bool** |  |
+**notes** | **string** |  |
+**offer_id** | **string** |  |
+**price** | [**\Zendit\Model\DtoPrice**](DtoPrice.md) |  |
+**price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  |
+**product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
+**regions** | **string[]** |  |
+**send** | [**\Zendit\Model\DtoZend**](DtoZend.md) |  |
+**short_notes** | **string** |  |
+**sms_number** | **int** |  |
+**sms_unlimited** | **bool** |  |
+**sub_types** | **string[]** |  |
+**updated_at** | **string** |  |
+**voice_minutes** | **int** |  |
+**voice_unlimited** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

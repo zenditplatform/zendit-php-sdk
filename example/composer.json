@@ -22,6 +22,6 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "vlucas/phpdotenv": "*",
-        "zenditplatform/zendit-php-sdk": "^1.0.0"
+        "zenditplatform/zendit-php-sdk": "^1.1.0"
     }
 }

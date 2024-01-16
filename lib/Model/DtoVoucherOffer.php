@@ -41,6 +41,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => '\Zendit\Model\DtoPrice',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
+        'regions' => 'string[]',
         'required_fields' => 'string[]',
         'send' => '\Zendit\Model\DtoZend',
         'short_notes' => 'string',
@@ -66,6 +67,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => null,
         'price_type' => null,
         'product_type' => null,
+        'regions' => null,
         'required_fields' => null,
         'send' => null,
         'short_notes' => null,
@@ -80,20 +82,21 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
-		'cost' => false,
-		'country' => false,
-		'created_at' => false,
-		'enabled' => false,
-		'notes' => false,
-		'offer_id' => false,
-		'price' => false,
-		'price_type' => false,
-		'product_type' => false,
-		'required_fields' => false,
-		'send' => false,
-		'short_notes' => false,
-		'sub_types' => false,
-		'updated_at' => false
+        'cost' => false,
+        'country' => false,
+        'created_at' => false,
+        'enabled' => false,
+        'notes' => false,
+        'offer_id' => false,
+        'price' => false,
+        'price_type' => false,
+        'product_type' => false,
+        'regions' => false,
+        'required_fields' => false,
+        'send' => false,
+        'short_notes' => false,
+        'sub_types' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -192,6 +195,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'price',
         'price_type' => 'priceType',
         'product_type' => 'productType',
+        'regions' => 'regions',
         'required_fields' => 'requiredFields',
         'send' => 'send',
         'short_notes' => 'shortNotes',
@@ -215,6 +219,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'setPrice',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
+        'regions' => 'setRegions',
         'required_fields' => 'setRequiredFields',
         'send' => 'setSend',
         'short_notes' => 'setShortNotes',
@@ -238,6 +243,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'getPrice',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
+        'regions' => 'getRegions',
         'required_fields' => 'getRequiredFields',
         'send' => 'getSend',
         'short_notes' => 'getShortNotes',
@@ -312,6 +318,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('required_fields', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
@@ -346,6 +353,54 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['cost'] === null) {
+            $invalidProperties[] = "'cost' can't be null";
+        }
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
+        }
+        if ($this->container['notes'] === null) {
+            $invalidProperties[] = "'notes' can't be null";
+        }
+        if ($this->container['offer_id'] === null) {
+            $invalidProperties[] = "'offer_id' can't be null";
+        }
+        if ($this->container['price'] === null) {
+            $invalidProperties[] = "'price' can't be null";
+        }
+        if ($this->container['price_type'] === null) {
+            $invalidProperties[] = "'price_type' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['regions'] === null) {
+            $invalidProperties[] = "'regions' can't be null";
+        }
+        if ($this->container['required_fields'] === null) {
+            $invalidProperties[] = "'required_fields' can't be null";
+        }
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['short_notes'] === null) {
+            $invalidProperties[] = "'short_notes' can't be null";
+        }
+        if ($this->container['sub_types'] === null) {
+            $invalidProperties[] = "'sub_types' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -364,7 +419,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets brand
      *
-     * @return string|null
+     * @return string
      */
     public function getBrand()
     {
@@ -374,7 +429,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets brand
      *
-     * @param string|null $brand brand
+     * @param string $brand brand
      *
      * @return self
      */
@@ -391,7 +446,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets cost
      *
-     * @return \Zendit\Model\DtoCost|null
+     * @return \Zendit\Model\DtoCost
      */
     public function getCost()
     {
@@ -401,7 +456,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cost
      *
-     * @param \Zendit\Model\DtoCost|null $cost cost
+     * @param \Zendit\Model\DtoCost $cost cost
      *
      * @return self
      */
@@ -418,7 +473,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets country
      *
-     * @return string|null
+     * @return string
      */
     public function getCountry()
     {
@@ -428,7 +483,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets country
      *
-     * @param string|null $country country
+     * @param string $country country
      *
      * @return self
      */
@@ -445,7 +500,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string|null
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -455,7 +510,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string $created_at created_at
      *
      * @return self
      */
@@ -472,7 +527,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets enabled
      *
-     * @return bool|null
+     * @return bool
      */
     public function getEnabled()
     {
@@ -482,7 +537,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enabled
      *
-     * @param bool|null $enabled enabled
+     * @param bool $enabled enabled
      *
      * @return self
      */
@@ -499,7 +554,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets notes
      *
-     * @return string|null
+     * @return string
      */
     public function getNotes()
     {
@@ -509,7 +564,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets notes
      *
-     * @param string|null $notes notes
+     * @param string $notes notes
      *
      * @return self
      */
@@ -526,7 +581,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offer_id
      *
-     * @return string|null
+     * @return string
      */
     public function getOfferId()
     {
@@ -536,7 +591,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offer_id
      *
-     * @param string|null $offer_id offer_id
+     * @param string $offer_id offer_id
      *
      * @return self
      */
@@ -553,7 +608,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price
      *
-     * @return \Zendit\Model\DtoPrice|null
+     * @return \Zendit\Model\DtoPrice
      */
     public function getPrice()
     {
@@ -563,7 +618,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price
      *
-     * @param \Zendit\Model\DtoPrice|null $price price
+     * @param \Zendit\Model\DtoPrice $price price
      *
      * @return self
      */
@@ -580,7 +635,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets price_type
      *
-     * @return \Zendit\Model\DtoPriceType|null
+     * @return \Zendit\Model\DtoPriceType
      */
     public function getPriceType()
     {
@@ -590,7 +645,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets price_type
      *
-     * @param \Zendit\Model\DtoPriceType|null $price_type price_type
+     * @param \Zendit\Model\DtoPriceType $price_type price_type
      *
      * @return self
      */
@@ -607,7 +662,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets product_type
      *
-     * @return \Zendit\Model\DtoProductType|null
+     * @return \Zendit\Model\DtoProductType
      */
     public function getProductType()
     {
@@ -617,7 +672,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_type
      *
-     * @param \Zendit\Model\DtoProductType|null $product_type product_type
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
@@ -632,9 +687,36 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets regions
+     *
+     * @return string[]
+     */
+    public function getRegions()
+    {
+        return $this->container['regions'];
+    }
+
+    /**
+     * Sets regions
+     *
+     * @param string[] $regions regions
+     *
+     * @return self
+     */
+    public function setRegions($regions)
+    {
+        if (is_null($regions)) {
+            throw new \InvalidArgumentException('non-nullable regions cannot be null');
+        }
+        $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
      * Gets required_fields
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getRequiredFields()
     {
@@ -644,7 +726,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets required_fields
      *
-     * @param string[]|null $required_fields required_fields
+     * @param string[] $required_fields required_fields
      *
      * @return self
      */
@@ -661,7 +743,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets send
      *
-     * @return \Zendit\Model\DtoZend|null
+     * @return \Zendit\Model\DtoZend
      */
     public function getSend()
     {
@@ -671,7 +753,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets send
      *
-     * @param \Zendit\Model\DtoZend|null $send send
+     * @param \Zendit\Model\DtoZend $send send
      *
      * @return self
      */
@@ -688,7 +770,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets short_notes
      *
-     * @return string|null
+     * @return string
      */
     public function getShortNotes()
     {
@@ -698,7 +780,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets short_notes
      *
-     * @param string|null $short_notes short_notes
+     * @param string $short_notes short_notes
      *
      * @return self
      */
@@ -715,7 +797,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets sub_types
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getSubTypes()
     {
@@ -725,7 +807,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets sub_types
      *
-     * @param string[]|null $sub_types sub_types
+     * @param string[] $sub_types sub_types
      *
      * @return self
      */
@@ -742,7 +824,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string|null
+     * @return string
      */
     public function getUpdatedAt()
     {
@@ -752,7 +834,7 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      *
-     * @param string|null $updated_at updated_at
+     * @param string $updated_at updated_at
      *
      * @return self
      */

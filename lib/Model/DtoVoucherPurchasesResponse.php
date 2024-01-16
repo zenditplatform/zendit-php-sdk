@@ -58,9 +58,9 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
       */
     protected static array $openAPINullables = [
         'limit' => false,
-		'list' => false,
-		'offset' => false,
-		'total' => false
+        'list' => false,
+        'offset' => false,
+        'total' => false
     ];
 
     /**
@@ -269,6 +269,18 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
+        }
+        if ($this->container['list'] === null) {
+            $invalidProperties[] = "'list' can't be null";
+        }
+        if ($this->container['offset'] === null) {
+            $invalidProperties[] = "'offset' can't be null";
+        }
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -287,7 +299,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets limit
      *
-     * @return int|null
+     * @return int
      */
     public function getLimit()
     {
@@ -297,7 +309,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets limit
      *
-     * @param int|null $limit limit
+     * @param int $limit limit
      *
      * @return self
      */
@@ -314,7 +326,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets list
      *
-     * @return \Zendit\Model\DtoVoucherPurchase[]|null
+     * @return \Zendit\Model\DtoVoucherPurchase[]
      */
     public function getList()
     {
@@ -324,7 +336,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets list
      *
-     * @param \Zendit\Model\DtoVoucherPurchase[]|null $list list
+     * @param \Zendit\Model\DtoVoucherPurchase[] $list list
      *
      * @return self
      */
@@ -341,7 +353,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets offset
      *
-     * @return int|null
+     * @return int
      */
     public function getOffset()
     {
@@ -351,7 +363,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets offset
      *
-     * @param int|null $offset offset
+     * @param int $offset offset
      *
      * @return self
      */
@@ -368,7 +380,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets total
      *
-     * @return int|null
+     * @return int
      */
     public function getTotal()
     {
@@ -378,7 +390,7 @@ class DtoVoucherPurchasesResponse implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets total
      *
-     * @param int|null $total total
+     * @param int $total total
      *
      * @return self
      */

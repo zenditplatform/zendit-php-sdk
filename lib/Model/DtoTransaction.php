@@ -70,15 +70,15 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'amount' => false,
-		'created_at' => false,
-		'currency' => false,
-		'error' => false,
-		'log' => false,
-		'product_type' => false,
-		'status' => false,
-		'transaction_id' => false,
-		'type' => false,
-		'updated_at' => false
+        'created_at' => false,
+        'currency' => false,
+        'error' => false,
+        'log' => false,
+        'product_type' => false,
+        'status' => false,
+        'transaction_id' => false,
+        'type' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -311,6 +311,33 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['log'] === null) {
+            $invalidProperties[] = "'log' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -329,7 +356,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets amount
      *
-     * @return int|null
+     * @return int
      */
     public function getAmount()
     {
@@ -339,7 +366,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets amount
      *
-     * @param int|null $amount amount
+     * @param int $amount amount
      *
      * @return self
      */
@@ -356,7 +383,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets created_at
      *
-     * @return string|null
+     * @return string
      */
     public function getCreatedAt()
     {
@@ -366,7 +393,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets created_at
      *
-     * @param string|null $created_at created_at
+     * @param string $created_at created_at
      *
      * @return self
      */
@@ -383,7 +410,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCurrency()
     {
@@ -393,7 +420,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string|null $currency currency
+     * @param string $currency currency
      *
      * @return self
      */
@@ -437,7 +464,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets log
      *
-     * @return \Zendit\Model\DtoTransactionLogItem[]|null
+     * @return \Zendit\Model\DtoTransactionLogItem[]
      */
     public function getLog()
     {
@@ -447,7 +474,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets log
      *
-     * @param \Zendit\Model\DtoTransactionLogItem[]|null $log log
+     * @param \Zendit\Model\DtoTransactionLogItem[] $log log
      *
      * @return self
      */
@@ -464,7 +491,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets product_type
      *
-     * @return \Zendit\Model\DtoProductType|null
+     * @return \Zendit\Model\DtoProductType
      */
     public function getProductType()
     {
@@ -474,7 +501,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets product_type
      *
-     * @param \Zendit\Model\DtoProductType|null $product_type product_type
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
@@ -491,7 +518,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return \Zendit\Model\DtoTransactionStatus|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
     public function getStatus()
     {
@@ -501,7 +528,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param \Zendit\Model\DtoTransactionStatus|null $status status
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
@@ -518,7 +545,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transaction_id
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionId()
     {
@@ -528,7 +555,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transaction_id
      *
-     * @param string|null $transaction_id client operate with clientTransactionId
+     * @param string $transaction_id client operate with clientTransactionId
      *
      * @return self
      */
@@ -545,7 +572,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets type
      *
-     * @return \Zendit\Model\DtoTransactionType|null
+     * @return \Zendit\Model\DtoTransactionType
      */
     public function getType()
     {
@@ -555,7 +582,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param \Zendit\Model\DtoTransactionType|null $type type
+     * @param \Zendit\Model\DtoTransactionType $type type
      *
      * @return self
      */
@@ -572,7 +599,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets updated_at
      *
-     * @return string|null
+     * @return string
      */
     public function getUpdatedAt()
     {
@@ -582,7 +609,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets updated_at
      *
-     * @param string|null $updated_at updated_at
+     * @param string $updated_at updated_at
      *
      * @return self
      */

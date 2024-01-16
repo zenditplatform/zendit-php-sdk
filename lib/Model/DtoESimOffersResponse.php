@@ -6,7 +6,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * CoreHTTPResponseZenditError Class Doc Comment
+ * DtoESimOffersResponse Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -14,7 +14,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESimOffersResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -23,7 +23,7 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
       *
       * @var string
       */
-    protected static $openAPIModelName = 'core.HTTPResponseZenditError';
+    protected static $openAPIModelName = 'dto.ESimOffersResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -31,9 +31,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
       * @var string[]
       */
     protected static $openAPITypes = [
-        'error_code' => '\Zendit\Model\CoreErrorCode',
-        'message' => 'string',
-        'payload' => 'object'
+        'limit' => 'int',
+        'list' => '\Zendit\Model\DtoESimOffer[]',
+        'offset' => 'int',
+        'total' => 'int'
     ];
 
     /**
@@ -44,9 +45,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'error_code' => null,
-        'message' => null,
-        'payload' => null
+        'limit' => null,
+        'list' => null,
+        'offset' => null,
+        'total' => null
     ];
 
     /**
@@ -55,9 +57,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'error_code' => false,
-		'message' => false,
-		'payload' => false
+        'limit' => false,
+        'list' => false,
+        'offset' => false,
+        'total' => false
     ];
 
     /**
@@ -146,9 +149,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $attributeMap = [
-        'error_code' => 'errorCode',
-        'message' => 'message',
-        'payload' => 'payload'
+        'limit' => 'limit',
+        'list' => 'list',
+        'offset' => 'offset',
+        'total' => 'total'
     ];
 
     /**
@@ -157,9 +161,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $setters = [
-        'error_code' => 'setErrorCode',
-        'message' => 'setMessage',
-        'payload' => 'setPayload'
+        'limit' => 'setLimit',
+        'list' => 'setList',
+        'offset' => 'setOffset',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -168,9 +173,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
      * @var string[]
      */
     protected static $getters = [
-        'error_code' => 'getErrorCode',
-        'message' => 'getMessage',
-        'payload' => 'getPayload'
+        'limit' => 'getLimit',
+        'list' => 'getList',
+        'offset' => 'getOffset',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -230,9 +236,10 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('error_code', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
-        $this->setIfExists('payload', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('list', $data ?? [], null);
+        $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
     }
 
     /**
@@ -262,6 +269,18 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
     {
         $invalidProperties = [];
 
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
+        }
+        if ($this->container['list'] === null) {
+            $invalidProperties[] = "'list' can't be null";
+        }
+        if ($this->container['offset'] === null) {
+            $invalidProperties[] = "'offset' can't be null";
+        }
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -278,82 +297,109 @@ class CoreHTTPResponseZenditError implements ModelInterface, ArrayAccess, \JsonS
 
 
     /**
-     * Gets error_code
+     * Gets limit
      *
-     * @return \Zendit\Model\CoreErrorCode|null
+     * @return int
      */
-    public function getErrorCode()
+    public function getLimit()
     {
-        return $this->container['error_code'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets error_code
+     * Sets limit
      *
-     * @param \Zendit\Model\CoreErrorCode|null $error_code error_code
+     * @param int $limit limit
      *
      * @return self
      */
-    public function setErrorCode($error_code)
+    public function setLimit($limit)
     {
-        if (is_null($error_code)) {
-            throw new \InvalidArgumentException('non-nullable error_code cannot be null');
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-        $this->container['error_code'] = $error_code;
+        $this->container['limit'] = $limit;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets list
      *
-     * @return string|null
+     * @return \Zendit\Model\DtoESimOffer[]
      */
-    public function getMessage()
+    public function getList()
     {
-        return $this->container['message'];
+        return $this->container['list'];
     }
 
     /**
-     * Sets message
+     * Sets list
      *
-     * @param string|null $message message
+     * @param \Zendit\Model\DtoESimOffer[] $list list
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setList($list)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        if (is_null($list)) {
+            throw new \InvalidArgumentException('non-nullable list cannot be null');
         }
-        $this->container['message'] = $message;
+        $this->container['list'] = $list;
 
         return $this;
     }
 
     /**
-     * Gets payload
+     * Gets offset
      *
-     * @return object|null
+     * @return int
      */
-    public function getPayload()
+    public function getOffset()
     {
-        return $this->container['payload'];
+        return $this->container['offset'];
     }
 
     /**
-     * Sets payload
+     * Sets offset
      *
-     * @param object|null $payload payload
+     * @param int $offset offset
      *
      * @return self
      */
-    public function setPayload($payload)
+    public function setOffset($offset)
     {
-        if (is_null($payload)) {
-            throw new \InvalidArgumentException('non-nullable payload cannot be null');
+        if (is_null($offset)) {
+            throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
-        $this->container['payload'] = $payload;
+        $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int $total total
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        }
+        $this->container['total'] = $total;
 
         return $this;
     }

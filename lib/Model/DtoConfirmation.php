@@ -56,8 +56,8 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'confirmation_number' => false,
-		'external_reference_id' => false,
-		'transaction_time' => false
+        'external_reference_id' => false,
+        'transaction_time' => false
     ];
 
     /**
@@ -262,6 +262,15 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['confirmation_number'] === null) {
+            $invalidProperties[] = "'confirmation_number' can't be null";
+        }
+        if ($this->container['external_reference_id'] === null) {
+            $invalidProperties[] = "'external_reference_id' can't be null";
+        }
+        if ($this->container['transaction_time'] === null) {
+            $invalidProperties[] = "'transaction_time' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -280,7 +289,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets confirmation_number
      *
-     * @return string|null
+     * @return string
      */
     public function getConfirmationNumber()
     {
@@ -290,7 +299,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets confirmation_number
      *
-     * @param string|null $confirmation_number confirmation_number
+     * @param string $confirmation_number confirmation_number
      *
      * @return self
      */
@@ -307,7 +316,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets external_reference_id
      *
-     * @return string|null
+     * @return string
      */
     public function getExternalReferenceId()
     {
@@ -317,7 +326,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets external_reference_id
      *
-     * @param string|null $external_reference_id external_reference_id
+     * @param string $external_reference_id external_reference_id
      *
      * @return self
      */
@@ -334,7 +343,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transaction_time
      *
-     * @return string|null
+     * @return string
      */
     public function getTransactionTime()
     {
@@ -344,7 +353,7 @@ class DtoConfirmation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transaction_time
      *
-     * @param string|null $transaction_time transaction_time
+     * @param string $transaction_time transaction_time
      *
      * @return self
      */

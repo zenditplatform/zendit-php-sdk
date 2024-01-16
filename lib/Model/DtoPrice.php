@@ -66,13 +66,13 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'currency' => false,
-		'fixed' => false,
-		'fx' => false,
-		'margin' => false,
-		'max' => false,
-		'min' => false,
-		'suggested_fixed' => false,
-		'suggested_fx' => false
+        'fixed' => false,
+        'fx' => false,
+        'margin' => false,
+        'max' => false,
+        'min' => false,
+        'suggested_fixed' => false,
+        'suggested_fx' => false
     ];
 
     /**
@@ -297,6 +297,9 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -315,7 +318,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCurrency()
     {
@@ -325,7 +328,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets currency
      *
-     * @param string|null $currency currency
+     * @param string $currency currency
      *
      * @return self
      */

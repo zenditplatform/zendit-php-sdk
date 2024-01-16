@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**limit** | **int** |  | [optional]
-**list** | [**\Zendit\Model\DtoTopupOffer[]**](DtoTopupOffer.md) |  | [optional]
-**offset** | **int** |  | [optional]
-**total** | **int** |  | [optional]
+**limit** | **int** |  |
+**list** | [**\Zendit\Model\DtoTopupOffer[]**](DtoTopupOffer.md) |  |
+**offset** | **int** |  |
+**total** | **int** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

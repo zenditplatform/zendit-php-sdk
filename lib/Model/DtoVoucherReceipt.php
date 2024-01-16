@@ -68,14 +68,14 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'currency' => false,
-		'epin' => false,
-		'expires_at' => false,
-		'instructions' => false,
-		'notes' => false,
-		'recipient_customer_service_number' => false,
-		'send' => false,
-		'sender_customer_service_number' => false,
-		'terms' => false
+        'epin' => false,
+        'expires_at' => false,
+        'instructions' => false,
+        'notes' => false,
+        'recipient_customer_service_number' => false,
+        'send' => false,
+        'sender_customer_service_number' => false,
+        'terms' => false
     ];
 
     /**
@@ -304,6 +304,33 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['currency'] === null) {
+            $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['epin'] === null) {
+            $invalidProperties[] = "'epin' can't be null";
+        }
+        if ($this->container['expires_at'] === null) {
+            $invalidProperties[] = "'expires_at' can't be null";
+        }
+        if ($this->container['instructions'] === null) {
+            $invalidProperties[] = "'instructions' can't be null";
+        }
+        if ($this->container['notes'] === null) {
+            $invalidProperties[] = "'notes' can't be null";
+        }
+        if ($this->container['recipient_customer_service_number'] === null) {
+            $invalidProperties[] = "'recipient_customer_service_number' can't be null";
+        }
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['sender_customer_service_number'] === null) {
+            $invalidProperties[] = "'sender_customer_service_number' can't be null";
+        }
+        if ($this->container['terms'] === null) {
+            $invalidProperties[] = "'terms' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -322,7 +349,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets currency
      *
-     * @return string|null
+     * @return string
      */
     public function getCurrency()
     {
@@ -332,7 +359,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets currency
      *
-     * @param string|null $currency The 3-letter ISO currency code for the send
+     * @param string $currency The 3-letter ISO currency code for the send
      *
      * @return self
      */
@@ -349,7 +376,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets epin
      *
-     * @return string|null
+     * @return string
      */
     public function getEpin()
     {
@@ -359,7 +386,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets epin
      *
-     * @param string|null $epin epin
+     * @param string $epin epin
      *
      * @return self
      */
@@ -376,7 +403,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets expires_at
      *
-     * @return string|null
+     * @return string
      */
     public function getExpiresAt()
     {
@@ -386,7 +413,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets expires_at
      *
-     * @param string|null $expires_at expires_at
+     * @param string $expires_at expires_at
      *
      * @return self
      */
@@ -403,7 +430,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets instructions
      *
-     * @return string|null
+     * @return string
      */
     public function getInstructions()
     {
@@ -413,7 +440,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets instructions
      *
-     * @param string|null $instructions instructions
+     * @param string $instructions instructions
      *
      * @return self
      */
@@ -430,7 +457,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets notes
      *
-     * @return string|null
+     * @return string
      */
     public function getNotes()
     {
@@ -440,7 +467,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets notes
      *
-     * @param string|null $notes Additional message information about the voucher
+     * @param string $notes Additional message information about the voucher
      *
      * @return self
      */
@@ -457,7 +484,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets recipient_customer_service_number
      *
-     * @return string|null
+     * @return string
      */
     public function getRecipientCustomerServiceNumber()
     {
@@ -467,7 +494,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets recipient_customer_service_number
      *
-     * @param string|null $recipient_customer_service_number recipient_customer_service_number
+     * @param string $recipient_customer_service_number recipient_customer_service_number
      *
      * @return self
      */
@@ -484,7 +511,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets send
      *
-     * @return int|null
+     * @return int
      */
     public function getSend()
     {
@@ -494,7 +521,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets send
      *
-     * @param int|null $send The value delivered by the voucher
+     * @param int $send The value delivered by the voucher
      *
      * @return self
      */
@@ -511,7 +538,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets sender_customer_service_number
      *
-     * @return string|null
+     * @return string
      */
     public function getSenderCustomerServiceNumber()
     {
@@ -521,7 +548,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets sender_customer_service_number
      *
-     * @param string|null $sender_customer_service_number sender_customer_service_number
+     * @param string $sender_customer_service_number sender_customer_service_number
      *
      * @return self
      */
@@ -538,7 +565,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets terms
      *
-     * @return string|null
+     * @return string
      */
     public function getTerms()
     {
@@ -548,7 +575,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets terms
      *
-     * @param string|null $terms terms
+     * @param string $terms terms
      *
      * @return self
      */

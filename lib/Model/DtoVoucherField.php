@@ -54,7 +54,7 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'key' => false,
-		'value' => false
+        'value' => false
     ];
 
     /**
@@ -255,6 +255,12 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['key'] === null) {
+            $invalidProperties[] = "'key' can't be null";
+        }
+        if ($this->container['value'] === null) {
+            $invalidProperties[] = "'value' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -273,7 +279,7 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets key
      *
-     * @return string|null
+     * @return string
      */
     public function getKey()
     {
@@ -283,7 +289,7 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets key
      *
-     * @param string|null $key key
+     * @param string $key key
      *
      * @return self
      */
@@ -300,7 +306,7 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets value
      *
-     * @return string|null
+     * @return string
      */
     public function getValue()
     {
@@ -310,7 +316,7 @@ class DtoVoucherField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param string|null $value value
+     * @param string $value value
      *
      * @return self
      */

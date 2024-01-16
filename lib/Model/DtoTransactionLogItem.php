@@ -56,8 +56,8 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
       */
     protected static array $openAPINullables = [
         'date_time' => false,
-		'status' => false,
-		'status_message' => false
+        'status' => false,
+        'status_message' => false
     ];
 
     /**
@@ -262,6 +262,15 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     {
         $invalidProperties = [];
 
+        if ($this->container['date_time'] === null) {
+            $invalidProperties[] = "'date_time' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['status_message'] === null) {
+            $invalidProperties[] = "'status_message' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -280,7 +289,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets date_time
      *
-     * @return string|null
+     * @return string
      */
     public function getDateTime()
     {
@@ -290,7 +299,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets date_time
      *
-     * @param string|null $date_time date_time
+     * @param string $date_time date_time
      *
      * @return self
      */
@@ -307,7 +316,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status
      *
-     * @return \Zendit\Model\DtoTransactionStatus|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
     public function getStatus()
     {
@@ -317,7 +326,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status
      *
-     * @param \Zendit\Model\DtoTransactionStatus|null $status status
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
@@ -334,7 +343,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Gets status_message
      *
-     * @return string|null
+     * @return string
      */
     public function getStatusMessage()
     {
@@ -344,7 +353,7 @@ class DtoTransactionLogItem implements ModelInterface, ArrayAccess, \JsonSeriali
     /**
      * Sets status_message
      *
-     * @param string|null $status_message status_message
+     * @param string $status_message status_message
      *
      * @return self
      */

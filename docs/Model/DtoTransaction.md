@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **int** |  | [optional]
-**created_at** | **string** |  | [optional]
-**currency** | **string** |  | [optional]
+**amount** | **int** |  |
+**created_at** | **string** |  |
+**currency** | **string** |  |
 **error** | [**\Zendit\Model\DtoError**](DtoError.md) |  | [optional]
-**log** | [**\Zendit\Model\DtoTransactionLogItem[]**](DtoTransactionLogItem.md) |  | [optional]
-**product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  | [optional]
-**status** | [**\Zendit\Model\DtoTransactionStatus**](DtoTransactionStatus.md) |  | [optional]
-**transaction_id** | **string** | client operate with clientTransactionId | [optional]
-**type** | [**\Zendit\Model\DtoTransactionType**](DtoTransactionType.md) |  | [optional]
-**updated_at** | **string** |  | [optional]
+**log** | [**\Zendit\Model\DtoTransactionLogItem[]**](DtoTransactionLogItem.md) |  |
+**product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
+**status** | [**\Zendit\Model\DtoTransactionStatus**](DtoTransactionStatus.md) |  |
+**transaction_id** | **string** | client operate with clientTransactionId |
+**type** | [**\Zendit\Model\DtoTransactionType**](DtoTransactionType.md) |  |
+**updated_at** | **string** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

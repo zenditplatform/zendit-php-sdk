@@ -18,6 +18,8 @@ class DtoProductType
      */
     public const ProductTypeTopup = 'TOPUP';
 
+    public const ProductTypeESIM = 'ESIM';
+
     public const ProductTypeVoucher = 'VOUCHER';
 
     public const ProductTypeRechargeSandbox = 'RECHARGE_SANDBOX';
@@ -32,6 +34,7 @@ class DtoProductType
     {
         return [
             self::ProductTypeTopup,
+            self::ProductTypeESIM,
             self::ProductTypeVoucher,
             self::ProductTypeRechargeSandbox,
             self::ProductTypeRechargeWithCreditCard
