@@ -630,4 +630,32 @@ class ZenditApiTest extends TestCase
             $this->assertNotEmpty($purchase->getFilename());
         }
     }
+
+    /**
+     * Test case for testEsimPlans
+     *
+     * Purchase and get esim plans.
+     *
+     */
+    public function testEsimPlans()
+    {
+        $response = $this->zenditApi->esimPurchasesGet(2, 0);
+        if ($response->getList()) {
+            $purchase = $response->getList()[1];
+            $iccId = $purchase->getConfirmation()->getIccid();
+
+            $data = new DtoESimPurchaseMakeInput();
+            $data->setOfferId("ESIM-AFRICA-30D-10GB");
+            $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
+            $data->setIccid($iccId);
+
+            $result = $this->zenditApi->esimPurchasesPost($data);
+
+            $this->assertNotEmpty($result->getTransactionId());
+            $this->assertNotEmpty($result->getStatus());
+
+            $plans = $this->zenditApi->esimIccIdPlansGet($iccId);
+            $this->assertNotEmpty($plans->getList());
+        }
+    }
 }

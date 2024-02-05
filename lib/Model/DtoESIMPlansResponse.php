@@ -6,7 +6,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESimPurchaseMakeInput Class Doc Comment
+ * DtoESIMPlansResponse Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -14,7 +14,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -23,7 +23,7 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESimPurchaseMakeInput';
+    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -31,9 +31,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'iccid' => 'string',
-        'offer_id' => 'string',
-        'transaction_id' => 'string'
+        'list' => '\Zendit\Model\DtoESIMPlan[]',
+        'total' => 'int'
     ];
 
     /**
@@ -44,9 +43,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'iccid' => null,
-        'offer_id' => null,
-        'transaction_id' => null
+        'list' => null,
+        'total' => null
     ];
 
     /**
@@ -55,9 +53,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'iccid' => false,
-        'offer_id' => false,
-        'transaction_id' => false
+        'list' => false,
+        'total' => false
     ];
 
     /**
@@ -146,9 +143,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'iccid' => 'iccid',
-        'offer_id' => 'offerId',
-        'transaction_id' => 'transactionId'
+        'list' => 'list',
+        'total' => 'total'
     ];
 
     /**
@@ -157,9 +153,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'iccid' => 'setIccid',
-        'offer_id' => 'setOfferId',
-        'transaction_id' => 'setTransactionId'
+        'list' => 'setList',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -168,9 +163,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'iccid' => 'getIccid',
-        'offer_id' => 'getOfferId',
-        'transaction_id' => 'getTransactionId'
+        'list' => 'getList',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -230,9 +224,8 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('iccid', $data ?? [], null);
-        $this->setIfExists('offer_id', $data ?? [], null);
-        $this->setIfExists('transaction_id', $data ?? [], null);
+        $this->setIfExists('list', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
     }
 
     /**
@@ -262,11 +255,11 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['offer_id'] === null) {
-            $invalidProperties[] = "'offer_id' can't be null";
+        if ($this->container['list'] === null) {
+            $invalidProperties[] = "'list' can't be null";
         }
-        if ($this->container['transaction_id'] === null) {
-            $invalidProperties[] = "'transaction_id' can't be null";
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
         }
         return $invalidProperties;
     }
@@ -284,82 +277,55 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets iccid
+     * Gets list
      *
-     * @return string|null
+     * @return \Zendit\Model\DtoESIMPlan[]
      */
-    public function getIccid()
+    public function getList()
     {
-        return $this->container['iccid'];
+        return $this->container['list'];
     }
 
     /**
-     * Sets iccid
+     * Sets list
      *
-     * @param string|null $iccid iccid
+     * @param \Zendit\Model\DtoESIMPlan[] $list list
      *
      * @return self
      */
-    public function setIccid($iccid)
+    public function setList($list)
     {
-        if (is_null($iccid)) {
-            throw new \InvalidArgumentException('non-nullable iccid cannot be null');
+        if (is_null($list)) {
+            throw new \InvalidArgumentException('non-nullable list cannot be null');
         }
-        $this->container['iccid'] = $iccid;
+        $this->container['list'] = $list;
 
         return $this;
     }
 
     /**
-     * Gets offer_id
+     * Gets total
      *
-     * @return string
+     * @return int
      */
-    public function getOfferId()
+    public function getTotal()
     {
-        return $this->container['offer_id'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets offer_id
+     * Sets total
      *
-     * @param string $offer_id offer_id
+     * @param int $total total
      *
      * @return self
      */
-    public function setOfferId($offer_id)
+    public function setTotal($total)
     {
-        if (is_null($offer_id)) {
-            throw new \InvalidArgumentException('non-nullable offer_id cannot be null');
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
         }
-        $this->container['offer_id'] = $offer_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets transaction_id
-     *
-     * @return string
-     */
-    public function getTransactionId()
-    {
-        return $this->container['transaction_id'];
-    }
-
-    /**
-     * Sets transaction_id
-     *
-     * @param string $transaction_id transaction_id
-     *
-     * @return self
-     */
-    public function setTransactionId($transaction_id)
-    {
-        if (is_null($transaction_id)) {
-            throw new \InvalidArgumentException('non-nullable transaction_id cannot be null');
-        }
-        $this->container['transaction_id'] = $transaction_id;
+        $this->container['total'] = $total;
 
         return $this;
     }

@@ -49,6 +49,9 @@ class ZenditApi
         'balanceGet' => [
             'application/json',
         ],
+        'esimIccIdPlansGet' => [
+            'application/json',
+        ],
         'esimOffersGet' => [
             'application/json',
         ],
@@ -453,6 +456,388 @@ class ZenditApi
 
 
 
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation esimIccIdPlansGet
+     *
+     * Get list of eSim plans
+     *
+     * @param  string $icc_id eSIM Plans input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimIccIdPlansGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoESIMPlansResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function esimIccIdPlansGet($icc_id, string $contentType = self::contentTypes['esimIccIdPlansGet'][0])
+    {
+        list($response) = $this->esimIccIdPlansGetWithHttpInfo($icc_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation esimIccIdPlansGetWithHttpInfo
+     *
+     * Get list of eSim plans
+     *
+     * @param  string $icc_id eSIM Plans input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimIccIdPlansGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoESIMPlansResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function esimIccIdPlansGetWithHttpInfo($icc_id, string $contentType = self::contentTypes['esimIccIdPlansGet'][0])
+    {
+        $request = $this->esimIccIdPlansGetRequest($icc_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Zendit\Model\DtoESIMPlansResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoESIMPlansResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoESIMPlansResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Zendit\Model\DtoESIMPlansResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoESIMPlansResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation esimIccIdPlansGetAsync
+     *
+     * Get list of eSim plans
+     *
+     * @param  string $icc_id eSIM Plans input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimIccIdPlansGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function esimIccIdPlansGetAsync($icc_id, string $contentType = self::contentTypes['esimIccIdPlansGet'][0])
+    {
+        return $this->esimIccIdPlansGetAsyncWithHttpInfo($icc_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation esimIccIdPlansGetAsyncWithHttpInfo
+     *
+     * Get list of eSim plans
+     *
+     * @param  string $icc_id eSIM Plans input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimIccIdPlansGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function esimIccIdPlansGetAsyncWithHttpInfo($icc_id, string $contentType = self::contentTypes['esimIccIdPlansGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoESIMPlansResponse';
+        $request = $this->esimIccIdPlansGetRequest($icc_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'esimIccIdPlansGet'
+     *
+     * @param  string $icc_id eSIM Plans input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimIccIdPlansGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function esimIccIdPlansGetRequest($icc_id, string $contentType = self::contentTypes['esimIccIdPlansGet'][0])
+    {
+
+        // verify the required parameter 'icc_id' is set
+        if ($icc_id === null || (is_array($icc_id) && count($icc_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $icc_id when calling esimIccIdPlansGet'
+            );
+        }
+
+
+        $resourcePath = '/esim/{iccId}/plans';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($icc_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'iccId' . '}',
+                ObjectSerializer::toPathValue($icc_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
