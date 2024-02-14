@@ -6,7 +6,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESimPurchaseMakeInput Class Doc Comment
+ * DtoESIMPlan Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -14,7 +14,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -23,7 +23,7 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESimPurchaseMakeInput';
+    protected static $openAPIModelName = 'dto.ESIMPlan';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -31,9 +31,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
+        'description' => 'string',
+        'end_at' => 'string',
         'iccid' => 'string',
+        'initial_data_gb' => 'float',
         'offer_id' => 'string',
-        'transaction_id' => 'string'
+        'remaining_data_gb' => 'float',
+        'start_at' => 'string',
+        'status' => 'string'
     ];
 
     /**
@@ -44,9 +49,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'description' => null,
+        'end_at' => null,
         'iccid' => null,
+        'initial_data_gb' => null,
         'offer_id' => null,
-        'transaction_id' => null
+        'remaining_data_gb' => null,
+        'start_at' => null,
+        'status' => null
     ];
 
     /**
@@ -55,9 +65,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'description' => false,
+        'end_at' => false,
         'iccid' => false,
+        'initial_data_gb' => false,
         'offer_id' => false,
-        'transaction_id' => false
+        'remaining_data_gb' => false,
+        'start_at' => false,
+        'status' => false
     ];
 
     /**
@@ -146,9 +161,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'description' => 'description',
+        'end_at' => 'endAt',
         'iccid' => 'iccid',
+        'initial_data_gb' => 'initialDataGB',
         'offer_id' => 'offerId',
-        'transaction_id' => 'transactionId'
+        'remaining_data_gb' => 'remainingDataGB',
+        'start_at' => 'startAt',
+        'status' => 'status'
     ];
 
     /**
@@ -157,9 +177,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'description' => 'setDescription',
+        'end_at' => 'setEndAt',
         'iccid' => 'setIccid',
+        'initial_data_gb' => 'setInitialDataGb',
         'offer_id' => 'setOfferId',
-        'transaction_id' => 'setTransactionId'
+        'remaining_data_gb' => 'setRemainingDataGb',
+        'start_at' => 'setStartAt',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -168,9 +193,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'description' => 'getDescription',
+        'end_at' => 'getEndAt',
         'iccid' => 'getIccid',
+        'initial_data_gb' => 'getInitialDataGb',
         'offer_id' => 'getOfferId',
-        'transaction_id' => 'getTransactionId'
+        'remaining_data_gb' => 'getRemainingDataGb',
+        'start_at' => 'getStartAt',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -214,6 +244,21 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
+    public const STATUS_ACTIVE = 'ACTIVE';
+    public const STATUS_QUEUED = 'QUEUED';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_ACTIVE,
+            self::STATUS_QUEUED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -230,9 +275,14 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('end_at', $data ?? [], null);
         $this->setIfExists('iccid', $data ?? [], null);
+        $this->setIfExists('initial_data_gb', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
-        $this->setIfExists('transaction_id', $data ?? [], null);
+        $this->setIfExists('remaining_data_gb', $data ?? [], null);
+        $this->setIfExists('start_at', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -262,12 +312,33 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
+        if ($this->container['description'] === null) {
+            $invalidProperties[] = "'description' can't be null";
+        }
+        if ($this->container['iccid'] === null) {
+            $invalidProperties[] = "'iccid' can't be null";
+        }
+        if ($this->container['initial_data_gb'] === null) {
+            $invalidProperties[] = "'initial_data_gb' can't be null";
+        }
         if ($this->container['offer_id'] === null) {
             $invalidProperties[] = "'offer_id' can't be null";
         }
-        if ($this->container['transaction_id'] === null) {
-            $invalidProperties[] = "'transaction_id' can't be null";
+        if ($this->container['remaining_data_gb'] === null) {
+            $invalidProperties[] = "'remaining_data_gb' can't be null";
         }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -284,9 +355,63 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets iccid
+     * Gets description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param string $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_at
      *
      * @return string|null
+     */
+    public function getEndAt()
+    {
+        return $this->container['end_at'];
+    }
+
+    /**
+     * Sets end_at
+     *
+     * @param string|null $end_at end_at
+     *
+     * @return self
+     */
+    public function setEndAt($end_at)
+    {
+        if (is_null($end_at)) {
+            throw new \InvalidArgumentException('non-nullable end_at cannot be null');
+        }
+        $this->container['end_at'] = $end_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets iccid
+     *
+     * @return string
      */
     public function getIccid()
     {
@@ -296,7 +421,7 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets iccid
      *
-     * @param string|null $iccid iccid
+     * @param string $iccid iccid
      *
      * @return self
      */
@@ -306,6 +431,33 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
             throw new \InvalidArgumentException('non-nullable iccid cannot be null');
         }
         $this->container['iccid'] = $iccid;
+
+        return $this;
+    }
+
+    /**
+     * Gets initial_data_gb
+     *
+     * @return float
+     */
+    public function getInitialDataGb()
+    {
+        return $this->container['initial_data_gb'];
+    }
+
+    /**
+     * Sets initial_data_gb
+     *
+     * @param float $initial_data_gb initial_data_gb
+     *
+     * @return self
+     */
+    public function setInitialDataGb($initial_data_gb)
+    {
+        if (is_null($initial_data_gb)) {
+            throw new \InvalidArgumentException('non-nullable initial_data_gb cannot be null');
+        }
+        $this->container['initial_data_gb'] = $initial_data_gb;
 
         return $this;
     }
@@ -338,28 +490,92 @@ class DtoESimPurchaseMakeInput implements ModelInterface, ArrayAccess, \JsonSeri
     }
 
     /**
-     * Gets transaction_id
+     * Gets remaining_data_gb
      *
-     * @return string
+     * @return float
      */
-    public function getTransactionId()
+    public function getRemainingDataGb()
     {
-        return $this->container['transaction_id'];
+        return $this->container['remaining_data_gb'];
     }
 
     /**
-     * Sets transaction_id
+     * Sets remaining_data_gb
      *
-     * @param string $transaction_id transaction_id
+     * @param float $remaining_data_gb remaining_data_gb
      *
      * @return self
      */
-    public function setTransactionId($transaction_id)
+    public function setRemainingDataGb($remaining_data_gb)
     {
-        if (is_null($transaction_id)) {
-            throw new \InvalidArgumentException('non-nullable transaction_id cannot be null');
+        if (is_null($remaining_data_gb)) {
+            throw new \InvalidArgumentException('non-nullable remaining_data_gb cannot be null');
         }
-        $this->container['transaction_id'] = $transaction_id;
+        $this->container['remaining_data_gb'] = $remaining_data_gb;
+
+        return $this;
+    }
+
+    /**
+     * Gets start_at
+     *
+     * @return string|null
+     */
+    public function getStartAt()
+    {
+        return $this->container['start_at'];
+    }
+
+    /**
+     * Sets start_at
+     *
+     * @param string|null $start_at start_at
+     *
+     * @return self
+     */
+    public function setStartAt($start_at)
+    {
+        if (is_null($start_at)) {
+            throw new \InvalidArgumentException('non-nullable start_at cannot be null');
+        }
+        $this->container['start_at'] = $start_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
