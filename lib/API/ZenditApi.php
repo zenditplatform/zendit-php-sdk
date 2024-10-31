@@ -3046,33 +3046,34 @@ class ZenditApi
                             $response->getStatusCode(),
                             $response->getHeaders()
                         ];
-                    }
-                    if ('\SplFileObject' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
                     } else {
-                        $content = (string) $response->getBody();
-                        if ('\SplFileObject' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
+                        if ('\SplFileObject' === '\SplFileObject') {
+                            $content = $response->getBody(); //stream goes to serializer
+                        } else {
+                            $content = (string) $response->getBody();
+                            if ('\SplFileObject' !== 'string') {
+                                try {
+                                    $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                                } catch (\JsonException $exception) {
+                                    throw new ApiException(
+                                        sprintf(
+                                            'Error JSON decoding server response (%s)',
+                                            $request->getUri()
+                                        ),
+                                        $statusCode,
+                                        $response->getHeaders(),
+                                        $content
+                                    );
+                                }
                             }
                         }
-                    }
 
-                    return [
-                        ObjectSerializer::deserialize($content, '\SplFileObject', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
+                        return [
+                            ObjectSerializer::deserialize($content, '\SplFileObject', []),
+                            $response->getStatusCode(),
+                            $response->getHeaders()
+                        ];
+                    }
                 case 400:
                     if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -3314,7 +3315,7 @@ class ZenditApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            ['image/png', 'application/json', ],
+            [$contentType],
             $contentType,
             $multipart
         );
