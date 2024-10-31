@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 
 use \ArrayAccess;
@@ -31,15 +30,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
+        'account_id' => 'string',
+        'confirmation_number' => 'string',
         'currency' => 'string',
+        'delivery_type' => 'string',
         'epin' => 'string',
         'expires_at' => 'string',
         'instructions' => 'string',
         'notes' => 'string',
         'recipient_customer_service_number' => 'string',
+        'redemption_url' => 'string',
         'send' => 'int',
         'sender_customer_service_number' => 'string',
-        'terms' => 'string'
+        'terms' => 'string',
+        'voucher_id' => 'string'
     ];
 
     /**
@@ -50,15 +54,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'account_id' => null,
+        'confirmation_number' => null,
         'currency' => null,
+        'delivery_type' => null,
         'epin' => null,
         'expires_at' => null,
         'instructions' => null,
         'notes' => null,
         'recipient_customer_service_number' => null,
+        'redemption_url' => null,
         'send' => null,
         'sender_customer_service_number' => null,
-        'terms' => null
+        'terms' => null,
+        'voucher_id' => null
     ];
 
     /**
@@ -67,15 +76,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'account_id' => false,
+        'confirmation_number' => false,
         'currency' => false,
+        'delivery_type' => false,
         'epin' => false,
         'expires_at' => false,
         'instructions' => false,
         'notes' => false,
         'recipient_customer_service_number' => false,
+        'redemption_url' => false,
         'send' => false,
         'sender_customer_service_number' => false,
-        'terms' => false
+        'terms' => false,
+        'voucher_id' => false
     ];
 
     /**
@@ -164,15 +178,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
+        'account_id' => 'accountId',
+        'confirmation_number' => 'confirmationNumber',
         'currency' => 'currency',
+        'delivery_type' => 'deliveryType',
         'epin' => 'epin',
         'expires_at' => 'expiresAt',
         'instructions' => 'instructions',
         'notes' => 'notes',
         'recipient_customer_service_number' => 'recipientCustomerServiceNumber',
+        'redemption_url' => 'redemptionUrl',
         'send' => 'send',
         'sender_customer_service_number' => 'senderCustomerServiceNumber',
-        'terms' => 'terms'
+        'terms' => 'terms',
+        'voucher_id' => 'voucherId'
     ];
 
     /**
@@ -181,15 +200,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
+        'account_id' => 'setAccountId',
+        'confirmation_number' => 'setConfirmationNumber',
         'currency' => 'setCurrency',
+        'delivery_type' => 'setDeliveryType',
         'epin' => 'setEpin',
         'expires_at' => 'setExpiresAt',
         'instructions' => 'setInstructions',
         'notes' => 'setNotes',
         'recipient_customer_service_number' => 'setRecipientCustomerServiceNumber',
+        'redemption_url' => 'setRedemptionUrl',
         'send' => 'setSend',
         'sender_customer_service_number' => 'setSenderCustomerServiceNumber',
-        'terms' => 'setTerms'
+        'terms' => 'setTerms',
+        'voucher_id' => 'setVoucherId'
     ];
 
     /**
@@ -198,15 +222,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
+        'account_id' => 'getAccountId',
+        'confirmation_number' => 'getConfirmationNumber',
         'currency' => 'getCurrency',
+        'delivery_type' => 'getDeliveryType',
         'epin' => 'getEpin',
         'expires_at' => 'getExpiresAt',
         'instructions' => 'getInstructions',
         'notes' => 'getNotes',
         'recipient_customer_service_number' => 'getRecipientCustomerServiceNumber',
+        'redemption_url' => 'getRedemptionUrl',
         'send' => 'getSend',
         'sender_customer_service_number' => 'getSenderCustomerServiceNumber',
-        'terms' => 'getTerms'
+        'terms' => 'getTerms',
+        'voucher_id' => 'getVoucherId'
     ];
 
     /**
@@ -266,15 +295,20 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('account_id', $data ?? [], null);
+        $this->setIfExists('confirmation_number', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('delivery_type', $data ?? [], null);
         $this->setIfExists('epin', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
         $this->setIfExists('instructions', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('recipient_customer_service_number', $data ?? [], null);
+        $this->setIfExists('redemption_url', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('sender_customer_service_number', $data ?? [], null);
         $this->setIfExists('terms', $data ?? [], null);
+        $this->setIfExists('voucher_id', $data ?? [], null);
     }
 
     /**
@@ -304,8 +338,17 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
+        if ($this->container['account_id'] === null) {
+            $invalidProperties[] = "'account_id' can't be null";
+        }
+        if ($this->container['confirmation_number'] === null) {
+            $invalidProperties[] = "'confirmation_number' can't be null";
+        }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['delivery_type'] === null) {
+            $invalidProperties[] = "'delivery_type' can't be null";
         }
         if ($this->container['epin'] === null) {
             $invalidProperties[] = "'epin' can't be null";
@@ -322,6 +365,9 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         if ($this->container['recipient_customer_service_number'] === null) {
             $invalidProperties[] = "'recipient_customer_service_number' can't be null";
         }
+        if ($this->container['redemption_url'] === null) {
+            $invalidProperties[] = "'redemption_url' can't be null";
+        }
         if ($this->container['send'] === null) {
             $invalidProperties[] = "'send' can't be null";
         }
@@ -330,6 +376,9 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ($this->container['terms'] === null) {
             $invalidProperties[] = "'terms' can't be null";
+        }
+        if ($this->container['voucher_id'] === null) {
+            $invalidProperties[] = "'voucher_id' can't be null";
         }
         return $invalidProperties;
     }
@@ -345,6 +394,60 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets account_id
+     *
+     * @return string
+     */
+    public function getAccountId()
+    {
+        return $this->container['account_id'];
+    }
+
+    /**
+     * Sets account_id
+     *
+     * @param string $account_id account_id
+     *
+     * @return self
+     */
+    public function setAccountId($account_id)
+    {
+        if (is_null($account_id)) {
+            throw new \InvalidArgumentException('non-nullable account_id cannot be null');
+        }
+        $this->container['account_id'] = $account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets confirmation_number
+     *
+     * @return string
+     */
+    public function getConfirmationNumber()
+    {
+        return $this->container['confirmation_number'];
+    }
+
+    /**
+     * Sets confirmation_number
+     *
+     * @param string $confirmation_number confirmation_number
+     *
+     * @return self
+     */
+    public function setConfirmationNumber($confirmation_number)
+    {
+        if (is_null($confirmation_number)) {
+            throw new \InvalidArgumentException('non-nullable confirmation_number cannot be null');
+        }
+        $this->container['confirmation_number'] = $confirmation_number;
+
+        return $this;
+    }
 
     /**
      * Gets currency
@@ -369,6 +472,33 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_type
+     *
+     * @return string
+     */
+    public function getDeliveryType()
+    {
+        return $this->container['delivery_type'];
+    }
+
+    /**
+     * Sets delivery_type
+     *
+     * @param string $delivery_type delivery_type
+     *
+     * @return self
+     */
+    public function setDeliveryType($delivery_type)
+    {
+        if (is_null($delivery_type)) {
+            throw new \InvalidArgumentException('non-nullable delivery_type cannot be null');
+        }
+        $this->container['delivery_type'] = $delivery_type;
 
         return $this;
     }
@@ -509,6 +639,33 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
+     * Gets redemption_url
+     *
+     * @return string
+     */
+    public function getRedemptionUrl()
+    {
+        return $this->container['redemption_url'];
+    }
+
+    /**
+     * Sets redemption_url
+     *
+     * @param string $redemption_url redemption_url
+     *
+     * @return self
+     */
+    public function setRedemptionUrl($redemption_url)
+    {
+        if (is_null($redemption_url)) {
+            throw new \InvalidArgumentException('non-nullable redemption_url cannot be null');
+        }
+        $this->container['redemption_url'] = $redemption_url;
+
+        return $this;
+    }
+
+    /**
      * Gets send
      *
      * @return int
@@ -585,6 +742,33 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable terms cannot be null');
         }
         $this->container['terms'] = $terms;
+
+        return $this;
+    }
+
+    /**
+     * Gets voucher_id
+     *
+     * @return string
+     */
+    public function getVoucherId()
+    {
+        return $this->container['voucher_id'];
+    }
+
+    /**
+     * Sets voucher_id
+     *
+     * @param string $voucher_id voucher_id
+     *
+     * @return self
+     */
+    public function setVoucherId($voucher_id)
+    {
+        if (is_null($voucher_id)) {
+            throw new \InvalidArgumentException('non-nullable voucher_id cannot be null');
+        }
+        $this->container['voucher_id'] = $voucher_id;
 
         return $this;
     }

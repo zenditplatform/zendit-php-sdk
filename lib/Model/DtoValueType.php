@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 use \Zendit\ObjectSerializer;
 
@@ -16,11 +15,11 @@ class DtoValueType
     /**
      * Possible values of this enum
      */
-    public const ValueTypeZend = 'ZEND';
+    public const VALUE_TYPE_ZEND = 'ZEND';
 
-    public const ValueTypePrice = 'PRICE';
+    public const VALUE_TYPE_PRICE = 'PRICE';
 
-    public const ValueTypeCost = 'COST';
+    public const VALUE_TYPE_COST = 'COST';
 
     /**
      * Gets allowable values of the enum
@@ -29,9 +28,9 @@ class DtoValueType
     public static function getAllowableEnumValues()
     {
         return [
-            self::ValueTypeZend,
-            self::ValueTypePrice,
-            self::ValueTypeCost
+            self::VALUE_TYPE_ZEND,
+            self::VALUE_TYPE_PRICE,
+            self::VALUE_TYPE_COST
         ];
     }
 }

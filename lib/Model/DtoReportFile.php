@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESIMPlansResponse Class Doc Comment
+ * DtoReportFile Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoReportFile implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
+    protected static $openAPIModelName = 'dto.ReportFile';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,8 +30,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list' => '\Zendit\Model\DtoESIMPlan[]',
-        'total' => 'int'
+        'download_url' => 'string',
+        'name' => 'string'
     ];
 
     /**
@@ -42,8 +42,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'list' => null,
-        'total' => null
+        'download_url' => null,
+        'name' => null
     ];
 
     /**
@@ -52,8 +52,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'list' => false,
-        'total' => false
+        'download_url' => false,
+        'name' => false
     ];
 
     /**
@@ -142,8 +142,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'list' => 'list',
-        'total' => 'total'
+        'download_url' => 'downloadUrl',
+        'name' => 'name'
     ];
 
     /**
@@ -152,8 +152,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'list' => 'setList',
-        'total' => 'setTotal'
+        'download_url' => 'setDownloadUrl',
+        'name' => 'setName'
     ];
 
     /**
@@ -162,8 +162,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'list' => 'getList',
-        'total' => 'getTotal'
+        'download_url' => 'getDownloadUrl',
+        'name' => 'getName'
     ];
 
     /**
@@ -223,8 +223,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('download_url', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
     }
 
     /**
@@ -254,11 +254,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['list'] === null) {
-            $invalidProperties[] = "'list' can't be null";
+        if ($this->container['download_url'] === null) {
+            $invalidProperties[] = "'download_url' can't be null";
         }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
         }
         return $invalidProperties;
     }
@@ -276,55 +276,55 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets list
+     * Gets download_url
      *
-     * @return \Zendit\Model\DtoESIMPlan[]
+     * @return string
      */
-    public function getList()
+    public function getDownloadUrl()
     {
-        return $this->container['list'];
+        return $this->container['download_url'];
     }
 
     /**
-     * Sets list
+     * Sets download_url
      *
-     * @param \Zendit\Model\DtoESIMPlan[] $list list
+     * @param string $download_url download_url
      *
      * @return self
      */
-    public function setList($list)
+    public function setDownloadUrl($download_url)
     {
-        if (is_null($list)) {
-            throw new \InvalidArgumentException('non-nullable list cannot be null');
+        if (is_null($download_url)) {
+            throw new \InvalidArgumentException('non-nullable download_url cannot be null');
         }
-        $this->container['list'] = $list;
+        $this->container['download_url'] = $download_url;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets name
      *
-     * @return int
+     * @return string
      */
-    public function getTotal()
+    public function getName()
     {
-        return $this->container['total'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets total
+     * Sets name
      *
-     * @param int $total total
+     * @param string $name name
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setName($name)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['total'] = $total;
+        $this->container['name'] = $name;
 
         return $this;
     }

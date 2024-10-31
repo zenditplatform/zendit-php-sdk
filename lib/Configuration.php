@@ -1,9 +1,9 @@
 <?php
-
 namespace Zendit;
 
 /**
  * Configuration Class Doc Comment
+ * PHP version 7.4
  *
  * @category Class
  * @package  Zendit
@@ -74,7 +74,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = '"ZenditSDK/1.4.0 PHP"';
+    protected $userAgent = 'OpenAPI-Generator/1.0.0/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -471,7 +471,7 @@ class Configuration
             throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
         }
 
-        $host = $hostSettings[$hostIndex];
+        $host = "https://api.zendit.io/v1";
         $url = $host["url"];
 
         // go through variable and assign a value

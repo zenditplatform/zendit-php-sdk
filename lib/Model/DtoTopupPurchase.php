@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 
 use \ArrayAccess;
@@ -32,6 +31,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'brand' => 'string',
+        'brand_name' => 'string',
         'confirmation' => '\Zendit\Model\DtoConfirmation',
         'cost' => 'int',
         'cost_currency' => 'string',
@@ -74,6 +74,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'brand' => null,
+        'brand_name' => null,
         'confirmation' => null,
         'cost' => null,
         'cost_currency' => null,
@@ -114,6 +115,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
+        'brand_name' => false,
         'confirmation' => false,
         'cost' => false,
         'cost_currency' => false,
@@ -234,6 +236,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'brand' => 'brand',
+        'brand_name' => 'brandName',
         'confirmation' => 'confirmation',
         'cost' => 'cost',
         'cost_currency' => 'costCurrency',
@@ -274,6 +277,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'brand' => 'setBrand',
+        'brand_name' => 'setBrandName',
         'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
         'cost_currency' => 'setCostCurrency',
@@ -314,6 +318,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'brand' => 'getBrand',
+        'brand_name' => 'getBrandName',
         'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
         'cost_currency' => 'getCostCurrency',
@@ -405,6 +410,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('brand_name', $data ?? [], null);
         $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
@@ -467,6 +473,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ($this->container['brand'] === null) {
             $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['brand_name'] === null) {
+            $invalidProperties[] = "'brand_name' can't be null";
         }
         if ($this->container['cost'] === null) {
             $invalidProperties[] = "'cost' can't be null";
@@ -587,6 +596,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
         $this->container['brand'] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets brand_name
+     *
+     * @return string
+     */
+    public function getBrandName()
+    {
+        return $this->container['brand_name'];
+    }
+
+    /**
+     * Sets brand_name
+     *
+     * @param string $brand_name brand_name
+     *
+     * @return self
+     */
+    public function setBrandName($brand_name)
+    {
+        if (is_null($brand_name)) {
+            throw new \InvalidArgumentException('non-nullable brand_name cannot be null');
+        }
+        $this->container['brand_name'] = $brand_name;
 
         return $this;
     }

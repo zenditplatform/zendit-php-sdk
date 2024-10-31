@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 use \Zendit\ObjectSerializer;
 
@@ -16,15 +15,15 @@ class DtoProductType
     /**
      * Possible values of this enum
      */
-    public const ProductTypeTopup = 'TOPUP';
+    public const PRODUCT_TYPE_TOPUP = 'TOPUP';
 
-    public const ProductTypeESIM = 'ESIM';
+    public const PRODUCT_TYPE_ESIM = 'ESIM';
 
-    public const ProductTypeVoucher = 'VOUCHER';
+    public const PRODUCT_TYPE_VOUCHER = 'VOUCHER';
 
-    public const ProductTypeRechargeSandbox = 'RECHARGE_SANDBOX';
+    public const PRODUCT_TYPE_WALLET_RECHARGE = 'WALLET_RECHARGE';
 
-    public const ProductTypeRechargeWithCreditCard = 'RECHARGE_WITH_CREDIT_CARD';
+    public const PRODUCT_TYPE_REFUND = 'REFUND';
 
     /**
      * Gets allowable values of the enum
@@ -33,11 +32,11 @@ class DtoProductType
     public static function getAllowableEnumValues()
     {
         return [
-            self::ProductTypeTopup,
-            self::ProductTypeESIM,
-            self::ProductTypeVoucher,
-            self::ProductTypeRechargeSandbox,
-            self::ProductTypeRechargeWithCreditCard
+            self::PRODUCT_TYPE_TOPUP,
+            self::PRODUCT_TYPE_ESIM,
+            self::PRODUCT_TYPE_VOUCHER,
+            self::PRODUCT_TYPE_WALLET_RECHARGE,
+            self::PRODUCT_TYPE_REFUND
         ];
     }
 }

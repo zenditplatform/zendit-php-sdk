@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESIMPlansResponse Class Doc Comment
+ * DtoReportTransactions Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoReportTransactions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
+    protected static $openAPIModelName = 'dto.ReportTransactions';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,8 +30,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list' => '\Zendit\Model\DtoESIMPlan[]',
-        'total' => 'int'
+        'created_at' => 'string',
+        'error' => '\Zendit\Model\DtoError',
+        'file' => '\Zendit\Model\DtoReportFile',
+        'log' => '\Zendit\Model\DtoReportLogItem[]',
+        'period' => '\Zendit\Model\DtoReportTransactionsPeriod',
+        'report_id' => 'string',
+        'status' => '\Zendit\Model\DtoReportStatus',
+        'updated_at' => 'string'
     ];
 
     /**
@@ -42,8 +48,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'list' => null,
-        'total' => null
+        'created_at' => null,
+        'error' => null,
+        'file' => null,
+        'log' => null,
+        'period' => null,
+        'report_id' => null,
+        'status' => null,
+        'updated_at' => null
     ];
 
     /**
@@ -52,8 +64,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'list' => false,
-        'total' => false
+        'created_at' => false,
+        'error' => false,
+        'file' => false,
+        'log' => false,
+        'period' => false,
+        'report_id' => false,
+        'status' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -142,8 +160,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'list' => 'list',
-        'total' => 'total'
+        'created_at' => 'createdAt',
+        'error' => 'error',
+        'file' => 'file',
+        'log' => 'log',
+        'period' => 'period',
+        'report_id' => 'reportId',
+        'status' => 'status',
+        'updated_at' => 'updatedAt'
     ];
 
     /**
@@ -152,8 +176,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'list' => 'setList',
-        'total' => 'setTotal'
+        'created_at' => 'setCreatedAt',
+        'error' => 'setError',
+        'file' => 'setFile',
+        'log' => 'setLog',
+        'period' => 'setPeriod',
+        'report_id' => 'setReportId',
+        'status' => 'setStatus',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -162,8 +192,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'list' => 'getList',
-        'total' => 'getTotal'
+        'created_at' => 'getCreatedAt',
+        'error' => 'getError',
+        'file' => 'getFile',
+        'log' => 'getLog',
+        'period' => 'getPeriod',
+        'report_id' => 'getReportId',
+        'status' => 'getStatus',
+        'updated_at' => 'getUpdatedAt'
     ];
 
     /**
@@ -223,8 +259,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('file', $data ?? [], null);
+        $this->setIfExists('log', $data ?? [], null);
+        $this->setIfExists('period', $data ?? [], null);
+        $this->setIfExists('report_id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
     }
 
     /**
@@ -254,11 +296,23 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['list'] === null) {
-            $invalidProperties[] = "'list' can't be null";
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
         }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
+        if ($this->container['log'] === null) {
+            $invalidProperties[] = "'log' can't be null";
+        }
+        if ($this->container['period'] === null) {
+            $invalidProperties[] = "'period' can't be null";
+        }
+        if ($this->container['report_id'] === null) {
+            $invalidProperties[] = "'report_id' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -276,55 +330,217 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets list
+     * Gets created_at
      *
-     * @return \Zendit\Model\DtoESIMPlan[]
+     * @return string
      */
-    public function getList()
+    public function getCreatedAt()
     {
-        return $this->container['list'];
+        return $this->container['created_at'];
     }
 
     /**
-     * Sets list
+     * Sets created_at
      *
-     * @param \Zendit\Model\DtoESIMPlan[] $list list
+     * @param string $created_at created_at
      *
      * @return self
      */
-    public function setList($list)
+    public function setCreatedAt($created_at)
     {
-        if (is_null($list)) {
-            throw new \InvalidArgumentException('non-nullable list cannot be null');
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
-        $this->container['list'] = $list;
+        $this->container['created_at'] = $created_at;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets error
      *
-     * @return int
+     * @return \Zendit\Model\DtoError|null
      */
-    public function getTotal()
+    public function getError()
     {
-        return $this->container['total'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets total
+     * Sets error
      *
-     * @param int $total total
+     * @param \Zendit\Model\DtoError|null $error error
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setError($error)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $this->container['total'] = $total;
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets file
+     *
+     * @return \Zendit\Model\DtoReportFile|null
+     */
+    public function getFile()
+    {
+        return $this->container['file'];
+    }
+
+    /**
+     * Sets file
+     *
+     * @param \Zendit\Model\DtoReportFile|null $file file
+     *
+     * @return self
+     */
+    public function setFile($file)
+    {
+        if (is_null($file)) {
+            throw new \InvalidArgumentException('non-nullable file cannot be null');
+        }
+        $this->container['file'] = $file;
+
+        return $this;
+    }
+
+    /**
+     * Gets log
+     *
+     * @return \Zendit\Model\DtoReportLogItem[]
+     */
+    public function getLog()
+    {
+        return $this->container['log'];
+    }
+
+    /**
+     * Sets log
+     *
+     * @param \Zendit\Model\DtoReportLogItem[] $log log
+     *
+     * @return self
+     */
+    public function setLog($log)
+    {
+        if (is_null($log)) {
+            throw new \InvalidArgumentException('non-nullable log cannot be null');
+        }
+        $this->container['log'] = $log;
+
+        return $this;
+    }
+
+    /**
+     * Gets period
+     *
+     * @return \Zendit\Model\DtoReportTransactionsPeriod
+     */
+    public function getPeriod()
+    {
+        return $this->container['period'];
+    }
+
+    /**
+     * Sets period
+     *
+     * @param \Zendit\Model\DtoReportTransactionsPeriod $period period
+     *
+     * @return self
+     */
+    public function setPeriod($period)
+    {
+        if (is_null($period)) {
+            throw new \InvalidArgumentException('non-nullable period cannot be null');
+        }
+        $this->container['period'] = $period;
+
+        return $this;
+    }
+
+    /**
+     * Gets report_id
+     *
+     * @return string
+     */
+    public function getReportId()
+    {
+        return $this->container['report_id'];
+    }
+
+    /**
+     * Sets report_id
+     *
+     * @param string $report_id report_id
+     *
+     * @return self
+     */
+    public function setReportId($report_id)
+    {
+        if (is_null($report_id)) {
+            throw new \InvalidArgumentException('non-nullable report_id cannot be null');
+        }
+        $this->container['report_id'] = $report_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Zendit\Model\DtoReportStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Zendit\Model\DtoReportStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param string $updated_at updated_at
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

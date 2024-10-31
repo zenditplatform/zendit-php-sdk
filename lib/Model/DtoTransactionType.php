@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 use \Zendit\ObjectSerializer;
 
@@ -16,9 +15,9 @@ class DtoTransactionType
     /**
      * Possible values of this enum
      */
-    public const Credit = 'CREDIT';
+    public const CREDIT = 'CREDIT';
 
-    public const Debit = 'DEBIT';
+    public const DEBIT = 'DEBIT';
 
     /**
      * Gets allowable values of the enum
@@ -27,8 +26,8 @@ class DtoTransactionType
     public static function getAllowableEnumValues()
     {
         return [
-            self::Credit,
-            self::Debit
+            self::CREDIT,
+            self::DEBIT
         ];
     }
 }

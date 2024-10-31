@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 use \Zendit\ObjectSerializer;
 
@@ -16,9 +15,9 @@ class DtoPriceType
     /**
      * Possible values of this enum
      */
-    public const PriceTypeFixed = 'FIXED';
+    public const PRICE_TYPE_FIXED = 'FIXED';
 
-    public const PriceTypeRange = 'RANGE';
+    public const PRICE_TYPE_RANGE = 'RANGE';
 
     /**
      * Gets allowable values of the enum
@@ -27,8 +26,8 @@ class DtoPriceType
     public static function getAllowableEnumValues()
     {
         return [
-            self::PriceTypeFixed,
-            self::PriceTypeRange
+            self::PRICE_TYPE_FIXED,
+            self::PRICE_TYPE_RANGE
         ];
     }
 }

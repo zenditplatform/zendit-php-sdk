@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESIMPlansResponse Class Doc Comment
+ * DtoReportLogItem Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoReportLogItem implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
+    protected static $openAPIModelName = 'dto.ReportLogItem';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,8 +30,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list' => '\Zendit\Model\DtoESIMPlan[]',
-        'total' => 'int'
+        'message' => 'string',
+        'recorded_at' => 'string',
+        'status' => '\Zendit\Model\DtoReportStatus'
     ];
 
     /**
@@ -42,8 +43,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'list' => null,
-        'total' => null
+        'message' => null,
+        'recorded_at' => null,
+        'status' => null
     ];
 
     /**
@@ -52,8 +54,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'list' => false,
-        'total' => false
+        'message' => false,
+        'recorded_at' => false,
+        'status' => false
     ];
 
     /**
@@ -142,8 +145,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'list' => 'list',
-        'total' => 'total'
+        'message' => 'message',
+        'recorded_at' => 'recordedAt',
+        'status' => 'status'
     ];
 
     /**
@@ -152,8 +156,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'list' => 'setList',
-        'total' => 'setTotal'
+        'message' => 'setMessage',
+        'recorded_at' => 'setRecordedAt',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -162,8 +167,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'list' => 'getList',
-        'total' => 'getTotal'
+        'message' => 'getMessage',
+        'recorded_at' => 'getRecordedAt',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -223,8 +229,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('recorded_at', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -254,11 +261,14 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['list'] === null) {
-            $invalidProperties[] = "'list' can't be null";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
+        if ($this->container['recorded_at'] === null) {
+            $invalidProperties[] = "'recorded_at' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -276,55 +286,82 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets list
+     * Gets message
      *
-     * @return \Zendit\Model\DtoESIMPlan[]
+     * @return string
      */
-    public function getList()
+    public function getMessage()
     {
-        return $this->container['list'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets list
+     * Sets message
      *
-     * @param \Zendit\Model\DtoESIMPlan[] $list list
+     * @param string $message message
      *
      * @return self
      */
-    public function setList($list)
+    public function setMessage($message)
     {
-        if (is_null($list)) {
-            throw new \InvalidArgumentException('non-nullable list cannot be null');
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
-        $this->container['list'] = $list;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets recorded_at
      *
-     * @return int
+     * @return string
      */
-    public function getTotal()
+    public function getRecordedAt()
     {
-        return $this->container['total'];
+        return $this->container['recorded_at'];
     }
 
     /**
-     * Sets total
+     * Sets recorded_at
      *
-     * @param int $total total
+     * @param string $recorded_at recorded_at
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setRecordedAt($recorded_at)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        if (is_null($recorded_at)) {
+            throw new \InvalidArgumentException('non-nullable recorded_at cannot be null');
         }
-        $this->container['total'] = $total;
+        $this->container['recorded_at'] = $recorded_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return \Zendit\Model\DtoReportStatus
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param \Zendit\Model\DtoReportStatus $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $this->container['status'] = $status;
 
         return $this;
     }
