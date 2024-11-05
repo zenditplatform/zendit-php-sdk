@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESIMPlansResponse Class Doc Comment
+ * DtoPhoneNumberLookupResponse Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoPhoneNumberLookupResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
+    protected static $openAPIModelName = 'dto.PhoneNumberLookupResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,8 +30,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list' => '\Zendit\Model\DtoESIMPlan[]',
-        'total' => 'int'
+        'brand' => 'string',
+        'country' => 'string',
+        'mobile_country_code' => 'string',
+        'mobile_network_code' => 'string',
+        'msisdn' => 'string'
     ];
 
     /**
@@ -42,8 +45,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'list' => null,
-        'total' => null
+        'brand' => null,
+        'country' => null,
+        'mobile_country_code' => null,
+        'mobile_network_code' => null,
+        'msisdn' => null
     ];
 
     /**
@@ -52,8 +58,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'list' => false,
-        'total' => false
+        'brand' => false,
+        'country' => false,
+        'mobile_country_code' => false,
+        'mobile_network_code' => false,
+        'msisdn' => false
     ];
 
     /**
@@ -142,8 +151,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'list' => 'list',
-        'total' => 'total'
+        'brand' => 'brand',
+        'country' => 'country',
+        'mobile_country_code' => 'mobileCountryCode',
+        'mobile_network_code' => 'mobileNetworkCode',
+        'msisdn' => 'msisdn'
     ];
 
     /**
@@ -152,8 +164,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'list' => 'setList',
-        'total' => 'setTotal'
+        'brand' => 'setBrand',
+        'country' => 'setCountry',
+        'mobile_country_code' => 'setMobileCountryCode',
+        'mobile_network_code' => 'setMobileNetworkCode',
+        'msisdn' => 'setMsisdn'
     ];
 
     /**
@@ -162,8 +177,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'list' => 'getList',
-        'total' => 'getTotal'
+        'brand' => 'getBrand',
+        'country' => 'getCountry',
+        'mobile_country_code' => 'getMobileCountryCode',
+        'mobile_network_code' => 'getMobileNetworkCode',
+        'msisdn' => 'getMsisdn'
     ];
 
     /**
@@ -223,8 +241,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('mobile_country_code', $data ?? [], null);
+        $this->setIfExists('mobile_network_code', $data ?? [], null);
+        $this->setIfExists('msisdn', $data ?? [], null);
     }
 
     /**
@@ -254,11 +275,20 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['list'] === null) {
-            $invalidProperties[] = "'list' can't be null";
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
         }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
+        }
+        if ($this->container['mobile_country_code'] === null) {
+            $invalidProperties[] = "'mobile_country_code' can't be null";
+        }
+        if ($this->container['mobile_network_code'] === null) {
+            $invalidProperties[] = "'mobile_network_code' can't be null";
+        }
+        if ($this->container['msisdn'] === null) {
+            $invalidProperties[] = "'msisdn' can't be null";
         }
         return $invalidProperties;
     }
@@ -276,55 +306,136 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets list
+     * Gets brand
      *
-     * @return \Zendit\Model\DtoESIMPlan[]
+     * @return string
      */
-    public function getList()
+    public function getBrand()
     {
-        return $this->container['list'];
+        return $this->container['brand'];
     }
 
     /**
-     * Sets list
+     * Sets brand
      *
-     * @param \Zendit\Model\DtoESIMPlan[] $list list
+     * @param string $brand brand
      *
      * @return self
      */
-    public function setList($list)
+    public function setBrand($brand)
     {
-        if (is_null($list)) {
-            throw new \InvalidArgumentException('non-nullable list cannot be null');
+        if (is_null($brand)) {
+            throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
-        $this->container['list'] = $list;
+        $this->container['brand'] = $brand;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets country
      *
-     * @return int
+     * @return string
      */
-    public function getTotal()
+    public function getCountry()
     {
-        return $this->container['total'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets total
+     * Sets country
      *
-     * @param int $total total
+     * @param string $country country
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setCountry($country)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['total'] = $total;
+        $this->container['country'] = $country;
+
+        return $this;
+    }
+
+    /**
+     * Gets mobile_country_code
+     *
+     * @return string
+     */
+    public function getMobileCountryCode()
+    {
+        return $this->container['mobile_country_code'];
+    }
+
+    /**
+     * Sets mobile_country_code
+     *
+     * @param string $mobile_country_code mobile_country_code
+     *
+     * @return self
+     */
+    public function setMobileCountryCode($mobile_country_code)
+    {
+        if (is_null($mobile_country_code)) {
+            throw new \InvalidArgumentException('non-nullable mobile_country_code cannot be null');
+        }
+        $this->container['mobile_country_code'] = $mobile_country_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets mobile_network_code
+     *
+     * @return string
+     */
+    public function getMobileNetworkCode()
+    {
+        return $this->container['mobile_network_code'];
+    }
+
+    /**
+     * Sets mobile_network_code
+     *
+     * @param string $mobile_network_code mobile_network_code
+     *
+     * @return self
+     */
+    public function setMobileNetworkCode($mobile_network_code)
+    {
+        if (is_null($mobile_network_code)) {
+            throw new \InvalidArgumentException('non-nullable mobile_network_code cannot be null');
+        }
+        $this->container['mobile_network_code'] = $mobile_network_code;
+
+        return $this;
+    }
+
+    /**
+     * Gets msisdn
+     *
+     * @return string
+     */
+    public function getMsisdn()
+    {
+        return $this->container['msisdn'];
+    }
+
+    /**
+     * Sets msisdn
+     *
+     * @param string $msisdn msisdn
+     *
+     * @return self
+     */
+    public function setMsisdn($msisdn)
+    {
+        if (is_null($msisdn)) {
+            throw new \InvalidArgumentException('non-nullable msisdn cannot be null');
+        }
+        $this->container['msisdn'] = $msisdn;
 
         return $this;
     }

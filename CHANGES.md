@@ -1,6 +1,10 @@
 zendit-php changelog
 =====================
 
+# [2024-10-30] Version 1.3.0
+
+- **Voucher offers**: Added new fields that identify delivery type.
+
 # [2024-02-05] Version 1.2.0
 
 - **eSIM plans**: Added functions for purchasing and fetching eSIM plans.

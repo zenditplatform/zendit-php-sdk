@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 
 use \ArrayAccess;
@@ -32,9 +31,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'brand' => 'string',
+        'brand_name' => 'string',
         'cost' => '\Zendit\Model\DtoCost',
         'country' => 'string',
         'created_at' => 'string',
+        'delivery_type' => 'string',
         'enabled' => 'bool',
         'notes' => 'string',
         'offer_id' => 'string',
@@ -58,9 +59,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'brand' => null,
+        'brand_name' => null,
         'cost' => null,
         'country' => null,
         'created_at' => null,
+        'delivery_type' => null,
         'enabled' => null,
         'notes' => null,
         'offer_id' => null,
@@ -82,9 +85,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'brand' => false,
+        'brand_name' => false,
         'cost' => false,
         'country' => false,
         'created_at' => false,
+        'delivery_type' => false,
         'enabled' => false,
         'notes' => false,
         'offer_id' => false,
@@ -186,9 +191,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'brand' => 'brand',
+        'brand_name' => 'brandName',
         'cost' => 'cost',
         'country' => 'country',
         'created_at' => 'createdAt',
+        'delivery_type' => 'deliveryType',
         'enabled' => 'enabled',
         'notes' => 'notes',
         'offer_id' => 'offerId',
@@ -210,9 +217,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'brand' => 'setBrand',
+        'brand_name' => 'setBrandName',
         'cost' => 'setCost',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
+        'delivery_type' => 'setDeliveryType',
         'enabled' => 'setEnabled',
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
@@ -234,9 +243,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'brand' => 'getBrand',
+        'brand_name' => 'getBrandName',
         'cost' => 'getCost',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
+        'delivery_type' => 'getDeliveryType',
         'enabled' => 'getEnabled',
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
@@ -309,9 +320,11 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('brand_name', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('delivery_type', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
@@ -356,6 +369,9 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['brand'] === null) {
             $invalidProperties[] = "'brand' can't be null";
         }
+        if ($this->container['brand_name'] === null) {
+            $invalidProperties[] = "'brand_name' can't be null";
+        }
         if ($this->container['cost'] === null) {
             $invalidProperties[] = "'cost' can't be null";
         }
@@ -364,6 +380,9 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
+        }
+        if ($this->container['delivery_type'] === null) {
+            $invalidProperties[] = "'delivery_type' can't be null";
         }
         if ($this->container['enabled'] === null) {
             $invalidProperties[] = "'enabled' can't be null";
@@ -439,6 +458,33 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
         $this->container['brand'] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets brand_name
+     *
+     * @return string
+     */
+    public function getBrandName()
+    {
+        return $this->container['brand_name'];
+    }
+
+    /**
+     * Sets brand_name
+     *
+     * @param string $brand_name brand_name
+     *
+     * @return self
+     */
+    public function setBrandName($brand_name)
+    {
+        if (is_null($brand_name)) {
+            throw new \InvalidArgumentException('non-nullable brand_name cannot be null');
+        }
+        $this->container['brand_name'] = $brand_name;
 
         return $this;
     }
@@ -520,6 +566,33 @@ class DtoVoucherOffer implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets delivery_type
+     *
+     * @return string
+     */
+    public function getDeliveryType()
+    {
+        return $this->container['delivery_type'];
+    }
+
+    /**
+     * Sets delivery_type
+     *
+     * @param string $delivery_type delivery_type
+     *
+     * @return self
+     */
+    public function setDeliveryType($delivery_type)
+    {
+        if (is_null($delivery_type)) {
+            throw new \InvalidArgumentException('non-nullable delivery_type cannot be null');
+        }
+        $this->container['delivery_type'] = $delivery_type;
 
         return $this;
     }

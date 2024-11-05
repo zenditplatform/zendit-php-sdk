@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **brand** | **string** |  |
+**brand_name** | **string** |  |
 **cost** | [**\Zendit\Model\DtoCost**](DtoCost.md) |  |
 **country** | **string** |  |
 **created_at** | **string** |  |

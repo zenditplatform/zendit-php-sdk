@@ -1,5 +1,4 @@
 <?php
-
 namespace Zendit\Model;
 use \Zendit\ObjectSerializer;
 
@@ -16,17 +15,17 @@ class DtoTransactionStatus
     /**
      * Possible values of this enum
      */
-    public const TransactionStatusAccepted = 'ACCEPTED';
+    public const TRANSACTION_STATUS_ACCEPTED = 'ACCEPTED';
 
-    public const TransactionStatusPending = 'PENDING';
+    public const TRANSACTION_STATUS_PENDING = 'PENDING';
 
-    public const TransactionStatusAuthorized = 'AUTHORIZED';
+    public const TRANSACTION_STATUS_AUTHORIZED = 'AUTHORIZED';
 
-    public const TransactionStatusInProgress = 'IN_PROGRESS';
+    public const TRANSACTION_STATUS_IN_PROGRESS = 'IN_PROGRESS';
 
-    public const TransactionStatusDone = 'DONE';
+    public const TRANSACTION_STATUS_DONE = 'DONE';
 
-    public const TransactionStatusFailed = 'FAILED';
+    public const TRANSACTION_STATUS_FAILED = 'FAILED';
 
     /**
      * Gets allowable values of the enum
@@ -35,12 +34,12 @@ class DtoTransactionStatus
     public static function getAllowableEnumValues()
     {
         return [
-            self::TransactionStatusAccepted,
-            self::TransactionStatusPending,
-            self::TransactionStatusAuthorized,
-            self::TransactionStatusInProgress,
-            self::TransactionStatusDone,
-            self::TransactionStatusFailed
+            self::TRANSACTION_STATUS_ACCEPTED,
+            self::TRANSACTION_STATUS_PENDING,
+            self::TRANSACTION_STATUS_AUTHORIZED,
+            self::TRANSACTION_STATUS_IN_PROGRESS,
+            self::TRANSACTION_STATUS_DONE,
+            self::TRANSACTION_STATUS_FAILED
         ];
     }
 }

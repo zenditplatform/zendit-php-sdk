@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESIMPlansResponse Class Doc Comment
+ * DtoReportTransactionsPeriod Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoReportTransactionsPeriod implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESIMPlansResponse';
+    protected static $openAPIModelName = 'dto.ReportTransactionsPeriod';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,8 +30,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'list' => '\Zendit\Model\DtoESIMPlan[]',
-        'total' => 'int'
+        'end_lt' => 'string',
+        'start_gte' => 'string'
     ];
 
     /**
@@ -42,8 +42,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'list' => null,
-        'total' => null
+        'end_lt' => null,
+        'start_gte' => null
     ];
 
     /**
@@ -52,8 +52,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'list' => false,
-        'total' => false
+        'end_lt' => false,
+        'start_gte' => false
     ];
 
     /**
@@ -142,8 +142,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
-        'list' => 'list',
-        'total' => 'total'
+        'end_lt' => 'endLt',
+        'start_gte' => 'startGte'
     ];
 
     /**
@@ -152,8 +152,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
-        'list' => 'setList',
-        'total' => 'setTotal'
+        'end_lt' => 'setEndLt',
+        'start_gte' => 'setStartGte'
     ];
 
     /**
@@ -162,8 +162,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
-        'list' => 'getList',
-        'total' => 'getTotal'
+        'end_lt' => 'getEndLt',
+        'start_gte' => 'getStartGte'
     ];
 
     /**
@@ -223,8 +223,8 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('list', $data ?? [], null);
-        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('end_lt', $data ?? [], null);
+        $this->setIfExists('start_gte', $data ?? [], null);
     }
 
     /**
@@ -254,11 +254,11 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
-        if ($this->container['list'] === null) {
-            $invalidProperties[] = "'list' can't be null";
+        if ($this->container['end_lt'] === null) {
+            $invalidProperties[] = "'end_lt' can't be null";
         }
-        if ($this->container['total'] === null) {
-            $invalidProperties[] = "'total' can't be null";
+        if ($this->container['start_gte'] === null) {
+            $invalidProperties[] = "'start_gte' can't be null";
         }
         return $invalidProperties;
     }
@@ -276,55 +276,55 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
 
 
     /**
-     * Gets list
+     * Gets end_lt
      *
-     * @return \Zendit\Model\DtoESIMPlan[]
+     * @return string
      */
-    public function getList()
+    public function getEndLt()
     {
-        return $this->container['list'];
+        return $this->container['end_lt'];
     }
 
     /**
-     * Sets list
+     * Sets end_lt
      *
-     * @param \Zendit\Model\DtoESIMPlan[] $list list
+     * @param string $end_lt end_lt
      *
      * @return self
      */
-    public function setList($list)
+    public function setEndLt($end_lt)
     {
-        if (is_null($list)) {
-            throw new \InvalidArgumentException('non-nullable list cannot be null');
+        if (is_null($end_lt)) {
+            throw new \InvalidArgumentException('non-nullable end_lt cannot be null');
         }
-        $this->container['list'] = $list;
+        $this->container['end_lt'] = $end_lt;
 
         return $this;
     }
 
     /**
-     * Gets total
+     * Gets start_gte
      *
-     * @return int
+     * @return string
      */
-    public function getTotal()
+    public function getStartGte()
     {
-        return $this->container['total'];
+        return $this->container['start_gte'];
     }
 
     /**
-     * Sets total
+     * Sets start_gte
      *
-     * @param int $total total
+     * @param string $start_gte start_gte
      *
      * @return self
      */
-    public function setTotal($total)
+    public function setStartGte($start_gte)
     {
-        if (is_null($total)) {
-            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        if (is_null($start_gte)) {
+            throw new \InvalidArgumentException('non-nullable start_gte cannot be null');
         }
-        $this->container['total'] = $total;
+        $this->container['start_gte'] = $start_gte;
 
         return $this;
     }

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **brand** | **string** |  |
+**brand_name** | **string** |  |
 **confirmation** | [**\Zendit\Model\DtoConfirmation**](DtoConfirmation.md) |  | [optional]
 **cost** | **int** |  |
 **cost_currency** | **string** |  |
