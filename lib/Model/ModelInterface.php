@@ -5,7 +5,7 @@ namespace Zendit\Model;
  * Interface abstracting model access.
  *
  * @package Zendit\Model
- * @author   Zendit
+ * @author  Zendit
  */
 interface ModelInterface
 {

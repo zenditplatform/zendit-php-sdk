@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoError Class Doc Comment
+ * DtoBrandsResponse Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoBrandsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Error';
+    protected static $openAPIModelName = 'dto.BrandsResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,9 +30,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'description' => 'string',
-        'message' => 'string'
+        'limit' => 'int',
+        'list' => '\Zendit\Model\DtoOfferBrand[]',
+        'offset' => 'int',
+        'total' => 'int'
     ];
 
     /**
@@ -43,9 +44,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'description' => null,
-        'message' => null
+        'limit' => null,
+        'list' => null,
+        'offset' => null,
+        'total' => null
     ];
 
     /**
@@ -54,9 +56,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-        'description' => false,
-        'message' => false
+        'limit' => false,
+        'list' => false,
+        'offset' => false,
+        'total' => false
     ];
 
     /**
@@ -145,9 +148,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'description' => 'description',
-        'message' => 'message'
+        'limit' => 'limit',
+        'list' => 'list',
+        'offset' => 'offset',
+        'total' => 'total'
     ];
 
     /**
@@ -156,9 +160,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'description' => 'setDescription',
-        'message' => 'setMessage'
+        'limit' => 'setLimit',
+        'list' => 'setList',
+        'offset' => 'setOffset',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -167,9 +172,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'description' => 'getDescription',
-        'message' => 'getMessage'
+        'limit' => 'getLimit',
+        'list' => 'getList',
+        'offset' => 'getOffset',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -229,9 +235,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('list', $data ?? [], null);
+        $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
     }
 
     /**
@@ -261,14 +268,17 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['list'] === null) {
+            $invalidProperties[] = "'list' can't be null";
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['offset'] === null) {
+            $invalidProperties[] = "'offset' can't be null";
+        }
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
         }
         return $invalidProperties;
     }
@@ -286,82 +296,109 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets limit
      *
-     * @return string
+     * @return int
      */
-    public function getCode()
+    public function getLimit()
     {
-        return $this->container['code'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets code
+     * Sets limit
      *
-     * @param string $code code
+     * @param int $limit limit
      *
      * @return self
      */
-    public function setCode($code)
+    public function setLimit($limit)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-        $this->container['code'] = $code;
+        $this->container['limit'] = $limit;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets list
      *
-     * @return string
+     * @return \Zendit\Model\DtoOfferBrand[]
      */
-    public function getDescription()
+    public function getList()
     {
-        return $this->container['description'];
+        return $this->container['list'];
     }
 
     /**
-     * Sets description
+     * Sets list
      *
-     * @param string $description description
+     * @param \Zendit\Model\DtoOfferBrand[] $list list
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setList($list)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($list)) {
+            throw new \InvalidArgumentException('non-nullable list cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['list'] = $list;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets offset
      *
-     * @return string
+     * @return int
      */
-    public function getMessage()
+    public function getOffset()
     {
-        return $this->container['message'];
+        return $this->container['offset'];
     }
 
     /**
-     * Sets message
+     * Sets offset
      *
-     * @param string $message message
+     * @param int $offset offset
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setOffset($offset)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        if (is_null($offset)) {
+            throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
-        $this->container['message'] = $message;
+        $this->container['offset'] = $offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int $total total
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        }
+        $this->container['total'] = $total;
 
         return $this;
     }

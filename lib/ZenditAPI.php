@@ -18,4 +18,3 @@ class ZenditAPI extends baseAPI
         );
     }
 }
-

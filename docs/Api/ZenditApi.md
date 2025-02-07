@@ -38,6 +38,9 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**balanceGet()**](ZenditApi.md#balanceGet) | **GET** /balance | Get list of transactions |
+| [**brandsBrandGet()**](ZenditApi.md#brandsBrandGet) | **GET** /brands/{brand} | Get a brand by the brand code |
+| [**brandsBrandRedemptionInstructionsGet()**](ZenditApi.md#brandsBrandRedemptionInstructionsGet) | **GET** /brands/{brand}/redemptionInstructions | Get a brand redemption instruction by the brand code |
+| [**brandsGet()**](ZenditApi.md#brandsGet) | **GET** /brands | Get list of brands |
 | [**esimIccIdPlansGet()**](ZenditApi.md#esimIccIdPlansGet) | **GET** /esim/{iccId}/plans | Get list of eSim plans |
 | [**esimOffersGet()**](ZenditApi.md#esimOffersGet) | **GET** /esim/offers | Get list of eSIM offers |
 | [**esimOffersOfferIdGet()**](ZenditApi.md#esimOffersOfferIdGet) | **GET** /esim/offers/{offerId} | Get an eSIM offer by the offer ID |
@@ -70,6 +73,160 @@ balanceGet(): \Zendit\Model\DtoBalanceResponse
 ```
 
 Get list of transactions
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+try {
+    $result = $apiInstance->balanceGet();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->balanceGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Zendit\Model\DtoBalanceResponse**](../Model/DtoBalanceResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `brandsBrandGet()`
+
+```php
+brandsBrandGet($brand): \Zendit\Model\DtoBrandInfo
+```
+
+Get a brand by the brand code
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$brand = 'brand_example'; // string | Get brand by code
+
+try {
+    $result = $apiInstance->brandsBrandGet($brand);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->brandsBrandGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **brand** | **string**| Get brand by code | |
+
+### Return type
+
+[**\Zendit\Model\DtoBrandInfo**](../Model/DtoBrandInfo.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `brandsBrandRedemptionInstructionsGet()`
+
+```php
+brandsBrandRedemptionInstructionsGet($brand, $country, $delivery_type, $language): \Zendit\Model\DtoRedemptionInstructionInfo
+```
+
+Get a brand redemption instruction by the brand code
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$brand = 'brand_example'; // string | Redemption instruction by brand code
+$country = 'country_example'; // string
+$delivery_type = 'delivery_type_example'; // string
+$language = 'language_example'; // string
+
+try {
+    $result = $apiInstance->brandsBrandRedemptionInstructionsGet($brand, $country, $delivery_type, $language);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->brandsBrandRedemptionInstructionsGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **brand** | **string**| Redemption instruction by brand code | |
+| **country** | **string**|  | |
+| **delivery_type** | **string**|  | |
+| **language** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoRedemptionInstructionInfo**](../Model/DtoRedemptionInstructionInfo.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `brandsGet()`
+
+```php
+brandsGet($_limit, $_offset, $country): \Zendit\Model\DtoBrandsResponse
+```
+
+Get list of brands
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int
+$country = 'country_example'; // string
+
+try {
+    $result = $apiInstance->brandsGet($_limit, $_offset, $country);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->brandsGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **country** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoBrandsResponse**](../Model/DtoBrandsResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimIccIdPlansGet()`
+
+```php
+esimIccIdPlansGet($icc_id): \Zendit\Model\DtoESIMPlansResponse
+```
+
+Get list of eSim plans
 
 ### Example
 
@@ -114,6 +271,53 @@ Get list of eSIM offers
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$_limit = 56; // int
+$_offset = 56; // int
+$brand = 'brand_example'; // string
+$country = 'country_example'; // string
+$regions = 'regions_example'; // string
+$sub_type = 'sub_type_example'; // string
+
+try {
+    $result = $apiInstance->esimOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->esimOffersGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **brand** | **string**|  | [optional] |
+| **country** | **string**|  | [optional] |
+| **regions** | **string**|  | [optional] |
+| **sub_type** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoESimOffersResponse**](../Model/DtoESimOffersResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimOffersOfferIdGet()`
+
+```php
+esimOffersOfferIdGet($offer_id): \Zendit\Model\DtoESimOffer
+```
+
+Get an eSIM offer by the offer ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $offer_id = 'offer_id_example'; // string | Get an eSIM by id
 
 try {
@@ -144,6 +348,49 @@ esimPurchasesGet($_limit, $_offset, $created_at, $status): \Zendit\Model\DtoESim
 ```
 
 Get list of eSim transactions
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int
+$created_at = 'created_at_example'; // string
+$status = 'status_example'; // string
+
+try {
+    $result = $apiInstance->esimPurchasesGet($_limit, $_offset, $created_at, $status);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->esimPurchasesGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **created_at** | **string**|  | [optional] |
+| **status** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoESimPurchasesResponse**](../Model/DtoESimPurchasesResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimPurchasesPost()`
+
+```php
+esimPurchasesPost($data): \Zendit\Model\DtoESimPurchaseResponse
+```
+
+Create transaction for purchase
 
 ### Example
 
@@ -191,6 +438,43 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $transaction_id = 'transaction_id_example'; // string | transaction id
 
 try {
+    $result = $apiInstance->esimPurchasesTransactionIdGet($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->esimPurchasesTransactionIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+
+### Return type
+
+[**\Zendit\Model\DtoESimPurchase**](../Model/DtoESimPurchase.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimPurchasesTransactionIdQrcodeGet()`
+
+```php
+esimPurchasesTransactionIdQrcodeGet($transaction_id): \SplFileObject
+```
+
+Get eSim QR code by transaction id
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | transaction id
+
+try {
     $result = $apiInstance->esimPurchasesTransactionIdQrcodeGet($transaction_id);
     print_r($result);
 } catch (Exception $e) {
@@ -227,6 +511,43 @@ reportsTransactionsPost($data): \Zendit\Model\DtoReportTransactions
 ```
 
 Requests transactions reports
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$data = new \Zendit\Model\DtoReportTransactionsPeriod(); // \Zendit\Model\DtoReportTransactionsPeriod | Report input data
+
+try {
+    $result = $apiInstance->reportsTransactionsPost($data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->reportsTransactionsPost: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **data** | [**\Zendit\Model\DtoReportTransactionsPeriod**](../Model/DtoReportTransactionsPeriod.md)| Report input data | |
+
+### Return type
+
+[**\Zendit\Model\DtoReportTransactions**](../Model/DtoReportTransactions.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `reportsTransactionsReportIdFileGet()`
+
+```php
+reportsTransactionsReportIdFileGet($report_id, $file): \SplFileObject
+```
+
+Download report file
 
 ### Example
 
@@ -282,6 +603,43 @@ Get transactions report by ID
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$report_id = 'report_id_example'; // string | Report ID
+
+try {
+    $result = $apiInstance->reportsTransactionsReportIdGet($report_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->reportsTransactionsReportIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **report_id** | **string**| Report ID | |
+
+### Return type
+
+[**\Zendit\Model\DtoReportTransactions**](../Model/DtoReportTransactions.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `toolsPhonenumberlookupMsisdnGet()`
+
+```php
+toolsPhonenumberlookupMsisdnGet($msisdn): \Zendit\Model\DtoPhoneNumberLookupResponse
+```
+
+Get phone number info
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $msisdn = 'msisdn_example'; // string | Phone number
 
 try {
@@ -312,6 +670,53 @@ topupsOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type): \Zend
 ```
 
 Get list of topup offers
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int
+$brand = 'brand_example'; // string
+$country = 'country_example'; // string
+$regions = 'regions_example'; // string
+$sub_type = 'sub_type_example'; // string
+
+try {
+    $result = $apiInstance->topupsOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->topupsOffersGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **brand** | **string**|  | [optional] |
+| **country** | **string**|  | [optional] |
+| **regions** | **string**|  | [optional] |
+| **sub_type** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoTopupOffersResponse**](../Model/DtoTopupOffersResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `topupsOffersOfferIdGet()`
+
+```php
+topupsOffersOfferIdGet($offer_id): \Zendit\Model\DtoTopupOffer
+```
+
+Get a topup offer by the offer ID
 
 ### Example
 
@@ -356,6 +761,49 @@ Get list of topup transactions
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$_limit = 56; // int
+$_offset = 56; // int
+$created_at = 'created_at_example'; // string
+$status = 'status_example'; // string
+
+try {
+    $result = $apiInstance->topupsPurchasesGet($_limit, $_offset, $created_at, $status);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->topupsPurchasesGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **created_at** | **string**|  | [optional] |
+| **status** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoTopupPurchasesResponse**](../Model/DtoTopupPurchasesResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `topupsPurchasesPost()`
+
+```php
+topupsPurchasesPost($data): \Zendit\Model\DtoTopupPurchaseResponse
+```
+
+Create transaction for purchase
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $data = new \Zendit\Model\DtoTopupPurchaseMakeInput(); // \Zendit\Model\DtoTopupPurchaseMakeInput | Purchase input data
 
 try {
@@ -386,6 +834,43 @@ topupsPurchasesTransactionIdGet($transaction_id): \Zendit\Model\DtoTopupPurchase
 ```
 
 Get topup transaction by id
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | transaction id
+
+try {
+    $result = $apiInstance->topupsPurchasesTransactionIdGet($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->topupsPurchasesTransactionIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+
+### Return type
+
+[**\Zendit\Model\DtoTopupPurchase**](../Model/DtoTopupPurchase.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `transactionsGet()`
+
+```php
+transactionsGet($_limit, $_offset, $created_at, $product_type, $status, $type): \Zendit\Model\DtoTransactionsResponse
+```
+
+Get list of transactions
 
 ### Example
 
@@ -440,6 +925,43 @@ Get transaction by id
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$transaction_id = 'transaction_id_example'; // string | transaction id
+
+try {
+    $result = $apiInstance->transactionsTransactionIdGet($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->transactionsTransactionIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+
+### Return type
+
+[**\Zendit\Model\DtoTransaction**](../Model/DtoTransaction.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `vouchersOffersGet()`
+
+```php
+vouchersOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type): \Zendit\Model\DtoVoucherOffersResponse
+```
+
+Get list of voucher offers
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $_limit = 56; // int
 $_offset = 56; // int
 $brand = 'brand_example'; // string
@@ -480,6 +1002,43 @@ vouchersOffersOfferIdGet($offer_id): \Zendit\Model\DtoVoucherOffer
 ```
 
 Get a voucher offer by the offer ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$offer_id = 'offer_id_example'; // string | Get voucher by id
+
+try {
+    $result = $apiInstance->vouchersOffersOfferIdGet($offer_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->vouchersOffersOfferIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offer_id** | **string**| Get voucher by id | |
+
+### Return type
+
+[**\Zendit\Model\DtoVoucherOffer**](../Model/DtoVoucherOffer.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `vouchersPurchasesGet()`
+
+```php
+vouchersPurchasesGet($_limit, $_offset, $created_at, $status): \Zendit\Model\DtoVoucherPurchasesResponse
+```
+
+Get list of transactions
 
 ### Example
 
@@ -530,6 +1089,43 @@ Create transaction for purchase
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+$data = new \Zendit\Model\DtoVoucherPurchaseInput(); // \Zendit\Model\DtoVoucherPurchaseInput | Purchase input data
+
+try {
+    $result = $apiInstance->vouchersPurchasesPost($data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->vouchersPurchasesPost: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **data** | [**\Zendit\Model\DtoVoucherPurchaseInput**](../Model/DtoVoucherPurchaseInput.md)| Purchase input data | |
+
+### Return type
+
+[**\Zendit\Model\DtoVoucherPurchaseResponse**](../Model/DtoVoucherPurchaseResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `vouchersPurchasesTransactionIdGet()`
+
+```php
+vouchersPurchasesTransactionIdGet($transaction_id): \Zendit\Model\DtoVoucherPurchase
+```
+
+Get purchase transaction by id
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 $transaction_id = 'transaction_id_example'; // string | transaction id
 
 try {
@@ -552,3 +1148,4 @@ try {
 
 [[Back to top]](#zendit-sdk-guide) 
 [[Back to README]](../../README.md)
+

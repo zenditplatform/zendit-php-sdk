@@ -48,6 +48,15 @@ class ZenditApi
         'balanceGet' => [
             'application/json',
         ],
+        'brandsBrandGet' => [
+            'application/json',
+        ],
+        'brandsBrandRedemptionInstructionsGet' => [
+            'application/json',
+        ],
+        'brandsGet' => [
+            'application/json',
+        ],
         'esimIccIdPlansGet' => [
             'application/json',
         ],
@@ -126,10 +135,10 @@ class ZenditApi
      * @param int             $hostIndex (Optional) host index to select the list of hosts if defined in the OpenAPI spec
      */
     public function __construct(
-        ClientInterface $client = null,
-        Configuration $config = null,
-        HeaderSelector $selector = null,
-        $hostIndex = 0
+        ?ClientInterface $client = null,
+        ?Configuration $config = null,
+        ?HeaderSelector $selector = null,
+        int $hostIndex = 0
     ) {
         $this->client = $client ?: new Client();
         $this->config = $config ?: Configuration::getDefaultConfiguration();
@@ -466,6 +475,1249 @@ class ZenditApi
         $httpBody = '';
         $multipart = false;
 
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation brandsBrandGet
+     *
+     * Get a brand by the brand code
+     *
+     * @param  string $brand Get brand by code (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBrandInfo|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function brandsBrandGet($brand, string $contentType = self::contentTypes['brandsBrandGet'][0])
+    {
+        list($response) = $this->brandsBrandGetWithHttpInfo($brand, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation brandsBrandGetWithHttpInfo
+     *
+     * Get a brand by the brand code
+     *
+     * @param  string $brand Get brand by code (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBrandInfo|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function brandsBrandGetWithHttpInfo($brand, string $contentType = self::contentTypes['brandsBrandGet'][0])
+    {
+        $request = $this->brandsBrandGetRequest($brand, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Zendit\Model\DtoBrandInfo' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoBrandInfo' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoBrandInfo', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Zendit\Model\DtoBrandInfo';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBrandInfo',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation brandsBrandGetAsync
+     *
+     * Get a brand by the brand code
+     *
+     * @param  string $brand Get brand by code (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsBrandGetAsync($brand, string $contentType = self::contentTypes['brandsBrandGet'][0])
+    {
+        return $this->brandsBrandGetAsyncWithHttpInfo($brand, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation brandsBrandGetAsyncWithHttpInfo
+     *
+     * Get a brand by the brand code
+     *
+     * @param  string $brand Get brand by code (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsBrandGetAsyncWithHttpInfo($brand, string $contentType = self::contentTypes['brandsBrandGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBrandInfo';
+        $request = $this->brandsBrandGetRequest($brand, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'brandsBrandGet'
+     *
+     * @param  string $brand Get brand by code (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function brandsBrandGetRequest($brand, string $contentType = self::contentTypes['brandsBrandGet'][0])
+    {
+
+        // verify the required parameter 'brand' is set
+        if ($brand === null || (is_array($brand) && count($brand) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $brand when calling brandsBrandGet'
+            );
+        }
+
+
+        $resourcePath = '/brands/{brand}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($brand !== null) {
+            $resourcePath = str_replace(
+                '{' . 'brand' . '}',
+                ObjectSerializer::toPathValue($brand),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation brandsBrandRedemptionInstructionsGet
+     *
+     * Get a brand redemption instruction by the brand code
+     *
+     * @param  string $brand Redemption instruction by brand code (required)
+     * @param  string $country country (required)
+     * @param  string $delivery_type delivery_type (required)
+     * @param  string|null $language language (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandRedemptionInstructionsGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoRedemptionInstructionInfo|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function brandsBrandRedemptionInstructionsGet($brand, $country, $delivery_type, $language = null, string $contentType = self::contentTypes['brandsBrandRedemptionInstructionsGet'][0])
+    {
+        list($response) = $this->brandsBrandRedemptionInstructionsGetWithHttpInfo($brand, $country, $delivery_type, $language, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation brandsBrandRedemptionInstructionsGetWithHttpInfo
+     *
+     * Get a brand redemption instruction by the brand code
+     *
+     * @param  string $brand Redemption instruction by brand code (required)
+     * @param  string $country (required)
+     * @param  string $delivery_type (required)
+     * @param  string|null $language (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandRedemptionInstructionsGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoRedemptionInstructionInfo|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function brandsBrandRedemptionInstructionsGetWithHttpInfo($brand, $country, $delivery_type, $language = null, string $contentType = self::contentTypes['brandsBrandRedemptionInstructionsGet'][0])
+    {
+        $request = $this->brandsBrandRedemptionInstructionsGetRequest($brand, $country, $delivery_type, $language, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Zendit\Model\DtoRedemptionInstructionInfo' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoRedemptionInstructionInfo' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoRedemptionInstructionInfo', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Zendit\Model\DtoRedemptionInstructionInfo';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoRedemptionInstructionInfo',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation brandsBrandRedemptionInstructionsGetAsync
+     *
+     * Get a brand redemption instruction by the brand code
+     *
+     * @param  string $brand Redemption instruction by brand code (required)
+     * @param  string $country (required)
+     * @param  string $delivery_type (required)
+     * @param  string|null $language (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandRedemptionInstructionsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsBrandRedemptionInstructionsGetAsync($brand, $country, $delivery_type, $language = null, string $contentType = self::contentTypes['brandsBrandRedemptionInstructionsGet'][0])
+    {
+        return $this->brandsBrandRedemptionInstructionsGetAsyncWithHttpInfo($brand, $country, $delivery_type, $language, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation brandsBrandRedemptionInstructionsGetAsyncWithHttpInfo
+     *
+     * Get a brand redemption instruction by the brand code
+     *
+     * @param  string $brand Redemption instruction by brand code (required)
+     * @param  string $country (required)
+     * @param  string $delivery_type (required)
+     * @param  string|null $language (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandRedemptionInstructionsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsBrandRedemptionInstructionsGetAsyncWithHttpInfo($brand, $country, $delivery_type, $language = null, string $contentType = self::contentTypes['brandsBrandRedemptionInstructionsGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoRedemptionInstructionInfo';
+        $request = $this->brandsBrandRedemptionInstructionsGetRequest($brand, $country, $delivery_type, $language, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'brandsBrandRedemptionInstructionsGet'
+     *
+     * @param  string $brand Redemption instruction by brand code (required)
+     * @param  string $country (required)
+     * @param  string $delivery_type (required)
+     * @param  string|null $language (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsBrandRedemptionInstructionsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function brandsBrandRedemptionInstructionsGetRequest($brand, $country, $delivery_type, $language = null, string $contentType = self::contentTypes['brandsBrandRedemptionInstructionsGet'][0])
+    {
+
+        // verify the required parameter 'brand' is set
+        if ($brand === null || (is_array($brand) && count($brand) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $brand when calling brandsBrandRedemptionInstructionsGet'
+            );
+        }
+
+        // verify the required parameter 'country' is set
+        if ($country === null || (is_array($country) && count($country) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $country when calling brandsBrandRedemptionInstructionsGet'
+            );
+        }
+
+        // verify the required parameter 'delivery_type' is set
+        if ($delivery_type === null || (is_array($delivery_type) && count($delivery_type) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $delivery_type when calling brandsBrandRedemptionInstructionsGet'
+            );
+        }
+
+
+
+        $resourcePath = '/brands/{brand}/redemptionInstructions';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $country,
+            'country', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $delivery_type,
+            'deliveryType', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $language,
+            'language', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($brand !== null) {
+            $resourcePath = str_replace(
+                '{' . 'brand' . '}',
+                ObjectSerializer::toPathValue($brand),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation brandsGet
+     *
+     * Get list of brands
+     *
+     * @param  int $_limit _limit (required)
+     * @param  int $_offset _offset (required)
+     * @param  string|null $country country (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBrandsResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function brandsGet($_limit, $_offset, $country = null, string $contentType = self::contentTypes['brandsGet'][0])
+    {
+        list($response) = $this->brandsGetWithHttpInfo($_limit, $_offset, $country, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation brandsGetWithHttpInfo
+     *
+     * Get list of brands
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $country (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBrandsResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function brandsGetWithHttpInfo($_limit, $_offset, $country = null, string $contentType = self::contentTypes['brandsGet'][0])
+    {
+        $request = $this->brandsGetRequest($_limit, $_offset, $country, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Zendit\Model\DtoBrandsResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoBrandsResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoBrandsResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 400:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                case 500:
+                    if ('\Zendit\Model\DtoResponseError' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Zendit\Model\DtoResponseError' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Zendit\Model\DtoResponseError', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Zendit\Model\DtoBrandsResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBrandsResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation brandsGetAsync
+     *
+     * Get list of brands
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $country (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsGetAsync($_limit, $_offset, $country = null, string $contentType = self::contentTypes['brandsGet'][0])
+    {
+        return $this->brandsGetAsyncWithHttpInfo($_limit, $_offset, $country, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation brandsGetAsyncWithHttpInfo
+     *
+     * Get list of brands
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $country (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function brandsGetAsyncWithHttpInfo($_limit, $_offset, $country = null, string $contentType = self::contentTypes['brandsGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBrandsResponse';
+        $request = $this->brandsGetRequest($_limit, $_offset, $country, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'brandsGet'
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $country (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['brandsGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function brandsGetRequest($_limit, $_offset, $country = null, string $contentType = self::contentTypes['brandsGet'][0])
+    {
+
+        // verify the required parameter '_limit' is set
+        if ($_limit === null || (is_array($_limit) && count($_limit) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_limit when calling brandsGet'
+            );
+        }
+
+        // verify the required parameter '_offset' is set
+        if ($_offset === null || (is_array($_offset) && count($_offset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_offset when calling brandsGet'
+            );
+        }
+
+
+
+        $resourcePath = '/brands';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_limit,
+            '_limit', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_offset,
+            '_offset', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $country,
+            'country', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -918,10 +2170,10 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $brand brand (optional)
-     * @param  string $country country (optional)
-     * @param  string $regions regions (optional)
-     * @param  string $sub_type sub_type (optional)
+     * @param  string|null $brand brand (optional)
+     * @param  string|null $country country (optional)
+     * @param  string|null $regions regions (optional)
+     * @param  string|null $sub_type sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -941,10 +2193,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1141,10 +2393,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1167,10 +2419,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1222,10 +2474,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1766,8 +3018,8 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $created_at created_at (optional)
-     * @param  string $status status (optional)
+     * @param  string|null $created_at created_at (optional)
+     * @param  string|null $status status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1787,8 +3039,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -1985,8 +3237,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2009,8 +3261,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2062,8 +3314,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['esimPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2959,7 +4211,7 @@ class ZenditApi
         );
     }
 
-    /**
+        /**
      * Operation esimPurchasesTransactionIdQrcodeGet
      *
      * Get eSim QR code by transaction id
@@ -2989,7 +4241,7 @@ class ZenditApi
      * @throws \InvalidArgumentException
      * @return array of \SplFileObject|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
      */
-    public function esimPurchasesTransactionIdQrcodeGetWithHttpInfo($transaction_id, string $contentType = self::contentTypes['esimPurchasesTransactionIdQrcodeGet'][0])
+   public function esimPurchasesTransactionIdQrcodeGetWithHttpInfo($transaction_id, string $contentType = self::contentTypes['esimPurchasesTransactionIdQrcodeGet'][0])
     {
         $request = $this->esimPurchasesTransactionIdQrcodeGetRequest($transaction_id, $contentType);
 
@@ -4929,10 +6181,10 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $brand brand (optional)
-     * @param  string $country country (optional)
-     * @param  string $regions regions (optional)
-     * @param  string $sub_type sub_type (optional)
+     * @param  string|null $brand brand (optional)
+     * @param  string|null $country country (optional)
+     * @param  string|null $regions regions (optional)
+     * @param  string|null $sub_type sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -4952,10 +6204,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5152,10 +6404,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5178,10 +6430,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5233,10 +6485,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -5777,8 +7029,8 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $created_at created_at (optional)
-     * @param  string $status status (optional)
+     * @param  string|null $created_at created_at (optional)
+     * @param  string|null $status status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5798,8 +7050,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -5996,8 +7248,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6020,8 +7272,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6073,8 +7325,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupsPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -6977,10 +8229,10 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $created_at created_at (optional)
-     * @param  string $product_type product_type (optional)
-     * @param  string $status status (optional)
-     * @param  string $type type (optional)
+     * @param  string|null $created_at created_at (optional)
+     * @param  string|null $product_type product_type (optional)
+     * @param  string|null $status status (optional)
+     * @param  string|null $type type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transactionsGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7000,10 +8252,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $product_type (optional)
-     * @param  string $status (optional)
-     * @param  string $type (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $product_type (optional)
+     * @param  string|null $status (optional)
+     * @param  string|null $type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transactionsGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7200,10 +8452,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $product_type (optional)
-     * @param  string $status (optional)
-     * @param  string $type (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $product_type (optional)
+     * @param  string|null $status (optional)
+     * @param  string|null $type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7226,10 +8478,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $product_type (optional)
-     * @param  string $status (optional)
-     * @param  string $type (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $product_type (optional)
+     * @param  string|null $status (optional)
+     * @param  string|null $type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7281,10 +8533,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $product_type (optional)
-     * @param  string $status (optional)
-     * @param  string $type (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $product_type (optional)
+     * @param  string|null $status (optional)
+     * @param  string|null $type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['transactionsGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -7825,10 +9077,10 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $brand brand (optional)
-     * @param  string $country country (optional)
-     * @param  string $regions regions (optional)
-     * @param  string $sub_type sub_type (optional)
+     * @param  string|null $brand brand (optional)
+     * @param  string|null $country country (optional)
+     * @param  string|null $regions regions (optional)
+     * @param  string|null $sub_type sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -7848,10 +9100,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersOffersGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8048,10 +9300,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8074,10 +9326,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8129,10 +9381,10 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $brand (optional)
-     * @param  string $country (optional)
-     * @param  string $regions (optional)
-     * @param  string $sub_type (optional)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersOffersGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8673,8 +9925,8 @@ class ZenditApi
      *
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
-     * @param  string $created_at created_at (optional)
-     * @param  string $status status (optional)
+     * @param  string|null $created_at created_at (optional)
+     * @param  string|null $status status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8694,8 +9946,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersPurchasesGet'] to see the possible values for this operation
      *
      * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
@@ -8892,8 +10144,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8916,8 +10168,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -8969,8 +10221,8 @@ class ZenditApi
      *
      * @param  int $_limit (required)
      * @param  int $_offset (required)
-     * @param  string $created_at (optional)
-     * @param  string $status (optional)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['vouchersPurchasesGet'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

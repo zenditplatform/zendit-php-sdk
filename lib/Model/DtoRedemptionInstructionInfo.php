@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoError Class Doc Comment
+ * DtoRedemptionInstructionInfo Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoRedemptionInstructionInfo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Error';
+    protected static $openAPIModelName = 'dto.RedemptionInstructionInfo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,9 +30,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'description' => 'string',
-        'message' => 'string'
+        'country' => 'string',
+        'delivery_type' => 'string',
+        'language' => 'string',
+        'redemption_instructions' => 'string',
+        'redemption_video' => 'string',
+        'terms' => 'string'
     ];
 
     /**
@@ -43,9 +46,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'description' => null,
-        'message' => null
+        'country' => null,
+        'delivery_type' => null,
+        'language' => null,
+        'redemption_instructions' => null,
+        'redemption_video' => null,
+        'terms' => null
     ];
 
     /**
@@ -54,9 +60,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-        'description' => false,
-        'message' => false
+        'country' => false,
+        'delivery_type' => false,
+        'language' => false,
+        'redemption_instructions' => false,
+        'redemption_video' => false,
+        'terms' => false
     ];
 
     /**
@@ -145,9 +154,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'description' => 'description',
-        'message' => 'message'
+        'country' => 'country',
+        'delivery_type' => 'deliveryType',
+        'language' => 'language',
+        'redemption_instructions' => 'redemptionInstructions',
+        'redemption_video' => 'redemptionVideo',
+        'terms' => 'terms'
     ];
 
     /**
@@ -156,9 +168,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'description' => 'setDescription',
-        'message' => 'setMessage'
+        'country' => 'setCountry',
+        'delivery_type' => 'setDeliveryType',
+        'language' => 'setLanguage',
+        'redemption_instructions' => 'setRedemptionInstructions',
+        'redemption_video' => 'setRedemptionVideo',
+        'terms' => 'setTerms'
     ];
 
     /**
@@ -167,9 +182,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'description' => 'getDescription',
-        'message' => 'getMessage'
+        'country' => 'getCountry',
+        'delivery_type' => 'getDeliveryType',
+        'language' => 'getLanguage',
+        'redemption_instructions' => 'getRedemptionInstructions',
+        'redemption_video' => 'getRedemptionVideo',
+        'terms' => 'getTerms'
     ];
 
     /**
@@ -229,9 +247,12 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('delivery_type', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('redemption_instructions', $data ?? [], null);
+        $this->setIfExists('redemption_video', $data ?? [], null);
+        $this->setIfExists('terms', $data ?? [], null);
     }
 
     /**
@@ -261,14 +282,23 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
+        if ($this->container['delivery_type'] === null) {
+            $invalidProperties[] = "'delivery_type' can't be null";
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['language'] === null) {
+            $invalidProperties[] = "'language' can't be null";
+        }
+        if ($this->container['redemption_instructions'] === null) {
+            $invalidProperties[] = "'redemption_instructions' can't be null";
+        }
+        if ($this->container['redemption_video'] === null) {
+            $invalidProperties[] = "'redemption_video' can't be null";
+        }
+        if ($this->container['terms'] === null) {
+            $invalidProperties[] = "'terms' can't be null";
         }
         return $invalidProperties;
     }
@@ -286,82 +316,163 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets country
      *
      * @return string
      */
-    public function getCode()
+    public function getCountry()
     {
-        return $this->container['code'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets code
+     * Sets country
      *
-     * @param string $code code
+     * @param string $country country
      *
      * @return self
      */
-    public function setCode($code)
+    public function setCountry($country)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['code'] = $code;
+        $this->container['country'] = $country;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets delivery_type
      *
      * @return string
      */
-    public function getDescription()
+    public function getDeliveryType()
     {
-        return $this->container['description'];
+        return $this->container['delivery_type'];
     }
 
     /**
-     * Sets description
+     * Sets delivery_type
      *
-     * @param string $description description
+     * @param string $delivery_type delivery_type
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setDeliveryType($delivery_type)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($delivery_type)) {
+            throw new \InvalidArgumentException('non-nullable delivery_type cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['delivery_type'] = $delivery_type;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets language
      *
      * @return string
      */
-    public function getMessage()
+    public function getLanguage()
     {
-        return $this->container['message'];
+        return $this->container['language'];
     }
 
     /**
-     * Sets message
+     * Sets language
      *
-     * @param string $message message
+     * @param string $language language
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setLanguage($language)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
         }
-        $this->container['message'] = $message;
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets redemption_instructions
+     *
+     * @return string
+     */
+    public function getRedemptionInstructions()
+    {
+        return $this->container['redemption_instructions'];
+    }
+
+    /**
+     * Sets redemption_instructions
+     *
+     * @param string $redemption_instructions redemption_instructions
+     *
+     * @return self
+     */
+    public function setRedemptionInstructions($redemption_instructions)
+    {
+        if (is_null($redemption_instructions)) {
+            throw new \InvalidArgumentException('non-nullable redemption_instructions cannot be null');
+        }
+        $this->container['redemption_instructions'] = $redemption_instructions;
+
+        return $this;
+    }
+
+    /**
+     * Gets redemption_video
+     *
+     * @return string
+     */
+    public function getRedemptionVideo()
+    {
+        return $this->container['redemption_video'];
+    }
+
+    /**
+     * Sets redemption_video
+     *
+     * @param string $redemption_video redemption_video
+     *
+     * @return self
+     */
+    public function setRedemptionVideo($redemption_video)
+    {
+        if (is_null($redemption_video)) {
+            throw new \InvalidArgumentException('non-nullable redemption_video cannot be null');
+        }
+        $this->container['redemption_video'] = $redemption_video;
+
+        return $this;
+    }
+
+    /**
+     * Gets terms
+     *
+     * @return string
+     */
+    public function getTerms()
+    {
+        return $this->container['terms'];
+    }
+
+    /**
+     * Sets terms
+     *
+     * @param string $terms terms
+     *
+     * @return self
+     */
+    public function setTerms($terms)
+    {
+        if (is_null($terms)) {
+            throw new \InvalidArgumentException('non-nullable terms cannot be null');
+        }
+        $this->container['terms'] = $terms;
 
         return $this;
     }

@@ -1,6 +1,10 @@
 zendit-php changelog
 =====================
 
+# [2025-02-10] Version 1.6.0
+
+- **brands**: Added brand endpoints with multilingual support.
+
 # [2024-10-30] Version 1.3.0
 
 - **Voucher offers**: Added new fields that identify delivery type.

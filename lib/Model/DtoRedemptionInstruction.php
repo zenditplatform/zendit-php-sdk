@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoError Class Doc Comment
+ * DtoRedemptionInstruction Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoRedemptionInstruction implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Error';
+    protected static $openAPIModelName = 'dto.RedemptionInstruction';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,9 +30,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'description' => 'string',
-        'message' => 'string'
+        'country' => 'string',
+        'delivery_type' => 'string',
+        'language' => 'string',
+        'link' => 'string'
     ];
 
     /**
@@ -43,9 +44,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'description' => null,
-        'message' => null
+        'country' => null,
+        'delivery_type' => null,
+        'language' => null,
+        'link' => null
     ];
 
     /**
@@ -54,9 +56,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-        'description' => false,
-        'message' => false
+        'country' => false,
+        'delivery_type' => false,
+        'language' => false,
+        'link' => false
     ];
 
     /**
@@ -145,9 +148,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'description' => 'description',
-        'message' => 'message'
+        'country' => 'country',
+        'delivery_type' => 'deliveryType',
+        'language' => 'language',
+        'link' => 'link'
     ];
 
     /**
@@ -156,9 +160,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'description' => 'setDescription',
-        'message' => 'setMessage'
+        'country' => 'setCountry',
+        'delivery_type' => 'setDeliveryType',
+        'language' => 'setLanguage',
+        'link' => 'setLink'
     ];
 
     /**
@@ -167,9 +172,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'description' => 'getDescription',
-        'message' => 'getMessage'
+        'country' => 'getCountry',
+        'delivery_type' => 'getDeliveryType',
+        'language' => 'getLanguage',
+        'link' => 'getLink'
     ];
 
     /**
@@ -229,9 +235,10 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('delivery_type', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('link', $data ?? [], null);
     }
 
     /**
@@ -261,15 +268,6 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -286,82 +284,109 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets country
      *
-     * @return string
+     * @return string|null
      */
-    public function getCode()
+    public function getCountry()
     {
-        return $this->container['code'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets code
+     * Sets country
      *
-     * @param string $code code
+     * @param string|null $country country
      *
      * @return self
      */
-    public function setCode($code)
+    public function setCountry($country)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['code'] = $code;
+        $this->container['country'] = $country;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets delivery_type
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getDeliveryType()
     {
-        return $this->container['description'];
+        return $this->container['delivery_type'];
     }
 
     /**
-     * Sets description
+     * Sets delivery_type
      *
-     * @param string $description description
+     * @param string|null $delivery_type delivery_type
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setDeliveryType($delivery_type)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($delivery_type)) {
+            throw new \InvalidArgumentException('non-nullable delivery_type cannot be null');
         }
-        $this->container['description'] = $description;
+        $this->container['delivery_type'] = $delivery_type;
 
         return $this;
     }
 
     /**
-     * Gets message
+     * Gets language
      *
-     * @return string
+     * @return string|null
      */
-    public function getMessage()
+    public function getLanguage()
     {
-        return $this->container['message'];
+        return $this->container['language'];
     }
 
     /**
-     * Sets message
+     * Sets language
      *
-     * @param string $message message
+     * @param string|null $language language
      *
      * @return self
      */
-    public function setMessage($message)
+    public function setLanguage($language)
     {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
         }
-        $this->container['message'] = $message;
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets link
+     *
+     * @return string|null
+     */
+    public function getLink()
+    {
+        return $this->container['link'];
+    }
+
+    /**
+     * Sets link
+     *
+     * @param string|null $link link
+     *
+     * @return self
+     */
+    public function setLink($link)
+    {
+        if (is_null($link)) {
+            throw new \InvalidArgumentException('non-nullable link cannot be null');
+        }
+        $this->container['link'] = $link;
 
         return $this;
     }

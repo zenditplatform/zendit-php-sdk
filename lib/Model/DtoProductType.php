@@ -25,6 +25,8 @@ class DtoProductType
 
     public const PRODUCT_TYPE_REFUND = 'REFUND';
 
+    public const PRODUCT_TYPE_BULK_CHECKOUT = 'BULK_CHECKOUT';
+
     /**
      * Gets allowable values of the enum
      * @return string[]
@@ -36,7 +38,8 @@ class DtoProductType
             self::PRODUCT_TYPE_ESIM,
             self::PRODUCT_TYPE_VOUCHER,
             self::PRODUCT_TYPE_WALLET_RECHARGE,
-            self::PRODUCT_TYPE_REFUND
+            self::PRODUCT_TYPE_REFUND,
+            self::PRODUCT_TYPE_BULK_CHECKOUT
         ];
     }
 }
