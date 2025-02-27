@@ -74,7 +74,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "ZenditSDK/1.3.0 PHP";
+    protected $userAgent = "ZenditSDK/1.6.0 PHP";
 
     /**
      * Debug switch (default set to false)
@@ -460,7 +460,7 @@ class Configuration
     * @param array|null $variables    hash of variable and the corresponding value (optional)
     * @return string URL based on host settings
     */
-    public static function getHostString(array $hostSettings, $hostIndex, array $variables = null)
+    public static function getHostString(array $hostSettings, $hostIndex, ?array $variables = null)
     {
         if (null === $variables) {
             $variables = [];
@@ -471,7 +471,7 @@ class Configuration
             throw new \InvalidArgumentException("Invalid index $hostIndex when selecting the host. Must be less than ".count($hostSettings));
         }
 
-        $host = "https://api.zendit.io/v1";
+        $host = $hostSettings[$hostIndex];
         $url = $host["url"];
 
         // go through variable and assign a value

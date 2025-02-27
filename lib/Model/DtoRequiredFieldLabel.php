@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoError Class Doc Comment
+ * DtoRequiredFieldLabel Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoRequiredFieldLabel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Error';
+    protected static $openAPIModelName = 'dto.RequiredFieldLabel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,9 +30,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'description' => 'string',
-        'message' => 'string'
+        'label' => 'string',
+        'required_field' => 'string'
     ];
 
     /**
@@ -43,9 +42,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'description' => null,
-        'message' => null
+        'label' => null,
+        'required_field' => null
     ];
 
     /**
@@ -54,9 +52,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => false,
-        'description' => false,
-        'message' => false
+        'label' => false,
+        'required_field' => false
     ];
 
     /**
@@ -145,9 +142,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'description' => 'description',
-        'message' => 'message'
+        'label' => 'label',
+        'required_field' => 'requiredField'
     ];
 
     /**
@@ -156,9 +152,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'description' => 'setDescription',
-        'message' => 'setMessage'
+        'label' => 'setLabel',
+        'required_field' => 'setRequiredField'
     ];
 
     /**
@@ -167,9 +162,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'description' => 'getDescription',
-        'message' => 'getMessage'
+        'label' => 'getLabel',
+        'required_field' => 'getRequiredField'
     ];
 
     /**
@@ -229,9 +223,8 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('label', $data ?? [], null);
+        $this->setIfExists('required_field', $data ?? [], null);
     }
 
     /**
@@ -261,15 +254,6 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['code'] === null) {
-            $invalidProperties[] = "'code' can't be null";
-        }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -286,82 +270,55 @@ class DtoError implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets code
+     * Gets label
      *
-     * @return string
+     * @return string|null
      */
-    public function getCode()
+    public function getLabel()
     {
-        return $this->container['code'];
+        return $this->container['label'];
     }
 
     /**
-     * Sets code
+     * Sets label
      *
-     * @param string $code code
+     * @param string|null $label label
      *
      * @return self
      */
-    public function setCode($code)
+    public function setLabel($label)
     {
-        if (is_null($code)) {
-            throw new \InvalidArgumentException('non-nullable code cannot be null');
+        if (is_null($label)) {
+            throw new \InvalidArgumentException('non-nullable label cannot be null');
         }
-        $this->container['code'] = $code;
+        $this->container['label'] = $label;
 
         return $this;
     }
 
     /**
-     * Gets description
+     * Gets required_field
      *
-     * @return string
+     * @return string|null
      */
-    public function getDescription()
+    public function getRequiredField()
     {
-        return $this->container['description'];
+        return $this->container['required_field'];
     }
 
     /**
-     * Sets description
+     * Sets required_field
      *
-     * @param string $description description
+     * @param string|null $required_field required_field
      *
      * @return self
      */
-    public function setDescription($description)
+    public function setRequiredField($required_field)
     {
-        if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        if (is_null($required_field)) {
+            throw new \InvalidArgumentException('non-nullable required_field cannot be null');
         }
-        $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
-     *
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->container['message'];
-    }
-
-    /**
-     * Sets message
-     *
-     * @param string $message message
-     *
-     * @return self
-     */
-    public function setMessage($message)
-    {
-        if (is_null($message)) {
-            throw new \InvalidArgumentException('non-nullable message cannot be null');
-        }
-        $this->container['message'] = $message;
+        $this->container['required_field'] = $required_field;
 
         return $this;
     }
