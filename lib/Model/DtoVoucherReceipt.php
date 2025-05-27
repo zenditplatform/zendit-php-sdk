@@ -33,6 +33,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => 'string',
         'confirmation_number' => 'string',
         'currency' => 'string',
+        'currency_divisor' => 'int',
         'delivery_type' => 'string',
         'epin' => 'string',
         'expires_at' => 'string',
@@ -57,6 +58,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => null,
         'confirmation_number' => null,
         'currency' => null,
+        'currency_divisor' => null,
         'delivery_type' => null,
         'epin' => null,
         'expires_at' => null,
@@ -79,6 +81,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => false,
         'confirmation_number' => false,
         'currency' => false,
+        'currency_divisor' => false,
         'delivery_type' => false,
         'epin' => false,
         'expires_at' => false,
@@ -181,6 +184,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => 'accountId',
         'confirmation_number' => 'confirmationNumber',
         'currency' => 'currency',
+        'currency_divisor' => 'currencyDivisor',
         'delivery_type' => 'deliveryType',
         'epin' => 'epin',
         'expires_at' => 'expiresAt',
@@ -203,6 +207,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => 'setAccountId',
         'confirmation_number' => 'setConfirmationNumber',
         'currency' => 'setCurrency',
+        'currency_divisor' => 'setCurrencyDivisor',
         'delivery_type' => 'setDeliveryType',
         'epin' => 'setEpin',
         'expires_at' => 'setExpiresAt',
@@ -225,6 +230,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         'account_id' => 'getAccountId',
         'confirmation_number' => 'getConfirmationNumber',
         'currency' => 'getCurrency',
+        'currency_divisor' => 'getCurrencyDivisor',
         'delivery_type' => 'getDeliveryType',
         'epin' => 'getEpin',
         'expires_at' => 'getExpiresAt',
@@ -298,6 +304,7 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('account_id', $data ?? [], null);
         $this->setIfExists('confirmation_number', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_divisor', $data ?? [], null);
         $this->setIfExists('delivery_type', $data ?? [], null);
         $this->setIfExists('epin', $data ?? [], null);
         $this->setIfExists('expires_at', $data ?? [], null);
@@ -346,6 +353,9 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
         }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['currency_divisor'] === null) {
+            $invalidProperties[] = "'currency_divisor' can't be null";
         }
         if ($this->container['delivery_type'] === null) {
             $invalidProperties[] = "'delivery_type' can't be null";
@@ -472,6 +482,33 @@ class DtoVoucherReceipt implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_divisor
+     *
+     * @return int
+     */
+    public function getCurrencyDivisor()
+    {
+        return $this->container['currency_divisor'];
+    }
+
+    /**
+     * Sets currency_divisor
+     *
+     * @param int $currency_divisor currency_divisor
+     *
+     * @return self
+     */
+    public function setCurrencyDivisor($currency_divisor)
+    {
+        if (is_null($currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        }
+        $this->container['currency_divisor'] = $currency_divisor;
 
         return $this;
     }

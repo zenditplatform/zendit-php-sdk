@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoPrice Class Doc Comment
+ * DtoPromo Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Price';
+    protected static $openAPIModelName = 'dto.Promo';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,15 +30,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'currency_divisor' => 'int',
-        'fixed' => 'int',
-        'fx' => 'float',
-        'margin' => 'float',
-        'max' => 'int',
-        'min' => 'int',
-        'suggested_fixed' => 'int',
-        'suggested_fx' => 'float'
+        'brand' => '\Zendit\Model\DtoOfferBrand',
+        'country' => 'string',
+        'created_at' => 'string',
+        'description' => '\Zendit\Model\DtoPromoDescription[]',
+        'end_at' => 'string',
+        'id' => 'string',
+        'max_value' => 'int',
+        'min_value' => 'int',
+        'regions' => 'string[]',
+        'start_at' => 'string',
+        'status' => 'string',
+        'updated_at' => 'string'
     ];
 
     /**
@@ -49,15 +52,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'currency_divisor' => null,
-        'fixed' => null,
-        'fx' => null,
-        'margin' => null,
-        'max' => null,
-        'min' => null,
-        'suggested_fixed' => null,
-        'suggested_fx' => null
+        'brand' => null,
+        'country' => null,
+        'created_at' => null,
+        'description' => null,
+        'end_at' => null,
+        'id' => null,
+        'max_value' => null,
+        'min_value' => null,
+        'regions' => null,
+        'start_at' => null,
+        'status' => null,
+        'updated_at' => null
     ];
 
     /**
@@ -66,15 +72,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'currency' => false,
-        'currency_divisor' => false,
-        'fixed' => false,
-        'fx' => false,
-        'margin' => false,
-        'max' => false,
-        'min' => false,
-        'suggested_fixed' => false,
-        'suggested_fx' => false
+        'brand' => false,
+        'country' => false,
+        'created_at' => false,
+        'description' => false,
+        'end_at' => false,
+        'id' => false,
+        'max_value' => false,
+        'min_value' => false,
+        'regions' => false,
+        'start_at' => false,
+        'status' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -163,15 +172,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'currency_divisor' => 'currencyDivisor',
-        'fixed' => 'fixed',
-        'fx' => 'fx',
-        'margin' => 'margin',
-        'max' => 'max',
-        'min' => 'min',
-        'suggested_fixed' => 'suggestedFixed',
-        'suggested_fx' => 'suggestedFx'
+        'brand' => 'brand',
+        'country' => 'country',
+        'created_at' => 'createdAt',
+        'description' => 'description',
+        'end_at' => 'endAt',
+        'id' => 'id',
+        'max_value' => 'maxValue',
+        'min_value' => 'minValue',
+        'regions' => 'regions',
+        'start_at' => 'startAt',
+        'status' => 'status',
+        'updated_at' => 'updatedAt'
     ];
 
     /**
@@ -180,15 +192,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'currency_divisor' => 'setCurrencyDivisor',
-        'fixed' => 'setFixed',
-        'fx' => 'setFx',
-        'margin' => 'setMargin',
-        'max' => 'setMax',
-        'min' => 'setMin',
-        'suggested_fixed' => 'setSuggestedFixed',
-        'suggested_fx' => 'setSuggestedFx'
+        'brand' => 'setBrand',
+        'country' => 'setCountry',
+        'created_at' => 'setCreatedAt',
+        'description' => 'setDescription',
+        'end_at' => 'setEndAt',
+        'id' => 'setId',
+        'max_value' => 'setMaxValue',
+        'min_value' => 'setMinValue',
+        'regions' => 'setRegions',
+        'start_at' => 'setStartAt',
+        'status' => 'setStatus',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -197,15 +212,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'currency_divisor' => 'getCurrencyDivisor',
-        'fixed' => 'getFixed',
-        'fx' => 'getFx',
-        'margin' => 'getMargin',
-        'max' => 'getMax',
-        'min' => 'getMin',
-        'suggested_fixed' => 'getSuggestedFixed',
-        'suggested_fx' => 'getSuggestedFx'
+        'brand' => 'getBrand',
+        'country' => 'getCountry',
+        'created_at' => 'getCreatedAt',
+        'description' => 'getDescription',
+        'end_at' => 'getEndAt',
+        'id' => 'getId',
+        'max_value' => 'getMaxValue',
+        'min_value' => 'getMinValue',
+        'regions' => 'getRegions',
+        'start_at' => 'getStartAt',
+        'status' => 'getStatus',
+        'updated_at' => 'getUpdatedAt'
     ];
 
     /**
@@ -265,15 +283,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('currency_divisor', $data ?? [], null);
-        $this->setIfExists('fixed', $data ?? [], null);
-        $this->setIfExists('fx', $data ?? [], null);
-        $this->setIfExists('margin', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
-        $this->setIfExists('suggested_fixed', $data ?? [], null);
-        $this->setIfExists('suggested_fx', $data ?? [], null);
+        $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('end_at', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('max_value', $data ?? [], null);
+        $this->setIfExists('min_value', $data ?? [], null);
+        $this->setIfExists('regions', $data ?? [], null);
+        $this->setIfExists('start_at', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
     }
 
     /**
@@ -303,12 +324,6 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['currency_divisor'] === null) {
-            $invalidProperties[] = "'currency_divisor' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -325,244 +340,325 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets brand
      *
-     * @return string
+     * @return \Zendit\Model\DtoOfferBrand|null
      */
-    public function getCurrency()
+    public function getBrand()
     {
-        return $this->container['currency'];
+        return $this->container['brand'];
     }
 
     /**
-     * Sets currency
+     * Sets brand
      *
-     * @param string $currency currency
+     * @param \Zendit\Model\DtoOfferBrand|null $brand brand
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setBrand($brand)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($brand)) {
+            throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['brand'] = $brand;
 
         return $this;
     }
 
     /**
-     * Gets currency_divisor
+     * Gets country
      *
-     * @return int
+     * @return string|null
      */
-    public function getCurrencyDivisor()
+    public function getCountry()
     {
-        return $this->container['currency_divisor'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets currency_divisor
+     * Sets country
      *
-     * @param int $currency_divisor currency_divisor
+     * @param string|null $country country
      *
      * @return self
      */
-    public function setCurrencyDivisor($currency_divisor)
+    public function setCountry($country)
     {
-        if (is_null($currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['currency_divisor'] = $currency_divisor;
+        $this->container['country'] = $country;
 
         return $this;
     }
 
     /**
-     * Gets fixed
+     * Gets created_at
+     *
+     * @return string|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string|null $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets description
+     *
+     * @return \Zendit\Model\DtoPromoDescription[]|null
+     */
+    public function getDescription()
+    {
+        return $this->container['description'];
+    }
+
+    /**
+     * Sets description
+     *
+     * @param \Zendit\Model\DtoPromoDescription[]|null $description description
+     *
+     * @return self
+     */
+    public function setDescription($description)
+    {
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
+        }
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets end_at
+     *
+     * @return string|null
+     */
+    public function getEndAt()
+    {
+        return $this->container['end_at'];
+    }
+
+    /**
+     * Sets end_at
+     *
+     * @param string|null $end_at end_at
+     *
+     * @return self
+     */
+    public function setEndAt($end_at)
+    {
+        if (is_null($end_at)) {
+            throw new \InvalidArgumentException('non-nullable end_at cannot be null');
+        }
+        $this->container['end_at'] = $end_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets max_value
      *
      * @return int|null
      */
-    public function getFixed()
+    public function getMaxValue()
     {
-        return $this->container['fixed'];
+        return $this->container['max_value'];
     }
 
     /**
-     * Sets fixed
+     * Sets max_value
      *
-     * @param int|null $fixed fixed
+     * @param int|null $max_value max_value
      *
      * @return self
      */
-    public function setFixed($fixed)
+    public function setMaxValue($max_value)
     {
-        if (is_null($fixed)) {
-            throw new \InvalidArgumentException('non-nullable fixed cannot be null');
+        if (is_null($max_value)) {
+            throw new \InvalidArgumentException('non-nullable max_value cannot be null');
         }
-        $this->container['fixed'] = $fixed;
+        $this->container['max_value'] = $max_value;
 
         return $this;
     }
 
     /**
-     * Gets fx
-     *
-     * @return float|null
-     */
-    public function getFx()
-    {
-        return $this->container['fx'];
-    }
-
-    /**
-     * Sets fx
-     *
-     * @param float|null $fx fx
-     *
-     * @return self
-     */
-    public function setFx($fx)
-    {
-        if (is_null($fx)) {
-            throw new \InvalidArgumentException('non-nullable fx cannot be null');
-        }
-        $this->container['fx'] = $fx;
-
-        return $this;
-    }
-
-    /**
-     * Gets margin
-     *
-     * @return float|null
-     */
-    public function getMargin()
-    {
-        return $this->container['margin'];
-    }
-
-    /**
-     * Sets margin
-     *
-     * @param float|null $margin margin
-     *
-     * @return self
-     */
-    public function setMargin($margin)
-    {
-        if (is_null($margin)) {
-            throw new \InvalidArgumentException('non-nullable margin cannot be null');
-        }
-        $this->container['margin'] = $margin;
-
-        return $this;
-    }
-
-    /**
-     * Gets max
+     * Gets min_value
      *
      * @return int|null
      */
-    public function getMax()
+    public function getMinValue()
     {
-        return $this->container['max'];
+        return $this->container['min_value'];
     }
 
     /**
-     * Sets max
+     * Sets min_value
      *
-     * @param int|null $max max
+     * @param int|null $min_value min_value
      *
      * @return self
      */
-    public function setMax($max)
+    public function setMinValue($min_value)
     {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
+        if (is_null($min_value)) {
+            throw new \InvalidArgumentException('non-nullable min_value cannot be null');
         }
-        $this->container['max'] = $max;
+        $this->container['min_value'] = $min_value;
 
         return $this;
     }
 
     /**
-     * Gets min
+     * Gets regions
      *
-     * @return int|null
+     * @return string[]|null
      */
-    public function getMin()
+    public function getRegions()
     {
-        return $this->container['min'];
+        return $this->container['regions'];
     }
 
     /**
-     * Sets min
+     * Sets regions
      *
-     * @param int|null $min min
+     * @param string[]|null $regions regions
      *
      * @return self
      */
-    public function setMin($min)
+    public function setRegions($regions)
     {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
+        if (is_null($regions)) {
+            throw new \InvalidArgumentException('non-nullable regions cannot be null');
         }
-        $this->container['min'] = $min;
+        $this->container['regions'] = $regions;
 
         return $this;
     }
 
     /**
-     * Gets suggested_fixed
+     * Gets start_at
      *
-     * @return int|null
+     * @return string|null
      */
-    public function getSuggestedFixed()
+    public function getStartAt()
     {
-        return $this->container['suggested_fixed'];
+        return $this->container['start_at'];
     }
 
     /**
-     * Sets suggested_fixed
+     * Sets start_at
      *
-     * @param int|null $suggested_fixed suggested_fixed
+     * @param string|null $start_at start_at
      *
      * @return self
      */
-    public function setSuggestedFixed($suggested_fixed)
+    public function setStartAt($start_at)
     {
-        if (is_null($suggested_fixed)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fixed cannot be null');
+        if (is_null($start_at)) {
+            throw new \InvalidArgumentException('non-nullable start_at cannot be null');
         }
-        $this->container['suggested_fixed'] = $suggested_fixed;
+        $this->container['start_at'] = $start_at;
 
         return $this;
     }
 
     /**
-     * Gets suggested_fx
+     * Gets status
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getSuggestedFx()
+    public function getStatus()
     {
-        return $this->container['suggested_fx'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets suggested_fx
+     * Sets status
      *
-     * @param float|null $suggested_fx suggested_fx
+     * @param string|null $status status
      *
      * @return self
      */
-    public function setSuggestedFx($suggested_fx)
+    public function setStatus($status)
     {
-        if (is_null($suggested_fx)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fx cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['suggested_fx'] = $suggested_fx;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return string|null
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param string|null $updated_at updated_at
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

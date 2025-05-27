@@ -1,6 +1,11 @@
 zendit-php changelog
 =====================
 
+# [2025-05-26] Version 1.7.0
+
+- **promos**: Added promo endpoints
+- **eSIM refunds**: eSIM refund endpoints
+
 # [2025-02-10] Version 1.6.0
 
 - **brands**: Added brand endpoints with multilingual support.

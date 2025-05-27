@@ -35,6 +35,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => '\Zendit\Model\DtoConfirmation',
         'cost' => 'int',
         'cost_currency' => 'string',
+        'cost_currency_divisor' => 'int',
         'country' => 'string',
         'created_at' => 'string',
         'error' => '\Zendit\Model\DtoError',
@@ -44,12 +45,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => 'string',
         'price' => 'int',
         'price_currency' => 'string',
+        'price_currency_divisor' => 'int',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
         'receipt' => '\Zendit\Model\DtoVoucherReceipt',
         'regions' => 'string[]',
         'send' => 'int',
         'send_currency' => 'string',
+        'send_currency_divisor' => 'int',
         'short_notes' => 'string',
         'status' => '\Zendit\Model\DtoTransactionStatus',
         'sub_types' => 'string[]',
@@ -71,6 +74,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => null,
         'cost' => null,
         'cost_currency' => null,
+        'cost_currency_divisor' => null,
         'country' => null,
         'created_at' => null,
         'error' => null,
@@ -80,12 +84,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => null,
         'price' => null,
         'price_currency' => null,
+        'price_currency_divisor' => null,
         'price_type' => null,
         'product_type' => null,
         'receipt' => null,
         'regions' => null,
         'send' => null,
         'send_currency' => null,
+        'send_currency_divisor' => null,
         'short_notes' => null,
         'status' => null,
         'sub_types' => null,
@@ -105,6 +111,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => false,
         'cost' => false,
         'cost_currency' => false,
+        'cost_currency_divisor' => false,
         'country' => false,
         'created_at' => false,
         'error' => false,
@@ -114,12 +121,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => false,
         'price' => false,
         'price_currency' => false,
+        'price_currency_divisor' => false,
         'price_type' => false,
         'product_type' => false,
         'receipt' => false,
         'regions' => false,
         'send' => false,
         'send_currency' => false,
+        'send_currency_divisor' => false,
         'short_notes' => false,
         'status' => false,
         'sub_types' => false,
@@ -219,6 +228,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => 'confirmation',
         'cost' => 'cost',
         'cost_currency' => 'costCurrency',
+        'cost_currency_divisor' => 'costCurrencyDivisor',
         'country' => 'country',
         'created_at' => 'createdAt',
         'error' => 'error',
@@ -228,12 +238,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => 'offerId',
         'price' => 'price',
         'price_currency' => 'priceCurrency',
+        'price_currency_divisor' => 'priceCurrencyDivisor',
         'price_type' => 'priceType',
         'product_type' => 'productType',
         'receipt' => 'receipt',
         'regions' => 'regions',
         'send' => 'send',
         'send_currency' => 'sendCurrency',
+        'send_currency_divisor' => 'sendCurrencyDivisor',
         'short_notes' => 'shortNotes',
         'status' => 'status',
         'sub_types' => 'subTypes',
@@ -253,6 +265,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
         'cost_currency' => 'setCostCurrency',
+        'cost_currency_divisor' => 'setCostCurrencyDivisor',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
         'error' => 'setError',
@@ -262,12 +275,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => 'setOfferId',
         'price' => 'setPrice',
         'price_currency' => 'setPriceCurrency',
+        'price_currency_divisor' => 'setPriceCurrencyDivisor',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
         'receipt' => 'setReceipt',
         'regions' => 'setRegions',
         'send' => 'setSend',
         'send_currency' => 'setSendCurrency',
+        'send_currency_divisor' => 'setSendCurrencyDivisor',
         'short_notes' => 'setShortNotes',
         'status' => 'setStatus',
         'sub_types' => 'setSubTypes',
@@ -287,6 +302,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
         'cost_currency' => 'getCostCurrency',
+        'cost_currency_divisor' => 'getCostCurrencyDivisor',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
         'error' => 'getError',
@@ -296,12 +312,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'offer_id' => 'getOfferId',
         'price' => 'getPrice',
         'price_currency' => 'getPriceCurrency',
+        'price_currency_divisor' => 'getPriceCurrencyDivisor',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
         'receipt' => 'getReceipt',
         'regions' => 'getRegions',
         'send' => 'getSend',
         'send_currency' => 'getSendCurrency',
+        'send_currency_divisor' => 'getSendCurrencyDivisor',
         'short_notes' => 'getShortNotes',
         'status' => 'getStatus',
         'sub_types' => 'getSubTypes',
@@ -372,6 +390,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
+        $this->setIfExists('cost_currency_divisor', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
@@ -381,12 +400,14 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('offer_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_currency', $data ?? [], null);
+        $this->setIfExists('price_currency_divisor', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
         $this->setIfExists('receipt', $data ?? [], null);
         $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('send_currency', $data ?? [], null);
+        $this->setIfExists('send_currency_divisor', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
@@ -434,6 +455,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['cost_currency'] === null) {
             $invalidProperties[] = "'cost_currency' can't be null";
         }
+        if ($this->container['cost_currency_divisor'] === null) {
+            $invalidProperties[] = "'cost_currency_divisor' can't be null";
+        }
         if ($this->container['country'] === null) {
             $invalidProperties[] = "'country' can't be null";
         }
@@ -458,6 +482,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['price_currency'] === null) {
             $invalidProperties[] = "'price_currency' can't be null";
         }
+        if ($this->container['price_currency_divisor'] === null) {
+            $invalidProperties[] = "'price_currency_divisor' can't be null";
+        }
         if ($this->container['price_type'] === null) {
             $invalidProperties[] = "'price_type' can't be null";
         }
@@ -469,6 +496,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         }
         if ($this->container['send_currency'] === null) {
             $invalidProperties[] = "'send_currency' can't be null";
+        }
+        if ($this->container['send_currency_divisor'] === null) {
+            $invalidProperties[] = "'send_currency_divisor' can't be null";
         }
         if ($this->container['short_notes'] === null) {
             $invalidProperties[] = "'short_notes' can't be null";
@@ -631,6 +661,33 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable cost_currency cannot be null');
         }
         $this->container['cost_currency'] = $cost_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets cost_currency_divisor
+     *
+     * @return int
+     */
+    public function getCostCurrencyDivisor()
+    {
+        return $this->container['cost_currency_divisor'];
+    }
+
+    /**
+     * Sets cost_currency_divisor
+     *
+     * @param int $cost_currency_divisor cost_currency_divisor
+     *
+     * @return self
+     */
+    public function setCostCurrencyDivisor($cost_currency_divisor)
+    {
+        if (is_null($cost_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable cost_currency_divisor cannot be null');
+        }
+        $this->container['cost_currency_divisor'] = $cost_currency_divisor;
 
         return $this;
     }
@@ -879,6 +936,33 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets price_currency_divisor
+     *
+     * @return int
+     */
+    public function getPriceCurrencyDivisor()
+    {
+        return $this->container['price_currency_divisor'];
+    }
+
+    /**
+     * Sets price_currency_divisor
+     *
+     * @param int $price_currency_divisor price_currency_divisor
+     *
+     * @return self
+     */
+    public function setPriceCurrencyDivisor($price_currency_divisor)
+    {
+        if (is_null($price_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable price_currency_divisor cannot be null');
+        }
+        $this->container['price_currency_divisor'] = $price_currency_divisor;
+
+        return $this;
+    }
+
+    /**
      * Gets price_type
      *
      * @return \Zendit\Model\DtoPriceType
@@ -1036,6 +1120,33 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable send_currency cannot be null');
         }
         $this->container['send_currency'] = $send_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_currency_divisor
+     *
+     * @return int
+     */
+    public function getSendCurrencyDivisor()
+    {
+        return $this->container['send_currency_divisor'];
+    }
+
+    /**
+     * Sets send_currency_divisor
+     *
+     * @param int $send_currency_divisor send_currency_divisor
+     *
+     * @return self
+     */
+    public function setSendCurrencyDivisor($send_currency_divisor)
+    {
+        if (is_null($send_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable send_currency_divisor cannot be null');
+        }
+        $this->container['send_currency_divisor'] = $send_currency_divisor;
 
         return $this;
     }

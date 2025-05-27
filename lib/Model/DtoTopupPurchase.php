@@ -35,6 +35,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => '\Zendit\Model\DtoConfirmation',
         'cost' => 'int',
         'cost_currency' => 'string',
+        'cost_currency_divisor' => 'int',
         'country' => 'string',
         'created_at' => 'string',
         'data_gb' => 'float',
@@ -46,12 +47,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'string',
         'price' => 'int',
         'price_currency' => 'string',
+        'price_currency_divisor' => 'int',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
         'recipient_phone_number' => 'string',
         'regions' => 'string[]',
         'send' => 'int',
         'send_currency' => 'string',
+        'send_currency_divisor' => 'int',
         'sender' => '\Zendit\Model\DtoTopupSender',
         'short_notes' => 'string',
         'sms_number' => 'int',
@@ -78,6 +81,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => null,
         'cost' => null,
         'cost_currency' => null,
+        'cost_currency_divisor' => null,
         'country' => null,
         'created_at' => null,
         'data_gb' => null,
@@ -89,12 +93,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => null,
         'price' => null,
         'price_currency' => null,
+        'price_currency_divisor' => null,
         'price_type' => null,
         'product_type' => null,
         'recipient_phone_number' => null,
         'regions' => null,
         'send' => null,
         'send_currency' => null,
+        'send_currency_divisor' => null,
         'sender' => null,
         'short_notes' => null,
         'sms_number' => null,
@@ -119,6 +125,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => false,
         'cost' => false,
         'cost_currency' => false,
+        'cost_currency_divisor' => false,
         'country' => false,
         'created_at' => false,
         'data_gb' => false,
@@ -130,12 +137,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => false,
         'price' => false,
         'price_currency' => false,
+        'price_currency_divisor' => false,
         'price_type' => false,
         'product_type' => false,
         'recipient_phone_number' => false,
         'regions' => false,
         'send' => false,
         'send_currency' => false,
+        'send_currency_divisor' => false,
         'sender' => false,
         'short_notes' => false,
         'sms_number' => false,
@@ -240,6 +249,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => 'confirmation',
         'cost' => 'cost',
         'cost_currency' => 'costCurrency',
+        'cost_currency_divisor' => 'costCurrencyDivisor',
         'country' => 'country',
         'created_at' => 'createdAt',
         'data_gb' => 'dataGB',
@@ -251,12 +261,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'offerId',
         'price' => 'price',
         'price_currency' => 'priceCurrency',
+        'price_currency_divisor' => 'priceCurrencyDivisor',
         'price_type' => 'priceType',
         'product_type' => 'productType',
         'recipient_phone_number' => 'recipientPhoneNumber',
         'regions' => 'regions',
         'send' => 'send',
         'send_currency' => 'sendCurrency',
+        'send_currency_divisor' => 'sendCurrencyDivisor',
         'sender' => 'sender',
         'short_notes' => 'shortNotes',
         'sms_number' => 'smsNumber',
@@ -281,6 +293,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
         'cost_currency' => 'setCostCurrency',
+        'cost_currency_divisor' => 'setCostCurrencyDivisor',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
         'data_gb' => 'setDataGb',
@@ -292,12 +305,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'setOfferId',
         'price' => 'setPrice',
         'price_currency' => 'setPriceCurrency',
+        'price_currency_divisor' => 'setPriceCurrencyDivisor',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
         'recipient_phone_number' => 'setRecipientPhoneNumber',
         'regions' => 'setRegions',
         'send' => 'setSend',
         'send_currency' => 'setSendCurrency',
+        'send_currency_divisor' => 'setSendCurrencyDivisor',
         'sender' => 'setSender',
         'short_notes' => 'setShortNotes',
         'sms_number' => 'setSmsNumber',
@@ -322,6 +337,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
         'cost_currency' => 'getCostCurrency',
+        'cost_currency_divisor' => 'getCostCurrencyDivisor',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
         'data_gb' => 'getDataGb',
@@ -333,12 +349,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'getOfferId',
         'price' => 'getPrice',
         'price_currency' => 'getPriceCurrency',
+        'price_currency_divisor' => 'getPriceCurrencyDivisor',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
         'recipient_phone_number' => 'getRecipientPhoneNumber',
         'regions' => 'getRegions',
         'send' => 'getSend',
         'send_currency' => 'getSendCurrency',
+        'send_currency_divisor' => 'getSendCurrencyDivisor',
         'sender' => 'getSender',
         'short_notes' => 'getShortNotes',
         'sms_number' => 'getSmsNumber',
@@ -414,6 +432,7 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
+        $this->setIfExists('cost_currency_divisor', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('data_gb', $data ?? [], null);
@@ -425,12 +444,14 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('offer_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_currency', $data ?? [], null);
+        $this->setIfExists('price_currency_divisor', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
         $this->setIfExists('recipient_phone_number', $data ?? [], null);
         $this->setIfExists('regions', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
         $this->setIfExists('send_currency', $data ?? [], null);
+        $this->setIfExists('send_currency_divisor', $data ?? [], null);
         $this->setIfExists('sender', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
         $this->setIfExists('sms_number', $data ?? [], null);
@@ -483,6 +504,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['cost_currency'] === null) {
             $invalidProperties[] = "'cost_currency' can't be null";
         }
+        if ($this->container['cost_currency_divisor'] === null) {
+            $invalidProperties[] = "'cost_currency_divisor' can't be null";
+        }
         if ($this->container['country'] === null) {
             $invalidProperties[] = "'country' can't be null";
         }
@@ -513,6 +537,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['price_currency'] === null) {
             $invalidProperties[] = "'price_currency' can't be null";
         }
+        if ($this->container['price_currency_divisor'] === null) {
+            $invalidProperties[] = "'price_currency_divisor' can't be null";
+        }
         if ($this->container['price_type'] === null) {
             $invalidProperties[] = "'price_type' can't be null";
         }
@@ -527,6 +554,9 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['send_currency'] === null) {
             $invalidProperties[] = "'send_currency' can't be null";
+        }
+        if ($this->container['send_currency_divisor'] === null) {
+            $invalidProperties[] = "'send_currency_divisor' can't be null";
         }
         if ($this->container['sender'] === null) {
             $invalidProperties[] = "'sender' can't be null";
@@ -704,6 +734,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable cost_currency cannot be null');
         }
         $this->container['cost_currency'] = $cost_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets cost_currency_divisor
+     *
+     * @return int
+     */
+    public function getCostCurrencyDivisor()
+    {
+        return $this->container['cost_currency_divisor'];
+    }
+
+    /**
+     * Sets cost_currency_divisor
+     *
+     * @param int $cost_currency_divisor cost_currency_divisor
+     *
+     * @return self
+     */
+    public function setCostCurrencyDivisor($cost_currency_divisor)
+    {
+        if (is_null($cost_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable cost_currency_divisor cannot be null');
+        }
+        $this->container['cost_currency_divisor'] = $cost_currency_divisor;
 
         return $this;
     }
@@ -1006,6 +1063,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets price_currency_divisor
+     *
+     * @return int
+     */
+    public function getPriceCurrencyDivisor()
+    {
+        return $this->container['price_currency_divisor'];
+    }
+
+    /**
+     * Sets price_currency_divisor
+     *
+     * @param int $price_currency_divisor price_currency_divisor
+     *
+     * @return self
+     */
+    public function setPriceCurrencyDivisor($price_currency_divisor)
+    {
+        if (is_null($price_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable price_currency_divisor cannot be null');
+        }
+        $this->container['price_currency_divisor'] = $price_currency_divisor;
+
+        return $this;
+    }
+
+    /**
      * Gets price_type
      *
      * @return \Zendit\Model\DtoPriceType
@@ -1163,6 +1247,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable send_currency cannot be null');
         }
         $this->container['send_currency'] = $send_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_currency_divisor
+     *
+     * @return int
+     */
+    public function getSendCurrencyDivisor()
+    {
+        return $this->container['send_currency_divisor'];
+    }
+
+    /**
+     * Sets send_currency_divisor
+     *
+     * @param int $send_currency_divisor send_currency_divisor
+     *
+     * @return self
+     */
+    public function setSendCurrencyDivisor($send_currency_divisor)
+    {
+        if (is_null($send_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable send_currency_divisor cannot be null');
+        }
+        $this->container['send_currency_divisor'] = $send_currency_divisor;
 
         return $this;
     }

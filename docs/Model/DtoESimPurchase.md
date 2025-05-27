@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **confirmation** | [**\Zendit\Model\DtoESimConfirmation**](DtoESimConfirmation.md) |  | [optional]
 **cost** | **int** |  |
 **cost_currency** | **string** |  |
+**cost_currency_divisor** | **int** |  |
 **country** | **string** |  |
 **created_at** | **string** |  |
 **data_gb** | **float** |  |
@@ -21,8 +22,10 @@ Name | Type | Description | Notes
 **offer_id** | **string** |  |
 **price** | **int** |  |
 **price_currency** | **string** |  |
+**price_currency_divisor** | **int** |  |
 **price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  |
 **product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
+**refund** | [**\Zendit\Model\DtoESimRefund**](DtoESimRefund.md) |  | [optional]
 **regions** | **string[]** |  |
 **roaming** | [**\Zendit\Model\DtoESimRoaming[]**](DtoESimRoaming.md) |  |
 **short_notes** | **string** |  |

@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoPrice Class Doc Comment
+ * DtoESimRefundStatus Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESimRefundStatus implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Price';
+    protected static $openAPIModelName = 'dto.ESimRefundStatus';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,15 +30,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'amount' => 'int',
+        'created_at' => 'string',
         'currency' => 'string',
         'currency_divisor' => 'int',
-        'fixed' => 'int',
-        'fx' => 'float',
-        'margin' => 'float',
-        'max' => 'int',
-        'min' => 'int',
-        'suggested_fixed' => 'int',
-        'suggested_fx' => 'float'
+        'error' => '\Zendit\Model\DtoError',
+        'log' => '\Zendit\Model\DtoTransactionLogItem[]',
+        'product_type' => '\Zendit\Model\DtoProductType',
+        'refunded_transaction_id' => 'string',
+        'status' => '\Zendit\Model\DtoTransactionStatus',
+        'transaction_id' => 'string',
+        'type' => '\Zendit\Model\DtoTransactionType',
+        'updated_at' => 'string'
     ];
 
     /**
@@ -49,15 +52,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'amount' => null,
+        'created_at' => null,
         'currency' => null,
         'currency_divisor' => null,
-        'fixed' => null,
-        'fx' => null,
-        'margin' => null,
-        'max' => null,
-        'min' => null,
-        'suggested_fixed' => null,
-        'suggested_fx' => null
+        'error' => null,
+        'log' => null,
+        'product_type' => null,
+        'refunded_transaction_id' => null,
+        'status' => null,
+        'transaction_id' => null,
+        'type' => null,
+        'updated_at' => null
     ];
 
     /**
@@ -66,15 +72,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'amount' => false,
+        'created_at' => false,
         'currency' => false,
         'currency_divisor' => false,
-        'fixed' => false,
-        'fx' => false,
-        'margin' => false,
-        'max' => false,
-        'min' => false,
-        'suggested_fixed' => false,
-        'suggested_fx' => false
+        'error' => false,
+        'log' => false,
+        'product_type' => false,
+        'refunded_transaction_id' => false,
+        'status' => false,
+        'transaction_id' => false,
+        'type' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -163,15 +172,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'amount' => 'amount',
+        'created_at' => 'createdAt',
         'currency' => 'currency',
         'currency_divisor' => 'currencyDivisor',
-        'fixed' => 'fixed',
-        'fx' => 'fx',
-        'margin' => 'margin',
-        'max' => 'max',
-        'min' => 'min',
-        'suggested_fixed' => 'suggestedFixed',
-        'suggested_fx' => 'suggestedFx'
+        'error' => 'error',
+        'log' => 'log',
+        'product_type' => 'productType',
+        'refunded_transaction_id' => 'refundedTransactionId',
+        'status' => 'status',
+        'transaction_id' => 'transactionId',
+        'type' => 'type',
+        'updated_at' => 'updatedAt'
     ];
 
     /**
@@ -180,15 +192,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'amount' => 'setAmount',
+        'created_at' => 'setCreatedAt',
         'currency' => 'setCurrency',
         'currency_divisor' => 'setCurrencyDivisor',
-        'fixed' => 'setFixed',
-        'fx' => 'setFx',
-        'margin' => 'setMargin',
-        'max' => 'setMax',
-        'min' => 'setMin',
-        'suggested_fixed' => 'setSuggestedFixed',
-        'suggested_fx' => 'setSuggestedFx'
+        'error' => 'setError',
+        'log' => 'setLog',
+        'product_type' => 'setProductType',
+        'refunded_transaction_id' => 'setRefundedTransactionId',
+        'status' => 'setStatus',
+        'transaction_id' => 'setTransactionId',
+        'type' => 'setType',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -197,15 +212,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'amount' => 'getAmount',
+        'created_at' => 'getCreatedAt',
         'currency' => 'getCurrency',
         'currency_divisor' => 'getCurrencyDivisor',
-        'fixed' => 'getFixed',
-        'fx' => 'getFx',
-        'margin' => 'getMargin',
-        'max' => 'getMax',
-        'min' => 'getMin',
-        'suggested_fixed' => 'getSuggestedFixed',
-        'suggested_fx' => 'getSuggestedFx'
+        'error' => 'getError',
+        'log' => 'getLog',
+        'product_type' => 'getProductType',
+        'refunded_transaction_id' => 'getRefundedTransactionId',
+        'status' => 'getStatus',
+        'transaction_id' => 'getTransactionId',
+        'type' => 'getType',
+        'updated_at' => 'getUpdatedAt'
     ];
 
     /**
@@ -265,15 +283,18 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('currency_divisor', $data ?? [], null);
-        $this->setIfExists('fixed', $data ?? [], null);
-        $this->setIfExists('fx', $data ?? [], null);
-        $this->setIfExists('margin', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
-        $this->setIfExists('suggested_fixed', $data ?? [], null);
-        $this->setIfExists('suggested_fx', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('log', $data ?? [], null);
+        $this->setIfExists('product_type', $data ?? [], null);
+        $this->setIfExists('refunded_transaction_id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('transaction_id', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('updated_at', $data ?? [], null);
     }
 
     /**
@@ -303,11 +324,38 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
+        if ($this->container['amount'] === null) {
+            $invalidProperties[] = "'amount' can't be null";
+        }
+        if ($this->container['created_at'] === null) {
+            $invalidProperties[] = "'created_at' can't be null";
+        }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
         }
         if ($this->container['currency_divisor'] === null) {
             $invalidProperties[] = "'currency_divisor' can't be null";
+        }
+        if ($this->container['log'] === null) {
+            $invalidProperties[] = "'log' can't be null";
+        }
+        if ($this->container['product_type'] === null) {
+            $invalidProperties[] = "'product_type' can't be null";
+        }
+        if ($this->container['refunded_transaction_id'] === null) {
+            $invalidProperties[] = "'refunded_transaction_id' can't be null";
+        }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        if ($this->container['transaction_id'] === null) {
+            $invalidProperties[] = "'transaction_id' can't be null";
+        }
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        if ($this->container['updated_at'] === null) {
+            $invalidProperties[] = "'updated_at' can't be null";
         }
         return $invalidProperties;
     }
@@ -323,6 +371,60 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets amount
+     *
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->container['amount'];
+    }
+
+    /**
+     * Sets amount
+     *
+     * @param int $amount amount
+     *
+     * @return self
+     */
+    public function setAmount($amount)
+    {
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets created_at
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->container['created_at'];
+    }
+
+    /**
+     * Sets created_at
+     *
+     * @param string $created_at created_at
+     *
+     * @return self
+     */
+    public function setCreatedAt($created_at)
+    {
+        if (is_null($created_at)) {
+            throw new \InvalidArgumentException('non-nullable created_at cannot be null');
+        }
+        $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
 
     /**
      * Gets currency
@@ -379,190 +481,217 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets fixed
+     * Gets error
      *
-     * @return int|null
+     * @return \Zendit\Model\DtoError|null
      */
-    public function getFixed()
+    public function getError()
     {
-        return $this->container['fixed'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets fixed
+     * Sets error
      *
-     * @param int|null $fixed fixed
+     * @param \Zendit\Model\DtoError|null $error error
      *
      * @return self
      */
-    public function setFixed($fixed)
+    public function setError($error)
     {
-        if (is_null($fixed)) {
-            throw new \InvalidArgumentException('non-nullable fixed cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $this->container['fixed'] = $fixed;
+        $this->container['error'] = $error;
 
         return $this;
     }
 
     /**
-     * Gets fx
+     * Gets log
      *
-     * @return float|null
+     * @return \Zendit\Model\DtoTransactionLogItem[]
      */
-    public function getFx()
+    public function getLog()
     {
-        return $this->container['fx'];
+        return $this->container['log'];
     }
 
     /**
-     * Sets fx
+     * Sets log
      *
-     * @param float|null $fx fx
+     * @param \Zendit\Model\DtoTransactionLogItem[] $log log
      *
      * @return self
      */
-    public function setFx($fx)
+    public function setLog($log)
     {
-        if (is_null($fx)) {
-            throw new \InvalidArgumentException('non-nullable fx cannot be null');
+        if (is_null($log)) {
+            throw new \InvalidArgumentException('non-nullable log cannot be null');
         }
-        $this->container['fx'] = $fx;
+        $this->container['log'] = $log;
 
         return $this;
     }
 
     /**
-     * Gets margin
+     * Gets product_type
      *
-     * @return float|null
+     * @return \Zendit\Model\DtoProductType
      */
-    public function getMargin()
+    public function getProductType()
     {
-        return $this->container['margin'];
+        return $this->container['product_type'];
     }
 
     /**
-     * Sets margin
+     * Sets product_type
      *
-     * @param float|null $margin margin
+     * @param \Zendit\Model\DtoProductType $product_type product_type
      *
      * @return self
      */
-    public function setMargin($margin)
+    public function setProductType($product_type)
     {
-        if (is_null($margin)) {
-            throw new \InvalidArgumentException('non-nullable margin cannot be null');
+        if (is_null($product_type)) {
+            throw new \InvalidArgumentException('non-nullable product_type cannot be null');
         }
-        $this->container['margin'] = $margin;
+        $this->container['product_type'] = $product_type;
 
         return $this;
     }
 
     /**
-     * Gets max
+     * Gets refunded_transaction_id
      *
-     * @return int|null
+     * @return string
      */
-    public function getMax()
+    public function getRefundedTransactionId()
     {
-        return $this->container['max'];
+        return $this->container['refunded_transaction_id'];
     }
 
     /**
-     * Sets max
+     * Sets refunded_transaction_id
      *
-     * @param int|null $max max
+     * @param string $refunded_transaction_id refunded_transaction_id
      *
      * @return self
      */
-    public function setMax($max)
+    public function setRefundedTransactionId($refunded_transaction_id)
     {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
+        if (is_null($refunded_transaction_id)) {
+            throw new \InvalidArgumentException('non-nullable refunded_transaction_id cannot be null');
         }
-        $this->container['max'] = $max;
+        $this->container['refunded_transaction_id'] = $refunded_transaction_id;
 
         return $this;
     }
 
     /**
-     * Gets min
+     * Gets status
      *
-     * @return int|null
+     * @return \Zendit\Model\DtoTransactionStatus
      */
-    public function getMin()
+    public function getStatus()
     {
-        return $this->container['min'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets min
+     * Sets status
      *
-     * @param int|null $min min
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
-    public function setMin($min)
+    public function setStatus($status)
     {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['min'] = $min;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets suggested_fixed
+     * Gets transaction_id
      *
-     * @return int|null
+     * @return string
      */
-    public function getSuggestedFixed()
+    public function getTransactionId()
     {
-        return $this->container['suggested_fixed'];
+        return $this->container['transaction_id'];
     }
 
     /**
-     * Sets suggested_fixed
+     * Sets transaction_id
      *
-     * @param int|null $suggested_fixed suggested_fixed
+     * @param string $transaction_id transaction_id
      *
      * @return self
      */
-    public function setSuggestedFixed($suggested_fixed)
+    public function setTransactionId($transaction_id)
     {
-        if (is_null($suggested_fixed)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fixed cannot be null');
+        if (is_null($transaction_id)) {
+            throw new \InvalidArgumentException('non-nullable transaction_id cannot be null');
         }
-        $this->container['suggested_fixed'] = $suggested_fixed;
+        $this->container['transaction_id'] = $transaction_id;
 
         return $this;
     }
 
     /**
-     * Gets suggested_fx
+     * Gets type
      *
-     * @return float|null
+     * @return \Zendit\Model\DtoTransactionType
      */
-    public function getSuggestedFx()
+    public function getType()
     {
-        return $this->container['suggested_fx'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets suggested_fx
+     * Sets type
      *
-     * @param float|null $suggested_fx suggested_fx
+     * @param \Zendit\Model\DtoTransactionType $type type
      *
      * @return self
      */
-    public function setSuggestedFx($suggested_fx)
+    public function setType($type)
     {
-        if (is_null($suggested_fx)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fx cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['suggested_fx'] = $suggested_fx;
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated_at
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->container['updated_at'];
+    }
+
+    /**
+     * Sets updated_at
+     *
+     * @param string $updated_at updated_at
+     *
+     * @return self
+     */
+    public function setUpdatedAt($updated_at)
+    {
+        if (is_null($updated_at)) {
+            throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
+        }
+        $this->container['updated_at'] = $updated_at;
 
         return $this;
     }

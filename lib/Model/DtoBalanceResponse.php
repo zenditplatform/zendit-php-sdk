@@ -31,7 +31,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPITypes = [
         'available_balance' => 'int',
-        'currency' => 'string'
+        'currency' => 'string',
+        'currency_divisor' => 'int'
     ];
 
     /**
@@ -43,7 +44,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static $openAPIFormats = [
         'available_balance' => null,
-        'currency' => null
+        'currency' => null,
+        'currency_divisor' => null
     ];
 
     /**
@@ -53,7 +55,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
       */
     protected static array $openAPINullables = [
         'available_balance' => false,
-        'currency' => false
+        'currency' => false,
+        'currency_divisor' => false
     ];
 
     /**
@@ -143,7 +146,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $attributeMap = [
         'available_balance' => 'availableBalance',
-        'currency' => 'currency'
+        'currency' => 'currency',
+        'currency_divisor' => 'currencyDivisor'
     ];
 
     /**
@@ -153,7 +157,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $setters = [
         'available_balance' => 'setAvailableBalance',
-        'currency' => 'setCurrency'
+        'currency' => 'setCurrency',
+        'currency_divisor' => 'setCurrencyDivisor'
     ];
 
     /**
@@ -163,7 +168,8 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     protected static $getters = [
         'available_balance' => 'getAvailableBalance',
-        'currency' => 'getCurrency'
+        'currency' => 'getCurrency',
+        'currency_divisor' => 'getCurrencyDivisor'
     ];
 
     /**
@@ -225,6 +231,7 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $this->setIfExists('available_balance', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_divisor', $data ?? [], null);
     }
 
     /**
@@ -259,6 +266,9 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
         }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['currency_divisor'] === null) {
+            $invalidProperties[] = "'currency_divisor' can't be null";
         }
         return $invalidProperties;
     }
@@ -325,6 +335,33 @@ class DtoBalanceResponse implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_divisor
+     *
+     * @return int
+     */
+    public function getCurrencyDivisor()
+    {
+        return $this->container['currency_divisor'];
+    }
+
+    /**
+     * Sets currency_divisor
+     *
+     * @param int $currency_divisor currency_divisor
+     *
+     * @return self
+     */
+    public function setCurrencyDivisor($currency_divisor)
+    {
+        if (is_null($currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        }
+        $this->container['currency_divisor'] = $currency_divisor;
 
         return $this;
     }

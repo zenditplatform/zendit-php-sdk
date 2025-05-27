@@ -33,6 +33,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'int',
         'created_at' => 'string',
         'currency' => 'string',
+        'currency_divisor' => 'int',
         'error' => '\Zendit\Model\DtoError',
         'log' => '\Zendit\Model\DtoTransactionLogItem[]',
         'product_type' => '\Zendit\Model\DtoProductType',
@@ -53,6 +54,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => null,
         'created_at' => null,
         'currency' => null,
+        'currency_divisor' => null,
         'error' => null,
         'log' => null,
         'product_type' => null,
@@ -71,6 +73,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => false,
         'created_at' => false,
         'currency' => false,
+        'currency_divisor' => false,
         'error' => false,
         'log' => false,
         'product_type' => false,
@@ -169,6 +172,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'amount',
         'created_at' => 'createdAt',
         'currency' => 'currency',
+        'currency_divisor' => 'currencyDivisor',
         'error' => 'error',
         'log' => 'log',
         'product_type' => 'productType',
@@ -187,6 +191,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'setAmount',
         'created_at' => 'setCreatedAt',
         'currency' => 'setCurrency',
+        'currency_divisor' => 'setCurrencyDivisor',
         'error' => 'setError',
         'log' => 'setLog',
         'product_type' => 'setProductType',
@@ -205,6 +210,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         'amount' => 'getAmount',
         'created_at' => 'getCreatedAt',
         'currency' => 'getCurrency',
+        'currency_divisor' => 'getCurrencyDivisor',
         'error' => 'getError',
         'log' => 'getLog',
         'product_type' => 'getProductType',
@@ -274,6 +280,7 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_divisor', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
         $this->setIfExists('log', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
@@ -318,6 +325,9 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['currency_divisor'] === null) {
+            $invalidProperties[] = "'currency_divisor' can't be null";
         }
         if ($this->container['log'] === null) {
             $invalidProperties[] = "'log' can't be null";
@@ -429,6 +439,33 @@ class DtoTransaction implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_divisor
+     *
+     * @return int
+     */
+    public function getCurrencyDivisor()
+    {
+        return $this->container['currency_divisor'];
+    }
+
+    /**
+     * Sets currency_divisor
+     *
+     * @param int $currency_divisor currency_divisor
+     *
+     * @return self
+     */
+    public function setCurrencyDivisor($currency_divisor)
+    {
+        if (is_null($currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        }
+        $this->container['currency_divisor'] = $currency_divisor;
 
         return $this;
     }

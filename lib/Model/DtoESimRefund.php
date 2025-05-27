@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoPrice Class Doc Comment
+ * DtoESimRefund Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESimRefund implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Price';
+    protected static $openAPIModelName = 'dto.ESimRefund';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,15 +30,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'currency_divisor' => 'int',
-        'fixed' => 'int',
-        'fx' => 'float',
-        'margin' => 'float',
-        'max' => 'int',
-        'min' => 'int',
-        'suggested_fixed' => 'int',
-        'suggested_fx' => 'float'
+        'status' => '\Zendit\Model\DtoTransactionStatus'
     ];
 
     /**
@@ -49,15 +41,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'currency_divisor' => null,
-        'fixed' => null,
-        'fx' => null,
-        'margin' => null,
-        'max' => null,
-        'min' => null,
-        'suggested_fixed' => null,
-        'suggested_fx' => null
+        'status' => null
     ];
 
     /**
@@ -66,15 +50,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'currency' => false,
-        'currency_divisor' => false,
-        'fixed' => false,
-        'fx' => false,
-        'margin' => false,
-        'max' => false,
-        'min' => false,
-        'suggested_fixed' => false,
-        'suggested_fx' => false
+        'status' => false
     ];
 
     /**
@@ -163,15 +139,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'currency_divisor' => 'currencyDivisor',
-        'fixed' => 'fixed',
-        'fx' => 'fx',
-        'margin' => 'margin',
-        'max' => 'max',
-        'min' => 'min',
-        'suggested_fixed' => 'suggestedFixed',
-        'suggested_fx' => 'suggestedFx'
+        'status' => 'status'
     ];
 
     /**
@@ -180,15 +148,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'currency_divisor' => 'setCurrencyDivisor',
-        'fixed' => 'setFixed',
-        'fx' => 'setFx',
-        'margin' => 'setMargin',
-        'max' => 'setMax',
-        'min' => 'setMin',
-        'suggested_fixed' => 'setSuggestedFixed',
-        'suggested_fx' => 'setSuggestedFx'
+        'status' => 'setStatus'
     ];
 
     /**
@@ -197,15 +157,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'currency_divisor' => 'getCurrencyDivisor',
-        'fixed' => 'getFixed',
-        'fx' => 'getFx',
-        'margin' => 'getMargin',
-        'max' => 'getMax',
-        'min' => 'getMin',
-        'suggested_fixed' => 'getSuggestedFixed',
-        'suggested_fx' => 'getSuggestedFx'
+        'status' => 'getStatus'
     ];
 
     /**
@@ -265,15 +217,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('currency_divisor', $data ?? [], null);
-        $this->setIfExists('fixed', $data ?? [], null);
-        $this->setIfExists('fx', $data ?? [], null);
-        $this->setIfExists('margin', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
-        $this->setIfExists('suggested_fixed', $data ?? [], null);
-        $this->setIfExists('suggested_fx', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
     }
 
     /**
@@ -303,11 +247,8 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
-        }
-        if ($this->container['currency_divisor'] === null) {
-            $invalidProperties[] = "'currency_divisor' can't be null";
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
         }
         return $invalidProperties;
     }
@@ -325,244 +266,28 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets status
      *
-     * @return string
+     * @return \Zendit\Model\DtoTransactionStatus
      */
-    public function getCurrency()
+    public function getStatus()
     {
-        return $this->container['currency'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets currency
+     * Sets status
      *
-     * @param string $currency currency
+     * @param \Zendit\Model\DtoTransactionStatus $status status
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setStatus($status)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency_divisor
-     *
-     * @return int
-     */
-    public function getCurrencyDivisor()
-    {
-        return $this->container['currency_divisor'];
-    }
-
-    /**
-     * Sets currency_divisor
-     *
-     * @param int $currency_divisor currency_divisor
-     *
-     * @return self
-     */
-    public function setCurrencyDivisor($currency_divisor)
-    {
-        if (is_null($currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
-        }
-        $this->container['currency_divisor'] = $currency_divisor;
-
-        return $this;
-    }
-
-    /**
-     * Gets fixed
-     *
-     * @return int|null
-     */
-    public function getFixed()
-    {
-        return $this->container['fixed'];
-    }
-
-    /**
-     * Sets fixed
-     *
-     * @param int|null $fixed fixed
-     *
-     * @return self
-     */
-    public function setFixed($fixed)
-    {
-        if (is_null($fixed)) {
-            throw new \InvalidArgumentException('non-nullable fixed cannot be null');
-        }
-        $this->container['fixed'] = $fixed;
-
-        return $this;
-    }
-
-    /**
-     * Gets fx
-     *
-     * @return float|null
-     */
-    public function getFx()
-    {
-        return $this->container['fx'];
-    }
-
-    /**
-     * Sets fx
-     *
-     * @param float|null $fx fx
-     *
-     * @return self
-     */
-    public function setFx($fx)
-    {
-        if (is_null($fx)) {
-            throw new \InvalidArgumentException('non-nullable fx cannot be null');
-        }
-        $this->container['fx'] = $fx;
-
-        return $this;
-    }
-
-    /**
-     * Gets margin
-     *
-     * @return float|null
-     */
-    public function getMargin()
-    {
-        return $this->container['margin'];
-    }
-
-    /**
-     * Sets margin
-     *
-     * @param float|null $margin margin
-     *
-     * @return self
-     */
-    public function setMargin($margin)
-    {
-        if (is_null($margin)) {
-            throw new \InvalidArgumentException('non-nullable margin cannot be null');
-        }
-        $this->container['margin'] = $margin;
-
-        return $this;
-    }
-
-    /**
-     * Gets max
-     *
-     * @return int|null
-     */
-    public function getMax()
-    {
-        return $this->container['max'];
-    }
-
-    /**
-     * Sets max
-     *
-     * @param int|null $max max
-     *
-     * @return self
-     */
-    public function setMax($max)
-    {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
-        $this->container['max'] = $max;
-
-        return $this;
-    }
-
-    /**
-     * Gets min
-     *
-     * @return int|null
-     */
-    public function getMin()
-    {
-        return $this->container['min'];
-    }
-
-    /**
-     * Sets min
-     *
-     * @param int|null $min min
-     *
-     * @return self
-     */
-    public function setMin($min)
-    {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
-        $this->container['min'] = $min;
-
-        return $this;
-    }
-
-    /**
-     * Gets suggested_fixed
-     *
-     * @return int|null
-     */
-    public function getSuggestedFixed()
-    {
-        return $this->container['suggested_fixed'];
-    }
-
-    /**
-     * Sets suggested_fixed
-     *
-     * @param int|null $suggested_fixed suggested_fixed
-     *
-     * @return self
-     */
-    public function setSuggestedFixed($suggested_fixed)
-    {
-        if (is_null($suggested_fixed)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fixed cannot be null');
-        }
-        $this->container['suggested_fixed'] = $suggested_fixed;
-
-        return $this;
-    }
-
-    /**
-     * Gets suggested_fx
-     *
-     * @return float|null
-     */
-    public function getSuggestedFx()
-    {
-        return $this->container['suggested_fx'];
-    }
-
-    /**
-     * Sets suggested_fx
-     *
-     * @param float|null $suggested_fx suggested_fx
-     *
-     * @return self
-     */
-    public function setSuggestedFx($suggested_fx)
-    {
-        if (is_null($suggested_fx)) {
-            throw new \InvalidArgumentException('non-nullable suggested_fx cannot be null');
-        }
-        $this->container['suggested_fx'] = $suggested_fx;
+        $this->container['status'] = $status;
 
         return $this;
     }
