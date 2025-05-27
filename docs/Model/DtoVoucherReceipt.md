@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **account_id** | **string** |  |
 **confirmation_number** | **string** |  |
 **currency** | **string** | The 3-letter ISO currency code for the send |
+**currency_divisor** | **int** |  |
 **delivery_type** | **string** |  |
 **epin** | **string** |  |
 **expires_at** | **string** |  |

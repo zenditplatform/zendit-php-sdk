@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **string** |  |
+**currency_divisor** | **int** |  |
 **fixed** | **int** |  | [optional]
 **fx** | **float** |  | [optional]
 **max** | **int** |  | [optional]

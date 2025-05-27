@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **confirmation** | [**\Zendit\Model\DtoConfirmation**](DtoConfirmation.md) |  | [optional]
 **cost** | **int** |  |
 **cost_currency** | **string** |  |
+**cost_currency_divisor** | **int** |  |
 **country** | **string** |  |
 **created_at** | **string** |  |
 **error** | [**\Zendit\Model\DtoError**](DtoError.md) |  | [optional]
@@ -18,12 +19,14 @@ Name | Type | Description | Notes
 **offer_id** | **string** |  |
 **price** | **int** |  |
 **price_currency** | **string** |  |
+**price_currency_divisor** | **int** |  |
 **price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  |
 **product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
 **receipt** | [**\Zendit\Model\DtoVoucherReceipt**](DtoVoucherReceipt.md) |  | [optional]
 **regions** | **string[]** |  | [optional]
 **send** | **int** |  |
 **send_currency** | **string** |  |
+**send_currency_divisor** | **int** |  |
 **short_notes** | **string** |  |
 **status** | [**\Zendit\Model\DtoTransactionStatus**](DtoTransactionStatus.md) |  |
 **sub_types** | **string[]** |  |

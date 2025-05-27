@@ -48,6 +48,10 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | [**esimPurchasesPost()**](ZenditApi.md#esimPurchasesPost) | **POST** /esim/purchases | Create transaction for purchase |
 | [**esimPurchasesTransactionIdGet()**](ZenditApi.md#esimPurchasesTransactionIdGet) | **GET** /esim/purchases/{transactionId} | Get eSim transaction by id |
 | [**esimPurchasesTransactionIdQrcodeGet()**](ZenditApi.md#esimPurchasesTransactionIdQrcodeGet) | **GET** /esim/purchases/{transactionId}/qrcode | Get eSim QR code by transaction id |
+| [**esimPurchasesTransactionIdRefundGet()**](ZenditApi.md#esimPurchasesTransactionIdRefundGet) | **GET** /esim/purchases/{transactionId}/refund | Get status of refund transaction |
+| [**esimPurchasesTransactionIdRefundPost()**](ZenditApi.md#esimPurchasesTransactionIdRefundPost) | **POST** /esim/purchases/{transactionId}/refund | Refund eSim purchase by transaction id |
+| [**promosGet()**](ZenditApi.md#promosGet) | **GET** /promos | Get list of promotions |
+| [**promosPromoIdGet()**](ZenditApi.md#promosPromoIdGet) | **GET** /promos/{promoId} | Get promo by id |
 | [**reportsTransactionsPost()**](ZenditApi.md#reportsTransactionsPost) | **POST** /reports/transactions | Requests transactions reports |
 | [**reportsTransactionsReportIdFileGet()**](ZenditApi.md#reportsTransactionsReportIdFileGet) | **GET** /reports/transactions/{reportId}/{file} | Download report file |
 | [**reportsTransactionsReportIdGet()**](ZenditApi.md#reportsTransactionsReportIdGet) | **GET** /reports/transactions/{reportId} | Get transactions report by ID |
@@ -500,6 +504,166 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `image/png`, `application/json`
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimPurchasesTransactionIdRefundGet()`
+
+```php
+esimPurchasesTransactionIdRefundGet($transaction_id): \Zendit\Model\DtoESimRefundStatus
+```
+
+Get status of refund transaction
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | transaction id
+
+try {
+    $result = $apiInstance->esimPurchasesTransactionIdRefundGet($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->esimPurchasesTransactionIdRefundGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+
+### Return type
+
+[**\Zendit\Model\DtoESimRefundStatus**](../Model/DtoESimRefundStatus.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `esimPurchasesTransactionIdRefundPost()`
+
+```php
+esimPurchasesTransactionIdRefundPost($transaction_id): \Zendit\Model\DtoESimRefund
+```
+
+Refund eSim purchase by transaction id
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | transaction id
+
+try {
+    $result = $apiInstance->esimPurchasesTransactionIdRefundPost($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->esimPurchasesTransactionIdRefundPost: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+
+### Return type
+
+[**\Zendit\Model\DtoESimRefund**](../Model/DtoESimRefund.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `promosGet()`
+
+```php
+promosGet($_limit, $_offset, $brand, $country, $language, $region, $status): \Zendit\Model\DtoPromosResponse
+```
+
+Get list of promotions
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int
+$brand = 'brand_example'; // string
+$country = array('country_example'); // string[]
+$language = 'language_example'; // string
+$region = 'region_example'; // string
+$status = 'status_example'; // string
+
+try {
+    $result = $apiInstance->promosGet($_limit, $_offset, $brand, $country, $language, $region, $status);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->promosGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **brand** | **string**|  | [optional] |
+| **country** | [**string[]**](../Model/string.md)|  | [optional] |
+| **language** | **string**|  | [optional] |
+| **region** | **string**|  | [optional] |
+| **status** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoPromosResponse**](../Model/DtoPromosResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `promosPromoIdGet()`
+
+```php
+promosPromoIdGet($promo_id): \Zendit\Model\DtoPromo
+```
+
+Get promo by id
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$promo_id = 'promo_id_example'; // string | promo id
+
+try {
+    $result = $apiInstance->promosPromoIdGet($promo_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->promosPromoIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **promo_id** | **string**| promo id | |
+
+### Return type
+
+[**\Zendit\Model\DtoPromo**](../Model/DtoPromo.md)
 
 [[Back to top]](#zendit-sdk-guide) 
 [[Back to README]](../../README.md)

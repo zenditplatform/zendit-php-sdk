@@ -3,7 +3,7 @@ namespace Zendit;
 
 /**
  * Configuration Class Doc Comment
- * PHP version 7.4
+ * PHP version 8.1
  *
  * @category Class
  * @package  Zendit
@@ -74,7 +74,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "ZenditSDK/1.6.0 PHP";
+    protected $userAgent = "ZenditSDK/1.7.0 PHP";
 
     /**
      * Debug switch (default set to false)

@@ -31,6 +31,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'currency' => 'string',
+        'currency_divisor' => 'int',
         'fixed' => 'int',
         'fx' => 'float',
         'max' => 'int',
@@ -46,6 +47,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'currency' => null,
+        'currency_divisor' => null,
         'fixed' => null,
         'fx' => null,
         'max' => null,
@@ -59,6 +61,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'currency' => false,
+        'currency_divisor' => false,
         'fixed' => false,
         'fx' => false,
         'max' => false,
@@ -152,6 +155,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'currency' => 'currency',
+        'currency_divisor' => 'currencyDivisor',
         'fixed' => 'fixed',
         'fx' => 'fx',
         'max' => 'max',
@@ -165,6 +169,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'currency' => 'setCurrency',
+        'currency_divisor' => 'setCurrencyDivisor',
         'fixed' => 'setFixed',
         'fx' => 'setFx',
         'max' => 'setMax',
@@ -178,6 +183,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'currency' => 'getCurrency',
+        'currency_divisor' => 'getCurrencyDivisor',
         'fixed' => 'getFixed',
         'fx' => 'getFx',
         'max' => 'getMax',
@@ -242,6 +248,7 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(?array $data = null)
     {
         $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('currency_divisor', $data ?? [], null);
         $this->setIfExists('fixed', $data ?? [], null);
         $this->setIfExists('fx', $data ?? [], null);
         $this->setIfExists('max', $data ?? [], null);
@@ -277,6 +284,9 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
 
         if ($this->container['currency'] === null) {
             $invalidProperties[] = "'currency' can't be null";
+        }
+        if ($this->container['currency_divisor'] === null) {
+            $invalidProperties[] = "'currency_divisor' can't be null";
         }
         return $invalidProperties;
     }
@@ -316,6 +326,33 @@ class DtoZend implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
         $this->container['currency'] = $currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets currency_divisor
+     *
+     * @return int
+     */
+    public function getCurrencyDivisor()
+    {
+        return $this->container['currency_divisor'];
+    }
+
+    /**
+     * Sets currency_divisor
+     *
+     * @param int $currency_divisor currency_divisor
+     *
+     * @return self
+     */
+    public function setCurrencyDivisor($currency_divisor)
+    {
+        if (is_null($currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        }
+        $this->container['currency_divisor'] = $currency_divisor;
 
         return $this;
     }
