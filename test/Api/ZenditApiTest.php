@@ -168,7 +168,7 @@ class ZenditApiTest extends TestCase
         $data = new DtoTopupPurchaseMakeInput();
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
         $data->setRecipientPhoneNumber("+5355564362");
-        $data->setOfferId("CUBACEL_CU_PAQUETE001");
+        $data->setOfferId("CUBACEL_CU_001");
 
         $result = $this->zenditApi->topupsPurchasesPost($data);
 
@@ -187,7 +187,7 @@ class ZenditApiTest extends TestCase
         $data = new DtoTopupPurchaseMakeInput();
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
         $data->setRecipientPhoneNumber("+5355564362");
-        $data->setOfferId("CUBACEL_CU_PAQUETE001");
+        $data->setOfferId("CUBACEL_CU_001");
         $purchaseData = $this->zenditApi->topupsPurchasesPost($data);
 
         $result = $this->zenditApi->topupsPurchasesTransactionIdGet($purchaseData->getTransactionId());
