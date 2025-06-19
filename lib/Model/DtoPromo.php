@@ -40,7 +40,7 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'min_value' => 'int',
         'regions' => 'string[]',
         'start_at' => 'string',
-        'status' => 'string',
+        'status' => '\Zendit\Model\DtoPromoStatus',
         'updated_at' => 'string'
     ];
 
@@ -612,7 +612,7 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets status
      *
-     * @return string|null
+     * @return \Zendit\Model\DtoPromoStatus|null
      */
     public function getStatus()
     {
@@ -622,7 +622,7 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets status
      *
-     * @param string|null $status status
+     * @param \Zendit\Model\DtoPromoStatus|null $status status
      *
      * @return self
      */

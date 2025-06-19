@@ -37,7 +37,7 @@ All URIs are relative to /v1, except if the operation defines another base path.
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**balanceGet()**](ZenditApi.md#balanceGet) | **GET** /balance | Get list of transactions |
+| [**balanceGet()**](ZenditApi.md#balanceGet) | **GET** /balance | Retrieve wallet balance |
 | [**brandsBrandGet()**](ZenditApi.md#brandsBrandGet) | **GET** /brands/{brand} | Get a brand by the brand code |
 | [**brandsBrandRedemptionInstructionsGet()**](ZenditApi.md#brandsBrandRedemptionInstructionsGet) | **GET** /brands/{brand}/redemptionInstructions | Get a brand redemption instruction by the brand code |
 | [**brandsGet()**](ZenditApi.md#brandsGet) | **GET** /brands | Get list of brands |
@@ -50,7 +50,7 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | [**esimPurchasesTransactionIdQrcodeGet()**](ZenditApi.md#esimPurchasesTransactionIdQrcodeGet) | **GET** /esim/purchases/{transactionId}/qrcode | Get eSim QR code by transaction id |
 | [**esimPurchasesTransactionIdRefundGet()**](ZenditApi.md#esimPurchasesTransactionIdRefundGet) | **GET** /esim/purchases/{transactionId}/refund | Get status of refund transaction |
 | [**esimPurchasesTransactionIdRefundPost()**](ZenditApi.md#esimPurchasesTransactionIdRefundPost) | **POST** /esim/purchases/{transactionId}/refund | Refund eSim purchase by transaction id |
-| [**promosGet()**](ZenditApi.md#promosGet) | **GET** /promos | Get list of promotions |
+| [**promosGet()**](ZenditApi.md#promosGet) | **GET** /promos/ | Get list of promotions |
 | [**promosPromoIdGet()**](ZenditApi.md#promosPromoIdGet) | **GET** /promos/{promoId} | Get promo by id |
 | [**reportsTransactionsPost()**](ZenditApi.md#reportsTransactionsPost) | **POST** /reports/transactions | Requests transactions reports |
 | [**reportsTransactionsReportIdFileGet()**](ZenditApi.md#reportsTransactionsReportIdFileGet) | **GET** /reports/transactions/{reportId}/{file} | Download report file |
@@ -76,7 +76,7 @@ All URIs are relative to /v1, except if the operation defines another base path.
 balanceGet(): \Zendit\Model\DtoBalanceResponse
 ```
 
-Get list of transactions
+Retrieve wallet balance
 
 ### Example
 
@@ -599,7 +599,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $_limit = 56; // int
 $_offset = 56; // int
 $brand = 'brand_example'; // string
-$country = array('country_example'); // string[]
+$country = 'country_example'; // string
 $language = 'language_example'; // string
 $region = 'region_example'; // string
 $status = 'status_example'; // string
@@ -619,7 +619,7 @@ try {
 | **_limit** | **int**|  | |
 | **_offset** | **int**|  | |
 | **brand** | **string**|  | [optional] |
-| **country** | [**string[]**](../Model/string.md)|  | [optional] |
+| **country** | **string**|  | [optional] |
 | **language** | **string**|  | [optional] |
 | **region** | **string**|  | [optional] |
 | **status** | **string**|  | [optional] |

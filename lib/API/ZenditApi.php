@@ -192,7 +192,7 @@ class ZenditApi
     /**
      * Operation balanceGet
      *
-     * Get list of transactions
+     * Retrieve wallet balance
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['balanceGet'] to see the possible values for this operation
      *
@@ -209,7 +209,7 @@ class ZenditApi
     /**
      * Operation balanceGetWithHttpInfo
      *
-     * Get list of transactions
+     * Retrieve wallet balance
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['balanceGet'] to see the possible values for this operation
      *
@@ -321,7 +321,7 @@ class ZenditApi
     /**
      * Operation balanceGetAsync
      *
-     * Get list of transactions
+     * Retrieve wallet balance
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['balanceGet'] to see the possible values for this operation
      *
@@ -341,7 +341,7 @@ class ZenditApi
     /**
      * Operation balanceGetAsyncWithHttpInfo
      *
-     * Get list of transactions
+     * Retrieve wallet balance
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['balanceGet'] to see the possible values for this operation
      *
@@ -4346,7 +4346,7 @@ class ZenditApi
      * @param  int $_limit _limit (required)
      * @param  int $_offset _offset (required)
      * @param  string|null $brand brand (optional)
-     * @param  string[]|null $country country (optional)
+     * @param  string|null $country country (optional)
      * @param  string|null $language language (optional)
      * @param  string|null $region region (optional)
      * @param  string|null $status status (optional)
@@ -4370,7 +4370,7 @@ class ZenditApi
      * @param  int $_limit (required)
      * @param  int $_offset (required)
      * @param  string|null $brand (optional)
-     * @param  string[]|null $country (optional)
+     * @param  string|null $country (optional)
      * @param  string|null $language (optional)
      * @param  string|null $region (optional)
      * @param  string|null $status (optional)
@@ -4489,7 +4489,7 @@ class ZenditApi
      * @param  int $_limit (required)
      * @param  int $_offset (required)
      * @param  string|null $brand (optional)
-     * @param  string[]|null $country (optional)
+     * @param  string|null $country (optional)
      * @param  string|null $language (optional)
      * @param  string|null $region (optional)
      * @param  string|null $status (optional)
@@ -4516,7 +4516,7 @@ class ZenditApi
      * @param  int $_limit (required)
      * @param  int $_offset (required)
      * @param  string|null $brand (optional)
-     * @param  string[]|null $country (optional)
+     * @param  string|null $country (optional)
      * @param  string|null $language (optional)
      * @param  string|null $region (optional)
      * @param  string|null $status (optional)
@@ -4572,7 +4572,7 @@ class ZenditApi
      * @param  int $_limit (required)
      * @param  int $_offset (required)
      * @param  string|null $brand (optional)
-     * @param  string[]|null $country (optional)
+     * @param  string|null $country (optional)
      * @param  string|null $language (optional)
      * @param  string|null $region (optional)
      * @param  string|null $status (optional)
@@ -4604,7 +4604,7 @@ class ZenditApi
 
 
 
-        $resourcePath = '/promos';
+        $resourcePath = '/promos/';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4642,8 +4642,8 @@ class ZenditApi
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
             $country,
             'country', // param base name
-            'array', // openApiType
-            'form', // style
+            'string', // openApiType
+            '', // style
             false, // explode
             false // required
         ) ?? []);

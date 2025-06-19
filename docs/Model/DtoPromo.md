@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **min_value** | **int** |  | [optional]
 **regions** | **string[]** |  | [optional]
 **start_at** | **string** |  | [optional]
-**status** | **string** |  | [optional]
+**status** | [**\Zendit\Model\DtoPromoStatus**](DtoPromoStatus.md) |  | [optional]
 **updated_at** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
