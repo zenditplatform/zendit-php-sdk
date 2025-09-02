@@ -51,6 +51,24 @@ class ZenditApi
         'balanceGet' => [
             'application/json',
         ],
+        'billpayOffersGet' => [
+            'application/json',
+        ],
+        'billpayOffersOfferIdBillGet' => [
+            'application/json',
+        ],
+        'billpayOffersOfferIdGet' => [
+            'application/json',
+        ],
+        'billpayPurchasesGet' => [
+            'application/json',
+        ],
+        'billpayPurchasesPost' => [
+            'application/json',
+        ],
+        'billpayPurchasesTransactionIdGet' => [
+            'application/json',
+        ],
         'brandsBrandGet' => [
             'application/json',
         ],
@@ -410,6 +428,1975 @@ class ZenditApi
 
 
 
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayOffersGet
+     *
+     * Get list of BillPay offers
+     *
+     * @param  int $_limit _limit (required)
+     * @param  int $_offset Example: Reusing common fields for filtering and pagination (required)
+     * @param  string|null $brand brand (optional)
+     * @param  string|null $country country (optional)
+     * @param  string|null $regions regions (optional)
+     * @param  string|null $sub_type sub_type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayOffersResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayOffersGet($_limit, $_offset, $brand = null, $country = null, $regions = null, $sub_type = null, string $contentType = self::contentTypes['billpayOffersGet'][0])
+    {
+        list($response) = $this->billpayOffersGetWithHttpInfo($_limit, $_offset, $brand, $country, $regions, $sub_type, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayOffersGetWithHttpInfo
+     *
+     * Get list of BillPay offers
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset Example: Reusing common fields for filtering and pagination (required)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayOffersResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayOffersGetWithHttpInfo($_limit, $_offset, $brand = null, $country = null, $regions = null, $sub_type = null, string $contentType = self::contentTypes['billpayOffersGet'][0])
+    {
+        $request = $this->billpayOffersGetRequest($_limit, $_offset, $brand, $country, $regions, $sub_type, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayOffersResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayOffersResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayOffersResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayOffersGetAsync
+     *
+     * Get list of BillPay offers
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset Example: Reusing common fields for filtering and pagination (required)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersGetAsync($_limit, $_offset, $brand = null, $country = null, $regions = null, $sub_type = null, string $contentType = self::contentTypes['billpayOffersGet'][0])
+    {
+        return $this->billpayOffersGetAsyncWithHttpInfo($_limit, $_offset, $brand, $country, $regions, $sub_type, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayOffersGetAsyncWithHttpInfo
+     *
+     * Get list of BillPay offers
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset Example: Reusing common fields for filtering and pagination (required)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersGetAsyncWithHttpInfo($_limit, $_offset, $brand = null, $country = null, $regions = null, $sub_type = null, string $contentType = self::contentTypes['billpayOffersGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayOffersResponse';
+        $request = $this->billpayOffersGetRequest($_limit, $_offset, $brand, $country, $regions, $sub_type, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayOffersGet'
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset Example: Reusing common fields for filtering and pagination (required)
+     * @param  string|null $brand (optional)
+     * @param  string|null $country (optional)
+     * @param  string|null $regions (optional)
+     * @param  string|null $sub_type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayOffersGetRequest($_limit, $_offset, $brand = null, $country = null, $regions = null, $sub_type = null, string $contentType = self::contentTypes['billpayOffersGet'][0])
+    {
+
+        // verify the required parameter '_limit' is set
+        if ($_limit === null || (is_array($_limit) && count($_limit) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_limit when calling billpayOffersGet'
+            );
+        }
+
+        // verify the required parameter '_offset' is set
+        if ($_offset === null || (is_array($_offset) && count($_offset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_offset when calling billpayOffersGet'
+            );
+        }
+
+
+
+
+
+
+        $resourcePath = '/billpay/offers';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_limit,
+            '_limit', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_offset,
+            '_offset', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $brand,
+            'brand', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $country,
+            'country', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $regions,
+            'regions', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sub_type,
+            'subType', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayOffersOfferIdBillGet
+     *
+     * Get a BillPay bill for a specific offer
+     *
+     * @param  string $offer_id Offer ID (required)
+     * @param  string|null $bill_identifier Bill Identifier (optional)
+     * @param  string|null $account_number Account Number (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdBillGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayBillResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayOffersOfferIdBillGet($offer_id, $bill_identifier = null, $account_number = null, string $contentType = self::contentTypes['billpayOffersOfferIdBillGet'][0])
+    {
+        list($response) = $this->billpayOffersOfferIdBillGetWithHttpInfo($offer_id, $bill_identifier, $account_number, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayOffersOfferIdBillGetWithHttpInfo
+     *
+     * Get a BillPay bill for a specific offer
+     *
+     * @param  string $offer_id Offer ID (required)
+     * @param  string|null $bill_identifier Bill Identifier (optional)
+     * @param  string|null $account_number Account Number (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdBillGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayBillResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayOffersOfferIdBillGetWithHttpInfo($offer_id, $bill_identifier = null, $account_number = null, string $contentType = self::contentTypes['billpayOffersOfferIdBillGet'][0])
+    {
+        $request = $this->billpayOffersOfferIdBillGetRequest($offer_id, $bill_identifier, $account_number, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayBillResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayBillResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayBillResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayOffersOfferIdBillGetAsync
+     *
+     * Get a BillPay bill for a specific offer
+     *
+     * @param  string $offer_id Offer ID (required)
+     * @param  string|null $bill_identifier Bill Identifier (optional)
+     * @param  string|null $account_number Account Number (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdBillGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersOfferIdBillGetAsync($offer_id, $bill_identifier = null, $account_number = null, string $contentType = self::contentTypes['billpayOffersOfferIdBillGet'][0])
+    {
+        return $this->billpayOffersOfferIdBillGetAsyncWithHttpInfo($offer_id, $bill_identifier, $account_number, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayOffersOfferIdBillGetAsyncWithHttpInfo
+     *
+     * Get a BillPay bill for a specific offer
+     *
+     * @param  string $offer_id Offer ID (required)
+     * @param  string|null $bill_identifier Bill Identifier (optional)
+     * @param  string|null $account_number Account Number (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdBillGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersOfferIdBillGetAsyncWithHttpInfo($offer_id, $bill_identifier = null, $account_number = null, string $contentType = self::contentTypes['billpayOffersOfferIdBillGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayBillResponse';
+        $request = $this->billpayOffersOfferIdBillGetRequest($offer_id, $bill_identifier, $account_number, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayOffersOfferIdBillGet'
+     *
+     * @param  string $offer_id Offer ID (required)
+     * @param  string|null $bill_identifier Bill Identifier (optional)
+     * @param  string|null $account_number Account Number (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdBillGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayOffersOfferIdBillGetRequest($offer_id, $bill_identifier = null, $account_number = null, string $contentType = self::contentTypes['billpayOffersOfferIdBillGet'][0])
+    {
+
+        // verify the required parameter 'offer_id' is set
+        if ($offer_id === null || (is_array($offer_id) && count($offer_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $offer_id when calling billpayOffersOfferIdBillGet'
+            );
+        }
+
+
+
+
+        $resourcePath = '/billpay/offers/{offerId}/bill';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $bill_identifier,
+            'billIdentifier', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $account_number,
+            'accountNumber', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($offer_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'offerId' . '}',
+                ObjectSerializer::toPathValue($offer_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayOffersOfferIdGet
+     *
+     * Get a BillPay offer by the offer ID
+     *
+     * @param  string $offer_id Get BillPay offer by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayOffer|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayOffersOfferIdGet($offer_id, string $contentType = self::contentTypes['billpayOffersOfferIdGet'][0])
+    {
+        list($response) = $this->billpayOffersOfferIdGetWithHttpInfo($offer_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayOffersOfferIdGetWithHttpInfo
+     *
+     * Get a BillPay offer by the offer ID
+     *
+     * @param  string $offer_id Get BillPay offer by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayOffer|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayOffersOfferIdGetWithHttpInfo($offer_id, string $contentType = self::contentTypes['billpayOffersOfferIdGet'][0])
+    {
+        $request = $this->billpayOffersOfferIdGetRequest($offer_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayOffer',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayOffer',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayOffer',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayOffersOfferIdGetAsync
+     *
+     * Get a BillPay offer by the offer ID
+     *
+     * @param  string $offer_id Get BillPay offer by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersOfferIdGetAsync($offer_id, string $contentType = self::contentTypes['billpayOffersOfferIdGet'][0])
+    {
+        return $this->billpayOffersOfferIdGetAsyncWithHttpInfo($offer_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayOffersOfferIdGetAsyncWithHttpInfo
+     *
+     * Get a BillPay offer by the offer ID
+     *
+     * @param  string $offer_id Get BillPay offer by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayOffersOfferIdGetAsyncWithHttpInfo($offer_id, string $contentType = self::contentTypes['billpayOffersOfferIdGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayOffer';
+        $request = $this->billpayOffersOfferIdGetRequest($offer_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayOffersOfferIdGet'
+     *
+     * @param  string $offer_id Get BillPay offer by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayOffersOfferIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayOffersOfferIdGetRequest($offer_id, string $contentType = self::contentTypes['billpayOffersOfferIdGet'][0])
+    {
+
+        // verify the required parameter 'offer_id' is set
+        if ($offer_id === null || (is_array($offer_id) && count($offer_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $offer_id when calling billpayOffersOfferIdGet'
+            );
+        }
+
+
+        $resourcePath = '/billpay/offers/{offerId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($offer_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'offerId' . '}',
+                ObjectSerializer::toPathValue($offer_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayPurchasesGet
+     *
+     * Get list of BillPay purchases
+     *
+     * @param  int $_limit _limit (required)
+     * @param  int $_offset _offset (required)
+     * @param  string|null $created_at created_at (optional)
+     * @param  string|null $status status (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayPurchasesResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayPurchasesGet($_limit, $_offset, $created_at = null, $status = null, string $contentType = self::contentTypes['billpayPurchasesGet'][0])
+    {
+        list($response) = $this->billpayPurchasesGetWithHttpInfo($_limit, $_offset, $created_at, $status, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayPurchasesGetWithHttpInfo
+     *
+     * Get list of BillPay purchases
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayPurchasesResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayPurchasesGetWithHttpInfo($_limit, $_offset, $created_at = null, $status = null, string $contentType = self::contentTypes['billpayPurchasesGet'][0])
+    {
+        $request = $this->billpayPurchasesGetRequest($_limit, $_offset, $created_at, $status, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayPurchasesResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayPurchasesResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayPurchasesResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayPurchasesGetAsync
+     *
+     * Get list of BillPay purchases
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesGetAsync($_limit, $_offset, $created_at = null, $status = null, string $contentType = self::contentTypes['billpayPurchasesGet'][0])
+    {
+        return $this->billpayPurchasesGetAsyncWithHttpInfo($_limit, $_offset, $created_at, $status, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayPurchasesGetAsyncWithHttpInfo
+     *
+     * Get list of BillPay purchases
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesGetAsyncWithHttpInfo($_limit, $_offset, $created_at = null, $status = null, string $contentType = self::contentTypes['billpayPurchasesGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayPurchasesResponse';
+        $request = $this->billpayPurchasesGetRequest($_limit, $_offset, $created_at, $status, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayPurchasesGet'
+     *
+     * @param  int $_limit (required)
+     * @param  int $_offset (required)
+     * @param  string|null $created_at (optional)
+     * @param  string|null $status (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayPurchasesGetRequest($_limit, $_offset, $created_at = null, $status = null, string $contentType = self::contentTypes['billpayPurchasesGet'][0])
+    {
+
+        // verify the required parameter '_limit' is set
+        if ($_limit === null || (is_array($_limit) && count($_limit) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_limit when calling billpayPurchasesGet'
+            );
+        }
+
+        // verify the required parameter '_offset' is set
+        if ($_offset === null || (is_array($_offset) && count($_offset) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $_offset when calling billpayPurchasesGet'
+            );
+        }
+
+
+
+
+        $resourcePath = '/billpay/purchases';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_limit,
+            '_limit', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $_offset,
+            '_offset', // param base name
+            'integer', // openApiType
+            '', // style
+            false, // explode
+            true // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $created_at,
+            'createdAt', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'string', // openApiType
+            '', // style
+            false, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayPurchasesPost
+     *
+     * Create a BillPay purchase
+     *
+     * @param  \Zendit\Model\DtoBillPayPurchaseInput $data Purchase input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesPost'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayPurchaseResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayPurchasesPost($data, string $contentType = self::contentTypes['billpayPurchasesPost'][0])
+    {
+        list($response) = $this->billpayPurchasesPostWithHttpInfo($data, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayPurchasesPostWithHttpInfo
+     *
+     * Create a BillPay purchase
+     *
+     * @param  \Zendit\Model\DtoBillPayPurchaseInput $data Purchase input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesPost'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayPurchaseResponse|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayPurchasesPostWithHttpInfo($data, string $contentType = self::contentTypes['billpayPurchasesPost'][0])
+    {
+        $request = $this->billpayPurchasesPostRequest($data, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayPurchaseResponse',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayPurchaseResponse',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayPurchaseResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayPurchasesPostAsync
+     *
+     * Create a BillPay purchase
+     *
+     * @param  \Zendit\Model\DtoBillPayPurchaseInput $data Purchase input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesPost'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesPostAsync($data, string $contentType = self::contentTypes['billpayPurchasesPost'][0])
+    {
+        return $this->billpayPurchasesPostAsyncWithHttpInfo($data, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayPurchasesPostAsyncWithHttpInfo
+     *
+     * Create a BillPay purchase
+     *
+     * @param  \Zendit\Model\DtoBillPayPurchaseInput $data Purchase input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesPost'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesPostAsyncWithHttpInfo($data, string $contentType = self::contentTypes['billpayPurchasesPost'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayPurchaseResponse';
+        $request = $this->billpayPurchasesPostRequest($data, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayPurchasesPost'
+     *
+     * @param  \Zendit\Model\DtoBillPayPurchaseInput $data Purchase input data (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesPost'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayPurchasesPostRequest($data, string $contentType = self::contentTypes['billpayPurchasesPost'][0])
+    {
+
+        // verify the required parameter 'data' is set
+        if ($data === null || (is_array($data) && count($data) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $data when calling billpayPurchasesPost'
+            );
+        }
+
+
+        $resourcePath = '/billpay/purchases';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['*/*', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($data)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($data));
+            } else {
+                $httpBody = $data;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation billpayPurchasesTransactionIdGet
+     *
+     * Get a BillPay purchase by the transaction ID
+     *
+     * @param  string $transaction_id Get BillPay purchase by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesTransactionIdGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Zendit\Model\DtoBillPayPurchase|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError
+     */
+    public function billpayPurchasesTransactionIdGet($transaction_id, string $contentType = self::contentTypes['billpayPurchasesTransactionIdGet'][0])
+    {
+        list($response) = $this->billpayPurchasesTransactionIdGetWithHttpInfo($transaction_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation billpayPurchasesTransactionIdGetWithHttpInfo
+     *
+     * Get a BillPay purchase by the transaction ID
+     *
+     * @param  string $transaction_id Get BillPay purchase by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesTransactionIdGet'] to see the possible values for this operation
+     *
+     * @throws \Zendit\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Zendit\Model\DtoBillPayPurchase|\Zendit\Model\DtoResponseError|\Zendit\Model\DtoResponseError, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function billpayPurchasesTransactionIdGetWithHttpInfo($transaction_id, string $contentType = self::contentTypes['billpayPurchasesTransactionIdGet'][0])
+    {
+        $request = $this->billpayPurchasesTransactionIdGetRequest($transaction_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+
+            switch($statusCode) {
+                case 200:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoBillPayPurchase',
+                        $request,
+                        $response,
+                    );
+                case 400:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+                case 500:
+                    return $this->handleResponseWithDataType(
+                        '\Zendit\Model\DtoResponseError',
+                        $request,
+                        $response,
+                    );
+            }
+
+            
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return $this->handleResponseWithDataType(
+                '\Zendit\Model\DtoBillPayPurchase',
+                $request,
+                $response,
+            );
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoBillPayPurchase',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 400:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+                case 500:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Zendit\Model\DtoResponseError',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    throw $e;
+            }
+        
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation billpayPurchasesTransactionIdGetAsync
+     *
+     * Get a BillPay purchase by the transaction ID
+     *
+     * @param  string $transaction_id Get BillPay purchase by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesTransactionIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesTransactionIdGetAsync($transaction_id, string $contentType = self::contentTypes['billpayPurchasesTransactionIdGet'][0])
+    {
+        return $this->billpayPurchasesTransactionIdGetAsyncWithHttpInfo($transaction_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation billpayPurchasesTransactionIdGetAsyncWithHttpInfo
+     *
+     * Get a BillPay purchase by the transaction ID
+     *
+     * @param  string $transaction_id Get BillPay purchase by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesTransactionIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function billpayPurchasesTransactionIdGetAsyncWithHttpInfo($transaction_id, string $contentType = self::contentTypes['billpayPurchasesTransactionIdGet'][0])
+    {
+        $returnType = '\Zendit\Model\DtoBillPayPurchase';
+        $request = $this->billpayPurchasesTransactionIdGetRequest($transaction_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'billpayPurchasesTransactionIdGet'
+     *
+     * @param  string $transaction_id Get BillPay purchase by id (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['billpayPurchasesTransactionIdGet'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function billpayPurchasesTransactionIdGetRequest($transaction_id, string $contentType = self::contentTypes['billpayPurchasesTransactionIdGet'][0])
+    {
+
+        // verify the required parameter 'transaction_id' is set
+        if ($transaction_id === null || (is_array($transaction_id) && count($transaction_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $transaction_id when calling billpayPurchasesTransactionIdGet'
+            );
+        }
+
+
+        $resourcePath = '/billpay/purchases/{transactionId}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($transaction_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'transactionId' . '}',
+                ObjectSerializer::toPathValue($transaction_id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(

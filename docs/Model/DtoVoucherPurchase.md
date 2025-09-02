@@ -8,12 +8,14 @@ Name | Type | Description | Notes
 **brand_name** | **string** |  |
 **confirmation** | [**\Zendit\Model\DtoConfirmation**](DtoConfirmation.md) |  | [optional]
 **cost** | **int** |  |
+**cost_base** | **int** |  |
 **cost_currency** | **string** |  |
 **cost_currency_divisor** | **int** |  |
+**cost_fee** | **int** |  |
 **country** | **string** |  |
 **created_at** | **string** |  |
 **error** | [**\Zendit\Model\DtoError**](DtoError.md) |  | [optional]
-**fields** | [**\Zendit\Model\DtoVoucherField[]**](DtoVoucherField.md) |  |
+**fields** | [**\Zendit\Model\DtoPurchaseField[]**](DtoPurchaseField.md) |  |
 **log** | [**\Zendit\Model\DtoTransactionLogItem[]**](DtoTransactionLogItem.md) |  |
 **notes** | **string** |  |
 **offer_id** | **string** |  |

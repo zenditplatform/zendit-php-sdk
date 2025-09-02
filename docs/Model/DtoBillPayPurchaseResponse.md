@@ -1,12 +1,10 @@
-# # DtoVoucherPurchaseInput
+# # DtoBillPayPurchaseResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**fields** | [**\Zendit\Model\DtoPurchaseField[]**](DtoPurchaseField.md) |  |
-**offer_id** | **string** |  |
+**status** | [**\Zendit\Model\DtoTransactionStatus**](DtoTransactionStatus.md) |  |
 **transaction_id** | **string** |  |
-**value** | [**\Zendit\Model\DtoPurchaseValue**](DtoPurchaseValue.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

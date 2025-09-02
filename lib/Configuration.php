@@ -74,7 +74,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "ZenditSDK/1.7.0 PHP";
+    protected $userAgent = "ZenditSDK/1.8.0 PHP";
 
     /**
      * Debug switch (default set to false)

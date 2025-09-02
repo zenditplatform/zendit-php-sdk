@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoVoucherPurchase Class Doc Comment
+ * DtoBillPayOffer Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.VoucherPurchase';
+    protected static $openAPIModelName = 'dto.BillPayOffer';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,37 +30,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
+        'bill_retrieval_required_fields' => 'string[]',
         'brand' => 'string',
         'brand_name' => 'string',
-        'confirmation' => '\Zendit\Model\DtoConfirmation',
-        'cost' => 'int',
-        'cost_base' => 'int',
-        'cost_currency' => 'string',
-        'cost_currency_divisor' => 'int',
-        'cost_fee' => 'int',
+        'cost' => '\Zendit\Model\DtoCost',
         'country' => 'string',
         'created_at' => 'string',
-        'error' => '\Zendit\Model\DtoError',
-        'fields' => '\Zendit\Model\DtoPurchaseField[]',
-        'log' => '\Zendit\Model\DtoTransactionLogItem[]',
+        'cutoff_time' => 'string',
+        'delivery_speed_seconds' => 'int',
+        'enabled' => 'bool',
         'notes' => 'string',
         'offer_id' => 'string',
-        'price' => 'int',
-        'price_currency' => 'string',
-        'price_currency_divisor' => 'int',
+        'price' => '\Zendit\Model\DtoPrice',
         'price_type' => '\Zendit\Model\DtoPriceType',
+        'processing_days' => 'string[]',
+        'processing_on_holidays' => 'bool',
         'product_type' => '\Zendit\Model\DtoProductType',
-        'receipt' => '\Zendit\Model\DtoVoucherReceipt',
         'regions' => 'string[]',
-        'send' => 'int',
-        'send_currency' => 'string',
-        'send_currency_divisor' => 'int',
+        'required_fields' => 'string[]',
+        'send' => '\Zendit\Model\DtoZend',
         'short_notes' => 'string',
-        'status' => '\Zendit\Model\DtoTransactionStatus',
         'sub_types' => 'string[]',
-        'transaction_id' => 'string',
-        'updated_at' => 'string',
-        'value' => '\Zendit\Model\DtoPurchaseValue'
+        'supports_bill_retrieval' => 'bool',
+        'supports_overpayment' => 'bool',
+        'supports_underpayment' => 'bool',
+        'updated_at' => 'string'
     ];
 
     /**
@@ -71,37 +65,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'bill_retrieval_required_fields' => null,
         'brand' => null,
         'brand_name' => null,
-        'confirmation' => null,
         'cost' => null,
-        'cost_base' => null,
-        'cost_currency' => null,
-        'cost_currency_divisor' => null,
-        'cost_fee' => null,
         'country' => null,
         'created_at' => null,
-        'error' => null,
-        'fields' => null,
-        'log' => null,
+        'cutoff_time' => null,
+        'delivery_speed_seconds' => null,
+        'enabled' => null,
         'notes' => null,
         'offer_id' => null,
         'price' => null,
-        'price_currency' => null,
-        'price_currency_divisor' => null,
         'price_type' => null,
+        'processing_days' => null,
+        'processing_on_holidays' => null,
         'product_type' => null,
-        'receipt' => null,
         'regions' => null,
+        'required_fields' => null,
         'send' => null,
-        'send_currency' => null,
-        'send_currency_divisor' => null,
         'short_notes' => null,
-        'status' => null,
         'sub_types' => null,
-        'transaction_id' => null,
-        'updated_at' => null,
-        'value' => null
+        'supports_bill_retrieval' => null,
+        'supports_overpayment' => null,
+        'supports_underpayment' => null,
+        'updated_at' => null
     ];
 
     /**
@@ -110,37 +98,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'bill_retrieval_required_fields' => false,
         'brand' => false,
         'brand_name' => false,
-        'confirmation' => false,
         'cost' => false,
-        'cost_base' => false,
-        'cost_currency' => false,
-        'cost_currency_divisor' => false,
-        'cost_fee' => false,
         'country' => false,
         'created_at' => false,
-        'error' => false,
-        'fields' => false,
-        'log' => false,
+        'cutoff_time' => false,
+        'delivery_speed_seconds' => false,
+        'enabled' => false,
         'notes' => false,
         'offer_id' => false,
         'price' => false,
-        'price_currency' => false,
-        'price_currency_divisor' => false,
         'price_type' => false,
+        'processing_days' => false,
+        'processing_on_holidays' => false,
         'product_type' => false,
-        'receipt' => false,
         'regions' => false,
+        'required_fields' => false,
         'send' => false,
-        'send_currency' => false,
-        'send_currency_divisor' => false,
         'short_notes' => false,
-        'status' => false,
         'sub_types' => false,
-        'transaction_id' => false,
-        'updated_at' => false,
-        'value' => false
+        'supports_bill_retrieval' => false,
+        'supports_overpayment' => false,
+        'supports_underpayment' => false,
+        'updated_at' => false
     ];
 
     /**
@@ -229,37 +211,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $attributeMap = [
+        'bill_retrieval_required_fields' => 'billRetrievalRequiredFields',
         'brand' => 'brand',
         'brand_name' => 'brandName',
-        'confirmation' => 'confirmation',
         'cost' => 'cost',
-        'cost_base' => 'costBase',
-        'cost_currency' => 'costCurrency',
-        'cost_currency_divisor' => 'costCurrencyDivisor',
-        'cost_fee' => 'costFee',
         'country' => 'country',
         'created_at' => 'createdAt',
-        'error' => 'error',
-        'fields' => 'fields',
-        'log' => 'log',
+        'cutoff_time' => 'cutoffTime',
+        'delivery_speed_seconds' => 'deliverySpeedSeconds',
+        'enabled' => 'enabled',
         'notes' => 'notes',
         'offer_id' => 'offerId',
         'price' => 'price',
-        'price_currency' => 'priceCurrency',
-        'price_currency_divisor' => 'priceCurrencyDivisor',
         'price_type' => 'priceType',
+        'processing_days' => 'processingDays',
+        'processing_on_holidays' => 'processingOnHolidays',
         'product_type' => 'productType',
-        'receipt' => 'receipt',
         'regions' => 'regions',
+        'required_fields' => 'requiredFields',
         'send' => 'send',
-        'send_currency' => 'sendCurrency',
-        'send_currency_divisor' => 'sendCurrencyDivisor',
         'short_notes' => 'shortNotes',
-        'status' => 'status',
         'sub_types' => 'subTypes',
-        'transaction_id' => 'transactionId',
-        'updated_at' => 'updatedAt',
-        'value' => 'value'
+        'supports_bill_retrieval' => 'supportsBillRetrieval',
+        'supports_overpayment' => 'supportsOverpayment',
+        'supports_underpayment' => 'supportsUnderpayment',
+        'updated_at' => 'updatedAt'
     ];
 
     /**
@@ -268,37 +244,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $setters = [
+        'bill_retrieval_required_fields' => 'setBillRetrievalRequiredFields',
         'brand' => 'setBrand',
         'brand_name' => 'setBrandName',
-        'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
-        'cost_base' => 'setCostBase',
-        'cost_currency' => 'setCostCurrency',
-        'cost_currency_divisor' => 'setCostCurrencyDivisor',
-        'cost_fee' => 'setCostFee',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
-        'error' => 'setError',
-        'fields' => 'setFields',
-        'log' => 'setLog',
+        'cutoff_time' => 'setCutoffTime',
+        'delivery_speed_seconds' => 'setDeliverySpeedSeconds',
+        'enabled' => 'setEnabled',
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
         'price' => 'setPrice',
-        'price_currency' => 'setPriceCurrency',
-        'price_currency_divisor' => 'setPriceCurrencyDivisor',
         'price_type' => 'setPriceType',
+        'processing_days' => 'setProcessingDays',
+        'processing_on_holidays' => 'setProcessingOnHolidays',
         'product_type' => 'setProductType',
-        'receipt' => 'setReceipt',
         'regions' => 'setRegions',
+        'required_fields' => 'setRequiredFields',
         'send' => 'setSend',
-        'send_currency' => 'setSendCurrency',
-        'send_currency_divisor' => 'setSendCurrencyDivisor',
         'short_notes' => 'setShortNotes',
-        'status' => 'setStatus',
         'sub_types' => 'setSubTypes',
-        'transaction_id' => 'setTransactionId',
-        'updated_at' => 'setUpdatedAt',
-        'value' => 'setValue'
+        'supports_bill_retrieval' => 'setSupportsBillRetrieval',
+        'supports_overpayment' => 'setSupportsOverpayment',
+        'supports_underpayment' => 'setSupportsUnderpayment',
+        'updated_at' => 'setUpdatedAt'
     ];
 
     /**
@@ -307,37 +277,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
      * @var string[]
      */
     protected static $getters = [
+        'bill_retrieval_required_fields' => 'getBillRetrievalRequiredFields',
         'brand' => 'getBrand',
         'brand_name' => 'getBrandName',
-        'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
-        'cost_base' => 'getCostBase',
-        'cost_currency' => 'getCostCurrency',
-        'cost_currency_divisor' => 'getCostCurrencyDivisor',
-        'cost_fee' => 'getCostFee',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
-        'error' => 'getError',
-        'fields' => 'getFields',
-        'log' => 'getLog',
+        'cutoff_time' => 'getCutoffTime',
+        'delivery_speed_seconds' => 'getDeliverySpeedSeconds',
+        'enabled' => 'getEnabled',
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
         'price' => 'getPrice',
-        'price_currency' => 'getPriceCurrency',
-        'price_currency_divisor' => 'getPriceCurrencyDivisor',
         'price_type' => 'getPriceType',
+        'processing_days' => 'getProcessingDays',
+        'processing_on_holidays' => 'getProcessingOnHolidays',
         'product_type' => 'getProductType',
-        'receipt' => 'getReceipt',
         'regions' => 'getRegions',
+        'required_fields' => 'getRequiredFields',
         'send' => 'getSend',
-        'send_currency' => 'getSendCurrency',
-        'send_currency_divisor' => 'getSendCurrencyDivisor',
         'short_notes' => 'getShortNotes',
-        'status' => 'getStatus',
         'sub_types' => 'getSubTypes',
-        'transaction_id' => 'getTransactionId',
-        'updated_at' => 'getUpdatedAt',
-        'value' => 'getValue'
+        'supports_bill_retrieval' => 'getSupportsBillRetrieval',
+        'supports_overpayment' => 'getSupportsOverpayment',
+        'supports_underpayment' => 'getSupportsUnderpayment',
+        'updated_at' => 'getUpdatedAt'
     ];
 
     /**
@@ -397,37 +361,31 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('bill_retrieval_required_fields', $data ?? [], null);
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('brand_name', $data ?? [], null);
-        $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
-        $this->setIfExists('cost_base', $data ?? [], null);
-        $this->setIfExists('cost_currency', $data ?? [], null);
-        $this->setIfExists('cost_currency_divisor', $data ?? [], null);
-        $this->setIfExists('cost_fee', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('error', $data ?? [], null);
-        $this->setIfExists('fields', $data ?? [], null);
-        $this->setIfExists('log', $data ?? [], null);
+        $this->setIfExists('cutoff_time', $data ?? [], null);
+        $this->setIfExists('delivery_speed_seconds', $data ?? [], null);
+        $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('price_currency', $data ?? [], null);
-        $this->setIfExists('price_currency_divisor', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
+        $this->setIfExists('processing_days', $data ?? [], null);
+        $this->setIfExists('processing_on_holidays', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
-        $this->setIfExists('receipt', $data ?? [], null);
         $this->setIfExists('regions', $data ?? [], null);
+        $this->setIfExists('required_fields', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
-        $this->setIfExists('send_currency', $data ?? [], null);
-        $this->setIfExists('send_currency_divisor', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
-        $this->setIfExists('transaction_id', $data ?? [], null);
+        $this->setIfExists('supports_bill_retrieval', $data ?? [], null);
+        $this->setIfExists('supports_overpayment', $data ?? [], null);
+        $this->setIfExists('supports_underpayment', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
-        $this->setIfExists('value', $data ?? [], null);
     }
 
     /**
@@ -457,6 +415,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     {
         $invalidProperties = [];
 
+        if ($this->container['bill_retrieval_required_fields'] === null) {
+            $invalidProperties[] = "'bill_retrieval_required_fields' can't be null";
+        }
         if ($this->container['brand'] === null) {
             $invalidProperties[] = "'brand' can't be null";
         }
@@ -466,29 +427,20 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['cost'] === null) {
             $invalidProperties[] = "'cost' can't be null";
         }
-        if ($this->container['cost_base'] === null) {
-            $invalidProperties[] = "'cost_base' can't be null";
-        }
-        if ($this->container['cost_currency'] === null) {
-            $invalidProperties[] = "'cost_currency' can't be null";
-        }
-        if ($this->container['cost_currency_divisor'] === null) {
-            $invalidProperties[] = "'cost_currency_divisor' can't be null";
-        }
-        if ($this->container['cost_fee'] === null) {
-            $invalidProperties[] = "'cost_fee' can't be null";
-        }
         if ($this->container['country'] === null) {
             $invalidProperties[] = "'country' can't be null";
         }
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
-        if ($this->container['fields'] === null) {
-            $invalidProperties[] = "'fields' can't be null";
+        if ($this->container['cutoff_time'] === null) {
+            $invalidProperties[] = "'cutoff_time' can't be null";
         }
-        if ($this->container['log'] === null) {
-            $invalidProperties[] = "'log' can't be null";
+        if ($this->container['delivery_speed_seconds'] === null) {
+            $invalidProperties[] = "'delivery_speed_seconds' can't be null";
+        }
+        if ($this->container['enabled'] === null) {
+            $invalidProperties[] = "'enabled' can't be null";
         }
         if ($this->container['notes'] === null) {
             $invalidProperties[] = "'notes' can't be null";
@@ -499,38 +451,41 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         if ($this->container['price'] === null) {
             $invalidProperties[] = "'price' can't be null";
         }
-        if ($this->container['price_currency'] === null) {
-            $invalidProperties[] = "'price_currency' can't be null";
-        }
-        if ($this->container['price_currency_divisor'] === null) {
-            $invalidProperties[] = "'price_currency_divisor' can't be null";
-        }
         if ($this->container['price_type'] === null) {
             $invalidProperties[] = "'price_type' can't be null";
+        }
+        if ($this->container['processing_days'] === null) {
+            $invalidProperties[] = "'processing_days' can't be null";
+        }
+        if ($this->container['processing_on_holidays'] === null) {
+            $invalidProperties[] = "'processing_on_holidays' can't be null";
         }
         if ($this->container['product_type'] === null) {
             $invalidProperties[] = "'product_type' can't be null";
         }
+        if ($this->container['regions'] === null) {
+            $invalidProperties[] = "'regions' can't be null";
+        }
+        if ($this->container['required_fields'] === null) {
+            $invalidProperties[] = "'required_fields' can't be null";
+        }
         if ($this->container['send'] === null) {
             $invalidProperties[] = "'send' can't be null";
-        }
-        if ($this->container['send_currency'] === null) {
-            $invalidProperties[] = "'send_currency' can't be null";
-        }
-        if ($this->container['send_currency_divisor'] === null) {
-            $invalidProperties[] = "'send_currency_divisor' can't be null";
         }
         if ($this->container['short_notes'] === null) {
             $invalidProperties[] = "'short_notes' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
         if ($this->container['sub_types'] === null) {
             $invalidProperties[] = "'sub_types' can't be null";
         }
-        if ($this->container['transaction_id'] === null) {
-            $invalidProperties[] = "'transaction_id' can't be null";
+        if ($this->container['supports_bill_retrieval'] === null) {
+            $invalidProperties[] = "'supports_bill_retrieval' can't be null";
+        }
+        if ($this->container['supports_overpayment'] === null) {
+            $invalidProperties[] = "'supports_overpayment' can't be null";
+        }
+        if ($this->container['supports_underpayment'] === null) {
+            $invalidProperties[] = "'supports_underpayment' can't be null";
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
@@ -549,6 +504,33 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets bill_retrieval_required_fields
+     *
+     * @return string[]
+     */
+    public function getBillRetrievalRequiredFields()
+    {
+        return $this->container['bill_retrieval_required_fields'];
+    }
+
+    /**
+     * Sets bill_retrieval_required_fields
+     *
+     * @param string[] $bill_retrieval_required_fields bill_retrieval_required_fields
+     *
+     * @return self
+     */
+    public function setBillRetrievalRequiredFields($bill_retrieval_required_fields)
+    {
+        if (is_null($bill_retrieval_required_fields)) {
+            throw new \InvalidArgumentException('non-nullable bill_retrieval_required_fields cannot be null');
+        }
+        $this->container['bill_retrieval_required_fields'] = $bill_retrieval_required_fields;
+
+        return $this;
+    }
 
     /**
      * Gets brand
@@ -605,36 +587,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets confirmation
-     *
-     * @return \Zendit\Model\DtoConfirmation|null
-     */
-    public function getConfirmation()
-    {
-        return $this->container['confirmation'];
-    }
-
-    /**
-     * Sets confirmation
-     *
-     * @param \Zendit\Model\DtoConfirmation|null $confirmation confirmation
-     *
-     * @return self
-     */
-    public function setConfirmation($confirmation)
-    {
-        if (is_null($confirmation)) {
-            throw new \InvalidArgumentException('non-nullable confirmation cannot be null');
-        }
-        $this->container['confirmation'] = $confirmation;
-
-        return $this;
-    }
-
-    /**
      * Gets cost
      *
-     * @return int
+     * @return \Zendit\Model\DtoCost
      */
     public function getCost()
     {
@@ -644,7 +599,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets cost
      *
-     * @param int $cost cost
+     * @param \Zendit\Model\DtoCost $cost cost
      *
      * @return self
      */
@@ -654,114 +609,6 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable cost cannot be null');
         }
         $this->container['cost'] = $cost;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost_base
-     *
-     * @return int
-     */
-    public function getCostBase()
-    {
-        return $this->container['cost_base'];
-    }
-
-    /**
-     * Sets cost_base
-     *
-     * @param int $cost_base cost_base
-     *
-     * @return self
-     */
-    public function setCostBase($cost_base)
-    {
-        if (is_null($cost_base)) {
-            throw new \InvalidArgumentException('non-nullable cost_base cannot be null');
-        }
-        $this->container['cost_base'] = $cost_base;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost_currency
-     *
-     * @return string
-     */
-    public function getCostCurrency()
-    {
-        return $this->container['cost_currency'];
-    }
-
-    /**
-     * Sets cost_currency
-     *
-     * @param string $cost_currency cost_currency
-     *
-     * @return self
-     */
-    public function setCostCurrency($cost_currency)
-    {
-        if (is_null($cost_currency)) {
-            throw new \InvalidArgumentException('non-nullable cost_currency cannot be null');
-        }
-        $this->container['cost_currency'] = $cost_currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost_currency_divisor
-     *
-     * @return int
-     */
-    public function getCostCurrencyDivisor()
-    {
-        return $this->container['cost_currency_divisor'];
-    }
-
-    /**
-     * Sets cost_currency_divisor
-     *
-     * @param int $cost_currency_divisor cost_currency_divisor
-     *
-     * @return self
-     */
-    public function setCostCurrencyDivisor($cost_currency_divisor)
-    {
-        if (is_null($cost_currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable cost_currency_divisor cannot be null');
-        }
-        $this->container['cost_currency_divisor'] = $cost_currency_divisor;
-
-        return $this;
-    }
-
-    /**
-     * Gets cost_fee
-     *
-     * @return int
-     */
-    public function getCostFee()
-    {
-        return $this->container['cost_fee'];
-    }
-
-    /**
-     * Sets cost_fee
-     *
-     * @param int $cost_fee cost_fee
-     *
-     * @return self
-     */
-    public function setCostFee($cost_fee)
-    {
-        if (is_null($cost_fee)) {
-            throw new \InvalidArgumentException('non-nullable cost_fee cannot be null');
-        }
-        $this->container['cost_fee'] = $cost_fee;
 
         return $this;
     }
@@ -821,82 +668,82 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets error
+     * Gets cutoff_time
      *
-     * @return \Zendit\Model\DtoError|null
+     * @return string
      */
-    public function getError()
+    public function getCutoffTime()
     {
-        return $this->container['error'];
+        return $this->container['cutoff_time'];
     }
 
     /**
-     * Sets error
+     * Sets cutoff_time
      *
-     * @param \Zendit\Model\DtoError|null $error error
+     * @param string $cutoff_time cutoff_time
      *
      * @return self
      */
-    public function setError($error)
+    public function setCutoffTime($cutoff_time)
     {
-        if (is_null($error)) {
-            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        if (is_null($cutoff_time)) {
+            throw new \InvalidArgumentException('non-nullable cutoff_time cannot be null');
         }
-        $this->container['error'] = $error;
+        $this->container['cutoff_time'] = $cutoff_time;
 
         return $this;
     }
 
     /**
-     * Gets fields
+     * Gets delivery_speed_seconds
      *
-     * @return \Zendit\Model\DtoPurchaseField[]
+     * @return int
      */
-    public function getFields()
+    public function getDeliverySpeedSeconds()
     {
-        return $this->container['fields'];
+        return $this->container['delivery_speed_seconds'];
     }
 
     /**
-     * Sets fields
+     * Sets delivery_speed_seconds
      *
-     * @param \Zendit\Model\DtoPurchaseField[] $fields fields
+     * @param int $delivery_speed_seconds delivery_speed_seconds
      *
      * @return self
      */
-    public function setFields($fields)
+    public function setDeliverySpeedSeconds($delivery_speed_seconds)
     {
-        if (is_null($fields)) {
-            throw new \InvalidArgumentException('non-nullable fields cannot be null');
+        if (is_null($delivery_speed_seconds)) {
+            throw new \InvalidArgumentException('non-nullable delivery_speed_seconds cannot be null');
         }
-        $this->container['fields'] = $fields;
+        $this->container['delivery_speed_seconds'] = $delivery_speed_seconds;
 
         return $this;
     }
 
     /**
-     * Gets log
+     * Gets enabled
      *
-     * @return \Zendit\Model\DtoTransactionLogItem[]
+     * @return bool
      */
-    public function getLog()
+    public function getEnabled()
     {
-        return $this->container['log'];
+        return $this->container['enabled'];
     }
 
     /**
-     * Sets log
+     * Sets enabled
      *
-     * @param \Zendit\Model\DtoTransactionLogItem[] $log log
+     * @param bool $enabled Common fields (similar to ESimOffer or VoucherOffer)
      *
      * @return self
      */
-    public function setLog($log)
+    public function setEnabled($enabled)
     {
-        if (is_null($log)) {
-            throw new \InvalidArgumentException('non-nullable log cannot be null');
+        if (is_null($enabled)) {
+            throw new \InvalidArgumentException('non-nullable enabled cannot be null');
         }
-        $this->container['log'] = $log;
+        $this->container['enabled'] = $enabled;
 
         return $this;
     }
@@ -958,7 +805,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets price
      *
-     * @return int
+     * @return \Zendit\Model\DtoPrice
      */
     public function getPrice()
     {
@@ -968,7 +815,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets price
      *
-     * @param int $price price
+     * @param \Zendit\Model\DtoPrice $price price
      *
      * @return self
      */
@@ -978,60 +825,6 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable price cannot be null');
         }
         $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets price_currency
-     *
-     * @return string
-     */
-    public function getPriceCurrency()
-    {
-        return $this->container['price_currency'];
-    }
-
-    /**
-     * Sets price_currency
-     *
-     * @param string $price_currency price_currency
-     *
-     * @return self
-     */
-    public function setPriceCurrency($price_currency)
-    {
-        if (is_null($price_currency)) {
-            throw new \InvalidArgumentException('non-nullable price_currency cannot be null');
-        }
-        $this->container['price_currency'] = $price_currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets price_currency_divisor
-     *
-     * @return int
-     */
-    public function getPriceCurrencyDivisor()
-    {
-        return $this->container['price_currency_divisor'];
-    }
-
-    /**
-     * Sets price_currency_divisor
-     *
-     * @param int $price_currency_divisor price_currency_divisor
-     *
-     * @return self
-     */
-    public function setPriceCurrencyDivisor($price_currency_divisor)
-    {
-        if (is_null($price_currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable price_currency_divisor cannot be null');
-        }
-        $this->container['price_currency_divisor'] = $price_currency_divisor;
 
         return $this;
     }
@@ -1064,6 +857,60 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets processing_days
+     *
+     * @return string[]
+     */
+    public function getProcessingDays()
+    {
+        return $this->container['processing_days'];
+    }
+
+    /**
+     * Sets processing_days
+     *
+     * @param string[] $processing_days processing_days
+     *
+     * @return self
+     */
+    public function setProcessingDays($processing_days)
+    {
+        if (is_null($processing_days)) {
+            throw new \InvalidArgumentException('non-nullable processing_days cannot be null');
+        }
+        $this->container['processing_days'] = $processing_days;
+
+        return $this;
+    }
+
+    /**
+     * Gets processing_on_holidays
+     *
+     * @return bool
+     */
+    public function getProcessingOnHolidays()
+    {
+        return $this->container['processing_on_holidays'];
+    }
+
+    /**
+     * Sets processing_on_holidays
+     *
+     * @param bool $processing_on_holidays processing_on_holidays
+     *
+     * @return self
+     */
+    public function setProcessingOnHolidays($processing_on_holidays)
+    {
+        if (is_null($processing_on_holidays)) {
+            throw new \InvalidArgumentException('non-nullable processing_on_holidays cannot be null');
+        }
+        $this->container['processing_on_holidays'] = $processing_on_holidays;
+
+        return $this;
+    }
+
+    /**
      * Gets product_type
      *
      * @return \Zendit\Model\DtoProductType
@@ -1091,36 +938,9 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets receipt
-     *
-     * @return \Zendit\Model\DtoVoucherReceipt|null
-     */
-    public function getReceipt()
-    {
-        return $this->container['receipt'];
-    }
-
-    /**
-     * Sets receipt
-     *
-     * @param \Zendit\Model\DtoVoucherReceipt|null $receipt receipt
-     *
-     * @return self
-     */
-    public function setReceipt($receipt)
-    {
-        if (is_null($receipt)) {
-            throw new \InvalidArgumentException('non-nullable receipt cannot be null');
-        }
-        $this->container['receipt'] = $receipt;
-
-        return $this;
-    }
-
-    /**
      * Gets regions
      *
-     * @return string[]|null
+     * @return string[]
      */
     public function getRegions()
     {
@@ -1130,7 +950,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets regions
      *
-     * @param string[]|null $regions regions
+     * @param string[] $regions regions
      *
      * @return self
      */
@@ -1145,9 +965,36 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
+     * Gets required_fields
+     *
+     * @return string[]
+     */
+    public function getRequiredFields()
+    {
+        return $this->container['required_fields'];
+    }
+
+    /**
+     * Sets required_fields
+     *
+     * @param string[] $required_fields required_fields
+     *
+     * @return self
+     */
+    public function setRequiredFields($required_fields)
+    {
+        if (is_null($required_fields)) {
+            throw new \InvalidArgumentException('non-nullable required_fields cannot be null');
+        }
+        $this->container['required_fields'] = $required_fields;
+
+        return $this;
+    }
+
+    /**
      * Gets send
      *
-     * @return int
+     * @return \Zendit\Model\DtoZend
      */
     public function getSend()
     {
@@ -1157,7 +1004,7 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets send
      *
-     * @param int $send send
+     * @param \Zendit\Model\DtoZend $send send
      *
      * @return self
      */
@@ -1167,60 +1014,6 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable send cannot be null');
         }
         $this->container['send'] = $send;
-
-        return $this;
-    }
-
-    /**
-     * Gets send_currency
-     *
-     * @return string
-     */
-    public function getSendCurrency()
-    {
-        return $this->container['send_currency'];
-    }
-
-    /**
-     * Sets send_currency
-     *
-     * @param string $send_currency send_currency
-     *
-     * @return self
-     */
-    public function setSendCurrency($send_currency)
-    {
-        if (is_null($send_currency)) {
-            throw new \InvalidArgumentException('non-nullable send_currency cannot be null');
-        }
-        $this->container['send_currency'] = $send_currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets send_currency_divisor
-     *
-     * @return int
-     */
-    public function getSendCurrencyDivisor()
-    {
-        return $this->container['send_currency_divisor'];
-    }
-
-    /**
-     * Sets send_currency_divisor
-     *
-     * @param int $send_currency_divisor send_currency_divisor
-     *
-     * @return self
-     */
-    public function setSendCurrencyDivisor($send_currency_divisor)
-    {
-        if (is_null($send_currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable send_currency_divisor cannot be null');
-        }
-        $this->container['send_currency_divisor'] = $send_currency_divisor;
 
         return $this;
     }
@@ -1253,33 +1046,6 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets status
-     *
-     * @return \Zendit\Model\DtoTransactionStatus
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param \Zendit\Model\DtoTransactionStatus $status status
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
      * Gets sub_types
      *
      * @return string[]
@@ -1307,28 +1073,82 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
     }
 
     /**
-     * Gets transaction_id
+     * Gets supports_bill_retrieval
      *
-     * @return string
+     * @return bool
      */
-    public function getTransactionId()
+    public function getSupportsBillRetrieval()
     {
-        return $this->container['transaction_id'];
+        return $this->container['supports_bill_retrieval'];
     }
 
     /**
-     * Sets transaction_id
+     * Sets supports_bill_retrieval
      *
-     * @param string $transaction_id transaction_id
+     * @param bool $supports_bill_retrieval supports_bill_retrieval
      *
      * @return self
      */
-    public function setTransactionId($transaction_id)
+    public function setSupportsBillRetrieval($supports_bill_retrieval)
     {
-        if (is_null($transaction_id)) {
-            throw new \InvalidArgumentException('non-nullable transaction_id cannot be null');
+        if (is_null($supports_bill_retrieval)) {
+            throw new \InvalidArgumentException('non-nullable supports_bill_retrieval cannot be null');
         }
-        $this->container['transaction_id'] = $transaction_id;
+        $this->container['supports_bill_retrieval'] = $supports_bill_retrieval;
+
+        return $this;
+    }
+
+    /**
+     * Gets supports_overpayment
+     *
+     * @return bool
+     */
+    public function getSupportsOverpayment()
+    {
+        return $this->container['supports_overpayment'];
+    }
+
+    /**
+     * Sets supports_overpayment
+     *
+     * @param bool $supports_overpayment supports_overpayment
+     *
+     * @return self
+     */
+    public function setSupportsOverpayment($supports_overpayment)
+    {
+        if (is_null($supports_overpayment)) {
+            throw new \InvalidArgumentException('non-nullable supports_overpayment cannot be null');
+        }
+        $this->container['supports_overpayment'] = $supports_overpayment;
+
+        return $this;
+    }
+
+    /**
+     * Gets supports_underpayment
+     *
+     * @return bool
+     */
+    public function getSupportsUnderpayment()
+    {
+        return $this->container['supports_underpayment'];
+    }
+
+    /**
+     * Sets supports_underpayment
+     *
+     * @param bool $supports_underpayment supports_underpayment
+     *
+     * @return self
+     */
+    public function setSupportsUnderpayment($supports_underpayment)
+    {
+        if (is_null($supports_underpayment)) {
+            throw new \InvalidArgumentException('non-nullable supports_underpayment cannot be null');
+        }
+        $this->container['supports_underpayment'] = $supports_underpayment;
 
         return $this;
     }
@@ -1356,33 +1176,6 @@ class DtoVoucherPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
-
-        return $this;
-    }
-
-    /**
-     * Gets value
-     *
-     * @return \Zendit\Model\DtoPurchaseValue|null
-     */
-    public function getValue()
-    {
-        return $this->container['value'];
-    }
-
-    /**
-     * Sets value
-     *
-     * @param \Zendit\Model\DtoPurchaseValue|null $value value
-     *
-     * @return self
-     */
-    public function setValue($value)
-    {
-        if (is_null($value)) {
-            throw new \InvalidArgumentException('non-nullable value cannot be null');
-        }
-        $this->container['value'] = $value;
 
         return $this;
     }

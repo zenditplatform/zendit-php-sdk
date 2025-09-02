@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoCost Class Doc Comment
+ * DtoBillPayPurchasesResponse Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoBillPayPurchasesResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Cost';
+    protected static $openAPIModelName = 'dto.BillPayPurchasesResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,15 +30,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'currency_divisor' => 'int',
-        'discount' => 'float',
-        'fee' => 'int',
-        'fee_pct' => 'float',
-        'fixed' => 'int',
-        'fx' => 'float',
-        'max' => 'int',
-        'min' => 'int'
+        'limit' => 'int',
+        'list' => '\Zendit\Model\DtoBillPayPurchase[]',
+        'offset' => 'int',
+        'total' => 'int'
     ];
 
     /**
@@ -49,15 +44,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'currency_divisor' => null,
-        'discount' => null,
-        'fee' => null,
-        'fee_pct' => null,
-        'fixed' => null,
-        'fx' => null,
-        'max' => null,
-        'min' => null
+        'limit' => null,
+        'list' => null,
+        'offset' => null,
+        'total' => null
     ];
 
     /**
@@ -66,15 +56,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'currency' => false,
-        'currency_divisor' => false,
-        'discount' => false,
-        'fee' => false,
-        'fee_pct' => false,
-        'fixed' => false,
-        'fx' => false,
-        'max' => false,
-        'min' => false
+        'limit' => false,
+        'list' => false,
+        'offset' => false,
+        'total' => false
     ];
 
     /**
@@ -163,15 +148,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'currency_divisor' => 'currencyDivisor',
-        'discount' => 'discount',
-        'fee' => 'fee',
-        'fee_pct' => 'feePct',
-        'fixed' => 'fixed',
-        'fx' => 'fx',
-        'max' => 'max',
-        'min' => 'min'
+        'limit' => 'limit',
+        'list' => 'list',
+        'offset' => 'offset',
+        'total' => 'total'
     ];
 
     /**
@@ -180,15 +160,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'currency_divisor' => 'setCurrencyDivisor',
-        'discount' => 'setDiscount',
-        'fee' => 'setFee',
-        'fee_pct' => 'setFeePct',
-        'fixed' => 'setFixed',
-        'fx' => 'setFx',
-        'max' => 'setMax',
-        'min' => 'setMin'
+        'limit' => 'setLimit',
+        'list' => 'setList',
+        'offset' => 'setOffset',
+        'total' => 'setTotal'
     ];
 
     /**
@@ -197,15 +172,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'currency_divisor' => 'getCurrencyDivisor',
-        'discount' => 'getDiscount',
-        'fee' => 'getFee',
-        'fee_pct' => 'getFeePct',
-        'fixed' => 'getFixed',
-        'fx' => 'getFx',
-        'max' => 'getMax',
-        'min' => 'getMin'
+        'limit' => 'getLimit',
+        'list' => 'getList',
+        'offset' => 'getOffset',
+        'total' => 'getTotal'
     ];
 
     /**
@@ -265,15 +235,10 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('currency_divisor', $data ?? [], null);
-        $this->setIfExists('discount', $data ?? [], null);
-        $this->setIfExists('fee', $data ?? [], null);
-        $this->setIfExists('fee_pct', $data ?? [], null);
-        $this->setIfExists('fixed', $data ?? [], null);
-        $this->setIfExists('fx', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('limit', $data ?? [], null);
+        $this->setIfExists('list', $data ?? [], null);
+        $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
     }
 
     /**
@@ -303,20 +268,17 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['limit'] === null) {
+            $invalidProperties[] = "'limit' can't be null";
         }
-        if ($this->container['currency_divisor'] === null) {
-            $invalidProperties[] = "'currency_divisor' can't be null";
+        if ($this->container['list'] === null) {
+            $invalidProperties[] = "'list' can't be null";
         }
-        if ($this->container['discount'] === null) {
-            $invalidProperties[] = "'discount' can't be null";
+        if ($this->container['offset'] === null) {
+            $invalidProperties[] = "'offset' can't be null";
         }
-        if ($this->container['fee'] === null) {
-            $invalidProperties[] = "'fee' can't be null";
-        }
-        if ($this->container['fee_pct'] === null) {
-            $invalidProperties[] = "'fee_pct' can't be null";
+        if ($this->container['total'] === null) {
+            $invalidProperties[] = "'total' can't be null";
         }
         return $invalidProperties;
     }
@@ -334,244 +296,109 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
-     *
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->container['currency'];
-    }
-
-    /**
-     * Sets currency
-     *
-     * @param string $currency currency
-     *
-     * @return self
-     */
-    public function setCurrency($currency)
-    {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
-        }
-        $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets currency_divisor
+     * Gets limit
      *
      * @return int
      */
-    public function getCurrencyDivisor()
+    public function getLimit()
     {
-        return $this->container['currency_divisor'];
+        return $this->container['limit'];
     }
 
     /**
-     * Sets currency_divisor
+     * Sets limit
      *
-     * @param int $currency_divisor currency_divisor
+     * @param int $limit limit
      *
      * @return self
      */
-    public function setCurrencyDivisor($currency_divisor)
+    public function setLimit($limit)
     {
-        if (is_null($currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        if (is_null($limit)) {
+            throw new \InvalidArgumentException('non-nullable limit cannot be null');
         }
-        $this->container['currency_divisor'] = $currency_divisor;
+        $this->container['limit'] = $limit;
 
         return $this;
     }
 
     /**
-     * Gets discount
+     * Gets list
      *
-     * @return float
+     * @return \Zendit\Model\DtoBillPayPurchase[]
      */
-    public function getDiscount()
+    public function getList()
     {
-        return $this->container['discount'];
+        return $this->container['list'];
     }
 
     /**
-     * Sets discount
+     * Sets list
      *
-     * @param float $discount discount
+     * @param \Zendit\Model\DtoBillPayPurchase[] $list list
      *
      * @return self
      */
-    public function setDiscount($discount)
+    public function setList($list)
     {
-        if (is_null($discount)) {
-            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        if (is_null($list)) {
+            throw new \InvalidArgumentException('non-nullable list cannot be null');
         }
-        $this->container['discount'] = $discount;
+        $this->container['list'] = $list;
 
         return $this;
     }
 
     /**
-     * Gets fee
+     * Gets offset
      *
      * @return int
      */
-    public function getFee()
+    public function getOffset()
     {
-        return $this->container['fee'];
+        return $this->container['offset'];
     }
 
     /**
-     * Sets fee
+     * Sets offset
      *
-     * @param int $fee fee
+     * @param int $offset offset
      *
      * @return self
      */
-    public function setFee($fee)
+    public function setOffset($offset)
     {
-        if (is_null($fee)) {
-            throw new \InvalidArgumentException('non-nullable fee cannot be null');
+        if (is_null($offset)) {
+            throw new \InvalidArgumentException('non-nullable offset cannot be null');
         }
-        $this->container['fee'] = $fee;
+        $this->container['offset'] = $offset;
 
         return $this;
     }
 
     /**
-     * Gets fee_pct
+     * Gets total
      *
-     * @return float
+     * @return int
      */
-    public function getFeePct()
+    public function getTotal()
     {
-        return $this->container['fee_pct'];
+        return $this->container['total'];
     }
 
     /**
-     * Sets fee_pct
+     * Sets total
      *
-     * @param float $fee_pct fee_pct
+     * @param int $total total
      *
      * @return self
      */
-    public function setFeePct($fee_pct)
+    public function setTotal($total)
     {
-        if (is_null($fee_pct)) {
-            throw new \InvalidArgumentException('non-nullable fee_pct cannot be null');
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
         }
-        $this->container['fee_pct'] = $fee_pct;
-
-        return $this;
-    }
-
-    /**
-     * Gets fixed
-     *
-     * @return int|null
-     */
-    public function getFixed()
-    {
-        return $this->container['fixed'];
-    }
-
-    /**
-     * Sets fixed
-     *
-     * @param int|null $fixed fixed
-     *
-     * @return self
-     */
-    public function setFixed($fixed)
-    {
-        if (is_null($fixed)) {
-            throw new \InvalidArgumentException('non-nullable fixed cannot be null');
-        }
-        $this->container['fixed'] = $fixed;
-
-        return $this;
-    }
-
-    /**
-     * Gets fx
-     *
-     * @return float|null
-     */
-    public function getFx()
-    {
-        return $this->container['fx'];
-    }
-
-    /**
-     * Sets fx
-     *
-     * @param float|null $fx fx
-     *
-     * @return self
-     */
-    public function setFx($fx)
-    {
-        if (is_null($fx)) {
-            throw new \InvalidArgumentException('non-nullable fx cannot be null');
-        }
-        $this->container['fx'] = $fx;
-
-        return $this;
-    }
-
-    /**
-     * Gets max
-     *
-     * @return int|null
-     */
-    public function getMax()
-    {
-        return $this->container['max'];
-    }
-
-    /**
-     * Sets max
-     *
-     * @param int|null $max max
-     *
-     * @return self
-     */
-    public function setMax($max)
-    {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
-        $this->container['max'] = $max;
-
-        return $this;
-    }
-
-    /**
-     * Gets min
-     *
-     * @return int|null
-     */
-    public function getMin()
-    {
-        return $this->container['min'];
-    }
-
-    /**
-     * Sets min
-     *
-     * @param int|null $min min
-     *
-     * @return self
-     */
-    public function setMin($min)
-    {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
-        $this->container['min'] = $min;
+        $this->container['total'] = $total;
 
         return $this;
     }

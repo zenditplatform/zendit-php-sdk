@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESimPurchase Class Doc Comment
+ * DtoBillPayPurchase Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESimPurchase';
+    protected static $openAPIModelName = 'dto.BillPayPurchase';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -32,7 +32,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'brand' => 'string',
         'brand_name' => 'string',
-        'confirmation' => '\Zendit\Model\DtoESimConfirmation',
         'cost' => 'int',
         'cost_base' => 'int',
         'cost_currency' => 'string',
@@ -40,11 +39,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => 'int',
         'country' => 'string',
         'created_at' => 'string',
-        'data_gb' => 'float',
-        'data_speeds' => 'string[]',
-        'data_unlimited' => 'bool',
-        'duration_days' => 'int',
         'error' => '\Zendit\Model\DtoError',
+        'fields' => '\Zendit\Model\DtoPurchaseField[]',
         'log' => '\Zendit\Model\DtoTransactionLogItem[]',
         'notes' => 'string',
         'offer_id' => 'string',
@@ -53,19 +49,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => 'int',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
-        'refund' => '\Zendit\Model\DtoESimRefund',
+        'recipient' => '\Zendit\Model\DtoRecipient',
         'regions' => 'string[]',
-        'roaming' => '\Zendit\Model\DtoESimRoaming[]',
+        'send' => 'int',
+        'send_currency' => 'string',
+        'send_currency_divisor' => 'int',
+        'sender' => '\Zendit\Model\DtoSender',
         'short_notes' => 'string',
-        'sms_number' => 'int',
-        'sms_unlimited' => 'bool',
         'status' => '\Zendit\Model\DtoTransactionStatus',
         'sub_types' => 'string[]',
         'transaction_id' => 'string',
         'updated_at' => 'string',
-        'value' => '\Zendit\Model\DtoPurchaseValue',
-        'voice_minutes' => 'int',
-        'voice_unlimited' => 'bool'
+        'value' => '\Zendit\Model\DtoPurchaseValue'
     ];
 
     /**
@@ -78,7 +73,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'brand' => null,
         'brand_name' => null,
-        'confirmation' => null,
         'cost' => null,
         'cost_base' => null,
         'cost_currency' => null,
@@ -86,11 +80,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => null,
         'country' => null,
         'created_at' => null,
-        'data_gb' => null,
-        'data_speeds' => null,
-        'data_unlimited' => null,
-        'duration_days' => null,
         'error' => null,
+        'fields' => null,
         'log' => null,
         'notes' => null,
         'offer_id' => null,
@@ -99,19 +90,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => null,
         'price_type' => null,
         'product_type' => null,
-        'refund' => null,
+        'recipient' => null,
         'regions' => null,
-        'roaming' => null,
+        'send' => null,
+        'send_currency' => null,
+        'send_currency_divisor' => null,
+        'sender' => null,
         'short_notes' => null,
-        'sms_number' => null,
-        'sms_unlimited' => null,
         'status' => null,
         'sub_types' => null,
         'transaction_id' => null,
         'updated_at' => null,
-        'value' => null,
-        'voice_minutes' => null,
-        'voice_unlimited' => null
+        'value' => null
     ];
 
     /**
@@ -122,7 +112,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'brand' => false,
         'brand_name' => false,
-        'confirmation' => false,
         'cost' => false,
         'cost_base' => false,
         'cost_currency' => false,
@@ -130,11 +119,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => false,
         'country' => false,
         'created_at' => false,
-        'data_gb' => false,
-        'data_speeds' => false,
-        'data_unlimited' => false,
-        'duration_days' => false,
         'error' => false,
+        'fields' => false,
         'log' => false,
         'notes' => false,
         'offer_id' => false,
@@ -143,19 +129,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => false,
         'price_type' => false,
         'product_type' => false,
-        'refund' => false,
+        'recipient' => false,
         'regions' => false,
-        'roaming' => false,
+        'send' => false,
+        'send_currency' => false,
+        'send_currency_divisor' => false,
+        'sender' => false,
         'short_notes' => false,
-        'sms_number' => false,
-        'sms_unlimited' => false,
         'status' => false,
         'sub_types' => false,
         'transaction_id' => false,
         'updated_at' => false,
-        'value' => false,
-        'voice_minutes' => false,
-        'voice_unlimited' => false
+        'value' => false
     ];
 
     /**
@@ -246,7 +231,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'brand' => 'brand',
         'brand_name' => 'brandName',
-        'confirmation' => 'confirmation',
         'cost' => 'cost',
         'cost_base' => 'costBase',
         'cost_currency' => 'costCurrency',
@@ -254,11 +238,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => 'costFee',
         'country' => 'country',
         'created_at' => 'createdAt',
-        'data_gb' => 'dataGB',
-        'data_speeds' => 'dataSpeeds',
-        'data_unlimited' => 'dataUnlimited',
-        'duration_days' => 'durationDays',
         'error' => 'error',
+        'fields' => 'fields',
         'log' => 'log',
         'notes' => 'notes',
         'offer_id' => 'offerId',
@@ -267,19 +248,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => 'priceCurrencyDivisor',
         'price_type' => 'priceType',
         'product_type' => 'productType',
-        'refund' => 'refund',
+        'recipient' => 'recipient',
         'regions' => 'regions',
-        'roaming' => 'roaming',
+        'send' => 'send',
+        'send_currency' => 'sendCurrency',
+        'send_currency_divisor' => 'sendCurrencyDivisor',
+        'sender' => 'sender',
         'short_notes' => 'shortNotes',
-        'sms_number' => 'smsNumber',
-        'sms_unlimited' => 'smsUnlimited',
         'status' => 'status',
         'sub_types' => 'subTypes',
         'transaction_id' => 'transactionId',
         'updated_at' => 'updatedAt',
-        'value' => 'value',
-        'voice_minutes' => 'voiceMinutes',
-        'voice_unlimited' => 'voiceUnlimited'
+        'value' => 'value'
     ];
 
     /**
@@ -290,7 +270,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'brand' => 'setBrand',
         'brand_name' => 'setBrandName',
-        'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
         'cost_base' => 'setCostBase',
         'cost_currency' => 'setCostCurrency',
@@ -298,11 +277,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => 'setCostFee',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
-        'data_gb' => 'setDataGb',
-        'data_speeds' => 'setDataSpeeds',
-        'data_unlimited' => 'setDataUnlimited',
-        'duration_days' => 'setDurationDays',
         'error' => 'setError',
+        'fields' => 'setFields',
         'log' => 'setLog',
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
@@ -311,19 +287,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => 'setPriceCurrencyDivisor',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
-        'refund' => 'setRefund',
+        'recipient' => 'setRecipient',
         'regions' => 'setRegions',
-        'roaming' => 'setRoaming',
+        'send' => 'setSend',
+        'send_currency' => 'setSendCurrency',
+        'send_currency_divisor' => 'setSendCurrencyDivisor',
+        'sender' => 'setSender',
         'short_notes' => 'setShortNotes',
-        'sms_number' => 'setSmsNumber',
-        'sms_unlimited' => 'setSmsUnlimited',
         'status' => 'setStatus',
         'sub_types' => 'setSubTypes',
         'transaction_id' => 'setTransactionId',
         'updated_at' => 'setUpdatedAt',
-        'value' => 'setValue',
-        'voice_minutes' => 'setVoiceMinutes',
-        'voice_unlimited' => 'setVoiceUnlimited'
+        'value' => 'setValue'
     ];
 
     /**
@@ -334,7 +309,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'brand' => 'getBrand',
         'brand_name' => 'getBrandName',
-        'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
         'cost_base' => 'getCostBase',
         'cost_currency' => 'getCostCurrency',
@@ -342,11 +316,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'cost_fee' => 'getCostFee',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
-        'data_gb' => 'getDataGb',
-        'data_speeds' => 'getDataSpeeds',
-        'data_unlimited' => 'getDataUnlimited',
-        'duration_days' => 'getDurationDays',
         'error' => 'getError',
+        'fields' => 'getFields',
         'log' => 'getLog',
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
@@ -355,19 +326,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'price_currency_divisor' => 'getPriceCurrencyDivisor',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
-        'refund' => 'getRefund',
+        'recipient' => 'getRecipient',
         'regions' => 'getRegions',
-        'roaming' => 'getRoaming',
+        'send' => 'getSend',
+        'send_currency' => 'getSendCurrency',
+        'send_currency_divisor' => 'getSendCurrencyDivisor',
+        'sender' => 'getSender',
         'short_notes' => 'getShortNotes',
-        'sms_number' => 'getSmsNumber',
-        'sms_unlimited' => 'getSmsUnlimited',
         'status' => 'getStatus',
         'sub_types' => 'getSubTypes',
         'transaction_id' => 'getTransactionId',
         'updated_at' => 'getUpdatedAt',
-        'value' => 'getValue',
-        'voice_minutes' => 'getVoiceMinutes',
-        'voice_unlimited' => 'getVoiceUnlimited'
+        'value' => 'getValue'
     ];
 
     /**
@@ -429,7 +399,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('brand_name', $data ?? [], null);
-        $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
         $this->setIfExists('cost_base', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
@@ -437,11 +406,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('cost_fee', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
-        $this->setIfExists('data_gb', $data ?? [], null);
-        $this->setIfExists('data_speeds', $data ?? [], null);
-        $this->setIfExists('data_unlimited', $data ?? [], null);
-        $this->setIfExists('duration_days', $data ?? [], null);
         $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('fields', $data ?? [], null);
         $this->setIfExists('log', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
@@ -450,19 +416,18 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('price_currency_divisor', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
-        $this->setIfExists('refund', $data ?? [], null);
+        $this->setIfExists('recipient', $data ?? [], null);
         $this->setIfExists('regions', $data ?? [], null);
-        $this->setIfExists('roaming', $data ?? [], null);
+        $this->setIfExists('send', $data ?? [], null);
+        $this->setIfExists('send_currency', $data ?? [], null);
+        $this->setIfExists('send_currency_divisor', $data ?? [], null);
+        $this->setIfExists('sender', $data ?? [], null);
         $this->setIfExists('short_notes', $data ?? [], null);
-        $this->setIfExists('sms_number', $data ?? [], null);
-        $this->setIfExists('sms_unlimited', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
         $this->setIfExists('transaction_id', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
         $this->setIfExists('value', $data ?? [], null);
-        $this->setIfExists('voice_minutes', $data ?? [], null);
-        $this->setIfExists('voice_unlimited', $data ?? [], null);
     }
 
     /**
@@ -519,17 +484,8 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['created_at'] === null) {
             $invalidProperties[] = "'created_at' can't be null";
         }
-        if ($this->container['data_gb'] === null) {
-            $invalidProperties[] = "'data_gb' can't be null";
-        }
-        if ($this->container['data_speeds'] === null) {
-            $invalidProperties[] = "'data_speeds' can't be null";
-        }
-        if ($this->container['data_unlimited'] === null) {
-            $invalidProperties[] = "'data_unlimited' can't be null";
-        }
-        if ($this->container['duration_days'] === null) {
-            $invalidProperties[] = "'duration_days' can't be null";
+        if ($this->container['fields'] === null) {
+            $invalidProperties[] = "'fields' can't be null";
         }
         if ($this->container['log'] === null) {
             $invalidProperties[] = "'log' can't be null";
@@ -555,20 +511,23 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['product_type'] === null) {
             $invalidProperties[] = "'product_type' can't be null";
         }
-        if ($this->container['regions'] === null) {
-            $invalidProperties[] = "'regions' can't be null";
+        if ($this->container['recipient'] === null) {
+            $invalidProperties[] = "'recipient' can't be null";
         }
-        if ($this->container['roaming'] === null) {
-            $invalidProperties[] = "'roaming' can't be null";
+        if ($this->container['send'] === null) {
+            $invalidProperties[] = "'send' can't be null";
+        }
+        if ($this->container['send_currency'] === null) {
+            $invalidProperties[] = "'send_currency' can't be null";
+        }
+        if ($this->container['send_currency_divisor'] === null) {
+            $invalidProperties[] = "'send_currency_divisor' can't be null";
+        }
+        if ($this->container['sender'] === null) {
+            $invalidProperties[] = "'sender' can't be null";
         }
         if ($this->container['short_notes'] === null) {
             $invalidProperties[] = "'short_notes' can't be null";
-        }
-        if ($this->container['sms_number'] === null) {
-            $invalidProperties[] = "'sms_number' can't be null";
-        }
-        if ($this->container['sms_unlimited'] === null) {
-            $invalidProperties[] = "'sms_unlimited' can't be null";
         }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
@@ -581,12 +540,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['updated_at'] === null) {
             $invalidProperties[] = "'updated_at' can't be null";
-        }
-        if ($this->container['voice_minutes'] === null) {
-            $invalidProperties[] = "'voice_minutes' can't be null";
-        }
-        if ($this->container['voice_unlimited'] === null) {
-            $invalidProperties[] = "'voice_unlimited' can't be null";
         }
         return $invalidProperties;
     }
@@ -653,33 +606,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable brand_name cannot be null');
         }
         $this->container['brand_name'] = $brand_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets confirmation
-     *
-     * @return \Zendit\Model\DtoESimConfirmation|null
-     */
-    public function getConfirmation()
-    {
-        return $this->container['confirmation'];
-    }
-
-    /**
-     * Sets confirmation
-     *
-     * @param \Zendit\Model\DtoESimConfirmation|null $confirmation confirmation
-     *
-     * @return self
-     */
-    public function setConfirmation($confirmation)
-    {
-        if (is_null($confirmation)) {
-            throw new \InvalidArgumentException('non-nullable confirmation cannot be null');
-        }
-        $this->container['confirmation'] = $confirmation;
 
         return $this;
     }
@@ -874,114 +800,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets data_gb
-     *
-     * @return float
-     */
-    public function getDataGb()
-    {
-        return $this->container['data_gb'];
-    }
-
-    /**
-     * Sets data_gb
-     *
-     * @param float $data_gb data_gb
-     *
-     * @return self
-     */
-    public function setDataGb($data_gb)
-    {
-        if (is_null($data_gb)) {
-            throw new \InvalidArgumentException('non-nullable data_gb cannot be null');
-        }
-        $this->container['data_gb'] = $data_gb;
-
-        return $this;
-    }
-
-    /**
-     * Gets data_speeds
-     *
-     * @return string[]
-     */
-    public function getDataSpeeds()
-    {
-        return $this->container['data_speeds'];
-    }
-
-    /**
-     * Sets data_speeds
-     *
-     * @param string[] $data_speeds data_speeds
-     *
-     * @return self
-     */
-    public function setDataSpeeds($data_speeds)
-    {
-        if (is_null($data_speeds)) {
-            throw new \InvalidArgumentException('non-nullable data_speeds cannot be null');
-        }
-        $this->container['data_speeds'] = $data_speeds;
-
-        return $this;
-    }
-
-    /**
-     * Gets data_unlimited
-     *
-     * @return bool
-     */
-    public function getDataUnlimited()
-    {
-        return $this->container['data_unlimited'];
-    }
-
-    /**
-     * Sets data_unlimited
-     *
-     * @param bool $data_unlimited data_unlimited
-     *
-     * @return self
-     */
-    public function setDataUnlimited($data_unlimited)
-    {
-        if (is_null($data_unlimited)) {
-            throw new \InvalidArgumentException('non-nullable data_unlimited cannot be null');
-        }
-        $this->container['data_unlimited'] = $data_unlimited;
-
-        return $this;
-    }
-
-    /**
-     * Gets duration_days
-     *
-     * @return int
-     */
-    public function getDurationDays()
-    {
-        return $this->container['duration_days'];
-    }
-
-    /**
-     * Sets duration_days
-     *
-     * @param int $duration_days duration_days
-     *
-     * @return self
-     */
-    public function setDurationDays($duration_days)
-    {
-        if (is_null($duration_days)) {
-            throw new \InvalidArgumentException('non-nullable duration_days cannot be null');
-        }
-        $this->container['duration_days'] = $duration_days;
-
-        return $this;
-    }
-
-    /**
      * Gets error
      *
      * @return \Zendit\Model\DtoError|null
@@ -1004,6 +822,33 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
         $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets fields
+     *
+     * @return \Zendit\Model\DtoPurchaseField[]
+     */
+    public function getFields()
+    {
+        return $this->container['fields'];
+    }
+
+    /**
+     * Sets fields
+     *
+     * @param \Zendit\Model\DtoPurchaseField[] $fields fields
+     *
+     * @return self
+     */
+    public function setFields($fields)
+    {
+        if (is_null($fields)) {
+            throw new \InvalidArgumentException('non-nullable fields cannot be null');
+        }
+        $this->container['fields'] = $fields;
 
         return $this;
     }
@@ -1225,28 +1070,28 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets refund
+     * Gets recipient
      *
-     * @return \Zendit\Model\DtoESimRefund|null
+     * @return \Zendit\Model\DtoRecipient
      */
-    public function getRefund()
+    public function getRecipient()
     {
-        return $this->container['refund'];
+        return $this->container['recipient'];
     }
 
     /**
-     * Sets refund
+     * Sets recipient
      *
-     * @param \Zendit\Model\DtoESimRefund|null $refund refund
+     * @param \Zendit\Model\DtoRecipient $recipient recipient
      *
      * @return self
      */
-    public function setRefund($refund)
+    public function setRecipient($recipient)
     {
-        if (is_null($refund)) {
-            throw new \InvalidArgumentException('non-nullable refund cannot be null');
+        if (is_null($recipient)) {
+            throw new \InvalidArgumentException('non-nullable recipient cannot be null');
         }
-        $this->container['refund'] = $refund;
+        $this->container['recipient'] = $recipient;
 
         return $this;
     }
@@ -1254,7 +1099,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets regions
      *
-     * @return string[]
+     * @return string[]|null
      */
     public function getRegions()
     {
@@ -1264,7 +1109,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets regions
      *
-     * @param string[] $regions regions
+     * @param string[]|null $regions regions
      *
      * @return self
      */
@@ -1279,28 +1124,109 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets roaming
+     * Gets send
      *
-     * @return \Zendit\Model\DtoESimRoaming[]
+     * @return int
      */
-    public function getRoaming()
+    public function getSend()
     {
-        return $this->container['roaming'];
+        return $this->container['send'];
     }
 
     /**
-     * Sets roaming
+     * Sets send
      *
-     * @param \Zendit\Model\DtoESimRoaming[] $roaming roaming
+     * @param int $send send
      *
      * @return self
      */
-    public function setRoaming($roaming)
+    public function setSend($send)
     {
-        if (is_null($roaming)) {
-            throw new \InvalidArgumentException('non-nullable roaming cannot be null');
+        if (is_null($send)) {
+            throw new \InvalidArgumentException('non-nullable send cannot be null');
         }
-        $this->container['roaming'] = $roaming;
+        $this->container['send'] = $send;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_currency
+     *
+     * @return string
+     */
+    public function getSendCurrency()
+    {
+        return $this->container['send_currency'];
+    }
+
+    /**
+     * Sets send_currency
+     *
+     * @param string $send_currency send_currency
+     *
+     * @return self
+     */
+    public function setSendCurrency($send_currency)
+    {
+        if (is_null($send_currency)) {
+            throw new \InvalidArgumentException('non-nullable send_currency cannot be null');
+        }
+        $this->container['send_currency'] = $send_currency;
+
+        return $this;
+    }
+
+    /**
+     * Gets send_currency_divisor
+     *
+     * @return int
+     */
+    public function getSendCurrencyDivisor()
+    {
+        return $this->container['send_currency_divisor'];
+    }
+
+    /**
+     * Sets send_currency_divisor
+     *
+     * @param int $send_currency_divisor send_currency_divisor
+     *
+     * @return self
+     */
+    public function setSendCurrencyDivisor($send_currency_divisor)
+    {
+        if (is_null($send_currency_divisor)) {
+            throw new \InvalidArgumentException('non-nullable send_currency_divisor cannot be null');
+        }
+        $this->container['send_currency_divisor'] = $send_currency_divisor;
+
+        return $this;
+    }
+
+    /**
+     * Gets sender
+     *
+     * @return \Zendit\Model\DtoSender
+     */
+    public function getSender()
+    {
+        return $this->container['sender'];
+    }
+
+    /**
+     * Sets sender
+     *
+     * @param \Zendit\Model\DtoSender $sender sender
+     *
+     * @return self
+     */
+    public function setSender($sender)
+    {
+        if (is_null($sender)) {
+            throw new \InvalidArgumentException('non-nullable sender cannot be null');
+        }
+        $this->container['sender'] = $sender;
 
         return $this;
     }
@@ -1328,60 +1254,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable short_notes cannot be null');
         }
         $this->container['short_notes'] = $short_notes;
-
-        return $this;
-    }
-
-    /**
-     * Gets sms_number
-     *
-     * @return int
-     */
-    public function getSmsNumber()
-    {
-        return $this->container['sms_number'];
-    }
-
-    /**
-     * Sets sms_number
-     *
-     * @param int $sms_number sms_number
-     *
-     * @return self
-     */
-    public function setSmsNumber($sms_number)
-    {
-        if (is_null($sms_number)) {
-            throw new \InvalidArgumentException('non-nullable sms_number cannot be null');
-        }
-        $this->container['sms_number'] = $sms_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets sms_unlimited
-     *
-     * @return bool
-     */
-    public function getSmsUnlimited()
-    {
-        return $this->container['sms_unlimited'];
-    }
-
-    /**
-     * Sets sms_unlimited
-     *
-     * @param bool $sms_unlimited sms_unlimited
-     *
-     * @return self
-     */
-    public function setSmsUnlimited($sms_unlimited)
-    {
-        if (is_null($sms_unlimited)) {
-            throw new \InvalidArgumentException('non-nullable sms_unlimited cannot be null');
-        }
-        $this->container['sms_unlimited'] = $sms_unlimited;
 
         return $this;
     }
@@ -1517,60 +1389,6 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable value cannot be null');
         }
         $this->container['value'] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Gets voice_minutes
-     *
-     * @return int
-     */
-    public function getVoiceMinutes()
-    {
-        return $this->container['voice_minutes'];
-    }
-
-    /**
-     * Sets voice_minutes
-     *
-     * @param int $voice_minutes voice_minutes
-     *
-     * @return self
-     */
-    public function setVoiceMinutes($voice_minutes)
-    {
-        if (is_null($voice_minutes)) {
-            throw new \InvalidArgumentException('non-nullable voice_minutes cannot be null');
-        }
-        $this->container['voice_minutes'] = $voice_minutes;
-
-        return $this;
-    }
-
-    /**
-     * Gets voice_unlimited
-     *
-     * @return bool
-     */
-    public function getVoiceUnlimited()
-    {
-        return $this->container['voice_unlimited'];
-    }
-
-    /**
-     * Sets voice_unlimited
-     *
-     * @param bool $voice_unlimited voice_unlimited
-     *
-     * @return self
-     */
-    public function setVoiceUnlimited($voice_unlimited)
-    {
-        if (is_null($voice_unlimited)) {
-            throw new \InvalidArgumentException('non-nullable voice_unlimited cannot be null');
-        }
-        $this->container['voice_unlimited'] = $voice_unlimited;
 
         return $this;
     }
