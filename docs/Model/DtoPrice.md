@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **currency_divisor** | **int** |  |
 **fixed** | **int** |  | [optional]
 **fx** | **float** |  | [optional]
+**increment** | **int** |  | [optional]
 **margin** | **float** |  | [optional]
 **max** | **int** |  | [optional]
 **min** | **int** |  | [optional]

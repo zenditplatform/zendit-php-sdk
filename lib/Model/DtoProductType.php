@@ -21,6 +21,8 @@ class DtoProductType
 
     public const PRODUCT_TYPE_VOUCHER = 'VOUCHER';
 
+    public const PRODUCT_TYPE_BILL_PAY = 'BILL_PAY';
+
     public const PRODUCT_TYPE_WALLET_RECHARGE = 'WALLET_RECHARGE';
 
     public const PRODUCT_TYPE_REFUND = 'REFUND';
@@ -37,6 +39,7 @@ class DtoProductType
             self::PRODUCT_TYPE_TOPUP,
             self::PRODUCT_TYPE_ESIM,
             self::PRODUCT_TYPE_VOUCHER,
+            self::PRODUCT_TYPE_BILL_PAY,
             self::PRODUCT_TYPE_WALLET_RECHARGE,
             self::PRODUCT_TYPE_REFUND,
             self::PRODUCT_TYPE_BULK_CHECKOUT

@@ -38,6 +38,12 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
 | [**balanceGet()**](ZenditApi.md#balanceGet) | **GET** /balance | Retrieve wallet balance |
+| [**billpayOffersGet()**](ZenditApi.md#billpayOffersGet) | **GET** /billpay/offers | Get list of BillPay offers |
+| [**billpayOffersOfferIdBillGet()**](ZenditApi.md#billpayOffersOfferIdBillGet) | **GET** /billpay/offers/{offerId}/bill | Get a BillPay bill for a specific offer |
+| [**billpayOffersOfferIdGet()**](ZenditApi.md#billpayOffersOfferIdGet) | **GET** /billpay/offers/{offerId} | Get a BillPay offer by the offer ID |
+| [**billpayPurchasesGet()**](ZenditApi.md#billpayPurchasesGet) | **GET** /billpay/purchases | Get list of BillPay purchases |
+| [**billpayPurchasesPost()**](ZenditApi.md#billpayPurchasesPost) | **POST** /billpay/purchases | Create a BillPay purchase |
+| [**billpayPurchasesTransactionIdGet()**](ZenditApi.md#billpayPurchasesTransactionIdGet) | **GET** /billpay/purchases/{transactionId} | Get a BillPay purchase by the transaction ID |
 | [**brandsBrandGet()**](ZenditApi.md#brandsBrandGet) | **GET** /brands/{brand} | Get a brand by the brand code |
 | [**brandsBrandRedemptionInstructionsGet()**](ZenditApi.md#brandsBrandRedemptionInstructionsGet) | **GET** /brands/{brand}/redemptionInstructions | Get a brand redemption instruction by the brand code |
 | [**brandsGet()**](ZenditApi.md#brandsGet) | **GET** /brands | Get list of brands |
@@ -99,6 +105,248 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Zendit\Model\DtoBalanceResponse**](../Model/DtoBalanceResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayOffersGet()`
+
+```php
+billpayOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type): \Zendit\Model\DtoBillPayOffersResponse
+```
+
+Get list of BillPay offers
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int | Example: Reusing common fields for filtering and pagination
+$brand = 'brand_example'; // string
+$country = 'country_example'; // string
+$regions = 'regions_example'; // string
+$sub_type = 'sub_type_example'; // string
+
+try {
+    $result = $apiInstance->billpayOffersGet($_limit, $_offset, $brand, $country, $regions, $sub_type);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayOffersGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**| Example: Reusing common fields for filtering and pagination | |
+| **brand** | **string**|  | [optional] |
+| **country** | **string**|  | [optional] |
+| **regions** | **string**|  | [optional] |
+| **sub_type** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayOffersResponse**](../Model/DtoBillPayOffersResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayOffersOfferIdBillGet()`
+
+```php
+billpayOffersOfferIdBillGet($offer_id, $bill_identifier, $account_number): \Zendit\Model\DtoBillPayBillResponse
+```
+
+Get a BillPay bill for a specific offer
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$offer_id = 'offer_id_example'; // string | Offer ID
+$bill_identifier = 'bill_identifier_example'; // string | Bill Identifier
+$account_number = 'account_number_example'; // string | Account Number
+
+try {
+    $result = $apiInstance->billpayOffersOfferIdBillGet($offer_id, $bill_identifier, $account_number);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayOffersOfferIdBillGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offer_id** | **string**| Offer ID | |
+| **bill_identifier** | **string**| Bill Identifier | [optional] |
+| **account_number** | **string**| Account Number | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayBillResponse**](../Model/DtoBillPayBillResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayOffersOfferIdGet()`
+
+```php
+billpayOffersOfferIdGet($offer_id): \Zendit\Model\DtoBillPayOffer
+```
+
+Get a BillPay offer by the offer ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$offer_id = 'offer_id_example'; // string | Get BillPay offer by id
+
+try {
+    $result = $apiInstance->billpayOffersOfferIdGet($offer_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayOffersOfferIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **offer_id** | **string**| Get BillPay offer by id | |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayOffer**](../Model/DtoBillPayOffer.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayPurchasesGet()`
+
+```php
+billpayPurchasesGet($_limit, $_offset, $created_at, $status): \Zendit\Model\DtoBillPayPurchasesResponse
+```
+
+Get list of BillPay purchases
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$_limit = 56; // int
+$_offset = 56; // int
+$created_at = 'created_at_example'; // string
+$status = 'status_example'; // string
+
+try {
+    $result = $apiInstance->billpayPurchasesGet($_limit, $_offset, $created_at, $status);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayPurchasesGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **_limit** | **int**|  | |
+| **_offset** | **int**|  | |
+| **created_at** | **string**|  | [optional] |
+| **status** | **string**|  | [optional] |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayPurchasesResponse**](../Model/DtoBillPayPurchasesResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayPurchasesPost()`
+
+```php
+billpayPurchasesPost($data): \Zendit\Model\DtoBillPayPurchaseResponse
+```
+
+Create a BillPay purchase
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$data = new \Zendit\Model\DtoBillPayPurchaseInput(); // \Zendit\Model\DtoBillPayPurchaseInput | Purchase input data
+
+try {
+    $result = $apiInstance->billpayPurchasesPost($data);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayPurchasesPost: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **data** | [**\Zendit\Model\DtoBillPayPurchaseInput**](../Model/DtoBillPayPurchaseInput.md)| Purchase input data | |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayPurchaseResponse**](../Model/DtoBillPayPurchaseResponse.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `billpayPurchasesTransactionIdGet()`
+
+```php
+billpayPurchasesTransactionIdGet($transaction_id): \Zendit\Model\DtoBillPayPurchase
+```
+
+Get a BillPay purchase by the transaction ID
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | Get BillPay purchase by id
+
+try {
+    $result = $apiInstance->billpayPurchasesTransactionIdGet($transaction_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->billpayPurchasesTransactionIdGet: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| Get BillPay purchase by id | |
+
+### Return type
+
+[**\Zendit\Model\DtoBillPayPurchase**](../Model/DtoBillPayPurchase.md)
 
 [[Back to top]](#zendit-sdk-guide) 
 [[Back to README]](../../README.md)

@@ -34,6 +34,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => 'int',
         'fixed' => 'int',
         'fx' => 'float',
+        'increment' => 'int',
         'margin' => 'float',
         'max' => 'int',
         'min' => 'int',
@@ -53,6 +54,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => null,
         'fixed' => null,
         'fx' => null,
+        'increment' => null,
         'margin' => null,
         'max' => null,
         'min' => null,
@@ -70,6 +72,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => false,
         'fixed' => false,
         'fx' => false,
+        'increment' => false,
         'margin' => false,
         'max' => false,
         'min' => false,
@@ -167,6 +170,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => 'currencyDivisor',
         'fixed' => 'fixed',
         'fx' => 'fx',
+        'increment' => 'increment',
         'margin' => 'margin',
         'max' => 'max',
         'min' => 'min',
@@ -184,6 +188,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => 'setCurrencyDivisor',
         'fixed' => 'setFixed',
         'fx' => 'setFx',
+        'increment' => 'setIncrement',
         'margin' => 'setMargin',
         'max' => 'setMax',
         'min' => 'setMin',
@@ -201,6 +206,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'currency_divisor' => 'getCurrencyDivisor',
         'fixed' => 'getFixed',
         'fx' => 'getFx',
+        'increment' => 'getIncrement',
         'margin' => 'getMargin',
         'max' => 'getMax',
         'min' => 'getMin',
@@ -269,6 +275,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('currency_divisor', $data ?? [], null);
         $this->setIfExists('fixed', $data ?? [], null);
         $this->setIfExists('fx', $data ?? [], null);
+        $this->setIfExists('increment', $data ?? [], null);
         $this->setIfExists('margin', $data ?? [], null);
         $this->setIfExists('max', $data ?? [], null);
         $this->setIfExists('min', $data ?? [], null);
@@ -428,6 +435,33 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable fx cannot be null');
         }
         $this->container['fx'] = $fx;
+
+        return $this;
+    }
+
+    /**
+     * Gets increment
+     *
+     * @return int|null
+     */
+    public function getIncrement()
+    {
+        return $this->container['increment'];
+    }
+
+    /**
+     * Sets increment
+     *
+     * @param int|null $increment increment
+     *
+     * @return self
+     */
+    public function setIncrement($increment)
+    {
+        if (is_null($increment)) {
+            throw new \InvalidArgumentException('non-nullable increment cannot be null');
+        }
+        $this->container['increment'] = $increment;
 
         return $this;
     }

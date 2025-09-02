@@ -34,8 +34,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => 'string',
         'confirmation' => '\Zendit\Model\DtoConfirmation',
         'cost' => 'int',
+        'cost_base' => 'int',
         'cost_currency' => 'string',
         'cost_currency_divisor' => 'int',
+        'cost_fee' => 'int',
         'country' => 'string',
         'created_at' => 'string',
         'data_gb' => 'float',
@@ -80,8 +82,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => null,
         'confirmation' => null,
         'cost' => null,
+        'cost_base' => null,
         'cost_currency' => null,
         'cost_currency_divisor' => null,
+        'cost_fee' => null,
         'country' => null,
         'created_at' => null,
         'data_gb' => null,
@@ -124,8 +128,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => false,
         'confirmation' => false,
         'cost' => false,
+        'cost_base' => false,
         'cost_currency' => false,
         'cost_currency_divisor' => false,
+        'cost_fee' => false,
         'country' => false,
         'created_at' => false,
         'data_gb' => false,
@@ -248,8 +254,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => 'brandName',
         'confirmation' => 'confirmation',
         'cost' => 'cost',
+        'cost_base' => 'costBase',
         'cost_currency' => 'costCurrency',
         'cost_currency_divisor' => 'costCurrencyDivisor',
+        'cost_fee' => 'costFee',
         'country' => 'country',
         'created_at' => 'createdAt',
         'data_gb' => 'dataGB',
@@ -292,8 +300,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => 'setBrandName',
         'confirmation' => 'setConfirmation',
         'cost' => 'setCost',
+        'cost_base' => 'setCostBase',
         'cost_currency' => 'setCostCurrency',
         'cost_currency_divisor' => 'setCostCurrencyDivisor',
+        'cost_fee' => 'setCostFee',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
         'data_gb' => 'setDataGb',
@@ -336,8 +346,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand_name' => 'getBrandName',
         'confirmation' => 'getConfirmation',
         'cost' => 'getCost',
+        'cost_base' => 'getCostBase',
         'cost_currency' => 'getCostCurrency',
         'cost_currency_divisor' => 'getCostCurrencyDivisor',
+        'cost_fee' => 'getCostFee',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
         'data_gb' => 'getDataGb',
@@ -431,8 +443,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('brand_name', $data ?? [], null);
         $this->setIfExists('confirmation', $data ?? [], null);
         $this->setIfExists('cost', $data ?? [], null);
+        $this->setIfExists('cost_base', $data ?? [], null);
         $this->setIfExists('cost_currency', $data ?? [], null);
         $this->setIfExists('cost_currency_divisor', $data ?? [], null);
+        $this->setIfExists('cost_fee', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('data_gb', $data ?? [], null);
@@ -501,11 +515,17 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['cost'] === null) {
             $invalidProperties[] = "'cost' can't be null";
         }
+        if ($this->container['cost_base'] === null) {
+            $invalidProperties[] = "'cost_base' can't be null";
+        }
         if ($this->container['cost_currency'] === null) {
             $invalidProperties[] = "'cost_currency' can't be null";
         }
         if ($this->container['cost_currency_divisor'] === null) {
             $invalidProperties[] = "'cost_currency_divisor' can't be null";
+        }
+        if ($this->container['cost_fee'] === null) {
+            $invalidProperties[] = "'cost_fee' can't be null";
         }
         if ($this->container['country'] === null) {
             $invalidProperties[] = "'country' can't be null";
@@ -712,6 +732,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets cost_base
+     *
+     * @return int
+     */
+    public function getCostBase()
+    {
+        return $this->container['cost_base'];
+    }
+
+    /**
+     * Sets cost_base
+     *
+     * @param int $cost_base cost_base
+     *
+     * @return self
+     */
+    public function setCostBase($cost_base)
+    {
+        if (is_null($cost_base)) {
+            throw new \InvalidArgumentException('non-nullable cost_base cannot be null');
+        }
+        $this->container['cost_base'] = $cost_base;
+
+        return $this;
+    }
+
+    /**
      * Gets cost_currency
      *
      * @return string
@@ -761,6 +808,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable cost_currency_divisor cannot be null');
         }
         $this->container['cost_currency_divisor'] = $cost_currency_divisor;
+
+        return $this;
+    }
+
+    /**
+     * Gets cost_fee
+     *
+     * @return int
+     */
+    public function getCostFee()
+    {
+        return $this->container['cost_fee'];
+    }
+
+    /**
+     * Sets cost_fee
+     *
+     * @param int $cost_fee cost_fee
+     *
+     * @return self
+     */
+    public function setCostFee($cost_fee)
+    {
+        if (is_null($cost_fee)) {
+            throw new \InvalidArgumentException('non-nullable cost_fee cannot be null');
+        }
+        $this->container['cost_fee'] = $cost_fee;
 
         return $this;
     }

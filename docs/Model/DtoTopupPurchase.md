@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **brand_name** | **string** |  |
 **confirmation** | [**\Zendit\Model\DtoConfirmation**](DtoConfirmation.md) |  | [optional]
 **cost** | **int** |  |
+**cost_base** | **int** |  |
 **cost_currency** | **string** |  |
 **cost_currency_divisor** | **int** |  |
+**cost_fee** | **int** |  |
 **country** | **string** |  |
 **created_at** | **string** |  |
 **data_gb** | **float** |  |

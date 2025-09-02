@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoCost Class Doc Comment
+ * DtoHomeAddress Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoHomeAddress implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.Cost';
+    protected static $openAPIModelName = 'dto.HomeAddress';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,15 +30,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'currency' => 'string',
-        'currency_divisor' => 'int',
-        'discount' => 'float',
-        'fee' => 'int',
-        'fee_pct' => 'float',
-        'fixed' => 'int',
-        'fx' => 'float',
-        'max' => 'int',
-        'min' => 'int'
+        'city' => 'string',
+        'country' => 'string',
+        'line1' => 'string',
+        'line2' => 'string',
+        'subdivision' => 'string',
+        'zip' => 'string'
     ];
 
     /**
@@ -49,15 +46,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'currency' => null,
-        'currency_divisor' => null,
-        'discount' => null,
-        'fee' => null,
-        'fee_pct' => null,
-        'fixed' => null,
-        'fx' => null,
-        'max' => null,
-        'min' => null
+        'city' => null,
+        'country' => null,
+        'line1' => null,
+        'line2' => null,
+        'subdivision' => null,
+        'zip' => null
     ];
 
     /**
@@ -66,15 +60,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'currency' => false,
-        'currency_divisor' => false,
-        'discount' => false,
-        'fee' => false,
-        'fee_pct' => false,
-        'fixed' => false,
-        'fx' => false,
-        'max' => false,
-        'min' => false
+        'city' => false,
+        'country' => false,
+        'line1' => false,
+        'line2' => false,
+        'subdivision' => false,
+        'zip' => false
     ];
 
     /**
@@ -163,15 +154,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'currency' => 'currency',
-        'currency_divisor' => 'currencyDivisor',
-        'discount' => 'discount',
-        'fee' => 'fee',
-        'fee_pct' => 'feePct',
-        'fixed' => 'fixed',
-        'fx' => 'fx',
-        'max' => 'max',
-        'min' => 'min'
+        'city' => 'city',
+        'country' => 'country',
+        'line1' => 'line1',
+        'line2' => 'line2',
+        'subdivision' => 'subdivision',
+        'zip' => 'zip'
     ];
 
     /**
@@ -180,15 +168,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'currency' => 'setCurrency',
-        'currency_divisor' => 'setCurrencyDivisor',
-        'discount' => 'setDiscount',
-        'fee' => 'setFee',
-        'fee_pct' => 'setFeePct',
-        'fixed' => 'setFixed',
-        'fx' => 'setFx',
-        'max' => 'setMax',
-        'min' => 'setMin'
+        'city' => 'setCity',
+        'country' => 'setCountry',
+        'line1' => 'setLine1',
+        'line2' => 'setLine2',
+        'subdivision' => 'setSubdivision',
+        'zip' => 'setZip'
     ];
 
     /**
@@ -197,15 +182,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'currency' => 'getCurrency',
-        'currency_divisor' => 'getCurrencyDivisor',
-        'discount' => 'getDiscount',
-        'fee' => 'getFee',
-        'fee_pct' => 'getFeePct',
-        'fixed' => 'getFixed',
-        'fx' => 'getFx',
-        'max' => 'getMax',
-        'min' => 'getMin'
+        'city' => 'getCity',
+        'country' => 'getCountry',
+        'line1' => 'getLine1',
+        'line2' => 'getLine2',
+        'subdivision' => 'getSubdivision',
+        'zip' => 'getZip'
     ];
 
     /**
@@ -265,15 +247,12 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('currency_divisor', $data ?? [], null);
-        $this->setIfExists('discount', $data ?? [], null);
-        $this->setIfExists('fee', $data ?? [], null);
-        $this->setIfExists('fee_pct', $data ?? [], null);
-        $this->setIfExists('fixed', $data ?? [], null);
-        $this->setIfExists('fx', $data ?? [], null);
-        $this->setIfExists('max', $data ?? [], null);
-        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('line1', $data ?? [], null);
+        $this->setIfExists('line2', $data ?? [], null);
+        $this->setIfExists('subdivision', $data ?? [], null);
+        $this->setIfExists('zip', $data ?? [], null);
     }
 
     /**
@@ -303,20 +282,23 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['currency'] === null) {
-            $invalidProperties[] = "'currency' can't be null";
+        if ($this->container['city'] === null) {
+            $invalidProperties[] = "'city' can't be null";
         }
-        if ($this->container['currency_divisor'] === null) {
-            $invalidProperties[] = "'currency_divisor' can't be null";
+        if ($this->container['country'] === null) {
+            $invalidProperties[] = "'country' can't be null";
         }
-        if ($this->container['discount'] === null) {
-            $invalidProperties[] = "'discount' can't be null";
+        if ($this->container['line1'] === null) {
+            $invalidProperties[] = "'line1' can't be null";
         }
-        if ($this->container['fee'] === null) {
-            $invalidProperties[] = "'fee' can't be null";
+        if ($this->container['line2'] === null) {
+            $invalidProperties[] = "'line2' can't be null";
         }
-        if ($this->container['fee_pct'] === null) {
-            $invalidProperties[] = "'fee_pct' can't be null";
+        if ($this->container['subdivision'] === null) {
+            $invalidProperties[] = "'subdivision' can't be null";
+        }
+        if ($this->container['zip'] === null) {
+            $invalidProperties[] = "'zip' can't be null";
         }
         return $invalidProperties;
     }
@@ -334,244 +316,163 @@ class DtoCost implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets currency
+     * Gets city
      *
      * @return string
      */
-    public function getCurrency()
+    public function getCity()
     {
-        return $this->container['currency'];
+        return $this->container['city'];
     }
 
     /**
-     * Sets currency
+     * Sets city
      *
-     * @param string $currency currency
+     * @param string $city city
      *
      * @return self
      */
-    public function setCurrency($currency)
+    public function setCity($city)
     {
-        if (is_null($currency)) {
-            throw new \InvalidArgumentException('non-nullable currency cannot be null');
+        if (is_null($city)) {
+            throw new \InvalidArgumentException('non-nullable city cannot be null');
         }
-        $this->container['currency'] = $currency;
+        $this->container['city'] = $city;
 
         return $this;
     }
 
     /**
-     * Gets currency_divisor
+     * Gets country
      *
-     * @return int
+     * @return string
      */
-    public function getCurrencyDivisor()
+    public function getCountry()
     {
-        return $this->container['currency_divisor'];
+        return $this->container['country'];
     }
 
     /**
-     * Sets currency_divisor
+     * Sets country
      *
-     * @param int $currency_divisor currency_divisor
+     * @param string $country country
      *
      * @return self
      */
-    public function setCurrencyDivisor($currency_divisor)
+    public function setCountry($country)
     {
-        if (is_null($currency_divisor)) {
-            throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
         }
-        $this->container['currency_divisor'] = $currency_divisor;
+        $this->container['country'] = $country;
 
         return $this;
     }
 
     /**
-     * Gets discount
+     * Gets line1
      *
-     * @return float
+     * @return string
      */
-    public function getDiscount()
+    public function getLine1()
     {
-        return $this->container['discount'];
+        return $this->container['line1'];
     }
 
     /**
-     * Sets discount
+     * Sets line1
      *
-     * @param float $discount discount
+     * @param string $line1 line1
      *
      * @return self
      */
-    public function setDiscount($discount)
+    public function setLine1($line1)
     {
-        if (is_null($discount)) {
-            throw new \InvalidArgumentException('non-nullable discount cannot be null');
+        if (is_null($line1)) {
+            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
         }
-        $this->container['discount'] = $discount;
+        $this->container['line1'] = $line1;
 
         return $this;
     }
 
     /**
-     * Gets fee
+     * Gets line2
      *
-     * @return int
+     * @return string
      */
-    public function getFee()
+    public function getLine2()
     {
-        return $this->container['fee'];
+        return $this->container['line2'];
     }
 
     /**
-     * Sets fee
+     * Sets line2
      *
-     * @param int $fee fee
+     * @param string $line2 line2
      *
      * @return self
      */
-    public function setFee($fee)
+    public function setLine2($line2)
     {
-        if (is_null($fee)) {
-            throw new \InvalidArgumentException('non-nullable fee cannot be null');
+        if (is_null($line2)) {
+            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
         }
-        $this->container['fee'] = $fee;
+        $this->container['line2'] = $line2;
 
         return $this;
     }
 
     /**
-     * Gets fee_pct
+     * Gets subdivision
      *
-     * @return float
+     * @return string
      */
-    public function getFeePct()
+    public function getSubdivision()
     {
-        return $this->container['fee_pct'];
+        return $this->container['subdivision'];
     }
 
     /**
-     * Sets fee_pct
+     * Sets subdivision
      *
-     * @param float $fee_pct fee_pct
+     * @param string $subdivision subdivision
      *
      * @return self
      */
-    public function setFeePct($fee_pct)
+    public function setSubdivision($subdivision)
     {
-        if (is_null($fee_pct)) {
-            throw new \InvalidArgumentException('non-nullable fee_pct cannot be null');
+        if (is_null($subdivision)) {
+            throw new \InvalidArgumentException('non-nullable subdivision cannot be null');
         }
-        $this->container['fee_pct'] = $fee_pct;
+        $this->container['subdivision'] = $subdivision;
 
         return $this;
     }
 
     /**
-     * Gets fixed
+     * Gets zip
      *
-     * @return int|null
+     * @return string
      */
-    public function getFixed()
+    public function getZip()
     {
-        return $this->container['fixed'];
+        return $this->container['zip'];
     }
 
     /**
-     * Sets fixed
+     * Sets zip
      *
-     * @param int|null $fixed fixed
+     * @param string $zip zip
      *
      * @return self
      */
-    public function setFixed($fixed)
+    public function setZip($zip)
     {
-        if (is_null($fixed)) {
-            throw new \InvalidArgumentException('non-nullable fixed cannot be null');
+        if (is_null($zip)) {
+            throw new \InvalidArgumentException('non-nullable zip cannot be null');
         }
-        $this->container['fixed'] = $fixed;
-
-        return $this;
-    }
-
-    /**
-     * Gets fx
-     *
-     * @return float|null
-     */
-    public function getFx()
-    {
-        return $this->container['fx'];
-    }
-
-    /**
-     * Sets fx
-     *
-     * @param float|null $fx fx
-     *
-     * @return self
-     */
-    public function setFx($fx)
-    {
-        if (is_null($fx)) {
-            throw new \InvalidArgumentException('non-nullable fx cannot be null');
-        }
-        $this->container['fx'] = $fx;
-
-        return $this;
-    }
-
-    /**
-     * Gets max
-     *
-     * @return int|null
-     */
-    public function getMax()
-    {
-        return $this->container['max'];
-    }
-
-    /**
-     * Sets max
-     *
-     * @param int|null $max max
-     *
-     * @return self
-     */
-    public function setMax($max)
-    {
-        if (is_null($max)) {
-            throw new \InvalidArgumentException('non-nullable max cannot be null');
-        }
-        $this->container['max'] = $max;
-
-        return $this;
-    }
-
-    /**
-     * Gets min
-     *
-     * @return int|null
-     */
-    public function getMin()
-    {
-        return $this->container['min'];
-    }
-
-    /**
-     * Sets min
-     *
-     * @param int|null $min min
-     *
-     * @return self
-     */
-    public function setMin($min)
-    {
-        if (is_null($min)) {
-            throw new \InvalidArgumentException('non-nullable min cannot be null');
-        }
-        $this->container['min'] = $min;
+        $this->container['zip'] = $zip;
 
         return $this;
     }

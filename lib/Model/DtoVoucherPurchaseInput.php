@@ -30,7 +30,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'fields' => '\Zendit\Model\DtoVoucherField[]',
+        'fields' => '\Zendit\Model\DtoPurchaseField[]',
         'offer_id' => 'string',
         'transaction_id' => 'string',
         'value' => '\Zendit\Model\DtoPurchaseValue'
@@ -295,7 +295,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets fields
      *
-     * @return \Zendit\Model\DtoVoucherField[]
+     * @return \Zendit\Model\DtoPurchaseField[]
      */
     public function getFields()
     {
@@ -305,7 +305,7 @@ class DtoVoucherPurchaseInput implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets fields
      *
-     * @param \Zendit\Model\DtoVoucherField[] $fields fields
+     * @param \Zendit\Model\DtoPurchaseField[] $fields fields
      *
      * @return self
      */
