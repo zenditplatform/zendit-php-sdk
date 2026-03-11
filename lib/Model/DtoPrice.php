@@ -32,6 +32,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'currency' => 'string',
         'currency_divisor' => 'int',
+        'fee' => 'int',
         'fixed' => 'int',
         'fx' => 'float',
         'increment' => 'int',
@@ -52,6 +53,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'currency' => null,
         'currency_divisor' => null,
+        'fee' => null,
         'fixed' => null,
         'fx' => null,
         'increment' => null,
@@ -70,6 +72,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'currency' => false,
         'currency_divisor' => false,
+        'fee' => false,
         'fixed' => false,
         'fx' => false,
         'increment' => false,
@@ -168,6 +171,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'currency' => 'currency',
         'currency_divisor' => 'currencyDivisor',
+        'fee' => 'fee',
         'fixed' => 'fixed',
         'fx' => 'fx',
         'increment' => 'increment',
@@ -186,6 +190,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'currency' => 'setCurrency',
         'currency_divisor' => 'setCurrencyDivisor',
+        'fee' => 'setFee',
         'fixed' => 'setFixed',
         'fx' => 'setFx',
         'increment' => 'setIncrement',
@@ -204,6 +209,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'currency' => 'getCurrency',
         'currency_divisor' => 'getCurrencyDivisor',
+        'fee' => 'getFee',
         'fixed' => 'getFixed',
         'fx' => 'getFx',
         'increment' => 'getIncrement',
@@ -273,6 +279,7 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('currency_divisor', $data ?? [], null);
+        $this->setIfExists('fee', $data ?? [], null);
         $this->setIfExists('fixed', $data ?? [], null);
         $this->setIfExists('fx', $data ?? [], null);
         $this->setIfExists('increment', $data ?? [], null);
@@ -315,6 +322,9 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['currency_divisor'] === null) {
             $invalidProperties[] = "'currency_divisor' can't be null";
+        }
+        if ($this->container['fee'] === null) {
+            $invalidProperties[] = "'fee' can't be null";
         }
         return $invalidProperties;
     }
@@ -381,6 +391,33 @@ class DtoPrice implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable currency_divisor cannot be null');
         }
         $this->container['currency_divisor'] = $currency_divisor;
+
+        return $this;
+    }
+
+    /**
+     * Gets fee
+     *
+     * @return int
+     */
+    public function getFee()
+    {
+        return $this->container['fee'];
+    }
+
+    /**
+     * Sets fee
+     *
+     * @param int $fee fee
+     *
+     * @return self
+     */
+    public function setFee($fee)
+    {
+        if (is_null($fee)) {
+            throw new \InvalidArgumentException('non-nullable fee cannot be null');
+        }
+        $this->container['fee'] = $fee;
 
         return $this;
     }

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **currency** | **string** |  |
 **currency_divisor** | **int** |  |
+**fee** | **int** |  |
 **fixed** | **int** |  | [optional]
 **fx** | **float** |  | [optional]
 **increment** | **int** |  | [optional]

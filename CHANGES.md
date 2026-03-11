@@ -1,6 +1,11 @@
 zendit-php changelog
 =====================
 
+# [2026-03-11] Version 1.9.0
+
+- **pricing**: Added `fee` field to `DtoPrice`; added `price_fee` to `DtoBillPayBillResponse`; added `price_base` and `price_fee` to purchase models (`DtoBillPayPurchase`, `DtoESimPurchase`, `DtoTopupPurchase`, `DtoVoucherPurchase`)
+- **eSIM**: Added `status` and `unlimited` fields to `DtoESIMPlan`; added `first_installed_at` to `DtoESIMPlansResponse`
+
 # [2025-09-02] Version 1.8.0
 
 - **Bill Pay**: Added bill pay endpoints

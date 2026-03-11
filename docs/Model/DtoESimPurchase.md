@@ -23,8 +23,10 @@ Name | Type | Description | Notes
 **notes** | **string** |  |
 **offer_id** | **string** |  |
 **price** | **int** |  |
+**price_base** | **int** |  |
 **price_currency** | **string** |  |
 **price_currency_divisor** | **int** |  |
+**price_fee** | **int** |  |
 **price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  |
 **product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
 **refund** | [**\Zendit\Model\DtoESimRefund**](DtoESimRefund.md) |  | [optional]

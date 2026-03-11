@@ -6591,7 +6591,7 @@ class ZenditApi
 
 
 
-        $resourcePath = '/promos/';
+        $resourcePath = '/promos';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
