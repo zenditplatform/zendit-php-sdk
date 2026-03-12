@@ -30,6 +30,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
+        'first_installed_at' => 'string',
         'list' => '\Zendit\Model\DtoESIMPlan[]',
         'total' => 'int'
     ];
@@ -42,6 +43,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'first_installed_at' => null,
         'list' => null,
         'total' => null
     ];
@@ -52,6 +54,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'first_installed_at' => false,
         'list' => false,
         'total' => false
     ];
@@ -142,6 +145,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $attributeMap = [
+        'first_installed_at' => 'firstInstalledAt',
         'list' => 'list',
         'total' => 'total'
     ];
@@ -152,6 +156,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $setters = [
+        'first_installed_at' => 'setFirstInstalledAt',
         'list' => 'setList',
         'total' => 'setTotal'
     ];
@@ -162,6 +167,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      * @var string[]
      */
     protected static $getters = [
+        'first_installed_at' => 'getFirstInstalledAt',
         'list' => 'getList',
         'total' => 'getTotal'
     ];
@@ -223,6 +229,7 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(?array $data = null)
     {
+        $this->setIfExists('first_installed_at', $data ?? [], null);
         $this->setIfExists('list', $data ?? [], null);
         $this->setIfExists('total', $data ?? [], null);
     }
@@ -254,6 +261,9 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     {
         $invalidProperties = [];
 
+        if ($this->container['first_installed_at'] === null) {
+            $invalidProperties[] = "'first_installed_at' can't be null";
+        }
         if ($this->container['list'] === null) {
             $invalidProperties[] = "'list' can't be null";
         }
@@ -274,6 +284,33 @@ class DtoESIMPlansResponse implements ModelInterface, ArrayAccess, \JsonSerializ
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets first_installed_at
+     *
+     * @return string
+     */
+    public function getFirstInstalledAt()
+    {
+        return $this->container['first_installed_at'];
+    }
+
+    /**
+     * Sets first_installed_at
+     *
+     * @param string $first_installed_at first_installed_at
+     *
+     * @return self
+     */
+    public function setFirstInstalledAt($first_installed_at)
+    {
+        if (is_null($first_installed_at)) {
+            throw new \InvalidArgumentException('non-nullable first_installed_at cannot be null');
+        }
+        $this->container['first_installed_at'] = $first_installed_at;
+
+        return $this;
+    }
 
     /**
      * Gets list

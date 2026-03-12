@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **price** | **int** |  | [optional]
 **price_currency** | **string** |  | [optional]
 **price_currency_divisor** | **int** |  | [optional]
+**price_fee** | **int** |  | [optional]
 **price_fx** | **float** |  | [optional]
 **price_type** | [**\Zendit\Model\DtoPriceType**](DtoPriceType.md) |  | [optional]
 **send** | **int** |  | [optional]

@@ -37,7 +37,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'string',
         'remaining_data_gb' => 'float',
         'start_at' => 'string',
-        'status' => 'string'
+        'status' => 'string',
+        'unlimited' => 'bool'
     ];
 
     /**
@@ -55,7 +56,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => null,
         'remaining_data_gb' => null,
         'start_at' => null,
-        'status' => null
+        'status' => null,
+        'unlimited' => null
     ];
 
     /**
@@ -71,7 +73,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => false,
         'remaining_data_gb' => false,
         'start_at' => false,
-        'status' => false
+        'status' => false,
+        'unlimited' => false
     ];
 
     /**
@@ -167,7 +170,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'offerId',
         'remaining_data_gb' => 'remainingDataGB',
         'start_at' => 'startAt',
-        'status' => 'status'
+        'status' => 'status',
+        'unlimited' => 'unlimited'
     ];
 
     /**
@@ -183,7 +187,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'setOfferId',
         'remaining_data_gb' => 'setRemainingDataGb',
         'start_at' => 'setStartAt',
-        'status' => 'setStatus'
+        'status' => 'setStatus',
+        'unlimited' => 'setUnlimited'
     ];
 
     /**
@@ -199,7 +204,8 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         'offer_id' => 'getOfferId',
         'remaining_data_gb' => 'getRemainingDataGb',
         'start_at' => 'getStartAt',
-        'status' => 'getStatus'
+        'status' => 'getStatus',
+        'unlimited' => 'getUnlimited'
     ];
 
     /**
@@ -282,6 +288,7 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('remaining_data_gb', $data ?? [], null);
         $this->setIfExists('start_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('unlimited', $data ?? [], null);
     }
 
     /**
@@ -338,6 +345,9 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['unlimited'] === null) {
+            $invalidProperties[] = "'unlimited' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -575,6 +585,33 @@ class DtoESIMPlan implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets unlimited
+     *
+     * @return bool
+     */
+    public function getUnlimited()
+    {
+        return $this->container['unlimited'];
+    }
+
+    /**
+     * Sets unlimited
+     *
+     * @param bool $unlimited unlimited
+     *
+     * @return self
+     */
+    public function setUnlimited($unlimited)
+    {
+        if (is_null($unlimited)) {
+            throw new \InvalidArgumentException('non-nullable unlimited cannot be null');
+        }
+        $this->container['unlimited'] = $unlimited;
 
         return $this;
     }

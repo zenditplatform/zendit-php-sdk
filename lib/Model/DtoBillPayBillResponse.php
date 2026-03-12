@@ -41,6 +41,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => 'int',
         'price_currency' => 'string',
         'price_currency_divisor' => 'int',
+        'price_fee' => 'int',
         'price_fx' => 'float',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'send' => 'int',
@@ -67,6 +68,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => null,
         'price_currency' => null,
         'price_currency_divisor' => null,
+        'price_fee' => null,
         'price_fx' => null,
         'price_type' => null,
         'send' => null,
@@ -91,6 +93,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => false,
         'price_currency' => false,
         'price_currency_divisor' => false,
+        'price_fee' => false,
         'price_fx' => false,
         'price_type' => false,
         'send' => false,
@@ -195,6 +198,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => 'price',
         'price_currency' => 'priceCurrency',
         'price_currency_divisor' => 'priceCurrencyDivisor',
+        'price_fee' => 'priceFee',
         'price_fx' => 'priceFx',
         'price_type' => 'priceType',
         'send' => 'send',
@@ -219,6 +223,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => 'setPrice',
         'price_currency' => 'setPriceCurrency',
         'price_currency_divisor' => 'setPriceCurrencyDivisor',
+        'price_fee' => 'setPriceFee',
         'price_fx' => 'setPriceFx',
         'price_type' => 'setPriceType',
         'send' => 'setSend',
@@ -243,6 +248,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         'price' => 'getPrice',
         'price_currency' => 'getPriceCurrency',
         'price_currency_divisor' => 'getPriceCurrencyDivisor',
+        'price_fee' => 'getPriceFee',
         'price_fx' => 'getPriceFx',
         'price_type' => 'getPriceType',
         'send' => 'getSend',
@@ -318,6 +324,7 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_currency', $data ?? [], null);
         $this->setIfExists('price_currency_divisor', $data ?? [], null);
+        $this->setIfExists('price_fee', $data ?? [], null);
         $this->setIfExists('price_fx', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('send', $data ?? [], null);
@@ -660,6 +667,33 @@ class DtoBillPayBillResponse implements ModelInterface, ArrayAccess, \JsonSerial
             throw new \InvalidArgumentException('non-nullable price_currency_divisor cannot be null');
         }
         $this->container['price_currency_divisor'] = $price_currency_divisor;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_fee
+     *
+     * @return int|null
+     */
+    public function getPriceFee()
+    {
+        return $this->container['price_fee'];
+    }
+
+    /**
+     * Sets price_fee
+     *
+     * @param int|null $price_fee price_fee
+     *
+     * @return self
+     */
+    public function setPriceFee($price_fee)
+    {
+        if (is_null($price_fee)) {
+            throw new \InvalidArgumentException('non-nullable price_fee cannot be null');
+        }
+        $this->container['price_fee'] = $price_fee;
 
         return $this;
     }

@@ -56,7 +56,7 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | [**esimPurchasesTransactionIdQrcodeGet()**](ZenditApi.md#esimPurchasesTransactionIdQrcodeGet) | **GET** /esim/purchases/{transactionId}/qrcode | Get eSim QR code by transaction id |
 | [**esimPurchasesTransactionIdRefundGet()**](ZenditApi.md#esimPurchasesTransactionIdRefundGet) | **GET** /esim/purchases/{transactionId}/refund | Get status of refund transaction |
 | [**esimPurchasesTransactionIdRefundPost()**](ZenditApi.md#esimPurchasesTransactionIdRefundPost) | **POST** /esim/purchases/{transactionId}/refund | Refund eSim purchase by transaction id |
-| [**promosGet()**](ZenditApi.md#promosGet) | **GET** /promos/ | Get list of promotions |
+| [**promosGet()**](ZenditApi.md#promosGet) | **GET** /promos | Get list of promotions |
 | [**promosPromoIdGet()**](ZenditApi.md#promosPromoIdGet) | **GET** /promos/{promoId} | Get promo by id |
 | [**reportsTransactionsPost()**](ZenditApi.md#reportsTransactionsPost) | **POST** /reports/transactions | Requests transactions reports |
 | [**reportsTransactionsReportIdFileGet()**](ZenditApi.md#reportsTransactionsReportIdFileGet) | **GET** /reports/transactions/{reportId}/{file} | Download report file |

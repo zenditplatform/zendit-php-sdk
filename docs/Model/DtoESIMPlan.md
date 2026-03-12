@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **remaining_data_gb** | **float** |  |
 **start_at** | **string** |  | [optional]
 **status** | **string** |  |
+**unlimited** | **bool** |  |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

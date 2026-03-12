@@ -48,8 +48,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => 'string',
         'offer_id' => 'string',
         'price' => 'int',
+        'price_base' => 'int',
         'price_currency' => 'string',
         'price_currency_divisor' => 'int',
+        'price_fee' => 'int',
         'price_type' => '\Zendit\Model\DtoPriceType',
         'product_type' => '\Zendit\Model\DtoProductType',
         'recipient_phone_number' => 'string',
@@ -96,8 +98,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => null,
         'offer_id' => null,
         'price' => null,
+        'price_base' => null,
         'price_currency' => null,
         'price_currency_divisor' => null,
+        'price_fee' => null,
         'price_type' => null,
         'product_type' => null,
         'recipient_phone_number' => null,
@@ -142,8 +146,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => false,
         'offer_id' => false,
         'price' => false,
+        'price_base' => false,
         'price_currency' => false,
         'price_currency_divisor' => false,
+        'price_fee' => false,
         'price_type' => false,
         'product_type' => false,
         'recipient_phone_number' => false,
@@ -268,8 +274,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => 'notes',
         'offer_id' => 'offerId',
         'price' => 'price',
+        'price_base' => 'priceBase',
         'price_currency' => 'priceCurrency',
         'price_currency_divisor' => 'priceCurrencyDivisor',
+        'price_fee' => 'priceFee',
         'price_type' => 'priceType',
         'product_type' => 'productType',
         'recipient_phone_number' => 'recipientPhoneNumber',
@@ -314,8 +322,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
         'price' => 'setPrice',
+        'price_base' => 'setPriceBase',
         'price_currency' => 'setPriceCurrency',
         'price_currency_divisor' => 'setPriceCurrencyDivisor',
+        'price_fee' => 'setPriceFee',
         'price_type' => 'setPriceType',
         'product_type' => 'setProductType',
         'recipient_phone_number' => 'setRecipientPhoneNumber',
@@ -360,8 +370,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
         'price' => 'getPrice',
+        'price_base' => 'getPriceBase',
         'price_currency' => 'getPriceCurrency',
         'price_currency_divisor' => 'getPriceCurrencyDivisor',
+        'price_fee' => 'getPriceFee',
         'price_type' => 'getPriceType',
         'product_type' => 'getProductType',
         'recipient_phone_number' => 'getRecipientPhoneNumber',
@@ -457,8 +469,10 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
+        $this->setIfExists('price_base', $data ?? [], null);
         $this->setIfExists('price_currency', $data ?? [], null);
         $this->setIfExists('price_currency_divisor', $data ?? [], null);
+        $this->setIfExists('price_fee', $data ?? [], null);
         $this->setIfExists('price_type', $data ?? [], null);
         $this->setIfExists('product_type', $data ?? [], null);
         $this->setIfExists('recipient_phone_number', $data ?? [], null);
@@ -554,11 +568,17 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['price'] === null) {
             $invalidProperties[] = "'price' can't be null";
         }
+        if ($this->container['price_base'] === null) {
+            $invalidProperties[] = "'price_base' can't be null";
+        }
         if ($this->container['price_currency'] === null) {
             $invalidProperties[] = "'price_currency' can't be null";
         }
         if ($this->container['price_currency_divisor'] === null) {
             $invalidProperties[] = "'price_currency_divisor' can't be null";
+        }
+        if ($this->container['price_fee'] === null) {
+            $invalidProperties[] = "'price_fee' can't be null";
         }
         if ($this->container['price_type'] === null) {
             $invalidProperties[] = "'price_type' can't be null";
@@ -1110,6 +1130,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets price_base
+     *
+     * @return int
+     */
+    public function getPriceBase()
+    {
+        return $this->container['price_base'];
+    }
+
+    /**
+     * Sets price_base
+     *
+     * @param int $price_base price_base
+     *
+     * @return self
+     */
+    public function setPriceBase($price_base)
+    {
+        if (is_null($price_base)) {
+            throw new \InvalidArgumentException('non-nullable price_base cannot be null');
+        }
+        $this->container['price_base'] = $price_base;
+
+        return $this;
+    }
+
+    /**
      * Gets price_currency
      *
      * @return string
@@ -1159,6 +1206,33 @@ class DtoTopupPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable price_currency_divisor cannot be null');
         }
         $this->container['price_currency_divisor'] = $price_currency_divisor;
+
+        return $this;
+    }
+
+    /**
+     * Gets price_fee
+     *
+     * @return int
+     */
+    public function getPriceFee()
+    {
+        return $this->container['price_fee'];
+    }
+
+    /**
+     * Sets price_fee
+     *
+     * @param int $price_fee price_fee
+     *
+     * @return self
+     */
+    public function setPriceFee($price_fee)
+    {
+        if (is_null($price_fee)) {
+            throw new \InvalidArgumentException('non-nullable price_fee cannot be null');
+        }
+        $this->container['price_fee'] = $price_fee;
 
         return $this;
     }

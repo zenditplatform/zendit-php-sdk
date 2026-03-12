@@ -387,7 +387,7 @@ class ZenditApiTest extends TestCase
 
         $data = new DtoVoucherPurchaseInput();
         $data->setFields($fields);
-        $data->setOfferId("AIRCANADA_CA_001_EGIFT_USD");
+        $data->setOfferId("AMAZON_CA_005_EGIFT_USD");
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
 
         $result = $this->zenditApi->vouchersPurchasesPost($data);
@@ -432,7 +432,7 @@ class ZenditApiTest extends TestCase
         ];
         $data = new DtoVoucherPurchaseInput();
         $data->setFields($fields);
-        $data->setOfferId("AIRCANADA_CA_001_EGIFT_USD");
+        $data->setOfferId("AMAZON_CA_005_EGIFT_USD");
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
         $purchase = $this->zenditApi->vouchersPurchasesPost($data);
 

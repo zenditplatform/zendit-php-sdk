@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**first_installed_at** | **string** |  |
 **list** | [**\Zendit\Model\DtoESIMPlan[]**](DtoESIMPlan.md) |  |
 **total** | **int** |  |
 
