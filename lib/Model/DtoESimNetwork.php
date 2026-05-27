@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESimRoaming Class Doc Comment
+ * DtoESimNetwork Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESimNetwork implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESimRoaming';
+    protected static $openAPIModelName = 'dto.ESimNetwork';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -30,9 +30,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'country' => 'string',
-        'data_speeds' => 'string[]',
-        'networks' => '\Zendit\Model\DtoESimNetwork[]'
+        'brand' => 'string',
+        'brand_name' => 'string',
+        'data_speeds' => 'string[]'
     ];
 
     /**
@@ -43,9 +43,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'country' => null,
-        'data_speeds' => null,
-        'networks' => null
+        'brand' => null,
+        'brand_name' => null,
+        'data_speeds' => null
     ];
 
     /**
@@ -54,9 +54,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'country' => false,
-        'data_speeds' => false,
-        'networks' => false
+        'brand' => false,
+        'brand_name' => false,
+        'data_speeds' => false
     ];
 
     /**
@@ -145,9 +145,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'country' => 'country',
-        'data_speeds' => 'dataSpeeds',
-        'networks' => 'networks'
+        'brand' => 'brand',
+        'brand_name' => 'brandName',
+        'data_speeds' => 'dataSpeeds'
     ];
 
     /**
@@ -156,9 +156,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'country' => 'setCountry',
-        'data_speeds' => 'setDataSpeeds',
-        'networks' => 'setNetworks'
+        'brand' => 'setBrand',
+        'brand_name' => 'setBrandName',
+        'data_speeds' => 'setDataSpeeds'
     ];
 
     /**
@@ -167,9 +167,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'country' => 'getCountry',
-        'data_speeds' => 'getDataSpeeds',
-        'networks' => 'getNetworks'
+        'brand' => 'getBrand',
+        'brand_name' => 'getBrandName',
+        'data_speeds' => 'getDataSpeeds'
     ];
 
     /**
@@ -229,9 +229,9 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(?array $data = null)
     {
-        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('brand', $data ?? [], null);
+        $this->setIfExists('brand_name', $data ?? [], null);
         $this->setIfExists('data_speeds', $data ?? [], null);
-        $this->setIfExists('networks', $data ?? [], null);
     }
 
     /**
@@ -261,14 +261,14 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['country'] === null) {
-            $invalidProperties[] = "'country' can't be null";
+        if ($this->container['brand'] === null) {
+            $invalidProperties[] = "'brand' can't be null";
+        }
+        if ($this->container['brand_name'] === null) {
+            $invalidProperties[] = "'brand_name' can't be null";
         }
         if ($this->container['data_speeds'] === null) {
             $invalidProperties[] = "'data_speeds' can't be null";
-        }
-        if ($this->container['networks'] === null) {
-            $invalidProperties[] = "'networks' can't be null";
         }
         return $invalidProperties;
     }
@@ -286,28 +286,55 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets country
+     * Gets brand
      *
      * @return string
      */
-    public function getCountry()
+    public function getBrand()
     {
-        return $this->container['country'];
+        return $this->container['brand'];
     }
 
     /**
-     * Sets country
+     * Sets brand
      *
-     * @param string $country country
+     * @param string $brand brand
      *
      * @return self
      */
-    public function setCountry($country)
+    public function setBrand($brand)
     {
-        if (is_null($country)) {
-            throw new \InvalidArgumentException('non-nullable country cannot be null');
+        if (is_null($brand)) {
+            throw new \InvalidArgumentException('non-nullable brand cannot be null');
         }
-        $this->container['country'] = $country;
+        $this->container['brand'] = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Gets brand_name
+     *
+     * @return string
+     */
+    public function getBrandName()
+    {
+        return $this->container['brand_name'];
+    }
+
+    /**
+     * Sets brand_name
+     *
+     * @param string $brand_name brand_name
+     *
+     * @return self
+     */
+    public function setBrandName($brand_name)
+    {
+        if (is_null($brand_name)) {
+            throw new \InvalidArgumentException('non-nullable brand_name cannot be null');
+        }
+        $this->container['brand_name'] = $brand_name;
 
         return $this;
     }
@@ -335,33 +362,6 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable data_speeds cannot be null');
         }
         $this->container['data_speeds'] = $data_speeds;
-
-        return $this;
-    }
-
-    /**
-     * Gets networks
-     *
-     * @return \Zendit\Model\DtoESimNetwork[]
-     */
-    public function getNetworks()
-    {
-        return $this->container['networks'];
-    }
-
-    /**
-     * Sets networks
-     *
-     * @param \Zendit\Model\DtoESimNetwork[] $networks networks
-     *
-     * @return self
-     */
-    public function setNetworks($networks)
-    {
-        if (is_null($networks)) {
-            throw new \InvalidArgumentException('non-nullable networks cannot be null');
-        }
-        $this->container['networks'] = $networks;
 
         return $this;
     }

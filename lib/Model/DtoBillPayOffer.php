@@ -37,6 +37,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'string',
         'created_at' => 'string',
         'cutoff_time' => 'string',
+        'cutoff_timezone' => 'string',
         'delivery_speed_seconds' => 'int',
         'enabled' => 'bool',
         'notes' => 'string',
@@ -52,6 +53,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => 'string',
         'sub_types' => 'string[]',
         'supports_bill_retrieval' => 'bool',
+        'supports_late_payments' => 'bool',
         'supports_overpayment' => 'bool',
         'supports_underpayment' => 'bool',
         'updated_at' => 'string'
@@ -72,6 +74,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => null,
         'created_at' => null,
         'cutoff_time' => null,
+        'cutoff_timezone' => null,
         'delivery_speed_seconds' => null,
         'enabled' => null,
         'notes' => null,
@@ -87,6 +90,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => null,
         'sub_types' => null,
         'supports_bill_retrieval' => null,
+        'supports_late_payments' => null,
         'supports_overpayment' => null,
         'supports_underpayment' => null,
         'updated_at' => null
@@ -105,6 +109,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => false,
         'created_at' => false,
         'cutoff_time' => false,
+        'cutoff_timezone' => false,
         'delivery_speed_seconds' => false,
         'enabled' => false,
         'notes' => false,
@@ -120,6 +125,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => false,
         'sub_types' => false,
         'supports_bill_retrieval' => false,
+        'supports_late_payments' => false,
         'supports_overpayment' => false,
         'supports_underpayment' => false,
         'updated_at' => false
@@ -218,6 +224,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'country',
         'created_at' => 'createdAt',
         'cutoff_time' => 'cutoffTime',
+        'cutoff_timezone' => 'cutoffTimezone',
         'delivery_speed_seconds' => 'deliverySpeedSeconds',
         'enabled' => 'enabled',
         'notes' => 'notes',
@@ -233,6 +240,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => 'shortNotes',
         'sub_types' => 'subTypes',
         'supports_bill_retrieval' => 'supportsBillRetrieval',
+        'supports_late_payments' => 'supportsLatePayments',
         'supports_overpayment' => 'supportsOverpayment',
         'supports_underpayment' => 'supportsUnderpayment',
         'updated_at' => 'updatedAt'
@@ -251,6 +259,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
         'cutoff_time' => 'setCutoffTime',
+        'cutoff_timezone' => 'setCutoffTimezone',
         'delivery_speed_seconds' => 'setDeliverySpeedSeconds',
         'enabled' => 'setEnabled',
         'notes' => 'setNotes',
@@ -266,6 +275,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => 'setShortNotes',
         'sub_types' => 'setSubTypes',
         'supports_bill_retrieval' => 'setSupportsBillRetrieval',
+        'supports_late_payments' => 'setSupportsLatePayments',
         'supports_overpayment' => 'setSupportsOverpayment',
         'supports_underpayment' => 'setSupportsUnderpayment',
         'updated_at' => 'setUpdatedAt'
@@ -284,6 +294,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
         'cutoff_time' => 'getCutoffTime',
+        'cutoff_timezone' => 'getCutoffTimezone',
         'delivery_speed_seconds' => 'getDeliverySpeedSeconds',
         'enabled' => 'getEnabled',
         'notes' => 'getNotes',
@@ -299,6 +310,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         'short_notes' => 'getShortNotes',
         'sub_types' => 'getSubTypes',
         'supports_bill_retrieval' => 'getSupportsBillRetrieval',
+        'supports_late_payments' => 'getSupportsLatePayments',
         'supports_overpayment' => 'getSupportsOverpayment',
         'supports_underpayment' => 'getSupportsUnderpayment',
         'updated_at' => 'getUpdatedAt'
@@ -368,6 +380,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
         $this->setIfExists('cutoff_time', $data ?? [], null);
+        $this->setIfExists('cutoff_timezone', $data ?? [], null);
         $this->setIfExists('delivery_speed_seconds', $data ?? [], null);
         $this->setIfExists('enabled', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
@@ -383,6 +396,7 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('short_notes', $data ?? [], null);
         $this->setIfExists('sub_types', $data ?? [], null);
         $this->setIfExists('supports_bill_retrieval', $data ?? [], null);
+        $this->setIfExists('supports_late_payments', $data ?? [], null);
         $this->setIfExists('supports_overpayment', $data ?? [], null);
         $this->setIfExists('supports_underpayment', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
@@ -436,6 +450,9 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['cutoff_time'] === null) {
             $invalidProperties[] = "'cutoff_time' can't be null";
         }
+        if ($this->container['cutoff_timezone'] === null) {
+            $invalidProperties[] = "'cutoff_timezone' can't be null";
+        }
         if ($this->container['delivery_speed_seconds'] === null) {
             $invalidProperties[] = "'delivery_speed_seconds' can't be null";
         }
@@ -480,6 +497,9 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['supports_bill_retrieval'] === null) {
             $invalidProperties[] = "'supports_bill_retrieval' can't be null";
+        }
+        if ($this->container['supports_late_payments'] === null) {
+            $invalidProperties[] = "'supports_late_payments' can't be null";
         }
         if ($this->container['supports_overpayment'] === null) {
             $invalidProperties[] = "'supports_overpayment' can't be null";
@@ -690,6 +710,33 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable cutoff_time cannot be null');
         }
         $this->container['cutoff_time'] = $cutoff_time;
+
+        return $this;
+    }
+
+    /**
+     * Gets cutoff_timezone
+     *
+     * @return string
+     */
+    public function getCutoffTimezone()
+    {
+        return $this->container['cutoff_timezone'];
+    }
+
+    /**
+     * Sets cutoff_timezone
+     *
+     * @param string $cutoff_timezone cutoff_timezone
+     *
+     * @return self
+     */
+    public function setCutoffTimezone($cutoff_timezone)
+    {
+        if (is_null($cutoff_timezone)) {
+            throw new \InvalidArgumentException('non-nullable cutoff_timezone cannot be null');
+        }
+        $this->container['cutoff_timezone'] = $cutoff_timezone;
 
         return $this;
     }
@@ -1095,6 +1142,33 @@ class DtoBillPayOffer implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable supports_bill_retrieval cannot be null');
         }
         $this->container['supports_bill_retrieval'] = $supports_bill_retrieval;
+
+        return $this;
+    }
+
+    /**
+     * Gets supports_late_payments
+     *
+     * @return bool
+     */
+    public function getSupportsLatePayments()
+    {
+        return $this->container['supports_late_payments'];
+    }
+
+    /**
+     * Sets supports_late_payments
+     *
+     * @param bool $supports_late_payments supports_late_payments
+     *
+     * @return self
+     */
+    public function setSupportsLatePayments($supports_late_payments)
+    {
+        if (is_null($supports_late_payments)) {
+            throw new \InvalidArgumentException('non-nullable supports_late_payments cannot be null');
+        }
+        $this->container['supports_late_payments'] = $supports_late_payments;
 
         return $this;
     }

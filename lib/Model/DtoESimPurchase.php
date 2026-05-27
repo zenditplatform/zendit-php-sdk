@@ -57,7 +57,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
         'product_type' => '\Zendit\Model\DtoProductType',
         'refund' => '\Zendit\Model\DtoESimRefund',
         'regions' => 'string[]',
-        'roaming' => '\Zendit\Model\DtoESimRoaming[]',
+        'roaming' => '\Zendit\Model\DtoESimPurchaseRoaming[]',
         'short_notes' => 'string',
         'sms_number' => 'int',
         'sms_unlimited' => 'bool',
@@ -1355,7 +1355,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets roaming
      *
-     * @return \Zendit\Model\DtoESimRoaming[]
+     * @return \Zendit\Model\DtoESimPurchaseRoaming[]
      */
     public function getRoaming()
     {
@@ -1365,7 +1365,7 @@ class DtoESimPurchase implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets roaming
      *
-     * @param \Zendit\Model\DtoESimRoaming[] $roaming roaming
+     * @param \Zendit\Model\DtoESimPurchaseRoaming[] $roaming roaming
      *
      * @return self
      */

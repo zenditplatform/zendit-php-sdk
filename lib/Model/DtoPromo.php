@@ -33,15 +33,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => '\Zendit\Model\DtoOfferBrand',
         'country' => 'string',
         'created_at' => 'string',
+        'data_bonus_gb' => 'float',
+        'data_multiplier' => 'float',
         'description' => '\Zendit\Model\DtoPromoDescription[]',
         'end_at' => 'string',
         'id' => 'string',
         'max_value' => 'int',
         'min_value' => 'int',
+        'offer_ids' => 'string[]',
         'regions' => 'string[]',
+        'sms_bonus_number' => 'int',
+        'sms_multiplier' => 'float',
         'start_at' => 'string',
         'status' => '\Zendit\Model\DtoPromoStatus',
-        'updated_at' => 'string'
+        'updated_at' => 'string',
+        'value_bonus' => 'int',
+        'value_multiplier' => 'float',
+        'voice_bonus_minutes' => 'int',
+        'voice_multiplier' => 'float'
     ];
 
     /**
@@ -55,15 +64,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => null,
         'country' => null,
         'created_at' => null,
+        'data_bonus_gb' => null,
+        'data_multiplier' => null,
         'description' => null,
         'end_at' => null,
         'id' => null,
         'max_value' => null,
         'min_value' => null,
+        'offer_ids' => null,
         'regions' => null,
+        'sms_bonus_number' => null,
+        'sms_multiplier' => null,
         'start_at' => null,
         'status' => null,
-        'updated_at' => null
+        'updated_at' => null,
+        'value_bonus' => null,
+        'value_multiplier' => null,
+        'voice_bonus_minutes' => null,
+        'voice_multiplier' => null
     ];
 
     /**
@@ -75,15 +93,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => false,
         'country' => false,
         'created_at' => false,
+        'data_bonus_gb' => false,
+        'data_multiplier' => false,
         'description' => false,
         'end_at' => false,
         'id' => false,
         'max_value' => false,
         'min_value' => false,
+        'offer_ids' => false,
         'regions' => false,
+        'sms_bonus_number' => false,
+        'sms_multiplier' => false,
         'start_at' => false,
         'status' => false,
-        'updated_at' => false
+        'updated_at' => false,
+        'value_bonus' => false,
+        'value_multiplier' => false,
+        'voice_bonus_minutes' => false,
+        'voice_multiplier' => false
     ];
 
     /**
@@ -175,15 +202,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => 'brand',
         'country' => 'country',
         'created_at' => 'createdAt',
+        'data_bonus_gb' => 'dataBonusGB',
+        'data_multiplier' => 'dataMultiplier',
         'description' => 'description',
         'end_at' => 'endAt',
         'id' => 'id',
         'max_value' => 'maxValue',
         'min_value' => 'minValue',
+        'offer_ids' => 'offerIds',
         'regions' => 'regions',
+        'sms_bonus_number' => 'smsBonusNumber',
+        'sms_multiplier' => 'smsMultiplier',
         'start_at' => 'startAt',
         'status' => 'status',
-        'updated_at' => 'updatedAt'
+        'updated_at' => 'updatedAt',
+        'value_bonus' => 'valueBonus',
+        'value_multiplier' => 'valueMultiplier',
+        'voice_bonus_minutes' => 'voiceBonusMinutes',
+        'voice_multiplier' => 'voiceMultiplier'
     ];
 
     /**
@@ -195,15 +231,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => 'setBrand',
         'country' => 'setCountry',
         'created_at' => 'setCreatedAt',
+        'data_bonus_gb' => 'setDataBonusGb',
+        'data_multiplier' => 'setDataMultiplier',
         'description' => 'setDescription',
         'end_at' => 'setEndAt',
         'id' => 'setId',
         'max_value' => 'setMaxValue',
         'min_value' => 'setMinValue',
+        'offer_ids' => 'setOfferIds',
         'regions' => 'setRegions',
+        'sms_bonus_number' => 'setSmsBonusNumber',
+        'sms_multiplier' => 'setSmsMultiplier',
         'start_at' => 'setStartAt',
         'status' => 'setStatus',
-        'updated_at' => 'setUpdatedAt'
+        'updated_at' => 'setUpdatedAt',
+        'value_bonus' => 'setValueBonus',
+        'value_multiplier' => 'setValueMultiplier',
+        'voice_bonus_minutes' => 'setVoiceBonusMinutes',
+        'voice_multiplier' => 'setVoiceMultiplier'
     ];
 
     /**
@@ -215,15 +260,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         'brand' => 'getBrand',
         'country' => 'getCountry',
         'created_at' => 'getCreatedAt',
+        'data_bonus_gb' => 'getDataBonusGb',
+        'data_multiplier' => 'getDataMultiplier',
         'description' => 'getDescription',
         'end_at' => 'getEndAt',
         'id' => 'getId',
         'max_value' => 'getMaxValue',
         'min_value' => 'getMinValue',
+        'offer_ids' => 'getOfferIds',
         'regions' => 'getRegions',
+        'sms_bonus_number' => 'getSmsBonusNumber',
+        'sms_multiplier' => 'getSmsMultiplier',
         'start_at' => 'getStartAt',
         'status' => 'getStatus',
-        'updated_at' => 'getUpdatedAt'
+        'updated_at' => 'getUpdatedAt',
+        'value_bonus' => 'getValueBonus',
+        'value_multiplier' => 'getValueMultiplier',
+        'voice_bonus_minutes' => 'getVoiceBonusMinutes',
+        'voice_multiplier' => 'getVoiceMultiplier'
     ];
 
     /**
@@ -286,15 +340,24 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('brand', $data ?? [], null);
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('created_at', $data ?? [], null);
+        $this->setIfExists('data_bonus_gb', $data ?? [], null);
+        $this->setIfExists('data_multiplier', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
         $this->setIfExists('end_at', $data ?? [], null);
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('max_value', $data ?? [], null);
         $this->setIfExists('min_value', $data ?? [], null);
+        $this->setIfExists('offer_ids', $data ?? [], null);
         $this->setIfExists('regions', $data ?? [], null);
+        $this->setIfExists('sms_bonus_number', $data ?? [], null);
+        $this->setIfExists('sms_multiplier', $data ?? [], null);
         $this->setIfExists('start_at', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('updated_at', $data ?? [], null);
+        $this->setIfExists('value_bonus', $data ?? [], null);
+        $this->setIfExists('value_multiplier', $data ?? [], null);
+        $this->setIfExists('voice_bonus_minutes', $data ?? [], null);
+        $this->setIfExists('voice_multiplier', $data ?? [], null);
     }
 
     /**
@@ -416,6 +479,60 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable created_at cannot be null');
         }
         $this->container['created_at'] = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_bonus_gb
+     *
+     * @return float|null
+     */
+    public function getDataBonusGb()
+    {
+        return $this->container['data_bonus_gb'];
+    }
+
+    /**
+     * Sets data_bonus_gb
+     *
+     * @param float|null $data_bonus_gb data_bonus_gb
+     *
+     * @return self
+     */
+    public function setDataBonusGb($data_bonus_gb)
+    {
+        if (is_null($data_bonus_gb)) {
+            throw new \InvalidArgumentException('non-nullable data_bonus_gb cannot be null');
+        }
+        $this->container['data_bonus_gb'] = $data_bonus_gb;
+
+        return $this;
+    }
+
+    /**
+     * Gets data_multiplier
+     *
+     * @return float|null
+     */
+    public function getDataMultiplier()
+    {
+        return $this->container['data_multiplier'];
+    }
+
+    /**
+     * Sets data_multiplier
+     *
+     * @param float|null $data_multiplier data_multiplier
+     *
+     * @return self
+     */
+    public function setDataMultiplier($data_multiplier)
+    {
+        if (is_null($data_multiplier)) {
+            throw new \InvalidArgumentException('non-nullable data_multiplier cannot be null');
+        }
+        $this->container['data_multiplier'] = $data_multiplier;
 
         return $this;
     }
@@ -556,6 +673,33 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets offer_ids
+     *
+     * @return string[]|null
+     */
+    public function getOfferIds()
+    {
+        return $this->container['offer_ids'];
+    }
+
+    /**
+     * Sets offer_ids
+     *
+     * @param string[]|null $offer_ids offer_ids
+     *
+     * @return self
+     */
+    public function setOfferIds($offer_ids)
+    {
+        if (is_null($offer_ids)) {
+            throw new \InvalidArgumentException('non-nullable offer_ids cannot be null');
+        }
+        $this->container['offer_ids'] = $offer_ids;
+
+        return $this;
+    }
+
+    /**
      * Gets regions
      *
      * @return string[]|null
@@ -578,6 +722,60 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable regions cannot be null');
         }
         $this->container['regions'] = $regions;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_bonus_number
+     *
+     * @return int|null
+     */
+    public function getSmsBonusNumber()
+    {
+        return $this->container['sms_bonus_number'];
+    }
+
+    /**
+     * Sets sms_bonus_number
+     *
+     * @param int|null $sms_bonus_number sms_bonus_number
+     *
+     * @return self
+     */
+    public function setSmsBonusNumber($sms_bonus_number)
+    {
+        if (is_null($sms_bonus_number)) {
+            throw new \InvalidArgumentException('non-nullable sms_bonus_number cannot be null');
+        }
+        $this->container['sms_bonus_number'] = $sms_bonus_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets sms_multiplier
+     *
+     * @return float|null
+     */
+    public function getSmsMultiplier()
+    {
+        return $this->container['sms_multiplier'];
+    }
+
+    /**
+     * Sets sms_multiplier
+     *
+     * @param float|null $sms_multiplier sms_multiplier
+     *
+     * @return self
+     */
+    public function setSmsMultiplier($sms_multiplier)
+    {
+        if (is_null($sms_multiplier)) {
+            throw new \InvalidArgumentException('non-nullable sms_multiplier cannot be null');
+        }
+        $this->container['sms_multiplier'] = $sms_multiplier;
 
         return $this;
     }
@@ -659,6 +857,114 @@ class DtoPromo implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable updated_at cannot be null');
         }
         $this->container['updated_at'] = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets value_bonus
+     *
+     * @return int|null
+     */
+    public function getValueBonus()
+    {
+        return $this->container['value_bonus'];
+    }
+
+    /**
+     * Sets value_bonus
+     *
+     * @param int|null $value_bonus value_bonus
+     *
+     * @return self
+     */
+    public function setValueBonus($value_bonus)
+    {
+        if (is_null($value_bonus)) {
+            throw new \InvalidArgumentException('non-nullable value_bonus cannot be null');
+        }
+        $this->container['value_bonus'] = $value_bonus;
+
+        return $this;
+    }
+
+    /**
+     * Gets value_multiplier
+     *
+     * @return float|null
+     */
+    public function getValueMultiplier()
+    {
+        return $this->container['value_multiplier'];
+    }
+
+    /**
+     * Sets value_multiplier
+     *
+     * @param float|null $value_multiplier value_multiplier
+     *
+     * @return self
+     */
+    public function setValueMultiplier($value_multiplier)
+    {
+        if (is_null($value_multiplier)) {
+            throw new \InvalidArgumentException('non-nullable value_multiplier cannot be null');
+        }
+        $this->container['value_multiplier'] = $value_multiplier;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_bonus_minutes
+     *
+     * @return int|null
+     */
+    public function getVoiceBonusMinutes()
+    {
+        return $this->container['voice_bonus_minutes'];
+    }
+
+    /**
+     * Sets voice_bonus_minutes
+     *
+     * @param int|null $voice_bonus_minutes voice_bonus_minutes
+     *
+     * @return self
+     */
+    public function setVoiceBonusMinutes($voice_bonus_minutes)
+    {
+        if (is_null($voice_bonus_minutes)) {
+            throw new \InvalidArgumentException('non-nullable voice_bonus_minutes cannot be null');
+        }
+        $this->container['voice_bonus_minutes'] = $voice_bonus_minutes;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice_multiplier
+     *
+     * @return float|null
+     */
+    public function getVoiceMultiplier()
+    {
+        return $this->container['voice_multiplier'];
+    }
+
+    /**
+     * Sets voice_multiplier
+     *
+     * @param float|null $voice_multiplier voice_multiplier
+     *
+     * @return self
+     */
+    public function setVoiceMultiplier($voice_multiplier)
+    {
+        if (is_null($voice_multiplier)) {
+            throw new \InvalidArgumentException('non-nullable voice_multiplier cannot be null');
+        }
+        $this->container['voice_multiplier'] = $voice_multiplier;
 
         return $this;
     }

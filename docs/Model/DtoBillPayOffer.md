@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **country** | **string** |  |
 **created_at** | **string** |  |
 **cutoff_time** | **string** |  |
+**cutoff_timezone** | **string** |  |
 **delivery_speed_seconds** | **int** |  |
 **enabled** | **bool** | Common fields (similar to ESimOffer or VoucherOffer) |
 **notes** | **string** |  |
@@ -26,6 +27,7 @@ Name | Type | Description | Notes
 **short_notes** | **string** |  |
 **sub_types** | **string[]** |  |
 **supports_bill_retrieval** | **bool** |  |
+**supports_late_payments** | **bool** |  |
 **supports_overpayment** | **bool** |  |
 **supports_underpayment** | **bool** |  |
 **updated_at** | **string** |  |

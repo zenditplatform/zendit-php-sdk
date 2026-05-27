@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **product_type** | [**\Zendit\Model\DtoProductType**](DtoProductType.md) |  |
 **refund** | [**\Zendit\Model\DtoESimRefund**](DtoESimRefund.md) |  | [optional]
 **regions** | **string[]** |  |
-**roaming** | [**\Zendit\Model\DtoESimRoaming[]**](DtoESimRoaming.md) |  |
+**roaming** | [**\Zendit\Model\DtoESimPurchaseRoaming[]**](DtoESimPurchaseRoaming.md) |  |
 **short_notes** | **string** |  |
 **sms_number** | **int** |  |
 **sms_unlimited** | **bool** |  |
