@@ -5,7 +5,7 @@ use \ArrayAccess;
 use \Zendit\ObjectSerializer;
 
 /**
- * DtoESimRoaming Class Doc Comment
+ * DtoESimPurchaseRoaming Class Doc Comment
  *
  * @category Class
  * @package  Zendit
@@ -13,7 +13,7 @@ use \Zendit\ObjectSerializer;
  * @link     https://developers.zendit.io/api
  * @implements \ArrayAccess<string, mixed>
  */
-class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
+class DtoESimPurchaseRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -22,7 +22,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'dto.ESimRoaming';
+    protected static $openAPIModelName = 'dto.ESimPurchaseRoaming';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -31,8 +31,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'country' => 'string',
-        'data_speeds' => 'string[]',
-        'networks' => '\Zendit\Model\DtoESimNetwork[]'
+        'data_speeds' => 'string[]'
     ];
 
     /**
@@ -44,8 +43,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'country' => null,
-        'data_speeds' => null,
-        'networks' => null
+        'data_speeds' => null
     ];
 
     /**
@@ -55,8 +53,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'country' => false,
-        'data_speeds' => false,
-        'networks' => false
+        'data_speeds' => false
     ];
 
     /**
@@ -146,8 +143,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'country' => 'country',
-        'data_speeds' => 'dataSpeeds',
-        'networks' => 'networks'
+        'data_speeds' => 'dataSpeeds'
     ];
 
     /**
@@ -157,8 +153,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'country' => 'setCountry',
-        'data_speeds' => 'setDataSpeeds',
-        'networks' => 'setNetworks'
+        'data_speeds' => 'setDataSpeeds'
     ];
 
     /**
@@ -168,8 +163,7 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'country' => 'getCountry',
-        'data_speeds' => 'getDataSpeeds',
-        'networks' => 'getNetworks'
+        'data_speeds' => 'getDataSpeeds'
     ];
 
     /**
@@ -231,7 +225,6 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('country', $data ?? [], null);
         $this->setIfExists('data_speeds', $data ?? [], null);
-        $this->setIfExists('networks', $data ?? [], null);
     }
 
     /**
@@ -266,9 +259,6 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
         }
         if ($this->container['data_speeds'] === null) {
             $invalidProperties[] = "'data_speeds' can't be null";
-        }
-        if ($this->container['networks'] === null) {
-            $invalidProperties[] = "'networks' can't be null";
         }
         return $invalidProperties;
     }
@@ -335,33 +325,6 @@ class DtoESimRoaming implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable data_speeds cannot be null');
         }
         $this->container['data_speeds'] = $data_speeds;
-
-        return $this;
-    }
-
-    /**
-     * Gets networks
-     *
-     * @return \Zendit\Model\DtoESimNetwork[]
-     */
-    public function getNetworks()
-    {
-        return $this->container['networks'];
-    }
-
-    /**
-     * Sets networks
-     *
-     * @param \Zendit\Model\DtoESimNetwork[] $networks networks
-     *
-     * @return self
-     */
-    public function setNetworks($networks)
-    {
-        if (is_null($networks)) {
-            throw new \InvalidArgumentException('non-nullable networks cannot be null');
-        }
-        $this->container['networks'] = $networks;
 
         return $this;
     }
