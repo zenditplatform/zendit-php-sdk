@@ -1,6 +1,12 @@
 zendit-php changelog
 =====================
 
+# [2026-11-20] Version 1.11.0
+
+- **payments**: Added `transactionsTransactionIdPaymentPost` to report the result of a payment taken by your own payment processor (`POST /transactions/{transactionId}/payment`), with the new `DtoPaymentResultInput` and `DtoPaymentStatus` models.
+- **purchases**: Added an optional `payment` field (new `DtoPayment` model) to all purchase models (`DtoBillPayPurchase`, `DtoESimPurchase`, `DtoTopupPurchase`, `DtoVoucherPurchase`).
+- **voucher purchases**: The example and tests now use `DtoPurchaseField`, the type of `DtoVoucherPurchaseInput` fields. `DtoVoucherField` is kept for compatibility.
+
 # [2026-05-27] Version 1.10.0
 
 - **Bill Pay**: Added `cutoffTimezone` and `supportsLatePayments` fields to `DtoBillPayOffer`.

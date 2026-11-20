@@ -4,7 +4,8 @@ namespace Zendit\Test\Api;
 use PHPUnit\Framework\TestCase;
 use Zendit\Model\DtoESimPurchaseMakeInput;
 use Zendit\Model\DtoTopupPurchaseMakeInput;
-use Zendit\Model\DtoVoucherField;
+use Zendit\Model\DtoPriceType;
+use Zendit\Model\DtoPurchaseField;
 use Zendit\Model\DtoVoucherPurchaseInput;
 use Zendit\ZenditAPI;
 
@@ -351,6 +352,47 @@ class ZenditApiTest extends TestCase
     }
 
     /**
+     * Sample values for the fields a voucher offer can require. The phone number is the one the
+     * sandbox accepts, so that the purchase passes there.
+     */
+    private const VOUCHER_FIELD_VALUES = [
+        "sender.msisdn" => "+2505550199",
+        "sender.country" => "US",
+        "sender.firstName" => "John",
+        "sender.lastName" => "Doe",
+        "sender.email" => "john.doe@example.com",
+        "recipient.msisdn" => "+2505550199",
+        "recipient.country" => "US",
+        "recipient.firstName" => "John",
+        "recipient.lastName" => "Doe",
+        "recipient.email" => "john.doe@example.com",
+    ];
+
+    /**
+     * Picks an enabled fixed-price voucher offer whose required fields all have a sample value,
+     * rather than relying on one offer staying in the sandbox catalog.
+     *
+     * @return array{0: string, 1: DtoPurchaseField[]} the offer id and its purchase fields
+     */
+    private function purchasableVoucherOffer(): array
+    {
+        foreach ($this->zenditApi->vouchersOffersGet(100, 0)->getList() as $offer) {
+            $required = $offer->getRequiredFields() ?? [];
+            if (!$offer->getEnabled()
+                || $offer->getPriceType() !== DtoPriceType::PRICE_TYPE_FIXED
+                || array_diff($required, array_keys(self::VOUCHER_FIELD_VALUES))) {
+                continue;
+            }
+            $fields = array_map(
+                fn ($key) => new DtoPurchaseField(["key" => $key, "value" => self::VOUCHER_FIELD_VALUES[$key]]),
+                $required
+            );
+            return [$offer->getOfferId(), $fields];
+        }
+        $this->fail("no enabled fixed-price voucher offer with supported required fields in the first 100 offers");
+    }
+
+    /**
      * Test case for vouchersPurchasesPost
      *
      * Create transaction for purchase.
@@ -358,36 +400,13 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersPurchasesPost()
     {
-        $fields = [
-            new DtoVoucherField([
-                "key" => "recipient.firstName",
-                "value" => "John",
-            ]),
-            new DtoVoucherField([
-                "key" => "recipient.lastName",
-                "value" => "Doe",
-            ]),
-            new DtoVoucherField([
-                "key" => "recipient.msisdn",
-                "value" => "+15515551212",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.firstName",
-                "value" => "Jane",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.lastName",
-                "value" => "Doe",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.msisdn",
-                "value" => "+15515551212",
-            ]),
-        ];
+        [$offerId, $fields] = $this->purchasableVoucherOffer();
 
         $data = new DtoVoucherPurchaseInput();
+
         $data->setFields($fields);
-        $data->setOfferId("AMAZON_CA_005_EGIFT_USD");
+
+        $data->setOfferId($offerId);
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
 
         $result = $this->zenditApi->vouchersPurchasesPost($data);
@@ -404,35 +423,10 @@ class ZenditApiTest extends TestCase
      */
     public function testVouchersPurchasesTransactionIdGet()
     {
-        $fields = [
-            new DtoVoucherField([
-                "key" => "recipient.firstName",
-                "value" => "John",
-            ]),
-            new DtoVoucherField([
-                "key" => "recipient.lastName",
-                "value" => "Doe",
-            ]),
-            new DtoVoucherField([
-                "key" => "recipient.msisdn",
-                "value" => "+15515551212",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.firstName",
-                "value" => "Jane",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.lastName",
-                "value" => "Doe",
-            ]),
-            new DtoVoucherField([
-                "key" => "sender.msisdn",
-                "value" => "+15515551212",
-            ]),
-        ];
+        [$offerId, $fields] = $this->purchasableVoucherOffer();
         $data = new DtoVoucherPurchaseInput();
         $data->setFields($fields);
-        $data->setOfferId("AMAZON_CA_005_EGIFT_USD");
+        $data->setOfferId($offerId);
         $data->setTransactionId(preg_replace('/[^a-zA-Z0-9]/', '', base64_encode(random_bytes(14))));
         $purchase = $this->zenditApi->vouchersPurchasesPost($data);
 
