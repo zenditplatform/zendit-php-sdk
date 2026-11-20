@@ -4,7 +4,7 @@ namespace Zendit\Test\Api;
 use PHPUnit\Framework\TestCase;
 use Zendit\Model\DtoESimPurchaseMakeInput;
 use Zendit\Model\DtoTopupPurchaseMakeInput;
-use Zendit\Model\DtoVoucherField;
+use Zendit\Model\DtoPurchaseField;
 use Zendit\Model\DtoVoucherPurchaseInput;
 use Zendit\ZenditAPI;
 
@@ -359,27 +359,27 @@ class ZenditApiTest extends TestCase
     public function testVouchersPurchasesPost()
     {
         $fields = [
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.firstName",
                 "value" => "John",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.lastName",
                 "value" => "Doe",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.msisdn",
                 "value" => "+15515551212",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.firstName",
                 "value" => "Jane",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.lastName",
                 "value" => "Doe",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.msisdn",
                 "value" => "+15515551212",
             ]),
@@ -405,27 +405,27 @@ class ZenditApiTest extends TestCase
     public function testVouchersPurchasesTransactionIdGet()
     {
         $fields = [
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.firstName",
                 "value" => "John",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.lastName",
                 "value" => "Doe",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "recipient.msisdn",
                 "value" => "+15515551212",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.firstName",
                 "value" => "Jane",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.lastName",
                 "value" => "Doe",
             ]),
-            new DtoVoucherField([
+            new DtoPurchaseField([
                 "key" => "sender.msisdn",
                 "value" => "+15515551212",
             ]),

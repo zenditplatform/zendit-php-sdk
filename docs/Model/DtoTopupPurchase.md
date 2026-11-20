@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **log** | [**\Zendit\Model\DtoTransactionLogItem[]**](DtoTransactionLogItem.md) |  |
 **notes** | **string** |  |
 **offer_id** | **string** |  |
+**payment** | [**\Zendit\Model\DtoPayment**](DtoPayment.md) |  | [optional]
 **price** | **int** |  |
 **price_base** | **int** |  |
 **price_currency** | **string** |  |

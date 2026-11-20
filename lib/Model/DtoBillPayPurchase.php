@@ -44,6 +44,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => '\Zendit\Model\DtoTransactionLogItem[]',
         'notes' => 'string',
         'offer_id' => 'string',
+        'payment' => '\Zendit\Model\DtoPayment',
         'price' => 'int',
         'price_base' => 'int',
         'price_currency' => 'string',
@@ -87,6 +88,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => null,
         'notes' => null,
         'offer_id' => null,
+        'payment' => null,
         'price' => null,
         'price_base' => null,
         'price_currency' => null,
@@ -128,6 +130,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => false,
         'notes' => false,
         'offer_id' => false,
+        'payment' => false,
         'price' => false,
         'price_base' => false,
         'price_currency' => false,
@@ -249,6 +252,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => 'log',
         'notes' => 'notes',
         'offer_id' => 'offerId',
+        'payment' => 'payment',
         'price' => 'price',
         'price_base' => 'priceBase',
         'price_currency' => 'priceCurrency',
@@ -290,6 +294,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => 'setLog',
         'notes' => 'setNotes',
         'offer_id' => 'setOfferId',
+        'payment' => 'setPayment',
         'price' => 'setPrice',
         'price_base' => 'setPriceBase',
         'price_currency' => 'setPriceCurrency',
@@ -331,6 +336,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         'log' => 'getLog',
         'notes' => 'getNotes',
         'offer_id' => 'getOfferId',
+        'payment' => 'getPayment',
         'price' => 'getPrice',
         'price_base' => 'getPriceBase',
         'price_currency' => 'getPriceCurrency',
@@ -423,6 +429,7 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('log', $data ?? [], null);
         $this->setIfExists('notes', $data ?? [], null);
         $this->setIfExists('offer_id', $data ?? [], null);
+        $this->setIfExists('payment', $data ?? [], null);
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('price_base', $data ?? [], null);
         $this->setIfExists('price_currency', $data ?? [], null);
@@ -950,6 +957,33 @@ class DtoBillPayPurchase implements ModelInterface, ArrayAccess, \JsonSerializab
             throw new \InvalidArgumentException('non-nullable offer_id cannot be null');
         }
         $this->container['offer_id'] = $offer_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment
+     *
+     * @return \Zendit\Model\DtoPayment|null
+     */
+    public function getPayment()
+    {
+        return $this->container['payment'];
+    }
+
+    /**
+     * Sets payment
+     *
+     * @param \Zendit\Model\DtoPayment|null $payment payment
+     *
+     * @return self
+     */
+    public function setPayment($payment)
+    {
+        if (is_null($payment)) {
+            throw new \InvalidArgumentException('non-nullable payment cannot be null');
+        }
+        $this->container['payment'] = $payment;
 
         return $this;
     }

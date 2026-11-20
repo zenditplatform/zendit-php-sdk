@@ -69,6 +69,7 @@ All URIs are relative to /v1, except if the operation defines another base path.
 | [**topupsPurchasesTransactionIdGet()**](ZenditApi.md#topupsPurchasesTransactionIdGet) | **GET** /topups/purchases/{transactionId} | Get topup transaction by id |
 | [**transactionsGet()**](ZenditApi.md#transactionsGet) | **GET** /transactions | Get list of transactions |
 | [**transactionsTransactionIdGet()**](ZenditApi.md#transactionsTransactionIdGet) | **GET** /transactions/{transactionId} | Get transaction by id |
+| [**transactionsTransactionIdPaymentPost()**](ZenditApi.md#transactionsTransactionIdPaymentPost) | **POST** /transactions/{transactionId}/payment | Report the result of a payment taken by your own payment processor |
 | [**vouchersOffersGet()**](ZenditApi.md#vouchersOffersGet) | **GET** /vouchers/offers | Get list of voucher offers |
 | [**vouchersOffersOfferIdGet()**](ZenditApi.md#vouchersOffersOfferIdGet) | **GET** /vouchers/offers/{offerId} | Get a voucher offer by the offer ID |
 | [**vouchersPurchasesGet()**](ZenditApi.md#vouchersPurchasesGet) | **GET** /vouchers/purchases | Get list of transactions |
@@ -1356,6 +1357,46 @@ try {
 ### Return type
 
 [**\Zendit\Model\DtoTransaction**](../Model/DtoTransaction.md)
+
+[[Back to top]](#zendit-sdk-guide) 
+[[Back to README]](../../README.md)
+
+## `transactionsTransactionIdPaymentPost()`
+
+```php
+transactionsTransactionIdPaymentPost($transaction_id, $data)
+```
+
+Report the result of a payment taken by your own payment processor
+
+Reports the outcome of a payment your payment processor took for a purchase made through the embeddable widget. Call it from your backend once the customer has paid or the payment has failed. transactionId is the transaction id sent in the Payment Request webhook.  A 200 response, with an empty body, means the report was taken into account, whatever it did to the transaction: a repeat of a result already applied and a success for a transaction that has already expired or failed both return 200 and change nothing. The outcome of the purchase is not returned here; it is delivered by the product webhook, which carries the payment details.  400 and 404 mean the report can never be accepted, so do not retry them. Any other non-200 response means the report was not taken into account: retry until you receive 200.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$transaction_id = 'transaction_id_example'; // string | transaction id
+$data = new \Zendit\Model\DtoPaymentResultInput(); // \Zendit\Model\DtoPaymentResultInput | Payment result
+
+try {
+    $apiInstance->transactionsTransactionIdPaymentPost($transaction_id, $data);
+} catch (Exception $e) {
+    echo 'Exception when calling ZenditApi->transactionsTransactionIdPaymentPost: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| transaction id | |
+| **data** | [**\Zendit\Model\DtoPaymentResultInput**](../Model/DtoPaymentResultInput.md)| Payment result | |
+
+### Return type
+
+void (empty response body)
 
 [[Back to top]](#zendit-sdk-guide) 
 [[Back to README]](../../README.md)
